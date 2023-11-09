@@ -1,0 +1,137 @@
+{% extends "base.html" %} {% block title %}Форма отчетности МСХ{% endblock %}
+{% block content %}
+    <link rel="stylesheet" href="../static/ms_form.css" />
+    <script src="../static/script.js" defer></script>
+    <title>Форма</title>
+  </head>
+  <body>
+    <form action="#" class="form">
+      <h1 class="text-center">Форма отчетности МСХ</h1>
+      <!-- Progress bar -->
+      <div class="progressbar">
+        <div class="progress" id="progress"></div>
+
+        <div
+          class="progress-step progress-step-active"
+          data-title="Test"
+        ></div>
+        <div class="progress-step" data-title="Test"></div>
+        <div class="progress-step" data-title="Test"></div>
+        <div class="progress-step" data-title="Test"></div>
+      </div>
+
+      <!-- Steps -->
+      <div class="form-step form-step-active">
+        <div class="input-group">
+          <p class="step-title">1. Занятость - ЭПХУ</p>
+          <label for="job_status">Укажите вашу занятость:</label>
+          <select class="form-select" name="selected_option_job_status" id="job_status" >
+             {% for option in options_job_status %}
+                    <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="input-group">
+          <label class="select-label" for="gender">Укажите ваш пол:</label>
+          <select class="form-select" id="gender" name="selected_option_gender">
+            {% for option in gender_opt %}
+                    <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="input-group">
+          <label class="select-label" for="income">Укажите ваш доход (только цифры):</label>
+          <input
+                     class="form-input"
+                     id="income"
+                      type="number"
+                      placeholder="тенге/месяц"
+                      name="income"
+                      value="{{
+                      request.form.income }}"
+                />
+        </div>
+        <div class="">
+          <a href="#" class="btn btn-next width-50 ml-auto">Далее</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <p class="step-title">2. Жилищные условия</p>
+        <div class="input-group">
+          <label class="select-label" for="estate_have">Есть ли у вас недвижимость?</label>
+          <select class="form-select" id="estate_have" name="selected_estate_have">
+            {% for option in real_estate_have %}
+                    <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="input-group">
+          <label class="select-label" for="estate_type">Укажите тип недвижимости (при ее наличии):</label>
+          <select class="form-select" id="estate_type" name="selected_estate_type">
+            {% for option in real_estate_type %}
+                    <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      <div class="input-group">
+          <label class="select-label" for="room_count">Укажите количество комнат (при наличии недвижимости):</label>
+           <select class="form-select" id="room_count" name="selected_room_count">
+            {% for option in room_count %}
+                    <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+          </select>
+      </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Назад</a>
+          <a href="#" class="btn btn-next">Далее</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <p class="step-title">3. Наличие земельных угодий</p>
+        <div class="input-group">
+          <label class="select-label" for="houshold_have">Есть ли у вас домашнее хозяйство?</label>
+          <select class="form-select" id="houshold_have" name="selected_houshold_have">
+            {% for option in houshold_have %}
+                    <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="input-group">
+          <label class="select-label" for="houshold_square">Площадь земли в личной собственности (только цифры):</label>
+          <input
+                     class="form-input"
+                     id="houshold_square"
+                      type="number"
+                      placeholder="кв. метров"
+                      name="houshold_square"
+                      value="{{
+                      request.form.houshold_square }}"
+                />
+        </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Назад</a>
+          <a href="#" class="btn btn-next">Далее</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <p class="step-title">Test 4</p>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" />
+        </div>
+        <div class="input-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+          />
+        </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Назад</a>
+          <input type="submit" value="Отправить" class="btn" />
+        </div>
+      </div>
+    </form>
+  </body>
+{% endblock %}
