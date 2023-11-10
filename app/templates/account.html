@@ -6,7 +6,7 @@
     <main>
         <div class="acc-content">
             {% if not formdata %}
-            <h2 style="text-align: center;">У авсайта ещё нет ни одной формы</h2>
+            <h2 style="text-align: center;">У вас ещё нет ни одной формы</h2>
             <a href="{{ url_for('form') }}" class="btn">Заполнить форму</a>
             {% endif %}
             {% for db_form in formdata %}
