@@ -1,137 +1,1447 @@
 {% extends "base.html" %} {% block title %}Форма отчетности МСХ{% endblock %}
 {% block content %}
-    <link rel="stylesheet" href="../static/ms_form.css" />
-    <script src="../static/script.js" defer></script>
-    <title>Форма</title>
-  </head>
-  <body>
-    <form action="#" class="form">
-      <h1 class="text-center">Форма отчетности МСХ</h1>
-      <!-- Progress bar -->
-      <div class="progressbar">
-        <div class="progress" id="progress"></div>
+<link rel="stylesheet" href="../static/ms_form.css" />
+<script src="../static/script.js" defer></script>
+<title>Форма</title>
+</head>
 
-        <div
-          class="progress-step progress-step-active"
-          data-title="Test"
-        ></div>
-        <div class="progress-step" data-title="Test"></div>
-        <div class="progress-step" data-title="Test"></div>
-        <div class="progress-step" data-title="Test"></div>
-      </div>
+<body>
+  <form action="#" class="form" method="POST">
 
-      <!-- Steps -->
-      <div class="form-step form-step-active">
-        <div class="input-group">
-          <p class="step-title">1. Занятость - ЭПХУ</p>
-          <label for="job_status">Укажите вашу занятость:</label>
-          <select class="form-select" name="selected_option_job_status" id="job_status" >
-             {% for option in options_job_status %}
-                    <option value="{{ option }}">{{ option }}</option>
-            {% endfor %}
-          </select>
-        </div>
-        <div class="input-group">
-          <label class="select-label" for="gender">Укажите ваш пол:</label>
-          <select class="form-select" id="gender" name="selected_option_gender">
-            {% for option in gender_opt %}
-                    <option value="{{ option }}">{{ option }}</option>
-            {% endfor %}
-          </select>
-        </div>
-        <div class="input-group">
-          <label class="select-label" for="income">Укажите ваш доход (только цифры):</label>
-          <input
-                     class="form-input"
-                     id="income"
-                      type="number"
-                      placeholder="тенге/месяц"
-                      name="income"
-                      value="{{
-                      request.form.income }}"
-                />
-        </div>
-        <div class="">
-          <a href="#" class="btn btn-next width-50 ml-auto">Далее</a>
-        </div>
-      </div>
-      <div class="form-step">
-        <p class="step-title">2. Жилищные условия</p>
-        <div class="input-group">
-          <label class="select-label" for="estate_have">Есть ли у вас недвижимость?</label>
-          <select class="form-select" id="estate_have" name="selected_estate_have">
-            {% for option in real_estate_have %}
-                    <option value="{{ option }}">{{ option }}</option>
-            {% endfor %}
-          </select>
-        </div>
-        <div class="input-group">
-          <label class="select-label" for="estate_type">Укажите тип недвижимости (при ее наличии):</label>
-          <select class="form-select" id="estate_type" name="selected_estate_type">
-            {% for option in real_estate_type %}
-                    <option value="{{ option }}">{{ option }}</option>
-            {% endfor %}
-          </select>
-        </div>
+    <h1 class="text-center">Форма отчетности МСХ</h1>
+    <!-- Progress bar -->
+    <div class="progressbar">
+      <div class="progress" id="progress"></div>
+
+      <div class="progress-step progress-step-active" data-title="1 Этап"></div>
+      <div class="progress-step" data-title="2 Этап"></div>
+      <div class="progress-step" data-title="3 Этап"></div>
+      <div class="progress-step" data-title="4 Этап"></div>
+      <div class="progress-step" data-title="5 Этап"></div>
+      <div class="progress-step" data-title="6 Этап"></div>
+      <div class="progress-step" data-title="7 Этап"></div>
+    </div>
+
+    <!-- Steps -->
+    <div class="form-step form-step-active">
+    {{ form.csrf_token }}
+    {{ form.hidden_tag() }}
+      <p class="step-title">1. Демография, занятость и уровень жизни населения</p>
       <div class="input-group">
-          <label class="select-label" for="room_count">Укажите количество комнат (при наличии недвижимости):</label>
-           <select class="form-select" id="room_count" name="selected_room_count">
-            {% for option in room_count %}
-                    <option value="{{ option }}">{{ option }}</option>
-            {% endfor %}
-          </select>
+        <div class="label">
+          {{ form.labour_population.label }}
+          {{ measurement_units['human'] }}
+        </div>
+        {{ form.labour_population }}
       </div>
-        <div class="btns-group">
-          <a href="#" class="btn btn-prev">Назад</a>
-          <a href="#" class="btn btn-next">Далее</a>
+      <div class="input-group">
+        <div class="label">
+          {{ form.labour_constant_population.label }}
+          {{ measurement_units['human'] }}
         </div>
+        {{ form.labour_constant_population }}
       </div>
-      <div class="form-step">
-        <p class="step-title">3. Наличие земельных угодий</p>
-        <div class="input-group">
-          <label class="select-label" for="houshold_have">Есть ли у вас домашнее хозяйство?</label>
-          <select class="form-select" id="houshold_have" name="selected_houshold_have">
-            {% for option in houshold_have %}
-                    <option value="{{ option }}">{{ option }}</option>
-            {% endfor %}
-          </select>
+      <div class="input-group">
+        <div class="label">
+          {{ form.labour_labour.label }}
+          {{ measurement_units['human'] }}
         </div>
-        <div class="input-group">
-          <label class="select-label" for="houshold_square">Площадь земли в личной собственности (только цифры):</label>
-          <input
-                     class="form-input"
-                     id="houshold_square"
-                      type="number"
-                      placeholder="кв. метров"
-                      name="houshold_square"
-                      value="{{
-                      request.form.houshold_square }}"
-                />
-        </div>
-        <div class="btns-group">
-          <a href="#" class="btn btn-prev">Назад</a>
-          <a href="#" class="btn btn-next">Далее</a>
-        </div>
+        {{ form.labour_labour }}
       </div>
-      <div class="form-step">
-        <p class="step-title">Test 4</p>
-        <div class="input-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" />
+      <div class="input-group">
+        <div class="label">
+          {{ form.labour_government_workers.label }}
+          {{ measurement_units['human'] }}
         </div>
-        <div class="input-group">
-          <label for="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-          />
-        </div>
-        <div class="btns-group">
-          <a href="#" class="btn btn-prev">Назад</a>
-          <input type="submit" value="Отправить" class="btn" />
-        </div>
+        {{ form.labour_government_workers }}
       </div>
-    </form>
-  </body>
+      <div class="input-group">
+        <div class="label">
+          {{ form.labour_private_labour.label }}
+          {{ measurement_units['human'] }}
+        </div>
+        {{ form.labour_private_labour }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.labour_private_ogorod.label }}
+          {{ measurement_units['human'] }}
+        </div>
+        {{ form.labour_private_ogorod }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.labour_total_econ_inactive_population.label }}
+          {{ measurement_units['human'] }}
+        </div>
+        {{ form.labour_total_econ_inactive_population }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.labour_unemployed.label }}
+          {{ measurement_units['human'] }}
+        </div>
+        {{ form.labour_unemployed }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.labour_household_size.label }}
+          {{ measurement_units['human'] }}
+        </div>
+        {{ form.labour_household_size }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.labour_average_income_family.label }}
+          {{ measurement_units['tg/m'] }}
+        </div>
+        {{ form.labour_average_income_family }}
+      </div>
+      <div class="">
+        <a href="#" class="btn btn-next width-50 ml-auto">Далее</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <p class="step-title">2. Жилищные условия</p>
+      <div class="input-group">
+        <div class="label">
+          {{ form.house_total_dvor.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.house_total_dvor }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.house_zaselen_dvor.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.house_zaselen_dvor }}
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+        <a href="#" class="btn btn-next">Далее</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <p class="step-title">3. Растениеводство</p>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dh_count.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.dh_count }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_number_ogorodov.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.dx_number_ogorodov }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_cx_land.label }}
+          {{ measurement_units['square'] }}
+        </div>
+        {{ form.dx_cx_land }}
+      </div>
+      <H4>В том числе:</H4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_pashnya.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.dx_pashnya }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_mnogoletnie.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.dx_mnogoletnie }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_zelej.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.dx_zelej }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_pastbishe.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.dx_pastbishe }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_senokosy.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.dx_senokosy }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_ogorody.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.dx_ogorody }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_sad.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.dx_sad }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_urojai.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_urojai }}
+      </div>
+      <h4>В том числе:</h4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_cucumber.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_cucumber }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_tomato.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_tomato }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_potato.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_potato }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_kapusta.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_kapusta }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_carrot.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_carrot }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_svekla.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_svekla }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_sweet_peper.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_sweet_peper }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_baklajan.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_baklajan }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_kabachek.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_kabachek }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_onion.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_onion }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_chesnok.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_chesnok }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_redis.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_redis }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_korm.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_korm }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.dx_fruits.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.dx_fruits }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_amount.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.kx_amount }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kz_cx_land.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kz_cx_land }}
+      </div>
+      <h4>В том числе:</h4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_pansya.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kx_pansya }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_mnogoletnie.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kx_mnogoletnie }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_zelej.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kx_zelej }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_pastbishe.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kx_pastbishe }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_senokosy.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kx_senokosy }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_urojai.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.kx_urojai }}
+      </div>
+      <h4>В том числе:</h4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_zerno.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.kx_zerno }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_rice.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.kx_rice }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_maslichnye.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.kx_maslichnye }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_korm.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.kx_korm }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_mnogoletnie_derevo.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.kx_mnogoletnie_derevo }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kz_cx_land_reserve.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kz_cx_land_reserve }}
+      </div>
+      <h4>В том числе:</h4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_pansya_reserve.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kx_pansya_reserve }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_mnogoletnie_reserve.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kx_mnogoletnie_reserve }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_zelej_reserve.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kx_zelej_reserve }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_pastbishe_reserve.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kx_pastbishe_reserve }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.kx_senokosy_reserve.label }}
+          {{ measurement_units['gectar'] }}
+        </div>
+        {{ form.kx_senokosy_reserve }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_polivochnaya_sistema_.label }}
+          {{ measurement_units['a'] }}
+        </div>
+        {{ form.infrastructure_polivochnaya_sistema_ }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_polivochnaya_sistema_isused.label }}
+          {{ measurement_units['used'] }}
+        </div>
+        {{ form.infrastructure_polivochnaya_sistema_isused }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_polivy.label }}
+          {{ measurement_units['%'] }}
+        </div>
+        {{ form.infrastructure_polivy }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_mtm.label }}
+          {{ measurement_units['a'] }}
+        </div>
+        {{ form.infrastructure_mtm }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_mtm_isused.label }}
+          {{ measurement_units['used'] }}
+        </div>
+        {{ form.infrastructure_mtm_isused }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_slad.label }}
+          {{ measurement_units['a'] }}
+        </div>
+        {{ form.infrastructure_slad }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_slad_isused.label }}
+          {{ measurement_units['used'] }}
+        </div>
+        {{ form.infrastructure_slad_isused }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_garage.label }}
+          {{ measurement_units['a'] }}
+        </div>
+        {{ form.infrastructure_garage }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_garage_isused.label }}
+          {{ measurement_units['used'] }}
+        </div>
+        {{ form.infrastructure_garage_isused }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_cycsterny.label }}
+          {{ measurement_units['a'] }}
+        </div>
+        {{ form.infrastructure_cycsterny }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_cycsterny_isused.label }}
+          {{ measurement_units['used'] }}
+        </div>
+        {{ form.infrastructure_cycsterny_isused }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_transformator.label }}
+          {{ measurement_units['a'] }}
+        </div>
+        {{ form.infrastructure_transformator }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.infrastructure_transformator_isused.label }}
+          {{ measurement_units['used'] }}
+        </div>
+        {{ form.infrastructure_transformator_isused }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.specialization_rastenivodstvo.label }}
+        </div>
+        {{ form.specialization_rastenivodstvo }}
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+        <a href="#" class="btn btn-next">Далее</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <p class="step-title">4. Животноводство</p>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_dvor.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.animal_dvor }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_skot_bird.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.animal_skot_bird }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_cx_land.label }}
+          {{ measurement_units['square'] }}
+        </div>
+        {{ form.animal_cx_land }}
+      </div>
+      <h4>В том числе:</h4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_pashnya.label }}
+          {{ measurement_units['square'] }}
+        </div>
+        {{ form.animal_pashnya }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_mnogolet.label }}
+          {{ measurement_units['square'] }}
+        </div>
+        {{ form.animal_mnogolet }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_zalej.label }}
+          {{ measurement_units['square'] }}
+        </div>
+        {{ form.animal_zalej }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_pastbisha.label }}
+          {{ measurement_units['square'] }}
+        </div>
+        {{ form.animal_pastbisha }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_senokos.label }}
+          {{ measurement_units['square'] }}
+        </div>
+        {{ form.animal_senokos }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_ogorod.label }}
+          {{ measurement_units['square'] }}
+        </div>
+        {{ form.animal_ogorod }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_sad.label }}
+          {{ measurement_units['square'] }}
+        </div>
+        {{ form.animal_sad }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_krs_milk.label }}
+          {{ measurement_units['heads'] }}
+        </div>
+        {{ form.animal_krs_milk }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_krs_meat.label }}
+          {{ measurement_units['heads'] }}
+        </div>
+        {{ form.animal_krs_meat }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_sheep.label }}
+          {{ measurement_units['heads'] }}
+        </div>
+        {{ form.animal_sheep }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_kozel.label }}
+          {{ measurement_units['heads'] }}
+        </div>
+        {{ form.animal_kozel }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_horse.label }}
+          {{ measurement_units['heads'] }}
+        </div>
+        {{ form.animal_horse }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_camel.label }}
+          {{ measurement_units['heads'] }}
+        </div>
+        {{ form.animal_camel }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_pig.label }}
+          {{ measurement_units['heads'] }}
+        </div>
+        {{ form.animal_pig }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_chicken.label }}
+          {{ measurement_units['heads'] }}
+        </div>
+        {{ form.animal_chicken }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_gusi.label }}
+          {{ measurement_units['heads'] }}
+        </div>
+        {{ form.animal_gusi }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_duck.label }}
+          {{ measurement_units['heads'] }}
+        </div>
+        {{ form.animal_duck }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_induk.label }}
+          {{ measurement_units['heads'] }}
+        </div>
+        {{ form.animal_induk }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_mik_total.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_mik_total }}
+      </div>
+      <h4>В том числе:</h4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_milk_cow.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_milk_cow }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_milkrate_cow.label }}
+          {{ measurement_units['%'] }}
+        </div>
+        {{ form.animal_milkrate_cow }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_mil_kozel.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_mil_kozel }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_milrate_kozel.label }}
+          {{ measurement_units['%'] }}
+        </div>
+        {{ form.animal_milrate_kozel }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_milk_horse.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_milk_horse }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_milkrate_horse.label }}
+          {{ measurement_units['%'] }}
+        </div>
+        {{ form.animal_milkrate_horse }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_milk_camel.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_milk_camel }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_milkrate_camel.label }}
+          {{ measurement_units['%'] }}
+        </div>
+        {{ form.animal_milkrate_camel }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_meat_total.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_meat_total }}
+      </div>
+      <h4>В том числе:</h4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_meat_cow.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_meat_cow }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_meat_sheep.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_meat_sheep }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_meat_horse.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_meat_horse }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_meat_pig.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_meat_pig }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_meat_camel.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_meat_camel }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_meat_chicken.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_meat_chicken }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_meat_duck.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_meat_duck }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_meat_gusi.label }}
+          {{ measurement_units['t/y'] }}
+        </div>
+        {{ form.animal_meat_gusi }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_egg_total.label }}
+          {{ measurement_units['t_p/y'] }}
+        </div>
+        {{ form.animal_egg_total }}
+      </div>
+      <h4>В том числе:</h4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_egg_chicken.label }}
+          {{ measurement_units['p/y'] }}
+        </div>
+        {{ form.animal_egg_chicken }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_egg_gusi.label }}
+          {{ measurement_units['p/y'] }}
+        </div>
+        {{ form.animal_egg_gusi }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_egg_perepel.label }}
+          {{ measurement_units['p/y'] }}
+        </div>
+        {{ form.animal_egg_perepel }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_transformator.label }}
+          {{ measurement_units['a'] }}
+        </div>
+        {{ form.animal_transformator }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.animal_transformator_isused.label }}
+          {{ measurement_units['used'] }}
+        </div>
+        {{ form.animal_transformator_isused }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.specialization_animal.label }}
+        </div>
+        {{ form.specialization_animal }}
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+        <a href="#" class="btn btn-next">Далее</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <p class="step-title">5. Несельскохозяйственные виды бизнеса</p>
+      <h4>Торговля и услуги</h4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_sto.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_sto }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_sto_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_sto_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_kindergarden.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_kindergarden }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_kindergarden_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_kindergarden_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_souvenier.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_souvenier }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_souvenier_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_souvenier_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_pc_service.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_pc_service }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_pc_service_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_pc_service_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_store.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_store }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_store_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_store_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_remont_bytovoi_tech.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_remont_bytovoi_tech }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_remont_bytovoi_tech_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_remont_bytovoi_tech_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_metal.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_metal }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_metal_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_metal_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_accounting.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_accounting }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_accounting_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_accounting_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_photo.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_photo }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_photo_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_photo_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_turism.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_turism }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_turism_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_turism_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_rent.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_rent }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_rent_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_rent_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_cargo.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_cargo }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_cargo_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_cargo_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_massage.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_massage }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_massage_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_massage_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_foodcourt.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_foodcourt }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_foodcourt_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_foodcourt_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_cleaning.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_cleaning }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_cleaning_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_cleaning_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_beuty.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_beuty }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_beuty_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_beuty_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_carwash.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_carwash }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_carwash_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_carwash_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_atelie.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_atelie }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_atelie_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_atelie_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_others.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_others }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_others_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_others_needs }}
+      </div>
+      <h4>Строительство</h4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_stroika.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_stroika }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_stroika_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_stroika_needs }}
+      </div>
+      <h4>Промышленность</h4>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_mebel.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_mebel }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_mebel_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_mebel_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_stroi_material.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_stroi_material }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_stroi_material_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_stroi_material_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_svarka.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_svarka }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_svarka_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_svarka_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_woodworking.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_woodworking }}
+      </div>
+
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_woodworking_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_woodworking_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_others_uslugi.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.noncx_others_uslugi }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.noncx_others_needs_uslugi.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.noncx_others_needs_uslugi }}
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+        <a href="#" class="btn btn-next">Далее</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <p class="step-title">6. Переработка сельхозпродукции и пищевая промышленность</p>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_milk.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_milk }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_milk_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_milk_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_meat.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_meat }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_meat_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_meat_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_vegetables.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_vegetables }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_vegetables_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_vegetables_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_mayo.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_mayo }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_mayo_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_mayo_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_fish.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_fish }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_fish_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_fish_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_choco.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_choco }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_choco_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_choco_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_beer.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_beer }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_beer_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_beer_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_vodka.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_vodka }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_vodka_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_vodka_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_honey.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_honey }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_honey_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_honey_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_polufabricat.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_polufabricat }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_polufabricat_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_polufabricat_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_bread.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_bread }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_bread_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_bread_needs }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_others.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.manufacture_others }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.manufacture_others_needs.label }}
+          {{ measurement_units['c'] }}
+        </div>
+        {{ form.manufacture_others_needs }}
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+        <a href="#" class="btn btn-next">Далее</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <p class="step-title">7. Потребность в кредитах</p>
+      <div class="input-group">
+        <div class="label">
+          {{ form.credit_amount.label }}
+          {{ measurement_units['unit'] }}
+        </div>
+        {{ form.credit_amount }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.credit_total.label }}
+          {{ measurement_units['tenge'] }}
+        </div>
+        {{ form.credit_total }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.credit_average_total.label }}
+          {{ measurement_units['tenge'] }}
+        </div>
+        {{ form.credit_average_total }}
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.credit_zalog.label }}
+          {{ measurement_units['%'] }}
+        </div>
+        {{ form.credit_zalog }}
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+        {{ form.submit(class="btn") }}
+      </div>
+    </div>
+  </form>
+</body>
 {% endblock %}

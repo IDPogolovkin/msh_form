@@ -19,8 +19,13 @@ body {
 label {
   display: block;
   margin-bottom: 0.5rem;
+  width: 60%;
 }
-
+.label{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
 input {
   display: block;
   font-size: 19px;
@@ -119,7 +124,9 @@ label{
 
 /* Form */
 .form {
-  width: clamp(570px, 30%, 680px);
+  /* width: clamp(570px, 100%, 1080px); */
+  width: 80%;
+  max-width: 1200px;
   margin: 0 auto;
   border: 1px solid #ccc;
   border-radius: 0.35rem;

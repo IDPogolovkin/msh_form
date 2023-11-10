@@ -5,6 +5,22 @@ from app import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
 
+measurement_units = {
+    'human': 'человек',
+    'tg/m': 'тенге/месяц',
+    'unit': 'единиц',
+    'square': 'кв.метров',
+    't/y': 'тонн/год',
+    'gectar':'гектар',
+    'a':'наличие',
+    'used': 'используется',
+    'heads':'голов',
+    '%':'%',
+    't_p/y':'тыс. штук/год',
+    'p/y':'штук/год',
+    'c':'потребность',
+    'tenge':'тенге',
+}
 
 
 @app.route('/')
@@ -45,7 +61,7 @@ def edit_form(id):
     form = FormDataForm()
     formdata = Form.query.filter_by(id=id).first()
     if request.method == 'GET':
-        return render_template('edit_form.html', form=form, user=current_user)
+        return render_template('edit_form.html', form=form, user=current_user, measurement_units=measurement_units, formdata=formdata)
     else:
         if form.validate_on_submit():
             formdata.labour_population=form.labour_population.data,
@@ -256,7 +272,7 @@ def form():
     user = current_user
     form = FormDataForm()
     if request.method == "GET":
-        return render_template('ms_form.html', form=form, user=user)
+        return render_template('ms_form.html', form=form, measurement_units=measurement_units, user=user)
     else:
         if form.validate_on_submit():
             formdata = Form(
@@ -265,7 +281,7 @@ def form():
                 labour_population=form.labour_population.data,
                 labour_constant_population=form.labour_constant_population.data,
                 labour_labour=form.labour_labour.data,
-                labour_goverment_workers=form.labour_goverment_workers.data,
+                labour_government_workers=form.labour_government_workers.data,
                 labour_private_labour=form.labour_private_labour.data,
                 labour_private_ogorod=form.labour_private_ogorod.data,
                 labour_total_econ_inactive_population=form.labour_total_econ_inactive_population.data,
@@ -461,4 +477,8 @@ def form():
             db.session.commit()
             flash("Форма успешено добавлена!", 'success')
             return redirect(url_for('home'))
-    return render_template('ms_form.html', title='Форма отчетности МСХ', user=current_user)
+        else:
+            print(form.errors)
+            print(current_user)
+            flash("Форма заполнена некорректно или отсутствуют необходимые поля.", 'danger')
+    return render_template('ms_form.html', title='Форма отчетности МСХ',form=form, measurement_units=measurement_units, user=current_user)
