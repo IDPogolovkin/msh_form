@@ -23,14 +23,14 @@ measurement_units = {
 }
 
 
-@app.route('/')
-def home():
-    return render_template('base.html', user=current_user)
+# @app.route('/')
+# def home():
+#     return render_template('base.html', user=current_user)
 
-@app.route('/login',  methods=['POST', 'GET'])
+@app.route('/',  methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('form'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
@@ -40,7 +40,7 @@ def login():
             if next_page:
                 return redirect(next_page)
             else:
-                return redirect(url_for('home'))
+                return redirect(url_for('login'))
         else:
             flash('Неверный логин или пароль! Попробуйте еще раз', 'danger')
     return render_template('login.html', title='Login', form=form, user=current_user)
@@ -48,7 +48,7 @@ def login():
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
 @app.route('/account', methods=['POST', 'GET'])
 @login_required
@@ -476,7 +476,7 @@ def form():
             db.session.add(formdata)
             db.session.commit()
             flash("Форма успешено добавлена!", 'success')
-            return redirect(url_for('home'))
+            return redirect(url_for('login'))
         else:
             print(form.errors)
             print(current_user)
