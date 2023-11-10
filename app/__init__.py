@@ -4,9 +4,11 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail, Message
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+import pathlib
+import os
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder=os.path.join(pathlib.Path().resolve(), 'app', 'static'))
 app.config['SECRET_KEY'] = 'b982c2edf1a2f17e9e06c49fb027e8d1'
 # app.config['SQLALCHEMY_DATABASE_URI'] = ''
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' #Сука если ты редачишь на локалке закоменти строку сверху и раскомменти эту

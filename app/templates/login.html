@@ -1,13 +1,13 @@
 {% extends "base.html" %} {% block title %}Войти в аккаунт{% endblock %}
 {% block content %}
-<link rel="stylesheet" href="../static/login.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 <link rel="icon" type="image/x-icon" href="../static/img/msx.png">
 <div class="login-body">
   <div class="content-section">
-    <form method="POST" action="">
+    <form method="POST" action="" class="form">
       {{ form.hidden_tag() }}
-      <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Войти</legend>
+      <div class="form-group">
+        <legend class="border-bottom mb-4">Войти</legend><br>
         <div class="form-group">
           {{ form.username.label(class="form-control-label") }}
           {% if form.username.errors %}
@@ -20,7 +20,7 @@
           {% else %}
           {{ form.username(class="form-control form-control-lg") }}
           {% endif %}
-        </div><br>
+        </div></br>
         <div class="form-group">
           {{ form.password.label(class="form-control-label") }}
           {% if form.password.errors %}
@@ -38,9 +38,9 @@
           {{ form.remember(class="form-check-input") }}
           {{ form.remember.label(class="form-check-label") }}
         </div><br>
-      </fieldset><br>
+      </div><br>
       <div class="form-group">
-        {{ form.submit(class="btn btn-light") }}
+        {{ form.submit(class="btn") }}
       </div><br>
     </form>
   </div>

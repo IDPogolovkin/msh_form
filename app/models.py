@@ -1,7 +1,7 @@
-from flask import session
 from app import app, db, login_manager
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
+from datetime import timedelta, datetime, timezone
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -223,7 +223,9 @@ class Form(db.Model):
    credit_total = db.Column(db.Numeric(30, 10))
    credit_average_total = db.Column(db.Numeric(30, 10))
    credit_zalog = db.Column(db.Numeric(30, 10))
-   modified_date = db.Column(db.TIMESTAMP(timezone=True), default=db.func.now(), onupdate=db.func.now())
+   modified_date = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone(timedelta(hours=6))), onupdate=datetime.now(timezone(timedelta(hours=6))))
+   creation_date = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone(timedelta(hours=6))))
+   # creation_date = db.Column(db.TIMESTAMP(timezone=True), default=db.func.now() + timedelta(hours=6))
 
 with app.app_context():
     db.create_all()

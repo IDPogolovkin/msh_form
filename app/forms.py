@@ -17,7 +17,7 @@ class FormDataForm(FlaskForm):
     labour_labour = DecimalField('Рабочая сила', validators=[DataRequired()])
     labour_government_workers = DecimalField('Занятое население в бюджетной сфере', validators=[DataRequired()])
     labour_private_labour = DecimalField('Занятое население в частном секторе', validators=[DataRequired()])
-    labour_private_ogorod = DecimalField('из них занятое население в личном подсобном хозяйстве', validators=[DataRequired()])
+    labour_private_ogorod = DecimalField('Из них занятое население в личном подсобном хозяйстве', validators=[DataRequired()])
     labour_total_econ_inactive_population = DecimalField('Лица, не входящие в состав рабочей силы', validators=[DataRequired()])
     labour_unemployed = DecimalField('Безработные', validators=[DataRequired()])
     labour_household_size = DecimalField('Средний размер домашних хозяйств', validators=[DataRequired()])

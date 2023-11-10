@@ -1,0 +1,797 @@
+{% extends "base.html" %} {% block title %}Аккаунт{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='account.css') }}" />
+
+<body>
+    <main>
+        <div class="acc-content">
+            {% if not formdata %}
+            <h2 style="text-align: center;">У авсайта ещё нет ни одной формы</h2>
+            <a href="{{ url_for('form') }}" class="btn">Заполнить форму</a>
+            {% endif %}
+            {% for db_form in formdata %}
+            <div class="form">
+                <h2>Форма за {{ db_form.form_year }} год</h2>
+                <h3>Последние изменения: {{ str(db_form.modified_date).split('.')[0] }}</h3>
+                <h3>Добавлена: {{ str(db_form.creation_date).split('.')[0] }}</h3>
+                <h4>1. Демография, занятость и уровень жизни населения</h4>
+                <div class="form-output">
+                    <label class="label">{{ form.labour_population.label }}</label>
+                    <p>{{ db_form.labour_population }} {{ measurement_units['human'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.labour_constant_population.label }}</label>
+                    <p>{{ db_form.labour_constant_population }} {{ measurement_units['human'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.labour_labour.label }}</label>
+                    <p>{{ db_form.labour_labour }} {{ measurement_units['human'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.labour_government_workers.label }}</label>
+                    <p>{{ db_form.labour_government_workers }} {{ measurement_units['human'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.labour_private_labour.label }}</label>
+                    <p>{{ db_form.labour_private_labour }} {{ measurement_units['human'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.labour_private_ogorod.label }}</label>
+                    <p>{{ db_form.labour_private_ogorod }} {{ measurement_units['human'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.labour_total_econ_inactive_population.label }}</label>
+                    <p>{{ db_form.labour_total_econ_inactive_population }} {{ measurement_units['human'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.labour_unemployed.label }}</label>
+                    <p>{{ db_form.labour_unemployed }} {{ measurement_units['human'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.labour_household_size.label }}</label>
+                    <p>{{ db_form.labour_household_size }} {{ measurement_units['human'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.labour_average_income_family.label }}</label>
+                    <p>{{ db_form.labour_average_income_family }} {{ measurement_units['tg/m'] }}</p>
+                </div>
+                <h4>2. Жилищные условия</h4>
+                <div class="form-output">
+                    <label class="label">{{ form.house_total_dvor.label }}</label>
+                    <p>{{ db_form.house_total_dvor }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.house_zaselen_dvor.label }}</label>
+                    <p>{{ db_form.house_zaselen_dvor }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <h4>3. Растениеводство</h4>
+                <div class="form-output">
+                    <label class="label">{{ form.dh_count.label }}</label>
+                    <p>{{ db_form.dh_count }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_number_ogorodov.label }}</label>
+                    <p>{{ db_form.dx_number_ogorodov }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_cx_land.label }}</label>
+                    <p>{{ db_form.dx_cx_land }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_pashnya.label }}</label>
+                    <p>{{ db_form.dx_pashnya }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_mnogoletnie.label }}</label>
+                    <p>{{ db_form.dx_mnogoletnie }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_zelej.label }}</label>
+                    <p>{{ db_form.dx_zelej }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_pastbishe.label }}</label>
+                    <p>{{ db_form.dx_pastbishe }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_senokosy.label }}</label>
+                    <p>{{ db_form.dx_senokosy }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_ogorody.label }}</label>
+                    <p>{{ db_form.dx_ogorody }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_sad.label }}</label>
+                    <p>{{ db_form.dx_sad }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_urojai.label }}</label>
+                    <p>{{ db_form.dx_urojai }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_cucumber.label }}</label>
+                    <p>{{ db_form.dx_cucumber }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_tomato.label }}</label>
+                    <p>{{ db_form.dx_tomato }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_potato.label }}</label>
+                    <p>{{ db_form.dx_potato }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_kapusta.label }}</label>
+                    <p>{{ db_form.dx_kapusta }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_carrot.label }}</label>
+                    <p>{{ db_form.dx_carrot }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_svekla.label }}</label>
+                    <p>{{ db_form.dx_svekla }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_sweet_peper.label }}</label>
+                    <p>{{ db_form.dx_sweet_peper }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_baklajan.label }}</label>
+                    <p>{{ db_form.dx_baklajan }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_kabachek.label }}</label>
+                    <p>{{ db_form.dx_kabachek }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_onion.label }}</label>
+                    <p>{{ db_form.dx_onion }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_chesnok.label }}</label>
+                    <p>{{ db_form.dx_chesnok }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_redis.label }}</label>
+                    <p>{{ db_form.dx_redis }} {{ measurement_units['t/y'] }}</p>
+                </div><div class="form-output">
+                    <label class="label">{{ form.dx_korm.label }}</label>
+                    <p>{{ db_form.dx_korm }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.dx_fruits.label }}</label>
+                    <p>{{ db_form.dx_fruits }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_amount.label }}</label>
+                    <p>{{ db_form.kx_amount }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kz_cx_land.label }}</label>
+                    <p>{{ db_form.kz_cx_land }} {{ measurement_units['gectar'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_pansya.label }}</label>
+                    <p>{{ db_form.kx_pansya }} {{ measurement_units['gectar'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_mnogoletnie.label }}</label>
+                    <p>{{ db_form.kx_mnogoletnie }} {{ measurement_units['gectar'] }}</p>
+                </div><div class="form-output">
+                    <label class="label">{{ form.kx_zelej.label }}</label>
+                    <p>{{ db_form.kx_zelej }} {{ measurement_units['gectar'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_pastbishe.label }}</label>
+                    <p>{{ db_form.kx_pastbishe }} {{ measurement_units['gectar'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_senokosy.label }}</label>
+                    <p>{{ db_form.kx_senokosy }} {{ measurement_units['gectar'] }}</p>
+                </div><div class="form-output">
+                    <label class="label">{{ form.kx_urojai.label }}</label>
+                    <p>{{ db_form.kx_urojai }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_zerno.label }}</label>
+                    <p>{{ db_form.kx_zerno }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_rice.label }}</label>
+                    <p>{{ db_form.kx_rice }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_maslichnye.label }}</label>
+                    <p>{{ db_form.kx_maslichnye }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_korm.label }}</label>
+                    <p>{{ db_form.kx_korm }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_mnogoletnie_derevo.label }}</label>
+                    <p>{{ db_form.kx_mnogoletnie_derevo }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kz_cx_land_reserve.label }}</label>
+                    <p>{{ db_form.kz_cx_land_reserve }} {{ measurement_units['gectar'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_pansya_reserve.label }}</label>
+                    <p>{{ db_form.kx_pansya_reserve }} {{ measurement_units['gectar'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_mnogoletnie_reserve.label }}</label>
+                    <p>{{ db_form.kx_mnogoletnie_reserve }} {{ measurement_units['gectar'] }}</p>
+                </div>
+
+                <div class="form-output">
+                    <label class="label">{{ form.kx_zelej_reserve.label }}</label>
+                    <p>{{ db_form.kx_zelej_reserve }} {{ measurement_units['gectar'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_pastbishe_reserve.label }}</label>
+                    <p>{{ db_form.kx_pastbishe_reserve }} {{ measurement_units['gectar'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.kx_senokosy_reserve.label }}</label>
+                    <p>{{ db_form.kx_senokosy_reserve }} {{ measurement_units['gectar'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_polivochnaya_sistema_.label }}</label>
+                    <p>{{ db_form.infrastructure_polivochnaya_sistema_ }} {{ measurement_units['a'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_polivochnaya_sistema_isused.label }}</label>
+                    <p>{{ db_form.infrastructure_polivochnaya_sistema_isused }} {{ measurement_units['used'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_polivy.label }}</label>
+                    <p>{{ db_form.infrastructure_polivy }} {{ measurement_units['%'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_mtm.label }}</label>
+                    <p>{{ db_form.infrastructure_mtm }} {{ measurement_units['a'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_mtm_isused.label }}</label>
+                    <p>{{ db_form.infrastructure_mtm_isused }} {{ measurement_units['used'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_slad.label }}</label>
+                    <p>{{ db_form.infrastructure_slad }} {{ measurement_units['a'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_slad_isused.label }}</label>
+                    <p>{{ db_form.infrastructure_slad_isused }} {{ measurement_units['used'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_garage.label }}</label>
+                    <p>{{ db_form.infrastructure_garage }} {{ measurement_units['a'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_garage_isused.label }}</label>
+                    <p>{{ db_form.infrastructure_garage_isused }} {{ measurement_units['used'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_cycsterny.label }}</label>
+                    <p>{{ db_form.infrastructure_cycsterny }} {{ measurement_units['a'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_cycsterny_isused.label }}</label>
+                    <p>{{ db_form.infrastructure_cycsterny_isused }} {{ measurement_units['used'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_transformator.label }}</label>
+                    <p>{{ db_form.infrastructure_transformator }} {{ measurement_units['a'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.infrastructure_transformator_isused.label }}</label>
+                    <p>{{ db_form.infrastructure_transformator_isused }} {{ measurement_units['used'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.specialization_rastenivodstvo.label }}</label>
+                    <p>{{ db_form.specialization_rastenivodstvo }}</p>
+                </div>
+                <h4>4. Животноводство</h4>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_dvor.label }}</label>
+                    <p>{{ db_form.animal_dvor }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_skot_bird.label }}</label>
+                    <p>{{ db_form.animal_skot_bird }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_cx_land.label }}</label>
+                    <p>{{ db_form.animal_cx_land }} {{ measurement_units['square'] }}</p>
+                </div><div class="form-output">
+                    <label class="label">{{ form.animal_pashnya.label }}</label>
+                    <p>{{ db_form.animal_pashnya }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_mnogolet.label }}</label>
+                    <p>{{ db_form.animal_mnogolet }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_zalej.label }}</label>
+                    <p>{{ db_form.animal_zalej }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_pastbisha.label }}</label>
+                    <p>{{ db_form.animal_pastbisha }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_senokos.label }}</label>
+                    <p>{{ db_form.animal_senokos }} {{ measurement_units['square'] }}</p>
+                </div><div class="form-output">
+                    <label class="label">{{ form.animal_ogorod.label }}</label>
+                    <p>{{ db_form.animal_ogorod }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_sad.label }}</label>
+                    <p>{{ db_form.animal_sad }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_krs_milk.label }}</label>
+                    <p>{{ db_form.animal_krs_milk }} {{ measurement_units['heads'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_krs_meat.label }}</label>
+                    <p>{{ db_form.animal_krs_meat }} {{ measurement_units['heads'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_sheep.label }}</label>
+                    <p>{{ db_form.animal_sheep }} {{ measurement_units['heads'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_kozel.label }}</label>
+                    <p>{{ db_form.animal_kozel }} {{ measurement_units['heads'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_horse.label }}</label>
+                    <p>{{ db_form.animal_horse }} {{ measurement_units['heads'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_camel.label }}</label>
+                    <p>{{ db_form.animal_camel }} {{ measurement_units['heads'] }}</p>
+                </div><div class="form-output">
+                    <label class="label">{{ form.animal_pig.label }}</label>
+                    <p>{{ db_form.animal_pig }} {{ measurement_units['heads'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_chicken.label }}</label>
+                    <p>{{ db_form.animal_chicken }} {{ measurement_units['heads'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_gusi.label }}</label>
+                    <p>{{ db_form.animal_gusi }} {{ measurement_units['heads'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_duck.label }}</label>
+                    <p>{{ db_form.animal_duck }} {{ measurement_units['heads'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_induk.label }}</label>
+                    <p>{{ db_form.animal_induk }} {{ measurement_units['heads'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_mik_total.label }}</label>
+                    <p>{{ db_form.animal_mik_total }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_milk_cow.label }}</label>
+                    <p>{{ db_form.animal_milk_cow }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_milkrate_cow.label }}</label>
+                    <p>{{ db_form.animal_milkrate_cow }} {{ measurement_units['%'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_mil_kozel.label }}</label>
+                    <p>{{ db_form.animal_mil_kozel }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_milrate_kozel.label }}</label>
+                    <p>{{ db_form.animal_milrate_kozel }} {{ measurement_units['%'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_milk_horse.label }}</label>
+                    <p>{{ db_form.animal_milk_horse }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_milkrate_horse.label }}</label>
+                    <p>{{ db_form.animal_milkrate_horse }} {{ measurement_units['%'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_milk_camel.label }}</label>
+                    <p>{{ db_form.animal_milk_camel }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_milkrate_camel.label }}</label>
+                    <p>{{ db_form.animal_milkrate_camel }} {{ measurement_units['%'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_meat_total.label }}</label>
+                    <p>{{ db_form.animal_meat_total }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_meat_cow.label }}</label>
+                    <p>{{ db_form.animal_meat_cow }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_meat_sheep.label }}</label>
+                    <p>{{ db_form.animal_meat_sheep }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_meat_horse.label }}</label>
+                    <p>{{ db_form.animal_meat_horse }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_meat_pig.label }}</label>
+                    <p>{{ db_form.animal_meat_pig }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_meat_camel.label }}</label>
+                    <p>{{ db_form.animal_meat_camel }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_meat_chicken.label }}</label>
+                    <p>{{ db_form.animal_meat_chicken }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_meat_duck.label }}</label>
+                    <p>{{ db_form.animal_meat_duck }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_meat_gusi.label }}</label>
+                    <p>{{ db_form.animal_meat_gusi }} {{ measurement_units['t/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_egg_total.label }}</label>
+                    <p>{{ db_form.animal_egg_total }} {{ measurement_units['t_p/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_egg_chicken.label }}</label>
+                    <p>{{ db_form.animal_egg_chicken }} {{ measurement_units['p/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_egg_gusi.label }}</label>
+                    <p>{{ db_form.animal_egg_gusi }} {{ measurement_units['p/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_egg_perepel.label }}</label>
+                    <p>{{ db_form.animal_egg_perepel }} {{ measurement_units['p/y'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_transformator.label }}</label>
+                    <p>{{ db_form.animal_transformator }} {{ measurement_units['a'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.animal_transformator_isused.label }}</label>
+                    <p>{{ db_form.animal_transformator_isused }} {{ measurement_units['used'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.specialization_animal.label }}</label>
+                    <p>{{ db_form.specialization_animal }}</p>
+                </div>
+                <h4>5. Несельскохозяйственные виды бизнеса</h4>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_sto.label }}</label>
+                    <p>{{ db_form.noncx_sto }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_sto_needs.label }}</label>
+                    <p>{{ db_form.noncx_sto_needs }} {{ measurement_units['c'] }}</p>
+                </div><div class="form-output">
+                    <label class="label">{{ form.noncx_kindergarden.label }}</label>
+                    <p>{{ db_form.noncx_kindergarden }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_kindergarden_needs.label }}</label>
+                    <p>{{ db_form.noncx_kindergarden_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_souvenier.label }}</label>
+                    <p>{{ db_form.noncx_souvenier }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_souvenier_needs.label }}</label>
+                    <p>{{ db_form.noncx_souvenier_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_pc_service.label }}</label>
+                    <p>{{ db_form.noncx_pc_service }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_pc_service_needs.label }}</label>
+                    <p>{{ db_form.noncx_pc_service_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_store.label }}</label>
+                    <p>{{ db_form.noncx_store }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_store_needs.label }}</label>
+                    <p>{{ db_form.noncx_store_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_remont_bytovoi_tech.label }}</label>
+                    <p>{{ db_form.noncx_remont_bytovoi_tech }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_remont_bytovoi_tech_needs.label }}</label>
+                    <p>{{ db_form.noncx_remont_bytovoi_tech_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_metal.label }}</label>
+                    <p>{{ db_form.noncx_metal }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_metal_needs.label }}</label>
+                    <p>{{ db_form.noncx_metal_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_accounting.label }}</label>
+                    <p>{{ db_form.noncx_accounting }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_accounting_needs.label }}</label>
+                    <p>{{ db_form.noncx_accounting_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_photo.label }}</label>
+                    <p>{{ db_form.noncx_photo }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_photo_needs.label }}</label>
+                    <p>{{ db_form.noncx_photo_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_turism.label }}</label>
+                    <p>{{ db_form.noncx_turism }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_turism_needs.label }}</label>
+                    <p>{{ db_form.noncx_turism_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_rent.label }}</label>
+                    <p>{{ db_form.noncx_rent }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_rent_needs.label }}</label>
+                    <p>{{ db_form.noncx_rent_needs }} {{ measurement_units['c'] }}</p>
+                </div><div class="form-output">
+                    <label class="label">{{ form.noncx_cargo.label }}</label>
+                    <p>{{ db_form.noncx_cargo }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_cargo_needs.label }}</label>
+                    <p>{{ db_form.noncx_cargo_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_massage.label }}</label>
+                    <p>{{ db_form.noncx_massage }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_massage_needs.label }}</label>
+                    <p>{{ db_form.noncx_massage_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_foodcourt.label }}</label>
+                    <p>{{ db_form.noncx_foodcourt }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_foodcourt_needs.label }}</label>
+                    <p>{{ db_form.noncx_foodcourt_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_cleaning.label }}</label>
+                    <p>{{ db_form.noncx_cleaning }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_cleaning_needs.label }}</label>
+                    <p>{{ db_form.noncx_cleaning_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_beuty.label }}</label>
+                    <p>{{ db_form.noncx_beuty }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_beuty_needs.label }}</label>
+                    <p>{{ db_form.noncx_beuty_needs }} {{ measurement_units['c'] }}</p>
+                </div><div class="form-output">
+                    <label class="label">{{ form.noncx_carwash.label }}</label>
+                    <p>{{ db_form.noncx_carwash }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_carwash_needs.label }}</label>
+                    <p>{{ db_form.noncx_carwash_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_atelie.label }}</label>
+                    <p>{{ db_form.noncx_atelie }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_atelie_needs.label }}</label>
+                    <p>{{ db_form.noncx_atelie_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_others.label }}</label>
+                    <p>{{ db_form.noncx_others }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_others_needs.label }}</label>
+                    <p>{{ db_form.noncx_others_needs }} {{ measurement_units['c'] }}</p>
+                </div><div class="form-output">
+                    <label class="label">{{ form.noncx_stroika.label }}</label>
+                    <p>{{ db_form.noncx_stroika }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_stroika_needs.label }}</label>
+                    <p>{{ db_form.noncx_stroika_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_mebel.label }}</label>
+                    <p>{{ db_form.noncx_mebel }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_mebel_needs.label }}</label>
+                    <p>{{ db_form.noncx_mebel_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_stroi_material.label }}</label>
+                    <p>{{ db_form.noncx_stroi_material }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_stroi_material_needs.label }}</label>
+                    <p>{{ db_form.noncx_stroi_material_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_svarka.label }}</label>
+                    <p>{{ db_form.noncx_svarka }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_svarka_needs.label }}</label>
+                    <p>{{ db_form.noncx_svarka_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_woodworking.label }}</label>
+                    <p>{{ db_form.noncx_woodworking }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_woodworking_needs.label }}</label>
+                    <p>{{ db_form.noncx_woodworking_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_others_uslugi.label }}</label>
+                    <p>{{ db_form.noncx_others_uslugi }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.noncx_others_needs_uslugi.label }}</label>
+                    <p>{{ db_form.noncx_others_needs_uslugi }} {{ measurement_units['c'] }}</p>
+                </div>
+                <h4>6. Переработка сельхозпродукции и пищевая промышленность</h4>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_milk.label }}</label>
+                    <p>{{ db_form.manufacture_milk }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_milk_needs.label }}</label>
+                    <p>{{ db_form.manufacture_milk_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_meat.label }}</label>
+                    <p>{{ db_form.manufacture_meat }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_meat_needs.label }}</label>
+                    <p>{{ db_form.manufacture_meat_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_vegetables.label }}</label>
+                    <p>{{ db_form.manufacture_vegetables }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_vegetables_needs.label }}</label>
+                    <p>{{ db_form.manufacture_vegetables_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_mayo.label }}</label>
+                    <p>{{ db_form.manufacture_mayo }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_mayo_needs.label }}</label>
+                    <p>{{ db_form.manufacture_mayo_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_fish.label }}</label>
+                    <p>{{ db_form.manufacture_fish }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_fish_needs.label }}</label>
+                    <p>{{ db_form.manufacture_fish_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_choco.label }}</label>
+                    <p>{{ db_form.manufacture_choco }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_choco_needs.label }}</label>
+                    <p>{{ db_form.manufacture_choco_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_beer.label }}</label>
+                    <p>{{ db_form.manufacture_beer }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_beer_needs.label }}</label>
+                    <p>{{ db_form.manufacture_beer_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_vodka.label }}</label>
+                    <p>{{ db_form.manufacture_vodka }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_vodka_needs.label }}</label>
+                    <p>{{ db_form.manufacture_vodka_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_honey.label }}</label>
+                    <p>{{ db_form.manufacture_honey }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_honey_needs.label }}</label>
+                    <p>{{ db_form.manufacture_honey_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_polufabricat.label }}</label>
+                    <p>{{ db_form.manufacture_polufabricat }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_polufabricat_needs.label }}</label>
+                    <p>{{ db_form.manufacture_polufabricat_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_bread.label }}</label>
+                    <p>{{ db_form.manufacture_bread }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_bread_needs.label }}</label>
+                    <p>{{ db_form.manufacture_bread_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_others.label }}</label>
+                    <p>{{ db_form.manufacture_others }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.manufacture_others_needs.label }}</label>
+                    <p>{{ db_form.manufacture_others_needs }} {{ measurement_units['c'] }}</p>
+                </div>
+                <h4>7. Потребность в кредитах</h4>
+                <div class="form-output">
+                    <label class="label">{{ form.credit_amount.label }}</label>
+                    <p>{{ db_form.credit_amount }} {{ measurement_units['unit'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.credit_total.label }}</label>
+                    <p>{{ db_form.credit_total }} {{ measurement_units['tenge'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.credit_average_total.label }}</label>
+                    <p>{{ db_form.credit_average_total }} {{ measurement_units['tenge'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.credit_zalog.label }}</label>
+                    <p>{{ db_form.credit_zalog }} {{ measurement_units['%'] }}</p>
+                </div>
+                <a href="{{ url_for('edit_form', id = db_form.id) }}", class="btn">Редактировать</a>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+{% endblock %}

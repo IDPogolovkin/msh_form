@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../static/base.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
     <link rel="icon" type="image/x-icon" href="../static/img/msx.png">
     <title>{% block title %}Home{% endblock %}</title>
   </head>
@@ -15,7 +15,8 @@
         </div>
          <div>
           {% if user.is_authenticated %}
-          <a class="nav_link" id="portfolio" href="/form">Форма</a>
+          <a class="nav_link" id="portfolio" href="{{ url_for('account') }}">Профиль</a>
+          <a class="nav_link" id="portfolio" href="{{ url_for('form') }}">Заполнить форму</a>
           <a class="nav_link" id="logout" href="{{ url_for('logout') }}">Выйти</a>
           {% else %}
            <a class="nav_link" id="login" href="{{ url_for('login') }}">Войти</a>
