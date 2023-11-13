@@ -27,18 +27,15 @@
       {% if messages %}
         {% for category, message in messages %}
         {% if category == 'error' %}
-        <div class="alert alert-danger alert-dismissable fade show" role="alert">
-          {{message}}
-           <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="flash-error">
+            <p>{{ messages[0][1] }}</p>
         </div>
         {% else %}
-        <div class="alert alert-success alter-dismissable fade show" role="alert">
-          {{ message }}
-          <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="flash-success">
+          <p>{{ messages[0][1] }}</p>
+{#          <button type="button" class="close" data-dismiss="alert">#}
+{#            <span aria-hidden="true">&times;</span>#}
+{#          </button>#}
         </div>
         {% endif %}
         {% endfor %}

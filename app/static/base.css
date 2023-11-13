@@ -37,3 +37,27 @@ body{
     text-decoration: none;
     padding-right: 25px;
 }
+
+.flash-error {
+    padding: 10px;
+    border: 1px solid #d9534f;
+    border-radius: 4px;
+    color: #d9534f;
+    background-color: #f2dede;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.flash-success {
+    padding: 10px;
+    border: 1px solid #5cb85c;
+    border-radius: 4px;
+    color: #5cb85c;
+    background-color: #dff0d8;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 10px;
+    text-align: center;
+}

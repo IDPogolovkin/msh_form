@@ -43,7 +43,7 @@ def login():
             else:
                 return redirect(url_for('login'))
         else:
-            flash('Неверный логин или пароль! Попробуйте еще раз', 'danger')
+             flash('Неверный логин или пароль! Попробуйте еще раз', category='error')
     return render_template('login.html', title='Login', form=form, user=current_user)
 
 @app.route("/logout")
