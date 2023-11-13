@@ -74,7 +74,7 @@ def edit_form(id):
             for key, value in form_data.items():
                 if isinstance(value, Decimal):
                     form_data[key] = float(value)
-
+            form_data['modified_date'] = datetime.now(timezone(timedelta(hours=6)))
             Form.query.filter_by(id=id).update(form_data)
             db.session.commit()
             flash("Данные успешно изменены!", 'success')
