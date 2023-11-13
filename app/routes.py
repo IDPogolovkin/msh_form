@@ -89,7 +89,7 @@ def add_creditors():
     form = CreditorForm()
     creditors = Creditor.query.filter_by(user_kato=current_user.kato_6).all()
     if request.method == 'GET':
-        return render_template('add_creditor.html', form=form, user=current_user, creditors=creditors)
+        return render_template('creditor.html', form=form, user=current_user, creditors=creditors)
     else:
         if form.validate_on_submit():
             creditor = Creditor(
