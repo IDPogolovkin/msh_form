@@ -88,7 +88,7 @@ def edit_form(id):
 def add_creditors():
     form = CreditorForm()
     if request.method == 'GET':
-        return render_template('creditors.html', form=form, user=current_user, creditors=creditors)
+        return render_template('creditors.html', form=form, user=current_user)
     else:
         if form.validate_on_submit():
             creditor = Creditor(
