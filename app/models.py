@@ -229,7 +229,7 @@ class Form(db.Model):
 
 class Creditor(db.Model):
    id = db.Column(db.Integer, primary_key = True)
-   user_kato = db.Column(db.Integer, db.ForeignKey('user.kato_6'))
+   user_kato = db.Column(db.String(50), db.ForeignKey('user.kato_6'))
    user = relationship("User",backref="creditors") 
    kato_2 = db.Column(db.String(20), nullable = False)
    kato_2_name = db.Column(db.String(20), nullable = False)

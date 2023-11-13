@@ -1,10 +1,11 @@
 {% extends "base.html" %} {% block title %}Форма заполнения кредиторов{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='creditors.css') }}" />
-<title>Форма</title>
+<title>Форма кредиторов</title>
 
 <body>
  <form action="#" class="form" method="POST">
+     {{ form.hidden_tag() }}
      <h1 class="text-center">Добавление кредитора</h1>
         <div class="input-group">
             <div class="label">
@@ -22,11 +23,7 @@
         <div class="label">
           {{ form.gender.label }}
         </div>
-        <select class="form-select" id="gender" name="selected_option_gender">
-            <option value=""></option>
-            <option value="Мужской">Мужской</option>
-            <option value="Женский">Женский</option>
-        </select>
+       {{ form.gender }}
      </div>
      <div class="input-group">
             <div class="label">
