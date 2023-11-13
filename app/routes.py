@@ -47,6 +47,7 @@ def login():
     return render_template('login.html', title='Login', form=form, user=current_user)
 
 @app.route("/logout")
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
@@ -59,6 +60,7 @@ def account():
     return render_template('account.html', title = 'Личный кабинет',str=str,form=form,measurement_units=measurement_units, user=current_user, formdata=formdata)
 
 @app.route('/account/<int:id>/edit', methods=['POST', 'GET'])
+@login_required
 def edit_form(id):
     formdata = Form.query.filter_by(id=id).first()
     form = FormDataForm(obj=formdata)

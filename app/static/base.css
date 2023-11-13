@@ -61,3 +61,14 @@ body{
     margin-top: 10px;
     text-align: center;
 }
+.flash-info{
+    padding: 10px;
+    border: 1px solid #b8a15c;
+    border-radius: 4px;
+    color: #b8a15c;
+    background-color: #f0efd8;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 10px;
+    text-align: center;
+}
