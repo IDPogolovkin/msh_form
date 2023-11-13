@@ -25,12 +25,12 @@ class CreditorForm(FlaskForm):
     credit_amount = IntegerField('Запрашиваемая сумма кредита', validators=[DataRequired()])
     credit_period = StringField('Срок запрашиваемого кредита', validators=[DataRequired()])
     zalog_avaliability = SelectField('Наличие залогового обеспечения', choices=zalog_avaliability_choises, validators=[DataRequired()])
-    zalog_name = StringField('Наименование имущества', validators=[DataRequired()])
-    zalog_address = StringField('Адрес', validators=[DataRequired()])
-    zalog_square = DecimalField('Общая площадь', validators=[DataRequired()])
-    zalog_creation_year = StringField('Год пострйоки', validators=[DataRequired()])
-    zalog_wall_material = StringField('Материал стен', validators=[DataRequired()])
-    zalog_hoz_buildings = SelectField('Наличие хоз построек', choices=zalog_hoz_buildings_choises,validators=[DataRequired()])
+    zalog_name = StringField('Наименование имущества')
+    zalog_address = StringField('Адрес')
+    zalog_square = DecimalField('Общая площадь')
+    zalog_creation_year = StringField('Год пострйоки')
+    zalog_wall_material = StringField('Материал стен')
+    zalog_hoz_buildings = SelectField('Наличие хоз построек', choices=zalog_hoz_buildings_choises)
 
     submit = SubmitField('Отправить')
 

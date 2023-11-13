@@ -2,20 +2,21 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='all_creditors.css') }}" />
 <title>Кредиторы</title>
+
 <body>
-        <div class="acc-content">
-            {% if not creditors %}
-            <h2 style="text-align: center;">У вас ещё нет ни одного кредитора</h2>
-            <a href="{{ url_for('add_creditors') }}" class="btn">Добавить кредиторов</a>
-            {% endif %}
-            {% for creditor in creditors %}
-            <div class="form">
+    <div class="acc-content">
+        {% if not creditors %}
+        <h2 style="text-align: center;">У вас ещё нет ни одного кредитора</h2>
+        <a href="{{ url_for('add_creditors') }}" class="btn">Добавить кредиторов</a>
+        {% endif %}
+        {% for creditor in creditors %}
+        <div class="form">
             <div class="first-column">
                 <div class="form-output">
                     <label class="label">{{ form.FIO.label }}</label>
                     <p>{{ creditor.FIO }}</p>
                 </div>
-            <div class="form-output">
+                <div class="form-output">
                     <label class="label">{{ form.IIN.label }}</label>
                     <p>{{ creditor.IIN }}</p>
                 </div>
@@ -31,51 +32,51 @@
                     <label class="label">Цель кредита</label>
                     <p>{{ creditor.credit_goal }}</p>
                 </div>
-            <div class="form-output">
-                <label class="label">Другая цель кредита (при наличии)</label>
-                <p>{{ creditor.credit_other_goal }}</p>
-            </div>
-            <div class="form-output">
-                <label class="label">{{ form.credit_amount.label }}</label>
-                <p>{{ creditor.credit_amount }}  {{ measurement_units['tenge'] }}</p>
-            </div>
-            <div class="form-output">
-                <label class="label">{{ form.credit_period.label }}</label>
-                <p>{{ creditor.credit_period }}</p>
-            </div>
+                <div class="form-output">
+                    <label class="label">Другая цель кредита (при наличии)</label>
+                    <p>{{ creditor.credit_other_goal }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.credit_amount.label }}</label>
+                    <p>{{ creditor.credit_amount }} {{ measurement_units['tenge'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.credit_period.label }}</label>
+                    <p>{{ creditor.credit_period }}</p>
+                </div>
             </div>
             <div class="second-column">
-            <div class="form-output">
-                <label class="label">{{ form.zalog_avaliability.label }}</label>
-                <p>{{ creditor.zalog_avaliability }}</p>
-            </div>
-            <div class="form-output">
-                <label class="label">{{ form.zalog_name.label }}</label>
-                <p>{{ creditor.zalog_name }}</p>
-            </div>
-            <div class="form-output">
-                <label class="label">{{ form.zalog_address.label }}</label>
-                <p>{{ creditor.zalog_address }}</p>
-            </div>
-            <div class="form-output">
-                <label class="label">{{ form.zalog_square.label }}</label>
-                <p>{{ creditor.zalog_square }}  {{ measurement_units['square'] }}</p>
-            </div>
-            <div class="form-output">
-                <label class="label">{{ form.zalog_creation_year.label }}</label>
-                <p>{{ creditor.zalog_creation_year }}</p>
-            </div>
-            <div class="form-output">
-                <label class="label">{{ form.zalog_wall_material.label }}</label>
-                <p>{{ creditor.zalog_wall_material }}</p>
-            </div>
-            <div class="form-output">
-                <label class="label">{{ form.zalog_hoz_buildings.label }}</label>
-                <p>{{ creditor.zalog_hoz_buildings }}</p>
-            </div>
+                <div class="form-output">
+                    <label class="label">{{ form.zalog_avaliability.label }}</label>
+                    <p>{{ creditor.zalog_avaliability }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.zalog_name.label }}</label>
+                    <p>{{ creditor.zalog_name }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.zalog_address.label }}</label>
+                    <p>{{ creditor.zalog_address }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.zalog_square.label }}</label>
+                    <p>{{ creditor.zalog_square }} {{ measurement_units['square'] }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.zalog_creation_year.label }}</label>
+                    <p>{{ creditor.zalog_creation_year }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.zalog_wall_material.label }}</label>
+                    <p>{{ creditor.zalog_wall_material }}</p>
+                </div>
+                <div class="form-output">
+                    <label class="label">{{ form.zalog_hoz_buildings.label }}</label>
+                    <p>{{ creditor.zalog_hoz_buildings }}</p>
+                </div>
             </div>
         </div>
-        </div>
-        {% endfor %}
+    </div>
+    {% endfor %}
 </body>
 {% endblock %}
