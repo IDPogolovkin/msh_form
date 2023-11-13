@@ -9,12 +9,12 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):
    id = db.Column(db.Integer, primary_key = True)
-   kato_1 = db.Column(db.String(20), unique = True, nullable = False)
-   kato_1_name = db.Column(db.String(20), unique = True, nullable = False)
    kato_2 = db.Column(db.String(20), unique = True, nullable = False)
-   kato_2_name = db.Column(db.String(20), unique = True, nullable = False) 
-   kato_3 = db.Column(db.String(20), unique = True, nullable = False)
-   kato_3_name = db.Column(db.String(20), unique = True, nullable = False)
+   kato_2_name = db.Column(db.String(20), unique = True, nullable = False)
+   kato_4 = db.Column(db.String(20), unique = True, nullable = False)
+   kato_4_name = db.Column(db.String(20), unique = True, nullable = False) 
+   kato_6 = db.Column(db.String(20), unique = True, nullable = False)
+   kato_6_name = db.Column(db.String(20), unique = True, nullable = False)
    username = db.Column(db.String(20), unique = True, nullable = False)
    first_name = db.Column(db.String(20), nullable = False)
    middle_name = db.Column(db.String(20), nullable = False)
@@ -225,7 +225,27 @@ class Form(db.Model):
    credit_zalog = db.Column(db.Numeric(30, 2))
    modified_date = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone(timedelta(hours=6))), onupdate=datetime.now(timezone(timedelta(hours=6))))
    creation_date = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone(timedelta(hours=6))))
-   # creation_date = db.Column(db.TIMESTAMP(timezone=True), default=db.func.now() + timedelta(hours=6))
+
+class Creditor(db.Model):
+   id = db.Column(db.Integer, primary_key = True)
+   user_kato = db.Column(db.Integer, db.ForeignKey('user.kato_6'))
+   user = relationship("User",backref="creditors") 
+   FIO = db.Column(db.String(20))
+   IIN = db.Column(db.String(12))
+   gender = db.Column(db.String(10)) #selector
+   family_income_month = db.Column(db.Numeric(30, 2))
+   credit_goal = db.Column(db.String(300)) # selector
+   credit_other_goal = db.Column(db.String(300))
+   credit_amount = db.Column(db.Integer)
+   credit_period = db.Column(db.String(100))
+   zalog_avaliability = db.Column(db.String(10)) #selector (yes/no)
+   zalog_name = db.Column(db.String(100)) #selector
+   zalog_address = db.Column(db.String(100)) 
+   zalog_square = db.Column(db.Numeric(30, 2))
+   zalog_creation_year = db.Column(db.String(50))
+   zalog_wall_material = db.Column(db.String(300))
+   zalog_hoz_buildings = db.Column(db.String(10)) #selector (yes/no)
+
 
 with app.app_context():
     db.create_all()

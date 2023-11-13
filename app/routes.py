@@ -83,7 +83,38 @@ def edit_form(id):
             flash("Данные не изменены! Некорректный формат.", 'danger')
             return render_template('edit_form.html', form=form, user=current_user)
 
-
+@app.route('/add-creditors', methods=['POST', 'GET'])
+@login_required
+def add_creditors():
+    form = CreditorForm()
+    creditors = Creditor.query.filter_by(user_kato=current_user.kato_6).all()
+    if request.method == 'GET':
+        return render_template('add_creditor.html', form=form, user=current_user, creditors=creditors)
+    else:
+        if form.validate_on_submit():
+            creditor = Creditor(
+                user_kato = current_user.kato_6,
+                FIO = form.FIO.data,
+                IIN = form.IIN.data,
+                gender = form.gender.data,
+                family_income_month = form.family_income_month.data,
+                credit_goal = form.credit_goal.data,
+                credit_other_goal = form.credit_other_goal.data,
+                credit_amount = form.credit_amount.data,
+                credit_period = form.credit_period.data,
+                zalog_avaliability = form.zalog_avaliability.data,
+                zalog_name = form.zalog_name.data,
+                zalog_address = form.zalog_address.data,
+                zalog_square = form.zalog_square.data,
+                zalog_creation_year = form.zalog_creation_year.data,
+                zalog_wall_material = form.zalog_wall_material.data,
+                zalog_hoz_buildings = form.zalog_hoz_buildings.data,
+            )
+            db.session.add(creditor)
+            db.session.commit()
+            flash("Кредитор успешно добавлен!", 'success')
+            return redirect(url_for('add_creditors'))
+        
 @app.route('/form', methods=['POST', 'GET'])
 @login_required
 def form():

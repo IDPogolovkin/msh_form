@@ -10,6 +10,24 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
 
+class CreditorForm(FlaskForm):
+    FIO = StringField('ФИО потенциального заемщика', validators=[DataRequired()])
+    IIN = StringField('ИИН заемщика', validators=[DataRequired()])
+    gender = StringField('Пол заемщика, выберете из списка:', validators=[DataRequired()])
+    family_income_month = DecimalField('Доход семьи в месяц (только цифры)', validators=[DataRequired()])
+    credit_goal = StringField('Цель кредита, выберите из списка:', validators=[DataRequired()])
+    credit_other_goal = StringField('Если выбрана "другая цель кредита" - дайте краткое пояснение - для чего нужен кредит?', validators=[DataRequired()])
+    credit_amount = IntegerField('Запрашиваемая сумма кредита', validators=[DataRequired()])
+    credit_period =  StringField('Срок Запрашиваемого кредита', validators=[DataRequired()])
+    zalog_avaliability = StringField('Наличие залогового обеспечения', validators=[DataRequired()])
+    zalog_name = StringField('Наименование', validators=[DataRequired()])
+    zalog_address = StringField('Адрес', validators=[DataRequired()])
+    zalog_square =  DecimalField('Общая площадь', validators=[DataRequired()])
+    zalog_creation_year = StringField('Год пострйоки', validators=[DataRequired()])
+    zalog_wall_material = StringField('Материал стен', validators=[DataRequired()])
+    zalog_hoz_buildings = StringField('Наличие хоз построек', validators=[DataRequired()])
+
+    submit = SubmitField('Отправить')
 
 class FormDataForm(FlaskForm):
     labour_population = IntegerField('Численность Населения', validators=[DataRequired()])
