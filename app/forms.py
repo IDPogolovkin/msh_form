@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from app.models import User
 
 class LoginForm(FlaskForm):
-    username = StringField('Логин', validators=[DataRequired()])
+    kato_6 = StringField('Логин', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired(), Length(min=4, max=80)])
     remember = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
@@ -20,7 +20,7 @@ class CreditorForm(FlaskForm):
     IIN = StringField('ИИН заемщика', validators=[DataRequired()])
     gender = SelectField('Пол заемщика, выберете из списка:',choices=gender_choises, validators=[DataRequired()])
     family_income_month = DecimalField('Доход семьи в месяц (только цифры)', validators=[DataRequired()])
-    credit_goal = StringField('Цель кредита, выберите из списка:', choices=credit_goal_choises, validators=[DataRequired()])
+    credit_goal = SelectField('Цель кредита, выберите из списка:', choices=credit_goal_choises, validators=[DataRequired()])
     credit_other_goal = StringField('Если выбрана "другая цель кредита" - дайте краткое пояснение - для чего нужен кредит?', validators=[DataRequired()])
     credit_amount = IntegerField('Запрашиваемая сумма кредита', validators=[DataRequired()])
     credit_period = StringField('Срок запрашиваемого кредита', validators=[DataRequired()])
