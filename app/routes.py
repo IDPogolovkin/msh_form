@@ -88,7 +88,7 @@ def edit_form(id):
 def add_creditors():
     form = CreditorForm()
     if request.method == 'GET':
-        return render_template('creditor.html', form=form, user=current_user)
+        return render_template('creditors.html', form=form, user=current_user, creditors=creditors)
     else:
         if form.validate_on_submit():
             creditor = Creditor(
@@ -112,9 +112,8 @@ def add_creditors():
             db.session.add(creditor)
             db.session.commit()
             flash("Кредитор успешно добавлен!", 'success')
-            return redirect(url_for('all_creditors'))
-
-
+            return redirect(url_for('add_creditors'))
+        
 @app.route('/all-creditors', methods=['GET'])
 @login_required
 def all_creditors():
