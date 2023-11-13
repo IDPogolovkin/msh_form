@@ -5,6 +5,7 @@ from app import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
 from decimal import Decimal
+from sqlalchemy import desc
 
 measurement_units = {
     'human': 'человек',
@@ -55,7 +56,7 @@ def logout():
 @app.route('/account', methods=['POST', 'GET'])
 @login_required
 def account():
-    formdata = Form.query.filter_by(user_id=current_user.id).all()
+    formdata = Form.query.filter_by(user_id=current_user.id).order_by(desc(Form.creation_date)).first()
     form = FormDataForm()
     return render_template('account.html', title = 'Личный кабинет',str=str,form=form,measurement_units=measurement_units, user=current_user, formdata=formdata)
 
@@ -74,8 +75,17 @@ def edit_form(id):
             for key, value in form_data.items():
                 if isinstance(value, Decimal):
                     form_data[key] = float(value)
-            form_data['modified_date'] = datetime.now(timezone(timedelta(hours=6)))
-            Form.query.filter_by(id=id).update(form_data)
+            new_form = Form(**form_data)
+            new_form.kato_2 = current_user.kato_2
+            new_form.kato_2_name = current_user.kato_2_name
+            new_form.kato_4 = current_user.kato_4
+            new_form.kato_4_name = current_user.kato_4_name
+            new_form.kato_6 = current_user.kato_6
+            new_form.kato_6_name = current_user.kato_6_name
+            new_form.user_id = current_user.id
+            new_form.form_year = datetime.now().year
+            formdata.modified_date = datetime.now(timezone(timedelta(hours=6)))
+            db.session.add(new_form)
             db.session.commit()
             flash("Данные успешно изменены!", 'success')
             return redirect(url_for('account'))
@@ -92,7 +102,7 @@ def add_creditors():
     else:
         if form.validate_on_submit():
             creditor = Creditor(
-                user_kato = current_user.kato_6,
+                user_id = current_user.id,
                 kato_2= current_user.kato_2,
                 kato_2_name = current_user.kato_2_name,
                 kato_4 = current_user.kato_4,
@@ -128,7 +138,7 @@ def add_creditors():
 @login_required
 def all_creditors():
     form = CreditorForm()
-    creditors = Creditor.query.filter_by(user_kato=current_user.kato_6).all()
+    creditors = Creditor.query.filter_by(user_id=current_user.id).all()
     return render_template('all_creditors.html', form=form, creditors=creditors, measurement_units=measurement_units, user=current_user)
 
 
@@ -146,6 +156,12 @@ def form():
             form_data = {
                 'user_id': user_id,
                 'form_year': datetime.now().year,
+                'kato_2': current_user.kato_2,
+                'kato_2_name': current_user.kato_2_name,
+                'kato_4': current_user.kato_4,
+                'kato_4_name': current_user.kato_4_name,
+                'kato_6': current_user.kato_6,
+                'kato_6_name': current_user.kato_6_name,
                 **{field.name: getattr(form, field.name).data for field in form if field.name not in ['csrf_token', 'submit']}
             }
             formdata = Form(**form_data)
