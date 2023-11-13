@@ -16,8 +16,10 @@
     </div>
     <div>
       {% if user.is_authenticated %}
-      <a class="nav_link" id="portfolio" href="{{ url_for('account') }}">Профиль</a>
       <a class="nav_link" id="portfolio" href="{{ url_for('form') }}">Заполнить форму</a>
+      <a class="nav_link" id="portfolio" href="{{ url_for('account') }}">Заявки</a>
+      <a class="nav_link" id="portfolio" href="{{ url_for('add_creditors') }}">Добавить кредиторов</a>
+{#      <a class="nav_link" id="portfolio" href="{{ url_for('all_creditors') }}">Кредиторы</a>#}
       <a class="nav_link" id="logout" href="{{ url_for('logout') }}">Выйти</a>
       {% else %}
       <a class="nav_link" id="login" href="{{ url_for('login') }}">Войти</a>

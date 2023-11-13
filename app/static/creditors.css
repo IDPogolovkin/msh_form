@@ -1,0 +1,77 @@
+:root {
+  --primary-color: rgb(11, 78, 179);
+}
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  width: 60%;
+}
+
+.label {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+input {
+  display: block;
+  font-size: 19px;
+  width: 98%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+select {
+  width: 100%;
+  font-size: 19px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  border: #858585 2px solid;
+  height: 3rem;
+}
+
+label {
+  font-size: 17px;
+}
+.text-center {
+    text-align: center;
+}
+
+.form{
+    width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 0.35rem;
+  padding: 1.5rem 2.5rem;
+}
+
+.input-group {
+  margin: 2rem 0;
+}
+
+.btns-group {
+ display: flex;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.btn {
+  padding: 0.75rem;
+  font-size: 18px;
+  display: block;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: #f3f3f3;
+  text-align: center;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: white;
+  color: rgb(11, 78, 179);
+  border: 1px solid rgb(11, 78, 179);
+}
