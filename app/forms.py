@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, IntegerField, BooleanField, DecimalField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, BooleanField, DecimalField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
 
@@ -11,21 +11,26 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Войти')
 
 class CreditorForm(FlaskForm):
+    gender_choises = [('male', 'Женский'), ('female', 'Мужской')]
+    credit_goal_choises = [('test', 'TEST')]
+    zalog_avaliability_choises = [('yes', 'Да'), ('no', 'Нет')]
+    zalog_name_choises = [('flat', 'Квартира'), ('house', 'Дом'), ('temp', 'Временное строение'), ('region', 'Участок')]
+    zalog_hoz_buildings_choises = [('yes', 'Да'), ('no', 'Нет')]
     FIO = StringField('ФИО потенциального заемщика', validators=[DataRequired()])
     IIN = StringField('ИИН заемщика', validators=[DataRequired()])
-    gender = StringField('Пол заемщика, выберете из списка:', validators=[DataRequired()])
+    gender = SelectField('Пол заемщика, выберете из списка:',choices=gender_choises, validators=[DataRequired()])
     family_income_month = DecimalField('Доход семьи в месяц (только цифры)', validators=[DataRequired()])
-    credit_goal = StringField('Цель кредита, выберите из списка:', validators=[DataRequired()])
+    credit_goal = StringField('Цель кредита, выберите из списка:', choices=credit_goal_choises, validators=[DataRequired()])
     credit_other_goal = StringField('Если выбрана "другая цель кредита" - дайте краткое пояснение - для чего нужен кредит?', validators=[DataRequired()])
     credit_amount = IntegerField('Запрашиваемая сумма кредита', validators=[DataRequired()])
     credit_period =  StringField('Срок Запрашиваемого кредита', validators=[DataRequired()])
-    zalog_avaliability = StringField('Наличие залогового обеспечения', validators=[DataRequired()])
-    zalog_name = StringField('Наименование', validators=[DataRequired()])
+    zalog_avaliability = SelectField('Наличие залогового обеспечения', choices=zalog_avaliability_choises, validators=[DataRequired()])
+    zalog_name = SelectField('Наименование', choices=zalog_name_choises, validators=[DataRequired()])
     zalog_address = StringField('Адрес', validators=[DataRequired()])
     zalog_square =  DecimalField('Общая площадь', validators=[DataRequired()])
     zalog_creation_year = StringField('Год пострйоки', validators=[DataRequired()])
     zalog_wall_material = StringField('Материал стен', validators=[DataRequired()])
-    zalog_hoz_buildings = StringField('Наличие хоз построек', validators=[DataRequired()])
+    zalog_hoz_buildings = SelectField('Наличие хоз построек', choices=zalog_hoz_buildings_choises,validators=[DataRequired()])
 
     submit = SubmitField('Отправить')
 

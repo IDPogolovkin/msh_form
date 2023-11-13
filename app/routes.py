@@ -87,9 +87,8 @@ def edit_form(id):
 @login_required
 def add_creditors():
     form = CreditorForm()
-    creditors = Creditor.query.filter_by(user_kato=current_user.kato_6).all()
     if request.method == 'GET':
-        return render_template('creditor.html', form=form, user=current_user, creditors=creditors)
+        return render_template('creditor.html', form=form, user=current_user)
     else:
         if form.validate_on_submit():
             creditor = Creditor(
@@ -113,8 +112,16 @@ def add_creditors():
             db.session.add(creditor)
             db.session.commit()
             flash("Кредитор успешно добавлен!", 'success')
-            return redirect(url_for('add_creditors'))
-        
+            return redirect(url_for('all_creditors'))
+
+
+@app.route('/all-creditors', methods=['GET'])
+@login_required
+def all_creditors():
+    creditors = Creditor.query.filter_by(user_kato=current_user.kato_6).all()
+    return render_template('all_creditors.html', creditors=creditors, user=current_user)
+
+
 @app.route('/form', methods=['POST', 'GET'])
 @login_required
 def form():

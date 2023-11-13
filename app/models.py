@@ -9,25 +9,26 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):
    id = db.Column(db.Integer, primary_key = True)
-   kato_2 = db.Column(db.String(20), unique = True, nullable = False)
-   kato_2_name = db.Column(db.String(20), unique = True, nullable = False)
-   kato_4 = db.Column(db.String(20), unique = True, nullable = False)
-   kato_4_name = db.Column(db.String(20), unique = True, nullable = False) 
-   kato_6 = db.Column(db.String(20), unique = True, nullable = False)
-   kato_6_name = db.Column(db.String(20), unique = True, nullable = False)
-   username = db.Column(db.String(20), unique = True, nullable = False)
-   first_name = db.Column(db.String(20), nullable = False)
-   middle_name = db.Column(db.String(20), nullable = False)
-   last_name = db.Column(db.String(20), nullable = False)
-   district = db.Column(db.String(20), nullable = False)
+   kato_2 = db.Column(db.String(20), nullable = False)
+   kato_2_name = db.Column(db.String(20), nullable = False)
+   kato_4 = db.Column(db.String(20), nullable = False)
+   kato_4_name = db.Column(db.String(20), nullable = False) 
+   kato_6 = db.Column(db.String(20), nullable = False)
+   kato_6_name = db.Column(db.String(20), nullable = False)
    password = db.Column(db.String(250), nullable = False)
    def __repr__(self):
-      return f"First_name('{self.first_name}'), Last_name('{self.last_name}'),  Username('{self.username}'), District('{self.district}')"
+      return f"KATO_2('{self.kato_2}'), KATO_4('{self.kato_4}'),  KATO_6('{self.kato_6}')"
 
 class Form(db.Model):
    id = db.Column(db.Integer, primary_key = True)
    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
    user = relationship("User",backref="forms") 
+   kato_2 = db.Column(db.String(20), nullable = False)
+   kato_2_name = db.Column(db.String(20), nullable = False)
+   kato_4 = db.Column(db.String(20), nullable = False)
+   kato_4_name = db.Column(db.String(20), nullable = False) 
+   kato_6 = db.Column(db.String(20), nullable = False)
+   kato_6_name = db.Column(db.String(20), nullable = False)
    form_year = db.Column(db.String(10))
    labour_population = db.Column(db.Integer)
    labour_constant_population = db.Column(db.Integer)
@@ -230,6 +231,12 @@ class Creditor(db.Model):
    id = db.Column(db.Integer, primary_key = True)
    user_kato = db.Column(db.Integer, db.ForeignKey('user.kato_6'))
    user = relationship("User",backref="creditors") 
+   kato_2 = db.Column(db.String(20), nullable = False)
+   kato_2_name = db.Column(db.String(20), nullable = False)
+   kato_4 = db.Column(db.String(20), nullable = False)
+   kato_4_name = db.Column(db.String(20), nullable = False) 
+   kato_6 = db.Column(db.String(20), nullable = False)
+   kato_6_name = db.Column(db.String(20), nullable = False)
    FIO = db.Column(db.String(20))
    IIN = db.Column(db.String(12))
    gender = db.Column(db.String(10)) #selector
