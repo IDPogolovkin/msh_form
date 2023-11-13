@@ -88,11 +88,17 @@ def edit_form(id):
 def add_creditors():
     form = CreditorForm()
     if request.method == 'GET':
-        return render_template('creditors.html', form=form, user=current_user)
+        return render_template('creditors.html', form=form, user=current_user, measurement_units=measurement_units)
     else:
         if form.validate_on_submit():
             creditor = Creditor(
                 user_kato = current_user.kato_6,
+                kato_2= current_user.kato_2,
+                kato_2_name = current_user.kato_2_name,
+                kato_4 = current_user.kato_4,
+                kato_4_name = current_user.kato_4_name,
+                kato_6 = current_user.kato_6,
+                kato_6_name = current_user.kato_6_name,
                 FIO = form.FIO.data,
                 IIN = form.IIN.data,
                 gender = form.gender.data,
@@ -111,14 +117,19 @@ def add_creditors():
             )
             db.session.add(creditor)
             db.session.commit()
-            flash("Кредитор успешно добавлен!", 'success')
-            return redirect(url_for('add_creditors'))
+            flash("Кредитор успешно добавлен!", category='success')
+            return redirect(url_for('all_creditors'))
+        else:
+            print(form.errors.items())
+            flash('Кредитор не добавлен! Некорректные данные.', category='error')
+    return render_template('creditors.html', form=form, user=current_user, measurement_units=measurement_units)
         
 @app.route('/all-creditors', methods=['GET'])
 @login_required
 def all_creditors():
+    form = CreditorForm()
     creditors = Creditor.query.filter_by(user_kato=current_user.kato_6).all()
-    return render_template('all_creditors.html', creditors=creditors, user=current_user)
+    return render_template('all_creditors.html', form=form, creditors=creditors, measurement_units=measurement_units, user=current_user)
 
 
 @app.route('/form', methods=['POST', 'GET'])

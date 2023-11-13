@@ -11,20 +11,20 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Войти')
 
 class CreditorForm(FlaskForm):
-    gender_choises = [('male', 'Женский'), ('female', 'Мужской')]
-    credit_goal_choises = [('test', 'TEST')]
-    zalog_avaliability_choises = [('yes', 'Да'), ('no', 'Нет')]
-    zalog_name_choises = [('flat', 'Квартира'), ('house', 'Дом'), ('temp', 'Временное строение'), ('region', 'Участок')]
-    zalog_hoz_buildings_choises = [('yes', 'Да'), ('no', 'Нет')]
+    gender_choises = [('',''), ('Женский', 'Женский'), ('Мужской', 'Мужской')]
+    credit_goal_choises = [('',''), ('test', 'TEST')]
+    zalog_avaliability_choises = [('',''), ('Да', 'Да'), ('Нет', 'Нет')]
+    zalog_name_choises = [('',''), ('Квартира', 'Квартира'), ('Дом', 'Дом'), ('Временное строение', 'Временное строение'), ('Участок', 'Участок')]
+    zalog_hoz_buildings_choises = [('',''), ('Да', 'Да'), ('Нет', 'Нет')]
     FIO = StringField('ФИО потенциального заемщика', validators=[DataRequired()])
     IIN = StringField('ИИН заемщика', validators=[DataRequired()])
     gender = SelectField('Пол заемщика, выберете из списка:',choices=gender_choises, validators=[DataRequired()])
     family_income_month = DecimalField('Доход семьи в месяц (только цифры)', validators=[DataRequired()])
     credit_goal = SelectField('Цель кредита, выберите из списка:', choices=credit_goal_choises, validators=[DataRequired()])
-    credit_other_goal = StringField('Если выбрана "другая цель кредита" - дайте краткое пояснение - для чего нужен кредит?', validators=[DataRequired()])
+    credit_other_goal = StringField('Если выбрана "другая цель кредита" - дайте краткое пояснение - для чего нужен кредит?')
     credit_amount = IntegerField('Запрашиваемая сумма кредита', validators=[DataRequired()])
     credit_period = StringField('Срок запрашиваемого кредита', validators=[DataRequired()])
-    zalog_avaliability = StringField('Наличие залогового обеспечения', validators=[DataRequired()])
+    zalog_avaliability = SelectField('Наличие залогового обеспечения', choices=zalog_avaliability_choises, validators=[DataRequired()])
     zalog_name = StringField('Наименование имущества', validators=[DataRequired()])
     zalog_address = StringField('Адрес', validators=[DataRequired()])
     zalog_square = DecimalField('Общая площадь', validators=[DataRequired()])
