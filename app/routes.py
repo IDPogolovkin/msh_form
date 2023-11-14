@@ -57,6 +57,7 @@ def logout():
 @login_required
 def account():
     formdata = Form.query.filter_by(user_id=current_user.id).order_by(desc(Form.creation_date)).first()
+    print(formdata)
     form = FormDataForm()
     return render_template('account.html', title = 'Личный кабинет',str=str,form=form,measurement_units=measurement_units, user=current_user, formdata=formdata)
 
@@ -84,6 +85,8 @@ def edit_form(id):
             new_form.kato_6_name = current_user.kato_6_name
             new_form.user_id = current_user.id
             new_form.form_year = datetime.now().year
+            new_form.creation_date = datetime.now(timezone(timedelta(hours=6)))
+            new_form.modified_date = datetime.now(timezone(timedelta(hours=6)))
             formdata.modified_date = datetime.now(timezone(timedelta(hours=6)))
             db.session.add(new_form)
             db.session.commit()
