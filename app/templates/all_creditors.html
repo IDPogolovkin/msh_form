@@ -6,8 +6,8 @@
 <body>
     <div class="acc-content">
         {% if not creditors %}
-        <h2 style="text-align: center;">У вас ещё нет ни одного кредитора</h2>
-        <a href="{{ url_for('add_creditors') }}" class="btn">Добавить кредиторов</a>
+        <h2 style="text-align: center;">У вас ещё нет ни одного заемщика</h2>
+        <a href="{{ url_for('add_creditors') }}" class="btn">Добавить заемщика</a>
         {% endif %}
         {% for creditor in creditors %}
         <div class="form">
