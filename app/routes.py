@@ -127,6 +127,7 @@ def add_creditors():
                 zalog_creation_year = form.zalog_creation_year.data,
                 zalog_wall_material = form.zalog_wall_material.data,
                 zalog_hoz_buildings = form.zalog_hoz_buildings.data,
+                creditor_phone = form.creditor_phone.data
             )
             db.session.add(creditor)
             db.session.commit()
