@@ -31,6 +31,7 @@ class CreditorForm(FlaskForm):
     zalog_creation_year = StringField('Год пострйоки')
     zalog_wall_material = StringField('Материал стен')
     zalog_hoz_buildings = SelectField('Наличие хоз построек', choices=zalog_hoz_buildings_choises)
+    creditor_phone = StringField('Контактный телефон заемщика', validators=[DataRequired()])
 
     submit = SubmitField('Отправить')
 

@@ -4,105 +4,111 @@
 <title>Форма кредиторов</title>
 
 <body>
- <form action="#" class="form" method="POST">
-     {{ form.hidden_tag() }}
-     <h1 class="text-center">Добавление кредитора</h1>
-        <div class="input-group">
-            <div class="label">
-              {{ form.FIO.label }}
-            </div>
-        {{ form.FIO }}
-     </div>
-       <div class="input-group">
-            <div class="label">
-              {{ form.IIN.label }}
-            </div>
-        {{ form.IIN }}
-     </div>
-       <div class="input-group">
-        <div class="label">
-          {{ form.gender.label }}
-        </div>
-       {{ form.gender }}
-     </div>
-     <div class="input-group">
-            <div class="label">
-              {{ form.family_income_month.label }}
-              {{ measurement_units['tenge'] }}
-            </div>
-        {{ form.family_income_month }}
-     </div>
-     <div class="input-group">
-            <div class="label">
-              {{ form.credit_goal.label }}
-            </div>
-        {{ form.credit_goal }}
-     </div>
-      <div class="input-group">
-            <div class="label">
-              {{ form.credit_other_goal.label }}
-            </div>
-        {{ form.credit_other_goal }}
-     </div>
-     <div class="input-group">
-            <div class="label">
-              {{ form.credit_amount.label }}
-                 {{ measurement_units['tenge'] }}
-            </div>
-        {{ form.credit_amount }}
-     </div>
-     <div class="input-group">
-            <div class="label">
-              {{ form.credit_period.label }}
-            </div>
-        {{ form.credit_period(placeholder='Например: 2 года и 3 месяца') }}
-     </div>
-     <div class="input-group">
-            <div class="label">
-              {{ form.zalog_avaliability.label }}
-            </div>
-        {{ form.zalog_avaliability }}
-     </div>
-     <div class="input-group">
-            <div class="label">
-              {{ form.zalog_name.label }}
-            </div>
-        {{ form.zalog_name }}
-     </div>
-     <div class="input-group">
-            <div class="label">
-              {{ form.zalog_address.label }}
-            </div>
-        {{ form.zalog_address }}
-     </div>
-     <div class="input-group">
-            <div class="label">
-              {{ form.zalog_square.label }}
-                 {{ measurement_units['square'] }}
-            </div>
-        {{ form.zalog_square }}
-     </div>
-     <div class="input-group">
-            <div class="label">
-              {{ form.zalog_creation_year.label }}
-            </div>
-        {{ form.zalog_creation_year }}
-     </div>
-     <div class="input-group">
-            <div class="label">
-              {{ form.zalog_wall_material.label }}
-            </div>
-        {{ form.zalog_wall_material }}
-     </div>
-     <div class="input-group">
-            <div class="label">
-              {{ form.zalog_hoz_buildings.label }}
-            </div>
-        {{ form.zalog_hoz_buildings }}
-     </div>
-      <div class="btns-group">
-        {{ form.submit(class="btn") }}
+  <form action="#" class="form" method="POST">
+    {{ form.hidden_tag() }}
+    <h1 class="text-center">Добавление кредитора</h1>
+    <div class="input-group">
+      <div class="label">
+        {{ form.FIO.label }}
       </div>
- </form>
+      {{ form.FIO }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.IIN.label }}
+      </div>
+      {{ form.IIN }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.gender.label }}
+      </div>
+      {{ form.gender }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.family_income_month.label }}
+        {{ measurement_units['tenge'] }}
+      </div>
+      {{ form.family_income_month }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.credit_goal.label }}
+      </div>
+      {{ form.credit_goal }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.credit_other_goal.label }}
+      </div>
+      {{ form.credit_other_goal }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.credit_amount.label }}
+        {{ measurement_units['tenge'] }}
+      </div>
+      {{ form.credit_amount }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.credit_period.label }}
+      </div>
+      {{ form.credit_period(placeholder='Например: 2 года и 3 месяца') }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.zalog_avaliability.label }}
+      </div>
+      {{ form.zalog_avaliability }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.zalog_name.label }}
+      </div>
+      {{ form.zalog_name }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.zalog_address.label }}
+      </div>
+      {{ form.zalog_address }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.zalog_square.label }}
+        {{ measurement_units['square'] }}
+      </div>
+      {{ form.zalog_square }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.zalog_creation_year.label }}
+      </div>
+      {{ form.zalog_creation_year }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.zalog_wall_material.label }}
+      </div>
+      {{ form.zalog_wall_material }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.zalog_hoz_buildings.label }}
+      </div>
+      {{ form.zalog_hoz_buildings }}
+    </div>
+    <div class="input-group">
+      <div class="label">
+        {{ form.creditor_phone.label }}
+      </div>
+      {{ form.creditor_phone }}
+    </div>
+    <div class="btns-group">
+      {{ form.submit(class="btn") }}
+    </div>
+  </form>
 </body>
 {% endblock %}
