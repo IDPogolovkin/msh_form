@@ -44,3 +44,7 @@ user = User(
             
 db.session.add(user)
 db.session.commit()
+
+# user = User.query.filter_by(id=2).first()
+# db.session.delete(user)
+# db.session.commit()

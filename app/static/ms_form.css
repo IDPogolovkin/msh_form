@@ -50,6 +50,24 @@ select {
 label {
   font-size: 17px;
 }
+.label-checkers{
+  display: flex;
+  margin: 10px 0;
+  align-items: center;
+}
+.label-checkers label{
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  padding-bottom: 3px;
+}
+.label-checkers input{
+  width: auto;
+  cursor: pointer;
+  margin: 0 20px 0 0;
+  padding: 0;
+}
 
 
 .width-50 {
@@ -193,4 +211,8 @@ label {
   background-color: white;
   color: rgb(11, 78, 179);
   border: 1px solid rgb(11, 78, 179);
+}
+.input-group-checker{
+  display: flex;
+  justify-content: space-between;
 }

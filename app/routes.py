@@ -76,6 +76,16 @@ def edit_form(id):
             for key, value in form_data.items():
                 if isinstance(value, Decimal):
                     form_data[key] = float(value)
+                    spec_str_rast = ''
+            for field in form:
+                if field.name.startswith('specialization_rastenivodstvo_'):
+                    if field.data == True:
+                        spec_str_rast += str(field.label.text) + ', '
+            spec_str_animal = ''
+            for field in form:
+                if field.name.startswith('specialization_animal_'):
+                    if field.data == True:
+                        spec_str_animal += str(field.label.text) + ', '
             new_form = Form(**form_data)
             new_form.kato_2 = current_user.kato_2
             new_form.kato_2_name = current_user.kato_2_name
@@ -87,6 +97,8 @@ def edit_form(id):
             new_form.form_year = datetime.now().year
             new_form.creation_date = datetime.now(timezone(timedelta(hours=6)))
             new_form.modified_date = datetime.now(timezone(timedelta(hours=6)))
+            new_form.specialization_animal = spec_str_animal[:-2]
+            new_form.specialization_rastenivodstvo = spec_str_rast[:-2]
             formdata.modified_date = datetime.now(timezone(timedelta(hours=6)))
             db.session.add(new_form)
             db.session.commit()
@@ -131,11 +143,11 @@ def add_creditors():
             )
             db.session.add(creditor)
             db.session.commit()
-            flash("Кредитор успешно добавлен!", category='success')
+            flash("Заемщик успешно добавлен!", category='success')
             return redirect(url_for('all_creditors'))
         else:
             print(form.errors.items())
-            flash('Кредитор не добавлен! Некорректные данные.', category='error')
+            flash('Заемщик не добавлен! Некорректные данные.', category='error')
     return render_template('creditors.html', form=form, user=current_user, measurement_units=measurement_units)
         
 @app.route('/all-creditors', methods=['GET'])
@@ -151,14 +163,21 @@ def all_creditors():
 def form():
     user = current_user
     form = FormDataForm()
+    form_check = Form.query.filter_by(user_id=current_user.id).all()
     if request.method == "GET":
-        return render_template('ms_form.html', form=form, measurement_units=measurement_units, user=user)
+        if form_check:
+            flash("У вас уже имеется форма", category='info')
+            return redirect(url_for('account'))
+        else:
+            return render_template('ms_form.html', form=form, measurement_units=measurement_units, user=user)
     else:
+        if form_check:
+            flash("У вас уже имеется форма", category='info')
+            return redirect(url_for('account'))
         if form.validate_on_submit():
-
-            user_id = current_user.id
+            excluded_fields = ['csrf_token', 'submit'] + [field.name for field in form if field.name.startswith('specialization_')]            
             form_data = {
-                'user_id': user_id,
+                'user_id': current_user.id,
                 'form_year': datetime.now().year,
                 'kato_2': current_user.kato_2,
                 'kato_2_name': current_user.kato_2_name,
@@ -166,8 +185,20 @@ def form():
                 'kato_4_name': current_user.kato_4_name,
                 'kato_6': current_user.kato_6,
                 'kato_6_name': current_user.kato_6_name,
-                **{field.name: getattr(form, field.name).data for field in form if field.name not in ['csrf_token', 'submit']}
+                **{field.name: getattr(form, field.name).data for field in form if field.name not in excluded_fields}
             }
+            spec_str_rast = ''
+            for field in form:
+                if field.name.startswith('specialization_rastenivodstvo_'):
+                    if field.data == True:
+                        spec_str_rast += str(field.label.text) + ', '
+            spec_str_animal = ''
+            for field in form:
+                if field.name.startswith('specialization_animal_'):
+                    if field.data == True:
+                        spec_str_animal += str(field.label.text) + ', '
+            form_data['specialization_animal'] = spec_str_animal[:-2]
+            form_data['specialization_rastenivodstvo'] = spec_str_rast[:-2]
             formdata = Form(**form_data)
             db.session.add(formdata)
             db.session.commit()
@@ -176,5 +207,5 @@ def form():
         else:
             print(form.errors)
             print(current_user)
-            flash("Форма заполнена некорректно или отсутствуют необходимые поля.", 'danger')
+            flash("Форма заполнена некорректно или отсутствуют необходимые поля.", 'error')
     return render_template('ms_form.html', title='Форма отчетности МСХ',form=form, measurement_units=measurement_units, user=current_user)

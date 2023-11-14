@@ -12,7 +12,7 @@ class LoginForm(FlaskForm):
 
 class CreditorForm(FlaskForm):
     gender_choises = [('',''), ('Женский', 'Женский'), ('Мужской', 'Мужской')]
-    credit_goal_choises = [('',''), ('test', 'TEST')]
+    credit_goal_choises = [('',''), ('КРС молочный ', 'КРС молочный '), ('КРС мясной', 'КРС мясной'), ('МРС (овцы, козы)', 'МРС (овцы, козы)'), ('Лошади','Лошади'), ('Верблюды','Верблюды'), ('Свиньи','Свиньи'), ('Птица любая','Птица любая'), ('Прочие животные','Прочие животные'), ('Зерновые и бобовые всех видов','Зерновые и бобовые всех видов'), ('Масличные всех видов','Масличные всех видов'), ('Овощи, бахчевые, корнеплоды, клубнеплоды','Овощи, бахчевые, корнеплоды, клубнеплоды'), ('Плодовые деревья и кустарники','Плодовые деревья и кустарники'), ('Прочие сельхоз культуры','Прочие сельхоз культуры'), ('Другая цель кредита','Другая цель кредита')]
     zalog_avaliability_choises = [('',''), ('Да', 'Да'), ('Нет', 'Нет')]
     zalog_name_choises = [('',''), ('Квартира', 'Квартира'), ('Дом', 'Дом'), ('Временное строение', 'Временное строение'), ('Участок', 'Участок')]
     zalog_hoz_buildings_choises = [('',''), ('Да', 'Да'), ('Нет', 'Нет')]
@@ -105,7 +105,6 @@ class FormDataForm(FlaskForm):
     infrastructure_cycsterny_isused = IntegerField('Цистерны для хранения ГСМ (горюче-смазочные материалы)', validators=[DataRequired()])
     infrastructure_transformator = IntegerField('Трансформаторная электро-подстанция', validators=[DataRequired()])
     infrastructure_transformator_isused = IntegerField('Трансформаторная электро-подстанция', validators=[DataRequired()])
-    specialization_rastenivodstvo = StringField('Специализация в растениеводстве', validators=[DataRequired()])
     animal_dvor = IntegerField('Общее число дворов', validators=[DataRequired()])
     animal_skot_bird = IntegerField('из них имеет скот и птицу', validators=[DataRequired()])
     animal_cx_land = DecimalField('Сельскохозяйственные угодья домашних хозяйств', validators=[DataRequired()])
@@ -151,7 +150,6 @@ class FormDataForm(FlaskForm):
     animal_egg_perepel = IntegerField('Яйца перепелиные', validators=[DataRequired()])
     animal_transformator = IntegerField('Трансформаторная электро-подстанция', validators=[DataRequired()])
     animal_transformator_isused = IntegerField('Трансформаторная электро-подстанция', validators=[DataRequired()])
-    specialization_animal = StringField('Специализация в животноводстве', validators=[DataRequired()])
     noncx_sto = IntegerField('Автосервис (СТО, шиномонтаж, замена автозапчастей и т.д.)', validators=[DataRequired()]) # единиц
     noncx_sto_needs = IntegerField('Автосервис (СТО, шиномонтаж, замена автозапчастей и т.д.)', validators=[DataRequired()]) # потребитель
     noncx_kindergarden = IntegerField('Детские центры развития, репетиторские услуги, языковые курсы', validators=[DataRequired()])
@@ -230,5 +228,72 @@ class FormDataForm(FlaskForm):
     credit_total = IntegerField('Итого общая потребность в кредитах', validators=[DataRequired()])
     credit_average_total = IntegerField('Средний чек по кредиту', validators=[DataRequired()])
     credit_zalog = DecimalField('Количество обеспеченных залогом участников', validators=[DataRequired()]) # %
+
+    #specializations
+    specialization_rastenivodstvo_weat = BooleanField('Пшеница')
+    specialization_rastenivodstvo_corn = BooleanField('Кукуруза')
+    specialization_rastenivodstvo_barely = BooleanField('Ячмень')
+    specialization_rastenivodstvo_millet = BooleanField('Просо')
+    specialization_rastenivodstvo_hay = BooleanField('Сено')
+    specialization_rastenivodstvo_lucerne = BooleanField('Люцерна')
+    specialization_rastenivodstvo_sunflower = BooleanField('Подсолнечник')
+    specialization_rastenivodstvo_rasp = BooleanField('Расп')
+    specialization_rastenivodstvo_sorghum = BooleanField('Сорго')
+    specialization_rastenivodstvo_green_beans = BooleanField('Фасоль зеленая')
+    specialization_rastenivodstvo_green_peas = BooleanField('Горох зеленый')
+    specialization_rastenivodstvo_soybeans = BooleanField('Бобы соевые')
+    specialization_rastenivodstvo_ground_nuts = BooleanField('Орехи земляные')
+    specialization_rastenivodstvo_almond = BooleanField('Миндаль')
+    specialization_rastenivodstvo_forest_nuts = BooleanField('Орехи лесные')
+    specialization_rastenivodstvo_pistachios = BooleanField('Фисташки')
+    specialization_rastenivodstvo_walnuts = BooleanField('Орехи грецкие')
+    specialization_rastenivodstvo_rice = BooleanField('Рис')
+    specialization_rastenivodstvo_cabbage = BooleanField('Капуста')
+    specialization_rastenivodstvo_cauliflower_and_broccoli = BooleanField('Капуста цветная и брокколи')
+    specialization_rastenivodstvo_spinach = BooleanField('Шпинат')
+    specialization_rastenivodstvo_watermelons = BooleanField('Арбузы')
+    specialization_rastenivodstvo_melon = BooleanField('Дыня')
+    specialization_rastenivodstvo_chili_and_peppers = BooleanField('Чили и перцы')
+    specialization_rastenivodstvo_eggplants = BooleanField('Баклажаны')
+    specialization_rastenivodstvo_zucchini = BooleanField('Кабачки')
+    specialization_rastenivodstvo_radish = BooleanField('Редис')
+    specialization_rastenivodstvo_tomatoes = BooleanField('Помидоры')
+    specialization_rastenivodstvo_cucumbers = BooleanField('Огурцы')
+    specialization_rastenivodstvo_carrot = BooleanField('Морковь')
+    specialization_rastenivodstvo_garlic = BooleanField('Чеснок')
+    specialization_rastenivodstvo_onion = BooleanField('Лук')
+    specialization_rastenivodstvo_potatoes = BooleanField('Картофель')
+    specialization_rastenivodstvo_sweet_potatoes = BooleanField('Картофель сладкий')
+    specialization_rastenivodstvo_sugar_beet = BooleanField('Свекла сахарная')
+    specialization_rastenivodstvo_mushrooms_and_truffles = BooleanField('Грибы и трюфели')
+    specialization_rastenivodstvo_grapes = BooleanField('Виноград')
+    specialization_rastenivodstvo_lemons_and_limes = BooleanField('Лимоны и лаймы')
+    specialization_rastenivodstvo_apples = BooleanField('Яблоки')
+    specialization_rastenivodstvo_pears = BooleanField('Груши')
+    specialization_rastenivodstvo_quince = BooleanField('Айва')
+    specialization_rastenivodstvo_apricots = BooleanField('Абрикосы')
+    specialization_rastenivodstvo_cherry = BooleanField('Вишня')
+    specialization_rastenivodstvo_peaches = BooleanField('Персики')
+    specialization_rastenivodstvo_plums = BooleanField('Сливы')
+    specialization_rastenivodstvo_raspberry = BooleanField('Малина')
+    specialization_rastenivodstvo_strawberry = BooleanField('Земляника (клубника)')
+    specialization_rastenivodstvo_currant = BooleanField('Смородина')
+    specialization_rastenivodstvo_others = BooleanField('Другое')
+
+    specialization_animal_cow_milk = BooleanField('Молоко коровье')
+    specialization_animal_goat_milk = BooleanField('Молоко козье')
+    specialization_animal_horse_milk = BooleanField('Молоко кобылье')
+    specialization_animal_camel_milk = BooleanField('Верблюжье молоко')
+    specialization_animal_beef = BooleanField('Говядина')
+    specialization_animal_sheepmeat = BooleanField('Баранина')
+    specialization_animal_horse_meat= BooleanField('Конина')
+    specialization_animal_pork= BooleanField('Свинина')
+    specialization_animal_camel_meat= BooleanField('Верблюжатина')
+    specialization_animal_chicken_meat= BooleanField('Мясо куриное')
+    specialization_animal_duck_meat= BooleanField('Мясо утиное')
+    specialization_animal_goose_meat= BooleanField('Мясо гусиное')
+    specialization_animal_chicken_egg = BooleanField('Яйцо куриное')
+    specialization_animal_goose_egg = BooleanField('Яйцо гусиное')
+    specialization_animal_quail_egg = BooleanField('Яйцо перепелиное')
 
     submit = SubmitField('Отправить')
