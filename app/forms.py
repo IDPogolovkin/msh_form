@@ -37,7 +37,7 @@ class CreditorForm(FlaskForm):
 
 class FormDataForm(FlaskForm):
     labour_population = IntegerField('Численность Населения', validators=[DataRequired()])
-    labour_constant_population = IntegerField('из них постоянно проживающих', validators=[DataRequired()])
+    labour_constant_population = IntegerField('Из них постоянно проживающих', validators=[DataRequired()])
     labour_labour = IntegerField('Рабочая сила', validators=[DataRequired()])
     labour_government_workers = IntegerField('Занятое население в бюджетной сфере', validators=[DataRequired()])
     labour_private_labour = IntegerField('Занятое население в частном секторе', validators=[DataRequired()])
@@ -47,7 +47,7 @@ class FormDataForm(FlaskForm):
     labour_household_size = IntegerField('Средний размер домашних хозяйств', validators=[DataRequired()])
     labour_average_income_family = IntegerField('Средний доход на одну семью, в месяц', validators=[DataRequired()])
     house_total_dvor = IntegerField('Общее количество дворов (частные дома, квартиры в многоквартирном доме, точки чабана, иное)', validators=[DataRequired()])
-    house_zaselen_dvor = IntegerField('из них количество заселенных дворов', validators=[DataRequired()])
+    house_zaselen_dvor = IntegerField('Из них количество заселенных дворов', validators=[DataRequired()])
     dh_count = IntegerField('Количество домашних хозяйств', validators=[DataRequired()])
     dx_number_ogorodov = IntegerField('Количество домашних хозяйств имеющих участки (огороды, сады, приусадебные участки)', validators=[DataRequired()])
     dx_cx_land = DecimalField('Сельскохозяйственные угодья домашних хозяйств', validators=[DataRequired()])

@@ -33,12 +33,12 @@ app.app_context().push()
 hashed_password = bcrypt.generate_password_hash('Test123').decode('utf-8') 
 
 user = User( 
-    kato_2='test',
-    kato_2_name='test',
-    kato_4='test',
-    kato_4_name='test',
-    kato_6='test',
-    kato_6_name='test',
+    kato_2='test2',
+    kato_2_name='test2',
+    kato_4='test2',
+    kato_4_name='test2',
+    kato_6='test2',
+    kato_6_name='test2',
     password=hashed_password 
 ) 
             

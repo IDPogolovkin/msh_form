@@ -6,6 +6,16 @@ from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
 from decimal import Decimal
 from sqlalchemy import desc
+from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey, select
+from sqlalchemy.orm import sessionmaker, declarative_base, relationship
+from sqlalchemy.sql import func, text
+from sqlalchemy.sql.expression import text
+from sqlalchemy.orm import aliased
+from sqlalchemy import func, and_
+import psycopg2
+
+Base = declarative_base()
+
 
 measurement_units = {
     'human': 'человек',
@@ -23,7 +33,6 @@ measurement_units = {
     'c':'потребность',
     'tenge':'тенге',
 }
-
 
 # @app.route('/')
 # def home():
@@ -156,6 +165,39 @@ def all_creditors():
     form = CreditorForm()
     creditors = Creditor.query.filter_by(user_id=current_user.id).all()
     return render_template('all_creditors.html', form=form, creditors=creditors, measurement_units=measurement_units, user=current_user)
+
+@app.route('/dashboard_soc1', methods=['GET'])
+@login_required
+def dashboard_soc1():
+
+    formData=Form.query.filter_by(user_id=current_user.id).order_by(desc(Form.creation_date)).first()
+    return render_template('dashboard_social_pocazat.html', round=round, formData=formData, user=current_user)
+
+@app.route('/dashboard_all', methods=['GET'])
+@login_required
+def dashboadr_all():
+    subquery = (
+        db.session.query(
+            Form.user_id,
+            func.max(Form.creation_date).label('latest_creation_date')
+        )
+        .group_by(Form.user_id)
+        .subquery()
+    )
+
+    # Query to get all columns for unique users
+    formdata = (
+        db.session.query(Form)
+        .join(subquery, and_(
+            Form.user_id == subquery.c.user_id,
+            Form.creation_date == subquery.c.latest_creation_date
+        ))
+        .order_by(desc(subquery.c.latest_creation_date))
+        .all()
+    )
+    print(formdata)
+
+    return render_template('dashboard_all.html', formdatas = formdata, user=current_user)
 
 
 @app.route('/form', methods=['POST', 'GET'])
