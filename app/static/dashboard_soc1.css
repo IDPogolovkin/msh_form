@@ -46,6 +46,8 @@ body {
   align-items: center;
   background-color: green;
   width: 100vw;
+  margin-top: 3px;
+  justify-content: space-between;
 }
 
 .main-title > p {
@@ -53,6 +55,14 @@ body {
   font-size: 20px;
   padding: 0 0 0 30px;
   margin: 10px 0;
+}
+
+.dash_link{
+  color: white;
+  font-size: 20px;
+  padding: 0 50px 0 0;
+  margin: 10px 0;
+  text-decoration: none;
 }
 
 /* ---------- MAIN ---------- */

@@ -186,7 +186,7 @@ def dashboard_soc1():
 
 @app.route('/dashboard_all', methods=['GET'])
 @login_required
-def dashboadr_all():
+def dashboard_all():
     formdata = Form.query.all()
     counter = 0
     labour_labour_total = 0
@@ -279,7 +279,7 @@ def dashboadr_all():
 def form():
     user = current_user
     form = FormDataForm()
-    form_check = Form.query.filter_by(user_id=current_user.id).first().all()
+    form_check = Form.query.filter_by(user_id=current_user.id).first()
     if request.method == "GET":
         if form_check:
             flash("У вас уже имеется форма", category='info')

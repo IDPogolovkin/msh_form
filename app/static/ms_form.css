@@ -24,8 +24,11 @@ label {
 }
 
 .label {
-  display: flex;
-  width: 100%;
+  height: fit-content;
+}
+
+.label p{
+  color: gray;
 }
 
 .input_with_measure{

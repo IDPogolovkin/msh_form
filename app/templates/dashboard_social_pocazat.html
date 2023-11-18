@@ -2,11 +2,11 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_soc1.css') }}" />
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+<script src="{{ url_for('static', filename='jquery.js') }}" charset="utf-8"></script>
 <!-- plotly -->
 <script src="{{ url_for('static', filename='plotly.js') }}" charset="utf-8"></script>
 <!-- ApexCharts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+<script src="{{ url_for('static', filename='apexcharts.js') }}"></script>
 <title>Dashboard</title>
 
 <body>
@@ -38,6 +38,7 @@
       <!-- Main -->
       <div class="main-title">
         <p class="font-weight-bold">Социально-экономическое состояние</p>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_all') }}">Общая аналитика</a>
       </div>
       <main class="main-container">
 

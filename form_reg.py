@@ -5,7 +5,8 @@ import csv
 
 app.app_context().push()
 
-form = Form_G_O(
+form = Form(
+    user_id = 2,
     kato_2 = 'test',
     kato_2_name = 'test',
     kato_4 = 'test',
