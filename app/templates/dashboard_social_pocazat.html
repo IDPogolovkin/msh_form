@@ -4,7 +4,7 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
 <!-- plotly -->
-<script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+<script src="{{ url_for('static', filename='plotly.js') }}" charset="utf-8"></script>
 <!-- ApexCharts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
 <title>Dashboard</title>
@@ -127,13 +127,13 @@
               <li><span>0%</span></li>
             </ul>
             <ul class="bars">
-              <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_pashnya }}"></div><span>Пашня</span></li>
-              <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_mnogoletnie }}"></div><span>Насаждения</span></li>
-              <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_zelej }}"></div><span>Залежь</span></li>
-              <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_pastbishe }}"></div><span>Пастбища</span></li>
-              <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_senokosy }}"></div><span>Сенокосы</span></li>
-             <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_ogorody }}"></div><span>Огороды</span></li>
-             <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_sad }}"></div><span>Сады</span></li>
+              <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_pashnya,2) }}"></div><span>Пашня</span></li>
+              <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_mnogoletnie, 2) }}"></div><span>Насаждения</span></li>
+              <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_zelej, 2) }}"></div><span>Залежь</span></li>
+              <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_pastbishe,2) }}"></div><span>Пастбища</span></li>
+              <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_senokosy,2) }}"></div><span>Сенокосы</span></li>
+             <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_ogorody,2) }}"></div><span>Огороды</span></li>
+             <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_sad,2) }}"></div><span>Сады</span></li>
             </ul>
           </div>
 

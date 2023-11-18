@@ -123,7 +123,7 @@ def edit_form():
             db.session.add(old_form)
             db.session.commit()
             flash("Данные успешно изменены!", 'success')
-            return redirect(url_for('account'))
+            return redirect(url_for('edit_form'))
         else:
             flash("Данные не изменены! Некорректный формат.", 'danger')
             return render_template('edit_form.html', form=form, user=current_user)
