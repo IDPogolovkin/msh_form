@@ -105,10 +105,10 @@
 
       <div class="charts">
         {# apexcharts bar chart #}
-{#        <div class="charts-card">#}
-{#          <p class="chart-title">Сельскохозяйственные угодья домашних хозяйств</p>#}
-{#          <div id="bar-chart"></div>#}
-{#        </div>#}
+        <div class="charts-card">
+          <p class="chart-title">Сельскохозяйственные угодья домашних хозяйств</p>
+          <div id="bar-chart"></div>
+        </div>
 
         {# hard coded pie chart #}
 {#         <div class="pie-body">#}
@@ -122,46 +122,46 @@
 {#           </div>#}
 
         {# bar chart with jquery #}
-{#         <div class="chart">#}
-{#           <ul class="numbers">#}
-{#             <li><span>100%</span></li>#}
-{#             <li><span>50%</span></li>#}
-{#             <li><span>0%</span></li>#}
-{#             </ul>#}
-{#           <ul class="bars">#}
-{#             <li>#}
-{#              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_pashnya_total'], 2) }}"></div>#}
-{#              <span>Пашня</span>#}
-{#            </li>#}
-{#             <li>#}
-{#              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_mnogoletnie_total'], 2) }}"></div>#}
-{#              <span>Насаждения</span>#}
-{#            </li>#}
-{#             <li>#}
-{#              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_zelej_total'], 2) }}"></div>#}
-{#              <span>Залежь</span>#}
-{#            </li>#}
-{#            <li>#}
-{#              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_pastbishe_total'], 2) }}"></div>#}
-{#              <span>Пастбища</span>#}
-{#            </li>#}
-{#            <li>#}
-{#              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_senokosy_total'], 2) }}"></div>#}
-{#              <span>Сенокосы</span>#}
-{#            </li>#}
-{#            <li>#}
-{#              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_ogorody_total'], 2) }}"></div>#}
-{#              <span>Огороды</span>#}
-{#            </li>#}
-{#            <li>#}
-{#              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_sad_total'], 2) }}"></div>#}
-{#              <span>Сады</span>#}
-{#            </li>#}
-{#             </ul> #}
-{#          </div>#}
+         <div class="chart">
+           <ul class="numbers">
+             <li><span>100%</span></li>
+             <li><span>50%</span></li>
+             <li><span>0%</span></li>
+             </ul>
+           <ul class="bars">
+             <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_pashnya_total'], 2) }}"></div>
+              <span>Пашня</span>
+            </li>
+             <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_mnogoletnie_total'], 2) }}"></div>
+              <span>Насаждения</span>
+            </li>
+             <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_zelej_total'], 2) }}"></div>
+              <span>Залежь</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_pastbishe_total'], 2) }}"></div>
+              <span>Пастбища</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_senokosy_total'], 2) }}"></div>
+              <span>Сенокосы</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_ogorody_total'], 2) }}"></div>
+              <span>Огороды</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_sad_total'], 2) }}"></div>
+              <span>Сады</span>
+            </li>
+             </ul>
+          </div>
 
         {# pie chart with plotly #}
-{#         <div class='pie-chart' id="pie-chart"></div>#}
+         <div class='pie-chart' id="pie-chart"></div>
 
         {# apexcharts area-chart #}
         {# <div class="charts-card">
@@ -169,6 +169,7 @@
             <div id="area-chart"></div>
           </div> #}
 
+      </div>
         {# TABLE start #}
         <section class="attendance">
           <div class="attendance-list">
@@ -249,8 +250,6 @@
           </div>
         </section>
 {#        TABLE end#}
-
-      </div>
     </main>
 {#    End Main#}
 

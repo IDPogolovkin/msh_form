@@ -145,100 +145,99 @@
 {#          <div class="charts-card">#}
 {#            <p class="chart-title">Purchase and Sales Orders</p>#}
 {#            <div id="area-chart"></div>#}
-{#          </div> #}
-
-          <!-- TABLE start -->
-{#          <section class="attendance">#}
-{#            <div class="attendance-list">#}
-{#              <h1>Занятое население</h1>#}
-{#              <table class="table">#}
-{#                <thead>#}
-{#                  <tr>#}
-{#                    <th>№</th>#}
-{#                    <th>Наименование</th>#}
-{#                    <th>Всего человек</th>#}
-{#                    <th>В том чсиле мужчин</th>#}
-{#                    <th>В том чсиле женщин</th>#}
-{#                  </tr>#}
-{#                </thead>#}
-{#                <tbody>#}
-{#                  <tr>#}
-{#                    <td>{{ formData.id }}</td>#}
-{#                    <td>Численность Населения</td>#}
-{#                    <td>{{ formData.labour_population }}</td>#}
-{#                    <td>0</td>#}
-{#                    <td>0</td>#}
-{#                  </tr>#}
-{#                  <tr>#}
-{#                    <td>{{ formData.id }}</td>#}
-{#                    <td>Из них постоянно проживающих</td>#}
-{#                    <td>{{ formData.labour_constant_population }}</td>#}
-{#                    <td>0</td>#}
-{#                    <td>0</td>#}
-{#                  </tr>#}
-{#                  <tr>#}
-{#                    <td>{{ formData.id }}</td>#}
-{#                    <td>Рабочая сила</td>#}
-{#                    <td>{{ formData.labour_labour }}</td>#}
-{#                    <td>0</td>#}
-{#                    <td>0</td>#}
-{#                  </tr>#}
-{#                  <tr>#}
-{#                    <td>{{ formData.id }}</td>#}
-{#                    <td>Занятое население в бюджетной сфере</td>#}
-{#                    <td>{{ formData.labour_government_workers }}</td>#}
-{#                    <td>0</td>#}
-{#                    <td>0</td>#}
-{#                  </tr>#}
-{#                <tr>#}
-{#                    <td>{{ formData.id }}</td>#}
-{#                    <td>Занятое население в частном секторе</td>#}
-{#                    <td>{{ formData.labour_private_labour }}</td>#}
-{#                    <td>0</td>#}
-{#                    <td>0</td>#}
-{#                  </tr>#}
-{#                <tr>#}
-{#                    <td>{{ formData.id }}</td>#}
-{#                    <td>Из них занятое население в личном подсобном хозяйстве</td>#}
-{#                    <td>{{ formData.labour_private_ogorod }}</td>#}
-{#                    <td>0</td>#}
-{#                    <td>0</td>#}
-{#                  </tr>#}
-{#                <tr>#}
-{#                    <td>{{ formData.id }}</td>#}
-{#                    <td>Лица, не входящие в состав рабочей силы</td>#}
-{#                    <td>{{ formData.labour_total_econ_inactive_population }}</td>#}
-{#                    <td>0</td>#}
-{#                    <td>0</td>#}
-{#                  </tr>#}
-{#                <tr>#}
-{#                    <td>{{ formData.id }}</td>#}
-{#                    <td>Безработные</td>#}
-{#                    <td>{{ formData.labour_unemployed }}</td>#}
-{#                    <td>0</td>#}
-{#                    <td>0</td>#}
-{#                  </tr>#}
-{#                <tr>#}
-{#                    <td>{{ formData.id }}</td>#}
-{#                    <td>Средний размер домашних хозяйств</td>#}
-{#                    <td>{{ formData.labour_household_size }}</td>#}
-{#                    <td>0</td>#}
-{#                    <td>0</td>#}
-{#                  </tr>#}
-{#                <tr>#}
-{#                    <td>{{ formData.id }}</td>#}
-{#                    <td>Средний доход на одну семью, в месяц</td>#}
-{#                    <td>{{ formData.labour_average_income_family }}</td>#}
-{#                    <td>0</td>#}
-{#                    <td>0</td>#}
-{#                  </tr>#}
-{#                </tbody>#}
-{#              </table>#}
-{#            </div>#}
-{#          </section>#}
-          <!-- TABLE end -->
+{#          </div>#}
 
         </div>
+          <!-- TABLE start -->
+          <section class="attendance">
+            <div class="attendance-list">
+              <h1>Занятое население</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>№</th>
+                    <th>Наименование</th>
+                    <th>Всего человек</th>
+                    <th>В том чсиле мужчин</th>
+                    <th>В том чсиле женщин</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ formData.id }}</td>
+                    <td>Численность Населения</td>
+                    <td>{{ formData.labour_population }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>{{ formData.id }}</td>
+                    <td>Из них постоянно проживающих</td>
+                    <td>{{ formData.labour_constant_population }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>{{ formData.id }}</td>
+                    <td>Рабочая сила</td>
+                    <td>{{ formData.labour_labour }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>{{ formData.id }}</td>
+                    <td>Занятое население в бюджетной сфере</td>
+                    <td>{{ formData.labour_government_workers }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                <tr>
+                    <td>{{ formData.id }}</td>
+                    <td>Занятое население в частном секторе</td>
+                    <td>{{ formData.labour_private_labour }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                <tr>
+                    <td>{{ formData.id }}</td>
+                    <td>Из них занятое население в личном подсобном хозяйстве</td>
+                    <td>{{ formData.labour_private_ogorod }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                <tr>
+                    <td>{{ formData.id }}</td>
+                    <td>Лица, не входящие в состав рабочей силы</td>
+                    <td>{{ formData.labour_total_econ_inactive_population }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                <tr>
+                    <td>{{ formData.id }}</td>
+                    <td>Безработные</td>
+                    <td>{{ formData.labour_unemployed }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                <tr>
+                    <td>{{ formData.id }}</td>
+                    <td>Средний размер домашних хозяйств</td>
+                    <td>{{ formData.labour_household_size }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                <tr>
+                    <td>{{ formData.id }}</td>
+                    <td>Средний доход на одну семью, в месяц</td>
+                    <td>{{ formData.labour_average_income_family }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
       </main>
       <!-- End Main -->
 
