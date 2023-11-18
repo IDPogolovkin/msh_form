@@ -2,13 +2,24 @@ from flask_wtf import FlaskForm
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, IntegerField, BooleanField, DecimalField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from app.models import User
+from app.models import User, Form
+from app import app
+from sqlalchemy import distinct, column
 
+app.app_context().push()
 class LoginForm(FlaskForm):
     kato_6 = StringField('Логин', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired(), Length(min=4, max=80)])
     remember = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
+
+class FilterForm(FlaskForm):
+    # # kato_6 = SelectField(('',''),('test',''))
+    # kato_6 = SelectField(choices=set([(i.kato_6, i.kato_6_name) for i in Form.query.all() ]))
+    # kato_4 = SelectField(choices=set([(i.kato_4, i.kato_4_name) for i in Form.query.all() ]))
+    kato_2 = SelectField(choices=set([(i.kato_2, i.kato_2_name) for i in Form.query.all() ]))
+    submit = SubmitField('Применить')
+
 
 class CreditorForm(FlaskForm):
     gender_choises = [('',''), ('Женский', 'Женский'), ('Мужской', 'Мужской')]

@@ -80,14 +80,13 @@ def edit_form():
     formdata = Form.query.filter_by(user_id=current_user.id).first()
     form = FormDataForm(obj=formdata)
     if request.method == 'GET':
-        return render_template('edit_form.html', form=form, user=current_user, measurement_units=measurement_units, formdata=formdata)
+        formgo = Form_G_O.query.filter_by(kato_6=current_user.kato_6).first()
+        return render_template('edit_form.html', form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formdata=formdata)
     else:
         if form.validate_on_submit():
             old_form_columns = [column.key for column in inspect(Form_old).columns]
             old_form_data = {column: getattr(formdata, column) for column in old_form_columns}
             old_form = Form_old(**old_form_data)
-            print(old_form.creation_date)
-            print(old_form.modified_date)
             form_data = form.data
             model_columns = Form.__table__.columns.keys()
             form_data = {key: value for key, value in form_data.items() if key in model_columns}
@@ -184,94 +183,187 @@ def dashboard_soc1():
     formData=Form.query.filter_by(user_id=current_user.id).first()
     return render_template('dashboard_social_pocazat.html', round=round, formData=formData, user=current_user)
 
-@app.route('/dashboard_all', methods=['GET'])
+@app.route('/dashboard_all', methods=['GET', 'POST'])
 @login_required
 def dashboard_all():
-    formdata = Form.query.all()
-    counter = 0
-    labour_labour_total = 0
-    labour_population_total = 0
-    labour_active_total = 0
-    labour_inactive_total = 0
-    labour_private_ogorod_total = 0
-    house_total_dvor_total = 0
-    house_zaselen_dvor_total = 0
-    labour_employed_precent = 0
-    labour_unemployed_precent = 0
-    labour_average_income_family_total = 0
-    labour_household_size_total = 0
-    labour_constant_population_total = 0
-    labour_government_workers_total = 0
-    labour_private_labour_total = 0
-    labour_total_econ_inactive_population_total = 0
-    labour_unemployed_total = 0
-    dx_cx_land_total = 0
-    dx_pashnya_total = 0
-    dx_mnogoletnie_total = 0
-    dx_zelej_total = 0
-    dx_pastbishe_total = 0
-    dx_senokosy_total = 0
-    dx_ogorody_total = 0
-    dx_sad_total = 0
-    for form in formdata:
-        counter += 1
-        labour_total_econ_inactive_population_total += form.labour_total_econ_inactive_population
-        labour_unemployed_total += form.labour_unemployed
-        labour_private_labour_total += form.labour_private_labour
-        labour_government_workers_total += form.labour_government_workers
-        labour_labour_total += form.labour_labour
-        labour_constant_population_total += form.labour_constant_population
-        labour_population_total += form.labour_population
-        labour_active_total += (form.labour_government_workers + form.labour_private_labour + form.labour_private_ogorod)
-        labour_inactive_total += (form.labour_unemployed + form.labour_total_econ_inactive_population)
-        labour_average_income_family_total += form.labour_average_income_family
-        labour_private_ogorod_total += form.labour_private_ogorod
-        labour_household_size_total += form.labour_household_size
-        house_total_dvor_total += form.house_total_dvor
-        house_zaselen_dvor_total += form.house_zaselen_dvor
-        dx_cx_land_total += form.dx_cx_land
-        dx_pashnya_total += form.dx_pashnya
-        dx_mnogoletnie_total += form.dx_mnogoletnie
-        dx_zelej_total += form.dx_zelej
-        dx_pastbishe_total += form.dx_pastbishe
-        dx_senokosy_total += form.dx_senokosy
-        dx_ogorody_total += form.dx_ogorody
-        dx_sad_total += form.dx_sad
+    filterform = FilterForm()
 
-    
-    labour_household_size_total_average = round(house_total_dvor_total / counter, 2)
-    labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2)
-    labour_employed_precent += round((labour_active_total * 100) / labour_population_total, 2)
-    labour_unemployed_precent += round((labour_inactive_total* 100) / labour_population_total,2)
+    if request.method == 'GET':
+        formdata = Form.query.all()
+        counter = 0
+        labour_labour_total = 0
+        labour_population_total = 0
+        labour_active_total = 0
+        labour_inactive_total = 0
+        labour_private_ogorod_total = 0
+        house_total_dvor_total = 0
+        house_zaselen_dvor_total = 0
+        labour_employed_precent = 0
+        labour_unemployed_precent = 0
+        labour_average_income_family_total = 0
+        labour_household_size_total = 0
+        labour_constant_population_total = 0
+        labour_government_workers_total = 0
+        labour_private_labour_total = 0
+        labour_total_econ_inactive_population_total = 0
+        labour_unemployed_total = 0
+        dx_cx_land_total = 0
+        dx_pashnya_total = 0
+        dx_mnogoletnie_total = 0
+        dx_zelej_total = 0
+        dx_pastbishe_total = 0
+        dx_senokosy_total = 0
+        dx_ogorody_total = 0
+        dx_sad_total = 0
+        for form in formdata:
+            counter += 1
+            labour_total_econ_inactive_population_total += form.labour_total_econ_inactive_population
+            labour_unemployed_total += form.labour_unemployed
+            labour_private_labour_total += form.labour_private_labour
+            labour_government_workers_total += form.labour_government_workers
+            labour_labour_total += form.labour_labour
+            labour_constant_population_total += form.labour_constant_population
+            labour_population_total += form.labour_population
+            labour_active_total += (form.labour_government_workers + form.labour_private_labour + form.labour_private_ogorod)
+            labour_inactive_total += (form.labour_unemployed + form.labour_total_econ_inactive_population)
+            labour_average_income_family_total += form.labour_average_income_family
+            labour_private_ogorod_total += form.labour_private_ogorod
+            labour_household_size_total += form.labour_household_size
+            house_total_dvor_total += form.house_total_dvor
+            house_zaselen_dvor_total += form.house_zaselen_dvor
+            dx_cx_land_total += form.dx_cx_land
+            dx_pashnya_total += form.dx_pashnya
+            dx_mnogoletnie_total += form.dx_mnogoletnie
+            dx_zelej_total += form.dx_zelej
+            dx_pastbishe_total += form.dx_pastbishe
+            dx_senokosy_total += form.dx_senokosy
+            dx_ogorody_total += form.dx_ogorody
+            dx_sad_total += form.dx_sad
+
+        
+        labour_household_size_total_average = round(house_total_dvor_total / counter, 2)
+        labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2)
+        labour_employed_precent += round((labour_active_total * 100) / labour_population_total, 2)
+        labour_unemployed_precent += round((labour_inactive_total* 100) / labour_population_total,2)
 
 
-    dashboard_all_data = {
-        'labour_total_econ_inactive_population_total':labour_total_econ_inactive_population_total,
-        'labour_unemployed_total':labour_unemployed_total,
-        'labour_private_labour_total': labour_private_labour_total,
-        'labour_government_workers_total':labour_government_workers_total,
-        'labour_labour_total':labour_labour_total,
-        'labour_constant_population_total': labour_constant_population_total,
-        'labour_population_total': labour_population_total,
-        'labour_active_total': labour_active_total,
-        'labour_inactive_total': labour_inactive_total,
-        'labour_private_ogorod_total': labour_private_ogorod_total,
-        'house_total_dvor_total': house_total_dvor_total,
-        'house_zaselen_dvor_total': house_zaselen_dvor_total,
-        'labour_employed_precent': labour_employed_precent,
-        'labour_unemployed_precent': labour_unemployed_precent,
-        'labour_household_size_total_average': labour_household_size_total_average,
-        'labour_average_income_family_total_average': labour_average_income_family_total_average,
-        'dx_cx_land_total': dx_cx_land_total,
-        'dx_pashnya_total': dx_pashnya_total,
-        'dx_mnogoletnie_total': dx_mnogoletnie_total,
-        'dx_zelej_total': dx_zelej_total,
-        'dx_pastbishe_total': dx_pastbishe_total,
-        'dx_senokosy_total': dx_senokosy_total,
-        'dx_ogorody_total': dx_ogorody_total,
-        'dx_sad_total': dx_sad_total
-    }
+        dashboard_all_data = {
+            'labour_total_econ_inactive_population_total':labour_total_econ_inactive_population_total,
+            'labour_unemployed_total':labour_unemployed_total,
+            'labour_private_labour_total': labour_private_labour_total,
+            'labour_government_workers_total':labour_government_workers_total,
+            'labour_labour_total':labour_labour_total,
+            'labour_constant_population_total': labour_constant_population_total,
+            'labour_population_total': labour_population_total,
+            'labour_active_total': labour_active_total,
+            'labour_inactive_total': labour_inactive_total,
+            'labour_private_ogorod_total': labour_private_ogorod_total,
+            'house_total_dvor_total': house_total_dvor_total,
+            'house_zaselen_dvor_total': house_zaselen_dvor_total,
+            'labour_employed_precent': labour_employed_precent,
+            'labour_unemployed_precent': labour_unemployed_precent,
+            'labour_household_size_total_average': labour_household_size_total_average,
+            'labour_average_income_family_total_average': labour_average_income_family_total_average,
+            'dx_cx_land_total': dx_cx_land_total,
+            'dx_pashnya_total': dx_pashnya_total,
+            'dx_mnogoletnie_total': dx_mnogoletnie_total,
+            'dx_zelej_total': dx_zelej_total,
+            'dx_pastbishe_total': dx_pastbishe_total,
+            'dx_senokosy_total': dx_senokosy_total,
+            'dx_ogorody_total': dx_ogorody_total,
+            'dx_sad_total': dx_sad_total
+        }
+        return render_template('dashboard_all.html',filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
+    else:
+        if filterform.validate_on_submit:
+            print(filterform.kato_2.data)
+            formdata = Form.query.filter_by(kato_2 = filterform.kato_2.data).all()
+            counter = 0
+            labour_labour_total = 0
+            labour_population_total = 0
+            labour_active_total = 0
+            labour_inactive_total = 0
+            labour_private_ogorod_total = 0
+            house_total_dvor_total = 0
+            house_zaselen_dvor_total = 0
+            labour_employed_precent = 0
+            labour_unemployed_precent = 0
+            labour_average_income_family_total = 0
+            labour_household_size_total = 0
+            labour_constant_population_total = 0
+            labour_government_workers_total = 0
+            labour_private_labour_total = 0
+            labour_total_econ_inactive_population_total = 0
+            labour_unemployed_total = 0
+            dx_cx_land_total = 0
+            dx_pashnya_total = 0
+            dx_mnogoletnie_total = 0
+            dx_zelej_total = 0
+            dx_pastbishe_total = 0
+            dx_senokosy_total = 0
+            dx_ogorody_total = 0
+            dx_sad_total = 0
+            for form in formdata:
+                counter += 1
+                labour_total_econ_inactive_population_total += form.labour_total_econ_inactive_population
+                labour_unemployed_total += form.labour_unemployed
+                labour_private_labour_total += form.labour_private_labour
+                labour_government_workers_total += form.labour_government_workers
+                labour_labour_total += form.labour_labour
+                labour_constant_population_total += form.labour_constant_population
+                labour_population_total += form.labour_population
+                labour_active_total += (form.labour_government_workers + form.labour_private_labour + form.labour_private_ogorod)
+                labour_inactive_total += (form.labour_unemployed + form.labour_total_econ_inactive_population)
+                labour_average_income_family_total += form.labour_average_income_family
+                labour_private_ogorod_total += form.labour_private_ogorod
+                labour_household_size_total += form.labour_household_size
+                house_total_dvor_total += form.house_total_dvor
+                house_zaselen_dvor_total += form.house_zaselen_dvor
+                dx_cx_land_total += form.dx_cx_land
+                dx_pashnya_total += form.dx_pashnya
+                dx_mnogoletnie_total += form.dx_mnogoletnie
+                dx_zelej_total += form.dx_zelej
+                dx_pastbishe_total += form.dx_pastbishe
+                dx_senokosy_total += form.dx_senokosy
+                dx_ogorody_total += form.dx_ogorody
+                dx_sad_total += form.dx_sad
+
+            
+            labour_household_size_total_average = round(house_total_dvor_total / counter, 2)
+            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2)
+            labour_employed_precent += round((labour_active_total * 100) / labour_population_total, 2)
+            labour_unemployed_precent += round((labour_inactive_total* 100) / labour_population_total,2)
+
+
+            dashboard_all_data = {
+                'labour_total_econ_inactive_population_total':labour_total_econ_inactive_population_total,
+                'labour_unemployed_total':labour_unemployed_total,
+                'labour_private_labour_total': labour_private_labour_total,
+                'labour_government_workers_total':labour_government_workers_total,
+                'labour_labour_total':labour_labour_total,
+                'labour_constant_population_total': labour_constant_population_total,
+                'labour_population_total': labour_population_total,
+                'labour_active_total': labour_active_total,
+                'labour_inactive_total': labour_inactive_total,
+                'labour_private_ogorod_total': labour_private_ogorod_total,
+                'house_total_dvor_total': house_total_dvor_total,
+                'house_zaselen_dvor_total': house_zaselen_dvor_total,
+                'labour_employed_precent': labour_employed_precent,
+                'labour_unemployed_precent': labour_unemployed_precent,
+                'labour_household_size_total_average': labour_household_size_total_average,
+                'labour_average_income_family_total_average': labour_average_income_family_total_average,
+                'dx_cx_land_total': dx_cx_land_total,
+                'dx_pashnya_total': dx_pashnya_total,
+                'dx_mnogoletnie_total': dx_mnogoletnie_total,
+                'dx_zelej_total': dx_zelej_total,
+                'dx_pastbishe_total': dx_pastbishe_total,
+                'dx_senokosy_total': dx_senokosy_total,
+                'dx_ogorody_total': dx_ogorody_total,
+                'dx_sad_total': dx_sad_total
+            }
+            return render_template('dashboard_all.html',filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
     return render_template('dashboard_all.html',round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
+    
 
 
 @app.route('/form', methods=['POST', 'GET'])
