@@ -11,325 +11,351 @@
 
 <body>
 
-<style>
-.pie-body{
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.x-box{
-  width: 36vh;
-  height:36vh;
-  border-radius: 50%;
-  background-color: #2e8b57;
-  margin-bottom: 60px;
+  <style>
+    .pie-body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-  background:repeating-conic-gradient(
-    from 0deg,
-    #2e8b57 0deg calc(3.6deg * {{ ((formData.labour_government_workers + formData.labour_private_labour + formData.labour_private_ogorod) * 100) / formData.labour_population }}),
-    #90ee90 calc(3.6deg * {{ ((formData.labour_unemployed + formData.labour_total_econ_inactive_population)* 100) / formData.labour_population }}) calc(3.6deg * 100)
-  );
-}
-</style>
+    .x-box {
+      width: 36vh;
+      height: 36vh;
+      border-radius: 50%;
+      background-color: #2e8b57;
+      margin-bottom: 60px;
 
-<div class="grid-container">
-      <!-- Main -->
-      <div class="main-title">
-        <p class="font-weight-bold">Социально-экономическое состояние</p>
-      </div>
-      <main class="main-container">
-        <div class="main-cards">
+      background:repeating-conic-gradient(from 0deg,
+        #2e8b57 0deg calc(3.6deg * {
+              {
+              ((dashboard_all_data['labour_employed_precent']
+            }
 
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">Численность населения</p>
-            </div>
-            <span class="text-primary font-weight-bold">{{ formData.labour_population }}</span>
+          }),
+        #90ee90 calc(3.6deg * {
+              {
+              ((dashboard_all_data['labour_unemployed_precent']
+            }
+          }) calc(3.6deg * 100));
+    }
+  </style>
+
+  <div class="grid-container">
+    <!-- Main -->
+    <div class="main-title">
+      <p class="font-weight-bold">Социально-экономическое состояние</p>
+    </div>
+    <main class="main-container">
+      <div class="main-cards">
+
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Численность населения</p>
           </div>
-
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">Экономически активное население</p>
-            </div>
-            <span class="text-primary font-weight-bold">{{ formData.labour_government_workers + formData.labour_private_labour + formData.labour_private_ogorod }}</span>
-          </div>
-
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">Экономически неактивное население</p>
-            </div>
-            <span class="text-primary font-weight-bold">{{ formData.labour_unemployed + formData.labour_total_econ_inactive_population }}</span>
-          </div>
-
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">Средний доход на семью, тенге/месяц</p>
-            </div>
-            <span class="text-primary font-weight-bold">{{ formData.labour_average_income_family }}</span>
-          </div>
-
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">Занятые в ЛПХ</p>
-            </div>
-            <span class="text-primary font-weight-bold">{{ formData.labour_private_ogorod }}</span>
-          </div>
-
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">Средний размер ДМХ</p>
-            </div>
-            <span class="text-primary font-weight-bold">{{ formData.labour_household_size }}</span>
-          </div>
-
-          <div class="card">
-            <div class="card-inner" >
-              <p class="text-primary">Количество доворов</p>
-            </div>
-            <span class="text-primary font-weight-bold">{{ formData.house_total_dvor }}</span>
-          </div>
-
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">Количество заселенных доворов</p>
-            </div>
-            <span class="text-primary font-weight-bold">{{ formData.house_zaselen_dvor }}</span>
-          </div>
-
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_population_total'] }}</span>
         </div>
 
-        <div class="charts">
-          <!-- apexcharts bar chart -->
-{#          <div class="charts-card">#}
-{#            <p class="chart-title">Сельскохозяйственные угодья домашних хозяйств</p>#}
-{#            <div id="bar-chart"></div>#}
-{#          </div>#}
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Экономически активное население</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_active_total'] }}</span>
+        </div>
 
-          <!-- hard coded pie chart -->
-{#          <div class="pie-body">#}
-{#            <div class="x-box">#}
-{#              <div class="x-box-cont">#}
-{#                <h3>Категории населения</h3>#}
-{#                <strong>Занятое население {{ round((((formData.labour_government_workers + formData.labour_private_labour + formData.labour_private_ogorod) * 100) / formData.labour_population), 2) }}%</strong>#}
-{#                <strong>Безработные {{ round(((formData.labour_unemployed + formData.labour_total_econ_inactive_population)* 100) / formData.labour_population,2) }}%</strong>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Экономически неактивное население</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_inactive_total'] }}</span>
+        </div>
 
-          <!-- bar chart with jquery -->
-{#          <div class="chart">#}
-{#            <ul class="numbers">#}
-{#              <li><span>100%</span></li>#}
-{#              <li><span>50%</span></li>#}
-{#              <li><span>0%</span></li>#}
-{#            </ul>#}
-{#            <ul class="bars">#}
-{#              <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_pashnya }}"></div><span>Пашня</span></li>#}
-{#              <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_mnogoletnie }}"></div><span>Насаждения</span></li>#}
-{#              <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_zelej }}"></div><span>Залежь</span></li>#}
-{#              <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_pastbishe }}"></div><span>Пастбища</span></li>#}
-{#              <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_senokosy }}"></div><span>Сенокосы</span></li>#}
-{#             <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_ogorody }}"></div><span>Огороды</span></li>#}
-{#             <li><div class="bar" data-percentage="{{ formData.dx_cx_land * 100 / formData.dx_sad }}"></div><span>Сады</span></li>#}
-{#            </ul>#}
-{#          </div>#}
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Средний доход на семью, тенге/месяц</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_average_income_family_total_average'] }}</span>
+        </div>
 
-          <!-- pie chart with plotly -->
-{#          <div class='pie-chart' id="pie-chart"></div>#}
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Занятые в ЛПХ</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_private_ogorod_total'] }}</span>
+        </div>
 
-          <!-- apexcharts area-chart -->
-          <!-- <div class="charts-card">
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Средний размер ДМХ</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_household_size_total_average'] }}</span>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Количество доворов</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['house_total_dvor_total'] }}</span>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Количество заселенных доворов</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['house_zaselen_dvor_total'] }}</span>
+        </div>
+
+      </div>
+
+      <div class="charts">
+        <!-- apexcharts bar chart -->
+        <div class="charts-card">
+          <p class="chart-title">Сельскохозяйственные угодья домашних хозяйств</p>
+          <div id="bar-chart"></div>
+        </div>
+
+        <!-- hard coded pie chart -->
+        {# <div class="pie-body">#}
+          {# <div class="x-box">#}
+            {# <div class="x-box-cont">#}
+              {# <h3>Категории населения</h3>#}
+              {# <strong>Занятое население {{ dashboard_all_data['labour_employed_precent'] }}%</strong>#}
+              {# <strong>Безработные {{ dashboard_all_data['labour_unemployed_precent'] }}%</strong>#}
+              {# </div>#}
+            {# </div>#}
+          {# </div>#}
+
+        <!-- bar chart with jquery -->
+         <div class="chart">
+           <ul class="numbers">
+             <li><span>100%</span></li>
+             <li><span>50%</span></li>
+             <li><span>0%</span></li>
+             </ul>
+           <ul class="bars">
+             <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_pashnya_total'], 2) }}"></div>
+              <span>Пашня</span>
+            </li>
+             <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_mnogoletnie_total'], 2) }}"></div>
+              <span>Насаждения</span>
+            </li>
+             <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_zelej_total'], 2) }}"></div>
+              <span>Залежь</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_pastbishe_total'], 2) }}"></div>
+              <span>Пастбища</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_senokosy_total'], 2) }}"></div>
+              <span>Сенокосы</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_ogorody_total'], 2) }}"></div>
+              <span>Огороды</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_cx_land_total'] * 100 / dashboard_all_data['dx_sad_total'], 2) }}"></div>
+              <span>Сады</span>
+            </li>
+             </ul> 
+          </div>
+
+        <!-- pie chart with plotly -->
+         <div class='pie-chart' id="pie-chart"></div>
+
+        <!-- apexcharts area-chart -->
+        <!-- <div class="charts-card">
             <p class="chart-title">Purchase and Sales Orders</p>
             <div id="area-chart"></div>
           </div> -->
 
-          <!-- TABLE start -->
-          <section class="attendance">
-            <div class="attendance-list">
-              <h1>Занятое население</h1>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>№</th>
-                    <th>Наименование</th>
-                    <th>Всего человек</th>
-                    <th>В том чсиле мужчин</th>
-                    <th>В том чсиле женщин</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{ formData.id }}</td>
-                    <td>Численность Населения</td>
-                    <td>{{ formData.labour_population }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>{{ formData.id }}</td>
-                    <td>Из них постоянно проживающих</td>
-                    <td>{{ formData.labour_constant_population }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>{{ formData.id }}</td>
-                    <td>Рабочая сила</td>
-                    <td>{{ formData.labour_labour }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>{{ formData.id }}</td>
-                    <td>Занятое население в бюджетной сфере</td>
-                    <td>{{ formData.labour_government_workers }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
+        <!-- TABLE start -->
+        <!-- <section class="attendance">
+          <div class="attendance-list">
+            <h1>Занятое население</h1>
+            <table class="table">
+              <thead>
                 <tr>
-                    <td>{{ formData.id }}</td>
-                    <td>Занятое население в частном секторе</td>
-                    <td>{{ formData.labour_private_labour }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
+                  <th>№</th>
+                  <th>Наименование</th>
+                  <th>Всего человек</th>
+                  <th>В том чсиле мужчин</th>
+                  <th>В том чсиле женщин</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for form in formData %}
                 <tr>
-                    <td>{{ formData.id }}</td>
-                    <td>Из них занятое население в личном подсобном хозяйстве</td>
-                    <td>{{ formData.labour_private_ogorod }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
+                  <td>{{ form.id }}</td>
+                  <td>Численность Населения</td>
+                  <td>{{ form.labour_population }}</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
                 <tr>
-                    <td>{{ formData.id }}</td>
-                    <td>Лица, не входящие в состав рабочей силы</td>
-                    <td>{{ formData.labour_total_econ_inactive_population }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
+                  <td>{{ form.id }}</td>
+                  <td>Из них постоянно проживающих</td>
+                  <td>{{ form.labour_constant_population }}</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
                 <tr>
-                    <td>{{ formData.id }}</td>
-                    <td>Безработные</td>
-                    <td>{{ formData.labour_unemployed }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
+                  <td>{{ form.id }}</td>
+                  <td>Рабочая сила</td>
+                  <td>{{ form.labour_labour }}</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
                 <tr>
-                    <td>{{ formData.id }}</td>
-                    <td>Средний размер домашних хозяйств</td>
-                    <td>{{ formData.labour_household_size }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
+                  <td>{{ form.id }}</td>
+                  <td>Занятое население в бюджетной сфере</td>
+                  <td>{{ form.labour_government_workers }}</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
                 <tr>
-                    <td>{{ formData.id }}</td>
-                    <td>Средний доход на одну семью, в месяц</td>
-                    <td>{{ formData.labour_average_income_family }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-          <!-- TABLE end -->
+                  <td>{{ form.id }}</td>
+                  <td>Занятое население в частном секторе</td>
+                  <td>{{ form.labour_private_labour }}</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>{{ form.id }}</td>
+                  <td>Из них занятое население в личном подсобном хозяйстве</td>
+                  <td>{{ form.labour_private_ogorod }}</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>{{ form.id }}</td>
+                  <td>Лица, не входящие в состав рабочей силы</td>
+                  <td>{{ form.labour_total_econ_inactive_population }}</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>{{ form.id }}</td>
+                  <td>Безработные</td>
+                  <td>{{ form.labour_unemployed }}</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>{{ form.id }}</td>
+                  <td>Средний размер домашних хозяйств</td>
+                  <td>{{ form.labour_household_size }}</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>{{ form.id }}</td>
+                  <td>Средний доход на одну семью, в месяц</td>
+                  <td>{{ form.labour_average_income_family }}</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </section> -->
+        <!-- TABLE end -->
 
-        </div>
-      </main>
-      <!-- End Main -->
+      </div>
+    </main>
+    <!-- End Main -->
 
-    </div>
+  </div>
 
-    <!-- Custom JS -->
-{#    <script src="{{ url_for('static', filename='dashboard_soc1.js') }}"></script>#}
-    <!-- Custom bar chart jquery script -->
-    <script type="text/javascript">
-      $(function(){
-        $('.bars li .bar').each(function(key, bar){
-          var percentage = $(this).data('percentage');
-          $(this).animate({
-            'height' : percentage + '%'
-          },1000);
-        });
+  <!-- Custom JS -->
+
+  <!-- <script src="{{ url_for('static', filename='dashboard_soc1.js') }}"></script> -->
+  <!-- Custom bar chart jquery script -->
+  <script type="text/javascript">
+    $(function () {
+      $('.bars li .bar').each(function (key, bar) {
+        var percentage = $(this).data('percentage');
+        $(this).animate({
+          'height': percentage + '%'
+        }, 1000);
       });
-      </script>
+    });
+  </script>
 
-      <script>
-        var ultimateColors = [
-        ['#90ee90', '#2e8b57'],
-      ];
+  <script>
+    var ultimateColors = [
+      ['#90ee90', '#2e8b57'],
+    ];
 
-        var data = [{
-          values: [{{ formData.labour_unemployed + formData.labour_total_econ_inactive_population }}, {{ formData.labour_government_workers + formData.labour_private_labour + formData.labour_private_ogorod }}],
-          labels: ['Безработные', 'Занятое население'],
-          type: 'pie',
-          marker: {
-    colors: ultimateColors[0]
-  },
+    var data = [{
+      values: [{{ dashboard_all_data['labour_inactive_total'] }}, {{ dashboard_all_data['labour_active_total'] }}],
+    labels: ['Безработные', 'Занятое население'],
+      type: 'pie',
+        marker: {
+      colors: ultimateColors[0]
+    },
         }];
 
-        var layout = {
-          title: 'Категории населения',
-          height: 485,
-          width: 500
-        };
+    var layout = {
+      title: 'Категории населения',
+      height: 485,
+      width: 500
+    };
 
-        Plotly.newPlot('pie-chart', data, layout);
-      </script>
+    Plotly.newPlot('pie-chart', data, layout);
+  </script>
 
-    <script>
-        // BAR CHART
-        const barChartOptions = {
-          series: [
-            {
-              data: [{{ formData.dx_pashnya }}, {{ formData.dx_mnogoletnie }}, {{ formData.dx_zelej }}, {{ formData.dx_pastbishe }}, {{ formData.dx_senokosy }}, {{ formData.dx_ogorody }}, {{ formData.dx_sad }}],
+  <script>
+    // BAR CHART
+    const barChartOptions = {
+      series: [
+        {
+          data: [{{ dashboard_all_data['dx_pashnya_total'] }}, {{ dashboard_all_data['dx_mnogoletnie_total'] }}, {{ dashboard_all_data['dx_zelej_total'] }}, { { dashboard_all_data['dx_pastbishe_total'] } }, { { dashboard_all_data['dx_senokosy_total'] } }, { { dashboard_all_data['dx_ogorody_total'] } }, { { dashboard_all_data['dx_sad_total'] } }],
             },
           ],
-          chart: {
-            type: 'bar',
-            height: 350,
-            toolbar: {
-              show: false,
+    chart: {
+      type: 'bar',
+        height: 350,
+          toolbar: {
+        show: false,
             },
-          },
-          colors: ['#246dec', '#cc3c43', '#367952', '#e78719', '#4f35a1', '#f5b74f', '#90ee90'],
-          plotOptions: {
-            bar: {
-              distributed: true,
-              borderRadius: 4,
-              horizontal: false,
+    },
+    colors: ['#246dec', '#cc3c43', '#367952', '#e78719', '#4f35a1', '#f5b74f', '#90ee90'],
+      plotOptions: {
+      bar: {
+        distributed: true,
+          borderRadius: 4,
+            horizontal: false,
               columnWidth: '40%',
             },
+    },
+    dataLabels: {
+      enabled: false,
           },
-          dataLabels: {
-            enabled: false,
+    legend: {
+      show: false,
           },
-          legend: {
-            show: false,
+    xaxis: {
+      categories: ['Пашня', 'Многолетние насаждения', 'Залежь', 'Пастбища', 'Сенокосы', 'Огороды', 'Сады'],
           },
-          xaxis: {
-            categories: ['Пашня', 'Многолетние насаждения', 'Залежь', 'Пастбища', 'Сенокосы', 'Огороды', 'Сады'],
-          },
-          yaxis: {
-            title: {
-              text: 'Count',
+    yaxis: {
+      title: {
+        text: 'Count',
             },
-          },
+    },
         };
 
-        const barChart = new ApexCharts(
-          document.querySelector('#bar-chart'),
-          barChartOptions
-        );
-        barChart.render();
-
-        const barChart1 = new ApexCharts(
-          document.querySelector('#bar-chart1'),
-          barChartOptions
-        );
-        barChart1.render();
-    </script>
+    const barChart = new ApexCharts(
+      document.querySelector('#bar-chart'),
+      barChartOptions
+    );
+    barChart.render();
+  </script>
 </body>
 {% endblock %}

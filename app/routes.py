@@ -12,7 +12,7 @@ from sqlalchemy.sql import func, text
 from sqlalchemy.sql.expression import text
 from sqlalchemy.orm import aliased
 from sqlalchemy import func, and_
-import psycopg2
+from sqlalchemy.inspection import inspect
 
 Base = declarative_base()
 
@@ -41,7 +41,11 @@ measurement_units = {
 @app.route('/',  methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('account'))
+        formData=Form.query.filter_by(user_id=current_user.id).first()
+        if formData:
+            return redirect(url_for('edit_form'))
+        else:
+            return redirect(url_for('form'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(kato_6=form.kato_6.data).first()
@@ -65,27 +69,32 @@ def logout():
 @app.route('/account', methods=['POST', 'GET'])
 @login_required
 def account():
-    formdata = Form.query.filter_by(user_id=current_user.id).order_by(desc(Form.creation_date)).first()
+    formdata = Form.query.filter_by(user_id=current_user.id).first()
     # print(formdata)
     form = FormDataForm()
     return render_template('account.html', title = 'Личный кабинет',str=str,form=form,measurement_units=measurement_units, user=current_user, formdata=formdata)
 
-@app.route('/account/<int:id>/edit', methods=['POST', 'GET'])
+@app.route('/account/edit', methods=['POST', 'GET'])
 @login_required
-def edit_form(id):
-    formdata = Form.query.filter_by(id=id).first()
+def edit_form():
+    formdata = Form.query.filter_by(user_id=current_user.id).first()
     form = FormDataForm(obj=formdata)
     if request.method == 'GET':
         return render_template('edit_form.html', form=form, user=current_user, measurement_units=measurement_units, formdata=formdata)
     else:
         if form.validate_on_submit():
+            old_form_columns = [column.key for column in inspect(Form_old).columns]
+            old_form_data = {column: getattr(formdata, column) for column in old_form_columns}
+            old_form = Form_old(**old_form_data)
+            print(old_form.creation_date)
+            print(old_form.modified_date)
             form_data = form.data
             model_columns = Form.__table__.columns.keys()
             form_data = {key: value for key, value in form_data.items() if key in model_columns}
             for key, value in form_data.items():
                 if isinstance(value, Decimal):
                     form_data[key] = float(value)
-                    spec_str_rast = ''
+            spec_str_rast = ''
             for field in form:
                 if field.name.startswith('specialization_rastenivodstvo_'):
                     if field.data == True:
@@ -109,7 +118,9 @@ def edit_form(id):
             new_form.specialization_animal = spec_str_animal[:-2]
             new_form.specialization_rastenivodstvo = spec_str_rast[:-2]
             formdata.modified_date = datetime.now(timezone(timedelta(hours=6)))
+            db.session.delete(formdata)
             db.session.add(new_form)
+            db.session.add(old_form)
             db.session.commit()
             flash("Данные успешно изменены!", 'success')
             return redirect(url_for('account'))
@@ -170,34 +181,79 @@ def all_creditors():
 @login_required
 def dashboard_soc1():
 
-    formData=Form.query.filter_by(user_id=current_user.id).order_by(desc(Form.creation_date)).first()
+    formData=Form.query.filter_by(user_id=current_user.id).first()
     return render_template('dashboard_social_pocazat.html', round=round, formData=formData, user=current_user)
 
 @app.route('/dashboard_all', methods=['GET'])
 @login_required
 def dashboadr_all():
-    subquery = (
-        db.session.query(
-            Form.user_id,
-            func.max(Form.creation_date).label('latest_creation_date')
-        )
-        .group_by(Form.user_id)
-        .subquery()
-    )
+    formdata = Form.query.all()
+    counter = 0
+    labour_population_total = 0
+    labour_active_total = 0
+    labour_inactive_total = 0
+    labour_private_ogorod_total = 0
+    house_total_dvor_total = 0
+    house_zaselen_dvor_total = 0
+    labour_employed_precent = 0
+    labour_unemployed_precent = 0
+    labour_average_income_family_total = 0
+    labour_household_size_total = 0
+    dx_cx_land_total = 0
+    dx_pashnya_total = 0
+    dx_mnogoletnie_total = 0
+    dx_zelej_total = 0
+    dx_pastbishe_total = 0
+    dx_senokosy_total = 0
+    dx_ogorody_total = 0
+    dx_sad_total = 0
+    for form in formdata:
+        counter += 1
+        labour_population_total += form.labour_population
+        labour_active_total += (form.labour_government_workers + form.labour_private_labour + form.labour_private_ogorod)
+        labour_inactive_total += (form.labour_unemployed + form.labour_total_econ_inactive_population)
+        labour_average_income_family_total += form.labour_average_income_family
+        labour_private_ogorod_total += form.labour_private_ogorod
+        labour_household_size_total += form.labour_household_size
+        house_total_dvor_total += form.house_total_dvor
+        house_zaselen_dvor_total += form.house_zaselen_dvor
+        dx_cx_land_total += form.dx_cx_land
+        dx_pashnya_total += form.dx_pashnya
+        dx_mnogoletnie_total += form.dx_mnogoletnie
+        dx_zelej_total += form.dx_zelej
+        dx_pastbishe_total += form.dx_pastbishe
+        dx_senokosy_total += form.dx_senokosy
+        dx_ogorody_total += form.dx_ogorody
+        dx_sad_total += form.dx_sad
 
-    # Query to get all columns for unique users
-    formdata = (
-        db.session.query(Form)
-        .join(subquery, and_(
-            Form.user_id == subquery.c.user_id,
-            Form.creation_date == subquery.c.latest_creation_date
-        ))
-        .order_by(desc(subquery.c.latest_creation_date))
-        .all()
-    )
-    print(formdata)
+    
+    labour_household_size_total_average = round(house_total_dvor_total / counter, 2)
+    labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2)
+    labour_employed_precent += round((labour_active_total * 100) / labour_population_total, 2)
+    labour_unemployed_precent += round((labour_inactive_total* 100) / labour_population_total,2)
 
-    return render_template('dashboard_all.html', formdatas = formdata, user=current_user)
+
+    dashboard_all_data = {
+        'labour_population_total': labour_population_total,
+        'labour_active_total': labour_active_total,
+        'labour_inactive_total': labour_inactive_total,
+        'labour_private_ogorod_total': labour_private_ogorod_total,
+        'house_total_dvor_total': house_total_dvor_total,
+        'house_zaselen_dvor_total': house_zaselen_dvor_total,
+        'labour_employed_precent': labour_employed_precent,
+        'labour_unemployed_precent': labour_unemployed_precent,
+        'labour_household_size_total_average': labour_household_size_total_average,
+        'labour_average_income_family_total_average': labour_average_income_family_total_average,
+        'dx_cx_land_total': dx_cx_land_total,
+        'dx_pashnya_total': dx_pashnya_total,
+        'dx_mnogoletnie_total': dx_mnogoletnie_total,
+        'dx_zelej_total': dx_zelej_total,
+        'dx_pastbishe_total': dx_pastbishe_total,
+        'dx_senokosy_total': dx_senokosy_total,
+        'dx_ogorody_total': dx_ogorody_total,
+        'dx_sad_total': dx_sad_total
+    }
+    return render_template('dashboard_all.html',round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
 
 
 @app.route('/form', methods=['POST', 'GET'])
@@ -205,7 +261,7 @@ def dashboadr_all():
 def form():
     user = current_user
     form = FormDataForm()
-    form_check = Form.query.filter_by(user_id=current_user.id).all()
+    form_check = Form.query.filter_by(user_id=current_user.id).first().all()
     if request.method == "GET":
         if form_check:
             flash("У вас уже имеется форма", category='info')
