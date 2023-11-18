@@ -189,6 +189,7 @@ def dashboard_soc1():
 def dashboadr_all():
     formdata = Form.query.all()
     counter = 0
+    labour_labour_total = 0
     labour_population_total = 0
     labour_active_total = 0
     labour_inactive_total = 0
@@ -199,6 +200,11 @@ def dashboadr_all():
     labour_unemployed_precent = 0
     labour_average_income_family_total = 0
     labour_household_size_total = 0
+    labour_constant_population_total = 0
+    labour_government_workers_total = 0
+    labour_private_labour_total = 0
+    labour_total_econ_inactive_population_total = 0
+    labour_unemployed_total = 0
     dx_cx_land_total = 0
     dx_pashnya_total = 0
     dx_mnogoletnie_total = 0
@@ -209,6 +215,12 @@ def dashboadr_all():
     dx_sad_total = 0
     for form in formdata:
         counter += 1
+        labour_total_econ_inactive_population_total += form.labour_total_econ_inactive_population
+        labour_unemployed_total += form.labour_unemployed
+        labour_private_labour_total += form.labour_private_labour
+        labour_government_workers_total += form.labour_government_workers
+        labour_labour_total += form.labour_labour
+        labour_constant_population_total += form.labour_constant_population
         labour_population_total += form.labour_population
         labour_active_total += (form.labour_government_workers + form.labour_private_labour + form.labour_private_ogorod)
         labour_inactive_total += (form.labour_unemployed + form.labour_total_econ_inactive_population)
@@ -234,6 +246,12 @@ def dashboadr_all():
 
 
     dashboard_all_data = {
+        'labour_total_econ_inactive_population_total':labour_total_econ_inactive_population_total,
+        'labour_unemployed_total':labour_unemployed_total,
+        'labour_private_labour_total': labour_private_labour_total,
+        'labour_government_workers_total':labour_government_workers_total,
+        'labour_labour_total':labour_labour_total,
+        'labour_constant_population_total': labour_constant_population_total,
         'labour_population_total': labour_population_total,
         'labour_active_total': labour_active_total,
         'labour_inactive_total': labour_inactive_total,
