@@ -20,13 +20,19 @@ body {
 label {
   display: block;
   margin-bottom: 0.5rem;
-  width: 60%;
+  width: 72%;
 }
 
 .label {
   display: flex;
   width: 100%;
+}
+
+.input_with_measure{
+  display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-right: 25%;
 }
 
 input {
@@ -175,6 +181,10 @@ label {
   margin: 2rem 0;
 }
 
+.input-group input{
+  width: 72%;
+}
+
 @keyframes animate {
   from {
     transform: scale(1, 0);
@@ -190,7 +200,7 @@ label {
 /* Button */
 .btns-group {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -207,6 +217,11 @@ label {
   transition: 0.3s;
 }
 
+.btn.btn-submit{
+  background-color: rgba(215, 231, 248, 0.7);
+  color: #626161;
+}
+
 .btn:hover {
   background-color: white;
   color: rgb(11, 78, 179);
@@ -215,4 +230,5 @@ label {
 .input-group-checker{
   display: flex;
   justify-content: space-between;
+  margin-bottom: 23px;
 }

@@ -66,7 +66,7 @@ def logout():
 @login_required
 def account():
     formdata = Form.query.filter_by(user_id=current_user.id).order_by(desc(Form.creation_date)).first()
-    print(formdata)
+    # print(formdata)
     form = FormDataForm()
     return render_template('account.html', title = 'Личный кабинет',str=str,form=form,measurement_units=measurement_units, user=current_user, formdata=formdata)
 

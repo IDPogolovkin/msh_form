@@ -296,4 +296,4 @@ class FormDataForm(FlaskForm):
     specialization_animal_goose_egg = BooleanField('Яйцо гусиное')
     specialization_animal_quail_egg = BooleanField('Яйцо перепелиное')
 
-    submit = SubmitField('Отправить')
+    submit = SubmitField('Сохранить')
