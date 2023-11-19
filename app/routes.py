@@ -194,6 +194,13 @@ def dashboard_soc1():
     formData=Form.query.filter_by(user_id=current_user.id).first()
     return render_template('dashboard_social_pocazat.html', round=round, formData=formData, user=current_user)
 
+@app.route('/dashboard_animal', methods=['GET'])
+@login_required
+def dashboard_animal():
+
+    formData=Form.query.filter_by(user_id=current_user.id).first()
+    return render_template('animal_dashboard.html', round=round, formData=formData, user=current_user)
+
 @app.route('/dashboard_all', methods=['GET', 'POST'])
 @login_required
 def dashboard_all():

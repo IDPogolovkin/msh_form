@@ -6,12 +6,12 @@
     <main>
         <div class="acc-content">
             {% if not formdata %}
-            <form method='POST'>
+            <form class="selector" method='POST'>
                 {{ filterhistory.history_date }}
                 {{ filterhistory.submit }}
             </form>
             {% else %}
-            <form method='POST'>
+            <form class="selector" method='POST'>
                 {{ filterhistory.history_date }}
                 {{ filterhistory.submit }}
             </form>

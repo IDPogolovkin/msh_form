@@ -140,18 +140,18 @@ body {
 
 .charts {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
   margin-bottom: 25px;
 }
 
 .charts-card {
   background-color: #ffffff;
-  margin-bottom: 20px;
+  margin-top: 30px;
   padding: 25px 25px 10px 25px;
   box-sizing: border-box;
   -webkit-column-break-inside: avoid;
-  width: 500px;
+  width: 600px;
   border: 1px solid #d2d2d3;
   border-radius: 5px;
   box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
@@ -366,6 +366,20 @@ table thead tr{
   color: #34AF6D;
   background-color: white;
   border: 1px solid #4AD489;
+}
+
+.specialization p{
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.spec_block{
+  border: solid 1px gray;
+  background-color: white;
+  padding: 15px 10px;
+  font-size: 18px;
+  min-width: 70%;
+  width: fit-content;
 }
 
 /* ---------- MEDIA QUERIES ---------- */

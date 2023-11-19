@@ -134,7 +134,7 @@ class FormDataForm(FlaskForm):
     animal_ogorod = DecimalField('Огороды')
     animal_sad = DecimalField('Сады')
     animal_krs_milk = IntegerField('КРС молочный')
-    animal_krs_meat = IntegerField('КРС мясной ')
+    animal_krs_meat = IntegerField('КРС мясной')
     animal_sheep = IntegerField('Овцы, бараны')
     animal_kozel = IntegerField('Козы, козлы')
     animal_horse = IntegerField('Лошади')
