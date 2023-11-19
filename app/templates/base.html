@@ -17,7 +17,8 @@
     <div>
       {% if user.is_authenticated %}
       {#<a class="nav_link" id="portfolio" href="{{ url_for('form') }}">Заполнить форму</a>#}
-      <a class="nav_link" id="portfolio" href="{{ url_for('edit_form') }}">Заявкa</a>
+     <a class="nav_link" id="portfolio" href="{{ url_for('account') }}">История</a>
+      <a class="nav_link" id="portfolio" href="{{ url_for('edit_form') }}">Ввести данные</a>
 {#      <a class="nav_link" id="portfolio" href="{{ url_for('add_creditors') }}">Добавить заемщиков</a>#}
 {#      <a class="nav_link" id="portfolio" href="{{ url_for('all_creditors') }}">Заемщики</a>#}
       <a class="nav_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Аналитика</a>
