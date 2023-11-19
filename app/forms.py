@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, IntegerField, BooleanField, DecimalField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from app.models import User, Form
+from app.models import User, Form, Form_old
 from app import app
 from sqlalchemy import distinct, column
 
@@ -20,6 +20,9 @@ class FilterForm(FlaskForm):
     kato_2 = SelectField(choices=set([(i.kato_2, i.kato_2_name) for i in Form.query.all() ]))
     submit = SubmitField('Применить')
 
+class FilterHistory(FlaskForm):
+    history_date = SelectField(choices=set([(i.modified_date, i.modified_date.strftime('%Y-%m-%d %H:%M:%S')) for i in Form_old.query.all() ]))
+    submit = SubmitField('Применить')
 
 class CreditorForm(FlaskForm):
     gender_choises = [('',''), ('Женский', 'Женский'), ('Мужской', 'Мужской')]

@@ -69,10 +69,16 @@ def logout():
 @app.route('/account', methods=['POST', 'GET'])
 @login_required
 def account():
-    formdata = Form.query.filter_by(user_id=current_user.id).first()
-    # print(formdata)
+    filterhistory = FilterHistory()
     form = FormDataForm()
-    return render_template('account.html', title = 'Личный кабинет',str=str,form=form,measurement_units=measurement_units, user=current_user, formdata=formdata)
+    if request.method == 'GET':
+        
+        # print(formdata)
+        return render_template('account.html', title = 'Личный кабинет', filterhistory=filterhistory,str=str,form=form,measurement_units=measurement_units, user=current_user)
+    else:
+        formdata = Form_old.query.filter_by(user_id=current_user.id).order_by(text(f"modified_date = '{filterhistory.history_date.data}' DESC")).first()
+        return render_template('account.html', title = 'Личный кабинет', filterhistory=filterhistory,str=str,form=form,measurement_units=measurement_units, user=current_user, formdata=formdata)
+    
 
 @app.route('/account/edit', methods=['POST', 'GET'])
 @login_required
@@ -81,7 +87,7 @@ def edit_form():
     form = FormDataForm(obj=formdata)
     if request.method == 'GET':
         formgo = Form_G_O.query.filter_by(kato_6=current_user.kato_6).first()
-        return render_template('edit_form.html', form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formdata=formdata)
+        return render_template('edit_form.html',str=str, form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formdata=formdata)
     else:
         if form.validate_on_submit():
             old_form_columns = [column.key for column in inspect(Form_old).columns]

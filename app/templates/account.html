@@ -6,13 +6,18 @@
     <main>
         <div class="acc-content">
             {% if not formdata %}
-            <h2 style="text-align: center;">У вас ещё нет ни одной формы</h2>
-            <a href="{{ url_for('form') }}" class="btn">Заполнить форму</a>
+            <form method='POST'>
+                {{ filterhistory.history_date(style="cursor: pointer;") }}
+                {{ filterhistory.submit }}
+            </form>
             {% else %}
+            <form method='POST'>
+                {{ filterhistory.history_date }}
+                {{ filterhistory.submit }}
+            </form>
             <div class="form">
                 <h2>Форма за {{ formdata.form_year }} год</h2>
                 <h3>Последние изменения: {{ str(formdata.modified_date).split('.')[0] }}</h3>
-                <h3>Добавлена: {{ str(formdata.creation_date).split('.')[0] }}</h3>
                 <h4>1. Демография, занятость и уровень жизни населения</h4>
                 <div class="form-output">
                     <label class="label">{{ form.labour_population.label }}</label>
@@ -787,7 +792,6 @@
                     <label class="label">{{ form.credit_zalog.label }}</label>
                     <p>{{ formdata.credit_zalog }} {{ measurement_units['%'] }}</p>
                 </div>
-                <a href="{{ url_for('edit_form', id = formdata.id) }}", class="btn">Редактировать</a>
             </div>
             {% endif %}
         </div>

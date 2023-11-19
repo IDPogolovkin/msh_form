@@ -128,13 +128,13 @@
 {#              <li><span>0%</span></li>#}
 {#            </ul>#}
             <ul class="bars">
-              <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_pashnya,2) }}"></div><span>Пашня</span></li>
-              <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_mnogoletnie, 2) }}"></div><span>Насаждения</span></li>
-              <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_zelej, 2) }}"></div><span>Залежь</span></li>
-              <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_pastbishe,2) }}"></div><span>Пастбища</span></li>
-              <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_senokosy,2) }}"></div><span>Сенокосы</span></li>
-             <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_ogorody,2) }}"></div><span>Огороды</span></li>
-             <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_sad,2) }}"></div><span>Сады</span></li>
+              <li><div class="bar" data-percentage="{{ round(formData.dx_pashnya * 100 / formData.dx_cx_land,2) }}"></div><span>Пашня</span></li>
+              <li><div class="bar" data-percentage="{{ round(formData.dx_mnogoletnie * 100 / formData.dx_cx_land, 2) }}"></div><span>Насаждения</span></li>
+              <li><div class="bar" data-percentage="{{ round(formData.dx_zelej * 100 / formData.dx_cx_land, 2) }}"></div><span>Залежь</span></li>
+              <li><div class="bar" data-percentage="{{ round(formData.dx_pastbishe * 100 / formData.dx_cx_land,2) }}"></div><span>Пастбища</span></li>
+              <li><div class="bar" data-percentage="{{ round(formData.dx_senokosy * 100 / formData.dx_cx_land,2) }}"></div><span>Сенокосы</span></li>
+             <li><div class="bar" data-percentage="{{ round(formData.dx_ogorody * 100 / formData.dx_cx_land,2) }}"></div><span>Огороды</span></li>
+             <li><div class="bar" data-percentage="{{ round(formData.dx_sad * 100 / formData.dx_cx_land,2) }}"></div><span>Сады</span></li>
             </ul>
           </div>
 
