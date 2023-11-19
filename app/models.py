@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
    kato_2_name = db.Column(db.String(1024))
    kato_4 = db.Column(db.String(1024))
    kato_4_name = db.Column(db.String(1024))
-   kato_6 = db.Column(db.String(1024))
+   kato_6 = db.Column(db.String(1024), unique=True)
    kato_6_name = db.Column(db.String(1024))
    password = db.Column(db.String(250))
    def __repr__(self):

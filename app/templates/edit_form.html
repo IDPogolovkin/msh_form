@@ -8,7 +8,11 @@
 
     <h1 class="text-center">Анкета скрининг сельских округов и районов</h1>
     <h2 class="text-center">Редактирование</h2>
+    {% if formdata %}
     <h3 class="text-center">Последняя дата изменения: {{ str(formdata.modified_date).split('.')[0] }}</h3>
+    {% else %}
+    <h3 class="text-center"></h3>
+    {% endif %}
     <!-- Progress bar -->
     <div class="progressbar">
       <div class="progress" id="progress"></div>
@@ -29,6 +33,7 @@
 
       {{ form.csrf_token }}
       {{ form.hidden_tag() }}
+      
       <div class="input-columns">
         <div class="subform">
           <div class="input-group">

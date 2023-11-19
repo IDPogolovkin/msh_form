@@ -6,29 +6,23 @@ from flask_mail import Mail, Message
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 import pathlib
 import os
+from os.path import join, dirname
 from dotenv import load_dotenv
 from db_settings import *
 
 
-# host =  os.getenv('HOST')
-# port =  os.getenv('PORT') 
-# database =  os.getenv('DATABASE_POSTGRES')
-# user =  os.getenv('USER_POSTGRES')
-# password = os.getenv('PASSWORD_POSTGRES')
+load_dotenv('./.env')
 
-host =  'localhost'
-port = '5432'
-database =  'postgres'
-user =  'daniilpogolovkin'
-password = 'admin'
-
-print(host)
-print(type(host))
+host =  os.environ.get('HOST')
+port =  os.environ.get('PORT') 
+database =  os.environ.get('DATABASE_POSTGRES')
+user =  os.environ.get('USER_POSTGRES')
+password = os.environ.get('PASSWORD_POSTGRES')
 
 app = Flask(__name__, static_folder=os.path.join(pathlib.Path().resolve(), 'app', 'static'))
 app.config['SECRET_KEY'] = 'b982c2edf1a2f17e9e06c49fb027e8d1'
-# app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{host}:{port}/{database}' # коннект для постгрес (настройки в db_settings.py). не забудь закомментить sqlite
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{host}:{port}/{database}' # коннект для постгрес (настройки в db_settings.py). не забудь закомментить sqlite
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
 app.config['DEBUG'] = True

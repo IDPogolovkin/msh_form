@@ -7,7 +7,7 @@
         <div class="acc-content">
             {% if not formdata %}
             <form method='POST'>
-                {{ filterhistory.history_date(style="cursor: pointer;") }}
+                {{ filterhistory.history_date }}
                 {{ filterhistory.submit }}
             </form>
             {% else %}

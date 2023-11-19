@@ -71,9 +71,10 @@ def logout():
 def account():
     filterhistory = FilterHistory()
     form = FormDataForm()
+    filterhistory.set_history_date_choices(current_user.id)
     if request.method == 'GET':
-        
         # print(formdata)
+
         return render_template('account.html', title = 'Личный кабинет', filterhistory=filterhistory,str=str,form=form,measurement_units=measurement_units, user=current_user)
     else:
         formdata = Form_old.query.filter_by(user_id=current_user.id).order_by(text(f"modified_date = '{filterhistory.history_date.data}' DESC")).first()
@@ -85,10 +86,12 @@ def account():
 def edit_form():
     formdata = Form.query.filter_by(user_id=current_user.id).first()
     form = FormDataForm(obj=formdata)
+    formgo = Form_G_O.query.filter_by(kato_6=current_user.kato_6).first()
+
     if request.method == 'GET':
-        formgo = Form_G_O.query.filter_by(kato_6=current_user.kato_6).first()
         return render_template('edit_form.html',str=str, form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formdata=formdata)
     else:
+
         if form.validate_on_submit():
             old_form_columns = [column.key for column in inspect(Form_old).columns]
             old_form_data = {column: getattr(formdata, column) for column in old_form_columns}
@@ -130,8 +133,10 @@ def edit_form():
             flash("Данные успешно изменены!", 'success')
             return redirect(url_for('edit_form'))
         else:
+            print(form.errors)
             flash("Данные не изменены! Некорректный формат.", 'danger')
-            return render_template('edit_form.html', form=form, user=current_user)
+            return render_template('edit_form.html',formGO = formgo,measurement_units=measurement_units, form=form, user=current_user)
+    
 
 @app.route('/add-creditors', methods=['POST', 'GET'])
 @login_required

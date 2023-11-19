@@ -5,13 +5,14 @@ import csv
 
 app.app_context().push()
 
-csv_file_path = 'aul_amanaty_form.CSV'
+# csv_file_path = 'aul_amanaty_form.CSV'
 # counter = 0
 # with open(csv_file_path, 'r', encoding='utf-8') as file:
 #     csv_reader = csv.reader(file)
 
 #     next(csv_reader)
 #     for row in csv_reader:
+        
 #         user = User.query.filter_by(kato_6=row[6]).first()
 #         form = Form(
 #             user_id = user.id,
@@ -224,14 +225,12 @@ csv_file_path = 'aul_amanaty_form.CSV'
 #         counter += 1
 #         print(counter, '-', form)
 
-
-form = Form(
-    user_id = 1,
+form = Form_G_O(
     kato_2 = 'test',
     kato_2_name = 'test',
     kato_4 = 'test',
     kato_4_name = 'test',
-    kato_6 = 'test',
+    kato_6 = '354037',
     kato_6_name = 'test',
     form_year = 'test',
     labour_population = 134,
