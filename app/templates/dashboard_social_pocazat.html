@@ -122,11 +122,11 @@
 
           <!-- bar chart with jquery -->
           <div class="chart">
-            <ul class="numbers">
-              <li><span>100%</span></li>
-              <li><span>50%</span></li>
-              <li><span>0%</span></li>
-            </ul>
+{#            <ul class="numbers">#}
+{#              <li><span>100%</span></li>#}
+{#              <li><span>50%</span></li>#}
+{#              <li><span>0%</span></li>#}
+{#            </ul>#}
             <ul class="bars">
               <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_pashnya,2) }}"></div><span>Пашня</span></li>
               <li><div class="bar" data-percentage="{{ round(formData.dx_cx_land * 100 / formData.dx_mnogoletnie, 2) }}"></div><span>Насаждения</span></li>
@@ -274,7 +274,7 @@
         var layout = {
           title: 'Категории населения',
           height: 485,
-          width: 500
+          width: 520
         };
 
         Plotly.newPlot('pie-chart', data, layout);
@@ -315,7 +315,7 @@
           },
           yaxis: {
             title: {
-              text: 'Count',
+              text: 'Количество',
             },
           },
         };
