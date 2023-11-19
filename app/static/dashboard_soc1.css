@@ -140,7 +140,7 @@ body {
 .charts {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; 
-  gap: 20px;
+  gap: 15px;
   margin-bottom: 25px;
 }
 
@@ -150,7 +150,7 @@ body {
   padding: 25px 25px 10px 25px;
   box-sizing: border-box;
   -webkit-column-break-inside: avoid;
-  width: 480px;
+  width: 500px;
   border: 1px solid #d2d2d3;
   border-radius: 5px;
   box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
