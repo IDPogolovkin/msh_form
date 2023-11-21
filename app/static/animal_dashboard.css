@@ -85,7 +85,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 0 0 15px 20px;
+  padding: 0 10px 15px 20px;
   background-color: #ffffff;
   box-sizing: border-box;
   border: 1px solid hsl(240, 1%, 83%);
@@ -151,11 +151,24 @@ body {
   padding: 25px 25px 10px 25px;
   box-sizing: border-box;
   -webkit-column-break-inside: avoid;
-  width: 600px;
+  width: 650px;
   border: 1px solid #d2d2d3;
   border-radius: 5px;
   box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
   height: fit-content;
+}
+
+.charts-card-bar{
+   background-color: #ffffff;
+  padding: 25px 25px 10px 25px;
+  box-sizing: border-box;
+  -webkit-column-break-inside: avoid;
+  width: 700px;
+  border: 1px solid #d2d2d3;
+  border-radius: 5px;
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+  height: fit-content;
+  margin: 30px auto;
 }
 
 .chart-title {
@@ -368,7 +381,15 @@ table thead tr{
   border: 1px solid #4AD489;
 }
 
-.specialization p{
+.specialization-rast{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  width: fit-content;
+}
+
+.specialization-rast p{
   font-weight: bold;
   font-size: 19px;
 }

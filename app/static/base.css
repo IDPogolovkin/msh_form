@@ -29,6 +29,7 @@ body{
 .logo_text{
     font-size: x-large;
     color: #fff;
+    margin-left: 30px;
 }
 
 .nav_link{

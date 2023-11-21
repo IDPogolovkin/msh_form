@@ -136,6 +136,16 @@ def edit_form():
             print(form.errors)
             flash("Данные не изменены! Некорректный формат.", 'danger')
             return render_template('edit_form.html',formGO = formgo,measurement_units=measurement_units, form=form, user=current_user)
+
+@app.route('/account/region', methods=['GET'])
+@login_required
+def region_akim():
+    formdata = Form.query.filter_by(user_id=current_user.id).first()
+    form = FormDataForm(obj=formdata)
+    formgo = Form_G_O.query.filter_by(kato_6=current_user.kato_6).first()    # поменяй на като 4
+
+    return render_template('region_akim.html', str=str, form=form, formGO=formgo, user=current_user,
+                               measurement_units=measurement_units, formdata=formdata)
     
 
 @app.route('/add-creditors', methods=['POST', 'GET'])
@@ -200,6 +210,13 @@ def dashboard_animal():
 
     formData=Form.query.filter_by(user_id=current_user.id).first()
     return render_template('animal_dashboard.html', round=round, formData=formData, user=current_user)
+
+@app.route('/dashboard_plants', methods=['GET'])
+@login_required
+def dashboard_plants():
+
+    formData=Form.query.filter_by(user_id=current_user.id).first()
+    return render_template('plants_dashboard.html', round=round, formData=formData, user=current_user)
 
 @app.route('/dashboard_all', methods=['GET', 'POST'])
 @login_required

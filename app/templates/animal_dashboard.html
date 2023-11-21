@@ -17,6 +17,7 @@
         <p class="font-weight-bold">Животноводство</p>
           <div class="nav_dash_links">
             <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants') }}">Растениеводство</a>
 {#            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_all') }}">Общая аналитика животноводства</a>#}
           </div>
       </div>
@@ -39,7 +40,7 @@
           </div>
 
             <div class="specialization">
-              <p>Специализация</p>
+              <p>Специализация в животноводстве</p>
               <div class="spec_block">
                   {{ formData.specialization_animal }}
           </div>
@@ -260,12 +261,13 @@
         const barChartOptions = {
           series: [
             {
+              name: 'голов',
               data: [{{ formData.animal_meat_cow }}, {{ formData.animal_meat_sheep }}, {{ formData.animal_meat_horse }}, {{ formData.animal_meat_pig }}, {{ formData.animal_meat_camel }}, {{ formData.animal_meat_chicken }}, {{ formData.animal_meat_duck }}, {{ formData.animal_meat_gusi }}],
             },
           ],
           chart: {
             type: 'bar',
-            height: 350,
+            height: 430,
             toolbar: {
               show: false,
             },
@@ -275,8 +277,8 @@
             bar: {
               distributed: true,
               borderRadius: 4,
-              horizontal: false,
-              columnWidth: '40%',
+              horizontal: true,
+              columnWidth: '53%',
             },
           },
           dataLabels: {
@@ -286,12 +288,10 @@
             show: false,
           },
           xaxis: {
-            categories: ['Говядина', 'Баранина', 'Конина', 'Свинина', 'Верблюжатина', 'Куриное мясо', 'Утиное мясо', 'Гусиное мясо'],
-          },
-          yaxis: {
             title: {
-              text: 'Количество',
+              text: 'Количество голов',
             },
+            categories: ['Говядина', 'Баранина', 'Конина', 'Свинина', 'Верблюжатина', 'Куриное мясо', 'Утиное мясо', 'Гусиное мясо'],
           },
         };
 

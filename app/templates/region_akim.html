@@ -1,0 +1,3023 @@
+{% extends "base.html" %} {% block title %}Форма отчетности МСХ{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='ms_form.css') }}" />
+<script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
+<body>
+  <form action="#" class="form" method="POST">
+
+    <h1 class="text-center">Анкета скрининг сельских округов {{ formdata.kato_4_name }} района</h1>
+    <h3 class="text-center">{{ formdata.kato_2_name }}</h3>
+    <br>
+    <h2 class="text-center">Редактирование</h2>
+    {% if formdata %}
+    <h3 class="text-center">Последняя дата изменения: {{ str(formdata.modified_date).split('.')[0] }}</h3>
+    {% else %}
+    <h3 class="text-center"></h3>
+    {% endif %}
+    <!-- Progress bar -->
+    <div class="progressbar">
+      <div class="progress" id="progress"></div>
+
+      <div class="progress-step progress-step-active" data-title="Занятость"></div>
+      <div class="progress-step" data-title="Жилищные условия"></div>
+      <div class="progress-step" data-title="Растениеводство"></div>
+      <div class="progress-step" data-title="Животноводство"></div>
+      <div class="progress-step" data-title="Прочие виды бизнеса"></div>
+      <div class="progress-step" data-title="Промышленность"></div>
+      <div class="progress-step" data-title="Кредиты"></div>
+    </div>
+
+    <!-- Steps -->
+
+    <div class="form-step form-step-active">
+      <p class="step-title">1. Демография, занятость и уровень жизни населения</p>
+
+      {{ form.csrf_token }}
+      {{ form.hidden_tag() }}
+
+      <div class="input-columns">
+        <div class="subform">
+          <div class="input-group">
+            <div class="label">
+              {{ form.labour_population.label }}
+                {% if formGO.labour_population %}
+                <p>Значение с БД ГО: {{ formGO.labour_population }}</p>
+                {% else %}
+                <p>Нет данных в БД ГО</p>
+                {% endif %}
+            </div>
+          <div class="input_with_measure">
+              {{ form.labour_population(disabled=true) }}
+              {{ measurement_units['human'] }}
+          </div>
+          </div>
+     <div class="input-group">
+      <div class="label">
+        {{ form.labour_constant_population.label }}
+          {% if formGO.labour_constant_population %}
+          <p>Значение с БД ГО: {{ formGO.labour_constant_population }}</p>
+          {% else %}
+          <p>Нет данных в БД ГО</p>
+          {% endif %}
+      </div>
+      <div class="input_with_measure">
+        {{ form.labour_constant_population(disabled=true) }}
+        {{ measurement_units['human'] }}
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="label">
+        {{ form.labour_labour.label }}
+          {% if formGO.labour_labour %}
+          <p>Значение с БД ГО: {{ formGO.labour_labour }}</p>
+          {% else %}
+          <p>Нет данных в БД ГО</p>
+          {% endif %}
+      </div>
+      <div class="input_with_measure">
+        {{ form.labour_labour(disabled=true) }}
+        {{ measurement_units['human'] }}
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="label">
+        {{ form.labour_government_workers.label }}
+          {% if formGO.labour_government_workers %}
+          <p>Значение с БД ГО: {{ formGO.labour_government_workers }}</p>
+          {% else %}
+          <p>Нет данных в БД ГО</p>
+          {% endif %}
+      </div>
+      <div class="input_with_measure">
+        {{ form.labour_government_workers(disabled=true) }}
+        {{ measurement_units['human'] }}
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="label">
+        {{ form.labour_private_labour.label }}
+          {% if formGO.labour_private_labour %}
+          <p>Значение с БД ГО: {{ formGO.labour_private_labour }}</p>
+          {% else %}
+          <p>Нет данных в БД ГО</p>
+          {% endif %}
+      </div>
+      <div class="input_with_measure">
+        {{ form.labour_private_labour(disabled=true) }}
+        {{ measurement_units['human'] }}
+      </div>
+    </div>
+        </div>
+    <div class="subform">
+    <div class="input-group">
+      <div class="label">
+        {{ form.labour_private_ogorod.label }}
+          {% if formGO.labour_private_ogorod %}
+          <p>Значение с БД ГО: {{ formGO.labour_private_ogorod }}</p>
+          {% else %}
+          <p>Нет данных в БД ГО</p>
+          {% endif %}
+      </div>
+      <div class="input_with_measure">
+        {{ form.labour_private_ogorod(disabled=true) }}
+        {{ measurement_units['human'] }}
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="label">
+        {{ form.labour_total_econ_inactive_population.label }}
+          {% if formGO.labour_total_econ_inactive_population %}
+          <p>Значение с БД ГО: {{ formGO.labour_total_econ_inactive_population }}</p>
+          {% else %}
+          <p>Нет данных в БД ГО</p>
+          {% endif %}
+      </div>
+      <div class="input_with_measure">
+        {{ form.labour_total_econ_inactive_population(disabled=true) }}
+        {{ measurement_units['human'] }}
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="label">
+        {{ form.labour_unemployed.label }}
+          {% if formGO.labour_unemployed %}
+          <p>Значение с БД ГО: {{ formGO.labour_unemployed }}</p>
+          {% else %}
+          <p>Нет данных в БД ГО</p>
+          {% endif %}
+      </div>
+      <div class="input_with_measure">
+        {{ form.labour_unemployed(disabled=true) }}
+        {{ measurement_units['human'] }}
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="label">
+        {{ form.labour_household_size.label }}
+          {% if formGO.labour_household_size %}
+          <p>Значение с БД ГО: {{ formGO.labour_household_size }}</p>
+          {% else %}
+          <p>Нет данных в БД ГО</p>
+          {% endif %}
+      </div>
+      <div class="input_with_measure">
+        {{ form.labour_household_size(disabled=true) }}
+        {{ measurement_units['human'] }}
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="label">
+        {{ form.labour_average_income_family.label }}
+          {% if formGO.labour_average_income_family %}
+          <p>Значение с БД ГО: {{ formGO.labour_average_income_family }}</p>
+          {% else %}
+          <p>Нет данных в БД ГО</p>
+          {% endif %}
+      </div>
+      <div class="input_with_measure">
+        {{ form.labour_average_income_family(disabled=true) }}
+        {{ measurement_units['tg/m'] }}
+      </div>
+    </div>
+</div>
+        </div>
+      <div class="btns-group">
+{#          {{ form.submit(class="btn btn-submit") }}#}
+        <a href="#" class="btn btn-next">Далее</a>
+      </div>
+
+    </div>
+    <div class="form-step">
+      <p class="step-title">2. Жилищные условия</p>
+      <div class="input-group">
+        <div class="label">
+          {{ form.house_total_dvor.label }}
+            {% if formGO.house_total_dvor %}
+            <p>Значение с БД ГО: {{ formGO.house_total_dvor }}</p>
+            {% else %}
+            <p>Нет данных в БД ГО</p>
+            {% endif %}
+        </div>
+       <div class="input_with_measure">
+        {{ form.house_total_dvor(disabled=true) }}
+         {{ measurement_units['unit'] }}
+       </div>
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.house_zaselen_dvor.label }}
+            {% if formGO.house_zaselen_dvor %}
+            <p>Значение с БД ГО: {{ formGO.house_zaselen_dvor }}</p>
+            {% else %}
+            <p>Нет данных в БД ГО</p>
+            {% endif %}
+        </div>
+          <div class="input_with_measure">
+        {{ form.house_zaselen_dvor(disabled=true) }}
+           {{ measurement_units['unit'] }}
+          </div>
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+{#          {{ form.submit(class="btn btn-submit") }}#}
+        <a href="#" class="btn btn-next">Далее</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <p class="step-title">3. Растениеводство</p>
+      <div class="input-columns">
+        <div class="subform">
+          <div class="input-group">
+              <div class="label">
+                {{ form.dh_count.label }}
+                  {% if formGO.dh_count %}
+                  <p>Значение с БД ГО: {{ formGO.dh_count }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dh_count(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_number_ogorodov.label }}
+                  {% if formGO.dx_number_ogorodov %}
+                  <p>Значение с БД ГО: {{ formGO.dx_number_ogorodov }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_number_ogorodov(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_cx_land.label }}
+                  {% if formGO.dx_cx_land %}
+                  <p>Значение с БД ГО: {{ formGO.dx_cx_land }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_cx_land(disabled=true) }}
+                {{ measurement_units['square'] }}
+              </div>
+            </div>
+
+            <h4>В том числе:</h4>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_pashnya.label }}
+                  {% if formGO.dx_pashnya %}
+                  <p>Значение с БД ГО: {{ formGO.dx_pashnya }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_pashnya(disabled=true) }}
+                {{ measurement_units['square'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_mnogoletnie.label }}
+                  {% if formGO.dx_mnogoletnie %}
+                  <p>Значение с БД ГО: {{ formGO.dx_mnogoletnie }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_mnogoletnie(disabled=true) }}
+                {{ measurement_units['square'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_zelej.label }}
+                  {% if formGO.dx_zelej %}
+                  <p>Значение с БД ГО: {{ formGO.dx_zelej }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_zelej(disabled=true) }}
+                {{ measurement_units['square'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_pastbishe.label }}
+                  {% if formGO.dx_pastbishe %}
+                  <p>Значение с БД ГО: {{ formGO.dx_pastbishe }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_pastbishe(disabled=true) }}
+                {{ measurement_units['square'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_senokosy.label }}
+                  {% if formGO.dx_senokosy %}
+                  <p>Значение с БД ГО: {{ formGO.dx_senokosy }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_senokosy(disabled=true) }}
+                {{ measurement_units['square'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_ogorody.label }}
+                  {% if formGO.dx_ogorody %}
+                  <p>Значение с БД ГО: {{ formGO.dx_ogorody }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_ogorody(disabled=true) }}
+                {{ measurement_units['square'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_sad.label }}
+                  {% if formGO.dx_sad %}
+                  <p>Значение с БД ГО: {{ formGO.dx_sad }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_sad(disabled=true) }}
+                {{ measurement_units['square'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_urojai.label }}
+                  {% if formGO.dx_urojai %}
+                  <p>Значение с БД ГО: {{ formGO.dx_urojai }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_urojai(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <h4>В том числе:</h4>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_cucumber.label }}
+                  {% if formGO.dx_cucumber %}
+                  <p>Значение с БД ГО: {{ formGO.dx_cucumber }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_cucumber(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_tomato.label }}
+                  {% if formGO.dx_tomato %}
+                  <p>Значение с БД ГО: {{ formGO.dx_tomato }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_tomato(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_potato.label }}
+                  {% if formGO.dx_potato %}
+                  <p>Значение с БД ГО: {{ formGO.dx_potato }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_potato(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_kapusta.label }}
+                  {% if formGO.dx_kapusta %}
+                  <p>Значение с БД ГО: {{ formGO.dx_kapusta }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_kapusta(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_carrot.label }}
+                  {% if formGO.dx_carrot %}
+                  <p>Значение с БД ГО: {{ formGO.dx_carrot }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_carrot(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_svekla.label }}
+                  {% if formGO.dx_svekla %}
+                  <p>Значение с БД ГО: {{ formGO.dx_svekla }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_svekla(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_sweet_peper.label }}
+                  {% if formGO.dx_sweet_peper %}
+                  <p>Значение с БД ГО: {{ formGO.dx_sweet_peper }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_sweet_peper(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_baklajan.label }}
+                  {% if formGO.dx_baklajan %}
+                  <p>Значение с БД ГО: {{ formGO.dx_baklajan }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_baklajan(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_kabachek.label }}
+                  {% if formGO.dx_kabachek %}
+                  <p>Значение с БД ГО: {{ formGO.dx_kabachek }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_kabachek(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_onion.label }}
+                  {% if formGO.dx_onion %}
+                  <p>Значение с БД ГО: {{ formGO.dx_onion }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_onion(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_chesnok.label }}
+                  {% if formGO.dx_chesnok %}
+                  <p>Значение с БД ГО: {{ formGO.dx_chesnok }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_chesnok(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_redis.label }}
+                  {% if formGO.dx_redis %}
+                  <p>Значение с БД ГО: {{ formGO.dx_redis }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_redis(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_korm.label }}
+                  {% if formGO.dx_korm %}
+                  <p>Значение с БД ГО: {{ formGO.dx_korm }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_korm(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.dx_fruits.label }}
+                  {% if formGO.dx_fruits %}
+                  <p>Значение с БД ГО: {{ formGO.dx_fruits }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.dx_fruits(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_amount.label }}
+                  {% if formGO.kx_amount %}
+                  <p>Значение с БД ГО: {{ formGO.kx_amount }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_amount(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kz_cx_land.label }}
+                  {% if formGO.kz_cx_land %}
+                  <p>Значение с БД ГО: {{ formGO.kz_cx_land }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kz_cx_land(disabled=true) }}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
+
+            <h4>В том числе:</h4>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_pansya.label }}
+                  {% if formGO.kx_pansya %}
+                  <p>Значение с БД ГО: {{ formGO.kx_pansya }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_pansya(disabled=true) }}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_mnogoletnie.label }}
+                  {% if formGO.kx_mnogoletnie %}
+                  <p>Значение с БД ГО: {{ formGO.kx_mnogoletnie }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_mnogoletnie(disabled=true) }}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
+        </div>
+        <div class="subform">
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_pastbishe.label }}
+                  {% if formGO.kx_pastbishe %}
+                  <p>Значение с БД ГО: {{ formGO.kx_pastbishe }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_pastbishe(disabled=true) }}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_senokosy.label }}
+                  {% if formGO.kx_senokosy %}
+                  <p>Значение с БД ГО: {{ formGO.kx_senokosy }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_senokosy(disabled=true) }}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_urojai.label }}
+                  {% if formGO.kx_urojai %}
+                  <p>Значение с БД ГО: {{ formGO.kx_urojai }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_urojai(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <h4>В том числе:</h4>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_zerno.label }}
+                  {% if formGO.kx_zerno %}
+                  <p>Значение с БД ГО: {{ formGO.kx_zerno }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_zerno(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_rice.label }}
+                  {% if formGO.kx_rice %}
+                  <p>Значение с БД ГО: {{ formGO.kx_rice }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_rice(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_maslichnye.label }}
+                  {% if formGO.kx_maslichnye %}
+                  <p>Значение с БД ГО: {{ formGO.kx_maslichnye }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_maslichnye(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_korm.label }}
+                  {% if formGO.kx_korm %}
+                  <p>Значение с БД ГО: {{ formGO.kx_korm }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_korm(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_mnogoletnie_derevo.label }}
+                  {% if formGO.kx_mnogoletnie_derevo %}
+                  <p>Значение с БД ГО: {{ formGO.kx_mnogoletnie_derevo }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_mnogoletnie_derevo(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kz_cx_land_reserve.label }}
+                  {% if formGO.kz_cx_land_reserve %}
+                  <p>Значение с БД ГО: {{ formGO.kz_cx_land_reserve }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kz_cx_land_reserve(disabled=true) }}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
+
+            <h4>В том числе:</h4>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_pansya_reserve.label }}
+                  {% if formGO.kx_pansya_reserve %}
+                  <p>Значение с БД ГО: {{ formGO.kx_pansya_reserve }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_pansya_reserve(disabled=true) }}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_mnogoletnie_reserve.label }}
+                  {% if formGO.kx_mnogoletnie_reserve %}
+                  <p>Значение с БД ГО: {{ formGO.kx_mnogoletnie_reserve }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_mnogoletnie_reserve(disabled=true) }}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_zelej_reserve.label }}
+                  {% if formGO.kx_zelej_reserve %}
+                  <p>Значение с БД ГО: {{ formGO.kx_zelej_reserve }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_zelej_reserve(disabled=true) }}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_pastbishe_reserve.label }}
+                  {% if formGO.kx_pastbishe_reserve %}
+                  <p>Значение с БД ГО: {{ formGO.kx_pastbishe_reserve }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_pastbishe_reserve(disabled=true) }}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_senokosy_reserve.label }}
+                  {% if formGO.kx_senokosy_reserve %}
+                  <p>Значение с БД ГО: {{ formGO.kx_senokosy_reserve }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.kx_senokosy_reserve(disabled=true) }}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_polivochnaya_sistema_.label }}
+                  {% if formGO.infrastructure_polivochnaya_sistema_ %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_polivochnaya_sistema_ }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_polivochnaya_sistema_(disabled=true) }}
+                {{ measurement_units['a'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_polivochnaya_sistema_isused.label }}
+                  {% if formGO.infrastructure_polivochnaya_sistema_isused %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_polivochnaya_sistema_isused }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_polivochnaya_sistema_isused(disabled=true) }}
+                {{ measurement_units['used'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_polivy.label }}
+                  {% if formGO.infrastructure_polivy %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_polivy }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_polivy(disabled=true) }}
+                {{ measurement_units['%'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_mtm.label }}
+                  {% if formGO.infrastructure_mtm %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_mtm }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_mtm(disabled=true) }}
+                {{ measurement_units['a'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_mtm_isused.label }}
+                  {% if formGO.infrastructure_mtm_isused %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_mtm_isused }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_mtm_isused(disabled=true) }}
+                {{ measurement_units['used'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_slad.label }}
+                  {% if formGO.infrastructure_slad %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_slad }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_slad(disabled=true) }}
+                {{ measurement_units['a'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_slad_isused.label }}
+                  {% if formGO.infrastructure_slad_isused %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_slad_isused }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_slad_isused(disabled=true) }}
+                {{ measurement_units['used'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_garage.label }}
+                  {% if formGO.infrastructure_garage %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_garage }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_garage(disabled=true) }}
+                {{ measurement_units['a'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_garage_isused.label }}
+                  {% if formGO.infrastructure_garage_isused %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_garage_isused }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_garage_isused(disabled=true) }}
+                {{ measurement_units['used'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_cycsterny.label }}
+                  {% if formGO.infrastructure_cycsterny %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_cycsterny }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_cycsterny(disabled=true) }}
+                {{ measurement_units['a'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_cycsterny_isused.label }}
+                  {% if formGO.infrastructure_cycsterny_isused %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_cycsterny_isused }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_cycsterny_isused(disabled=true) }}
+                {{ measurement_units['used'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_transformator.label }}
+                  {% if formGO.infrastructure_transformator %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_transformator }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_transformator(disabled=true) }}
+                {{ measurement_units['a'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.infrastructure_transformator_isused.label }}
+                  {% if formGO.infrastructure_transformator_isused %}
+                  <p>Значение с БД ГО: {{ formGO.infrastructure_transformator_isused }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.infrastructure_transformator_isused(disabled=true) }}
+                {{ measurement_units['used'] }}
+              </div>
+            </div>
+          <h4>Специализация растениеводства</h4>
+          <div class="label">
+              {% if formGO.specialization_rastenivodstvo %}
+              <p>Значение с БД ГО: {{ formGO.specialization_rastenivodstvo }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+              <div class="specialization-rast">
+                  <p>Специализация в растениеводстве</p>
+                  <div class="spec_block">
+                      {{ form.specialization_rastenivodstvo }}
+                      поменяй на специализацию в коде фронта, 1099 строка, я ебал твою форму с формы в форме
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+{#          {{ form.submit(class="btn btn-submit") }}#}
+        <a href="#" class="btn btn-next">Далее</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <p class="step-title">4. Животноводство</p>
+      <div class="input-columns">
+        <div class="subform">
+           <div class="input-group">
+          <div class="label">
+            {{ form.animal_dvor.label }}
+              {% if formGO.animal_dvor %}
+              <p>Значение с БД ГО: {{ formGO.animal_dvor }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_dvor(disabled=true) }}
+            {{ measurement_units['unit'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_skot_bird.label }}
+              {% if formGO.animal_skot_bird %}
+              <p>Значение с БД ГО: {{ formGO.animal_skot_bird }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_skot_bird(disabled=true) }}
+            {{ measurement_units['unit'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_cx_land.label }}
+              {% if formGO.animal_cx_land %}
+              <p>Значение с БД ГО: {{ formGO.animal_cx_land }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_cx_land(disabled=true) }}
+            {{ measurement_units['square'] }}
+          </div>
+        </div>
+
+        <h4>В том числе:</h4>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_pashnya.label }}
+              {% if formGO.animal_pashnya %}
+              <p>Значение с БД ГО: {{ formGO.animal_pashnya }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_pashnya(disabled=true) }}
+            {{ measurement_units['square'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_mnogolet.label }}
+              {% if formGO.animal_mnogolet %}
+              <p>Значение с БД ГО: {{ formGO.animal_mnogolet }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_mnogolet(disabled=true) }}
+            {{ measurement_units['square'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_zalej.label }}
+              {% if formGO.animal_zalej %}
+              <p>Значение с БД ГО: {{ formGO.animal_zalej }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_zalej(disabled=true) }}
+            {{ measurement_units['square'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_pastbisha.label }}
+              {% if formGO.animal_pastbisha %}
+              <p>Значение с БД ГО: {{ formGO.animal_pastbisha }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_pastbisha(disabled=true) }}
+            {{ measurement_units['square'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_senokos.label }}
+              {% if formGO.animal_senokos %}
+              <p>Значение с БД ГО: {{ formGO.animal_senokos }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_senokos(disabled=true) }}
+            {{ measurement_units['square'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_ogorod.label }}
+              {% if formGO.animal_ogorod %}
+              <p>Значение с БД ГО: {{ formGO.animal_ogorod }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_ogorod(disabled=true) }}
+            {{ measurement_units['square'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_sad.label }}
+              {% if formGO.animal_sad %}
+              <p>Значение с БД ГО: {{ formGO.animal_sad }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_sad(disabled=true) }}
+            {{ measurement_units['square'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_krs_milk.label }}
+              {% if formGO.animal_krs_milk %}
+              <p>Значение с БД ГО: {{ formGO.animal_krs_milk }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_krs_milk(disabled=true) }}
+            {{ measurement_units['heads'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_krs_meat.label }}
+              {% if formGO.animal_krs_meat %}
+              <p>Значение с БД ГО: {{ formGO.animal_krs_meat }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_krs_meat(disabled=true) }}
+            {{ measurement_units['heads'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_sheep.label }}
+              {% if formGO.animal_sheep %}
+              <p>Значение с БД ГО: {{ formGO.animal_sheep }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_sheep(disabled=true) }}
+            {{ measurement_units['heads'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_kozel.label }}
+              {% if formGO.animal_kozel %}
+              <p>Значение с БД ГО: {{ formGO.animal_kozel }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_kozel(disabled=true) }}
+            {{ measurement_units['heads'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_horse.label }}
+              {% if formGO.animal_horse %}
+              <p>Значение с БД ГО: {{ formGO.animal_horse }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_horse(disabled=true) }}
+            {{ measurement_units['heads'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_camel.label }}
+              {% if formGO.animal_camel %}
+              <p>Значение с БД ГО: {{ formGO.animal_camel }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_camel(disabled=true) }}
+            {{ measurement_units['heads'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_pig.label }}
+              {% if formGO.animal_pig %}
+              <p>Значение с БД ГО: {{ formGO.animal_pig }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_pig(disabled=true) }}
+            {{ measurement_units['heads'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_chicken.label }}
+              {% if formGO.animal_chicken %}
+              <p>Значение с БД ГО: {{ formGO.animal_chicken }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_chicken(disabled=true) }}
+            {{ measurement_units['heads'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_gusi.label }}
+              {% if formGO.animal_gusi %}
+              <p>Значение с БД ГО: {{ formGO.animal_gusi }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_gusi(disabled=true) }}
+            {{ measurement_units['heads'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_duck.label }}
+              {% if formGO.animal_duck %}
+              <p>Значение с БД ГО: {{ formGO.animal_duck }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_duck(disabled=true) }}
+            {{ measurement_units['heads'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_induk.label }}
+              {% if formGO.animal_induk %}
+              <p>Значение с БД ГО: {{ formGO.animal_induk }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_induk(disabled=true) }}
+            {{ measurement_units['heads'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_mik_total.label }}
+              {% if formGO.animal_mik_total %}
+              <p>Значение с БД ГО: {{ formGO.animal_mik_total }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_mik_total(disabled=true) }}
+            {{ measurement_units['t/y'] }}
+          </div>
+        </div>
+
+        <h4>В том числе:</h4>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.animal_milk_cow.label }}
+              {% if formGO.animal_milk_cow %}
+              <p>Значение с БД ГО: {{ formGO.animal_milk_cow }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.animal_milk_cow(disabled=true) }}
+            {{ measurement_units['t/y'] }}
+          </div>
+        </div>
+        </div>
+        <div class="subform">
+          <div class="input-group">
+              <div class="label">
+                {{ form.animal_milkrate_cow.label }}
+                  {% if formGO.animal_milkrate_cow %}
+                  <p>Значение с БД ГО: {{ formGO.animal_milkrate_cow }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_milkrate_cow(disabled=true) }}
+                {{ measurement_units['%'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_mil_kozel.label }}
+                  {% if formGO.animal_mil_kozel %}
+                  <p>Значение с БД ГО: {{ formGO.animal_mil_kozel }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_mil_kozel(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_milrate_kozel.label }}
+                  {% if formGO.animal_milrate_kozel %}
+                  <p>Значение с БД ГО: {{ formGO.animal_milrate_kozel }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_milrate_kozel(disabled=true) }}
+                {{ measurement_units['%'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_milk_horse.label }}
+                  {% if formGO.animal_milk_horse %}
+                  <p>Значение с БД ГО: {{ formGO.animal_milk_horse }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_milk_horse(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_milkrate_horse.label }}
+                  {% if formGO.animal_milkrate_horse %}
+                  <p>Значение с БД ГО: {{ formGO.animal_milkrate_horse }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_milkrate_horse(disabled=true) }}
+                {{ measurement_units['%'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_milk_camel.label }}
+                  {% if formGO.animal_milk_camel %}
+                  <p>Значение с БД ГО: {{ formGO.animal_milk_camel }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_milk_camel(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_milkrate_camel.label }}
+                  {% if formGO.animal_milkrate_camel %}
+                  <p>Значение с БД ГО: {{ formGO.animal_milkrate_camel }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_milkrate_camel(disabled=true) }}
+                {{ measurement_units['%'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_meat_total.label }}
+                  {% if formGO.animal_meat_total %}
+                  <p>Значение с БД ГО: {{ formGO.animal_meat_total }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_meat_total(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <h4>В том числе:</h4>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_meat_cow.label }}
+                  {% if formGO.animal_meat_cow %}
+                  <p>Значение с БД ГО: {{ formGO.animal_meat_cow }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_meat_cow(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_meat_sheep.label }}
+                  {% if formGO.animal_meat_sheep %}
+                  <p>Значение с БД ГО: {{ formGO.animal_meat_sheep }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_meat_sheep(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_meat_horse.label }}
+                  {% if formGO.animal_meat_horse %}
+                  <p>Значение с БД ГО: {{ formGO.animal_meat_horse }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_meat_horse(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_meat_pig.label }}
+                  {% if formGO.animal_meat_pig %}
+                  <p>Значение с БД ГО: {{ formGO.animal_meat_pig }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_meat_pig(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_meat_camel.label }}
+                  {% if formGO.animal_meat_camel %}
+                  <p>Значение с БД ГО: {{ formGO.animal_meat_camel }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_meat_camel(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_meat_chicken.label }}
+                  {% if formGO.animal_meat_chicken %}
+                  <p>Значение с БД ГО: {{ formGO.animal_meat_chicken }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_meat_chicken(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_meat_duck.label }}
+                  {% if formGO.animal_meat_duck %}
+                  <p>Значение с БД ГО: {{ formGO.animal_meat_duck }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_meat_duck(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_meat_gusi.label }}
+                  {% if formGO.animal_meat_gusi %}
+                  <p>Значение с БД ГО: {{ formGO.animal_meat_gusi }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_meat_gusi(disabled=true) }}
+                {{ measurement_units['t/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_egg_total.label }}
+                  {% if formGO.animal_egg_total %}
+                  <p>Значение с БД ГО: {{ formGO.animal_egg_total }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_egg_total(disabled=true) }}
+                {{ measurement_units['t_p/y'] }}
+              </div>
+            </div>
+
+            <h4>В том числе:</h4>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_egg_chicken.label }}
+                  {% if formGO.animal_egg_chicken %}
+                  <p>Значение с БД ГО: {{ formGO.animal_egg_chicken }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_egg_chicken(disabled=true) }}
+                {{ measurement_units['p/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_egg_gusi.label }}
+                  {% if formGO.animal_egg_gusi %}
+                  <p>Значение с БД ГО: {{ formGO.animal_egg_gusi }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_egg_gusi(disabled=true) }}
+                {{ measurement_units['p/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_egg_perepel.label }}
+                  {% if formGO.animal_egg_perepel %}
+                  <p>Значение с БД ГО: {{ formGO.animal_egg_perepel }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_egg_perepel(disabled=true) }}
+                {{ measurement_units['p/y'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_transformator.label }}
+                  {% if formGO.animal_transformator %}
+                  <p>Значение с БД ГО: {{ formGO.animal_transformator }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_transformator(disabled=true) }}
+                {{ measurement_units['a'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.animal_transformator_isused.label }}
+                  {% if formGO.animal_transformator_isused %}
+                  <p>Значение с БД ГО: {{ formGO.animal_transformator_isused }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.animal_transformator_isused(disabled=true) }}
+                {{ measurement_units['used'] }}
+              </div>
+            </div>
+          <h4>Специализация животноводства</h4>
+          <div class="label">
+              {% if formGO.specialization_animal %}
+              <p>Значение с БД ГО: {{ formGO.specialization_animal }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+              <div class="specialization-rast">
+                  <p>Специализация в животноводстве</p>
+                  <div class="spec_block">
+                      {{ form.specialization_animal }}
+                      поменяй на специализацию в коде фронта, 1809 строка, я ебал твою форму с формы в форме и тебя тоже ебал
+              </div>
+        </div>
+        </div>
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+{#          {{ form.submit(class="btn btn-submit") }}#}
+        <a href="#" class="btn btn-next">Далее</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <p class="step-title">5. Несельскохозяйственные виды бизнеса</p>
+      <div class="input-columns">
+        <div class="subform">
+          <h4>Торговля и услуги</h4>
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_sto.label }}
+                  {% if formGO.noncx_sto %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_sto }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_sto(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_sto_needs.label }}
+                  {% if formGO.noncx_sto_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_sto_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_sto_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_kindergarden.label }}
+                  {% if formGO.noncx_kindergarden %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_kindergarden }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_kindergarden(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_kindergarden_needs.label }}
+                  {% if formGO.noncx_kindergarden_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_kindergarden_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_kindergarden_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_souvenier.label }}
+                  {% if formGO.noncx_souvenier %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_souvenier }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_souvenier(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_souvenier_needs.label }}
+                  {% if formGO.noncx_souvenier_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_souvenier_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_souvenier_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_pc_service.label }}
+                  {% if formGO.noncx_pc_service %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_pc_service }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_pc_service(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_pc_service_needs.label }}
+                  {% if formGO.noncx_pc_service_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_pc_service_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_pc_service_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_store.label }}
+                  {% if formGO.noncx_store %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_store }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_store(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_store_needs.label }}
+                  {% if formGO.noncx_store_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_store_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_store_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_remont_bytovoi_tech.label }}
+                  {% if formGO.noncx_remont_bytovoi_tech %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_remont_bytovoi_tech }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_remont_bytovoi_tech(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_remont_bytovoi_tech_needs.label }}
+                  {% if formGO.noncx_remont_bytovoi_tech_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_remont_bytovoi_tech_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_remont_bytovoi_tech_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_metal.label }}
+                  {% if formGO.noncx_metal %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_metal }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_metal(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_metal_needs.label }}
+                  {% if formGO.noncx_metal_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_metal_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_metal_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_accounting.label }}
+                  {% if formGO.noncx_accounting %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_accounting }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_accounting(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_accounting_needs.label }}
+                  {% if formGO.noncx_accounting_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_accounting_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_accounting_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_photo.label }}
+                  {% if formGO.noncx_photo %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_photo }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_photo(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_photo_needs.label }}
+                  {% if formGO.noncx_photo_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_photo_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_photo_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_turism.label }}
+                  {% if formGO.noncx_turism %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_turism }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_turism(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_turism_needs.label }}
+                  {% if formGO.noncx_turism_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_turism_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_turism_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_rent.label }}
+                  {% if formGO.noncx_rent %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_rent }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_rent(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_rent_needs.label }}
+                  {% if formGO.noncx_rent_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_rent_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_rent_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_cargo.label }}
+                  {% if formGO.noncx_cargo %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_cargo }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_cargo(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_cargo_needs.label }}
+                  {% if formGO.noncx_cargo_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_cargo_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_cargo_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_massage.label }}
+                  {% if formGO.noncx_massage %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_massage }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_massage(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+        </div>
+        <div class="subform">
+          <div class="input-group">
+              <div class="label">
+                {{ form.noncx_massage_needs.label }}
+                  {% if formGO.noncx_massage_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_massage_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_massage_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_foodcourt.label }}
+                  {% if formGO.noncx_foodcourt %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_foodcourt }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_foodcourt(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_foodcourt_needs.label }}
+                  {% if formGO.noncx_foodcourt_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_foodcourt_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_foodcourt_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_cleaning.label }}
+                  {% if formGO.noncx_cleaning %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_cleaning }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_cleaning(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_cleaning_needs.label }}
+                  {% if formGO.noncx_cleaning_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_cleaning_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_cleaning_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_beuty.label }}
+                  {% if formGO.noncx_beuty %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_beuty }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_beuty(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_beuty_needs.label }}
+                  {% if formGO.noncx_beuty_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_beuty_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_beuty_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_carwash.label }}
+                  {% if formGO.noncx_carwash %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_carwash }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_carwash(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_carwash_needs.label }}
+                  {% if formGO.noncx_carwash_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_carwash_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_carwash_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_atelie.label }}
+                  {% if formGO.noncx_atelie %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_atelie }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_atelie(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_atelie_needs.label }}
+                  {% if formGO.noncx_atelie_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_atelie_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_atelie_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_others.label }}
+                  {% if formGO.noncx_others %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_others }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_others(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_others_needs.label }}
+                  {% if formGO.noncx_others_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_others_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_others_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <h4>Строительство</h4>
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_stroika.label }}
+                  {% if formGO.noncx_stroika %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_stroika }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_stroika(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_stroika_needs.label }}
+                  {% if formGO.noncx_stroika_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_stroika_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_stroika_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <h4>Промышленность</h4>
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_mebel.label }}
+                  {% if formGO.noncx_mebel %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_mebel }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_mebel(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_mebel_needs.label }}
+                  {% if formGO.noncx_mebel_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_mebel_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_mebel_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_stroi_material.label }}
+                  {% if formGO.noncx_stroi_material %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_stroi_material }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_stroi_material(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_stroi_material_needs.label }}
+                  {% if formGO.noncx_stroi_material_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_stroi_material_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_stroi_material_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_svarka.label }}
+                  {% if formGO.noncx_svarka %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_svarka }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_svarka(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_svarka_needs.label }}
+                  {% if formGO.noncx_svarka_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_svarka_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_svarka_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_woodworking.label }}
+                  {% if formGO.noncx_woodworking %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_woodworking }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_woodworking(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_woodworking_needs.label }}
+                  {% if formGO.noncx_woodworking_needs %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_woodworking_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_woodworking_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_others_uslugi.label }}
+                  {% if formGO.noncx_others_uslugi %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_others_uslugi }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_others_uslugi(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.noncx_others_needs_uslugi.label }}
+                  {% if formGO.noncx_others_needs_uslugi %}
+                  <p>Значение с БД ГО: {{ formGO.noncx_others_needs_uslugi }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.noncx_others_needs_uslugi(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+{#          {{ form.submit(class="btn btn-submit") }}#}
+        <a href="#" class="btn btn-next">Далее</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <p class="step-title">6. Переработка сельхозпродукции и пищевая промышленность</p>
+      <div class="input-columns">
+        <div class="subform">
+          <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_milk.label }}
+              {% if formGO.manufacture_milk %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_milk }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_milk(disabled=true) }}
+            {{ measurement_units['unit'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_milk_needs.label }}
+              {% if formGO.manufacture_milk_needs %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_milk_needs }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_milk_needs(disabled=true) }}
+            {{ measurement_units['c'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_meat.label }}
+              {% if formGO.manufacture_meat %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_meat }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_meat(disabled=true) }}
+            {{ measurement_units['unit'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_meat_needs.label }}
+              {% if formGO.manufacture_meat_needs %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_meat_needs }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_meat_needs(disabled=true) }}
+            {{ measurement_units['c'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_vegetables.label }}
+              {% if formGO.manufacture_vegetables %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_vegetables }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_vegetables(disabled=true) }}
+            {{ measurement_units['unit'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_vegetables_needs.label }}
+              {% if formGO.manufacture_vegetables_needs %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_vegetables_needs }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_vegetables_needs(disabled=true) }}
+            {{ measurement_units['c'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_mayo.label }}
+              {% if formGO.manufacture_mayo %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_mayo }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_mayo(disabled=true) }}
+            {{ measurement_units['unit'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_mayo_needs.label }}
+              {% if formGO.manufacture_mayo_needs %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_mayo_needs }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_mayo_needs(disabled=true) }}
+            {{ measurement_units['c'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_fish.label }}
+              {% if formGO.manufacture_fish %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_fish }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_fish(disabled=true) }}
+            {{ measurement_units['unit'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_fish_needs.label }}
+              {% if formGO.manufacture_fish_needs %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_fish_needs }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_fish_needs(disabled=true) }}
+            {{ measurement_units['c'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_choco.label }}
+              {% if formGO.manufacture_choco %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_choco }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_choco(disabled=true) }}
+            {{ measurement_units['unit'] }}
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="label">
+            {{ form.manufacture_choco_needs.label }}
+              {% if formGO.manufacture_choco_needs %}
+              <p>Значение с БД ГО: {{ formGO.manufacture_choco_needs }}</p>
+              {% else %}
+              <p>Нет данных в БД ГО</p>
+              {% endif %}
+          </div>
+          <div class="input_with_measure">
+            {{ form.manufacture_choco_needs(disabled=true) }}
+            {{ measurement_units['c'] }}
+          </div>
+        </div>
+        </div>
+        <div class="subform">
+          <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_beer.label }}
+                  {% if formGO.manufacture_beer %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_beer }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_beer(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_beer_needs.label }}
+                  {% if formGO.manufacture_beer_needs %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_beer_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_beer_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_vodka.label }}
+                  {% if formGO.manufacture_vodka %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_vodka }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_vodka(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_vodka_needs.label }}
+                  {% if formGO.manufacture_vodka_needs %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_vodka_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_vodka_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_honey.label }}
+                  {% if formGO.manufacture_honey %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_honey }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_honey(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_honey_needs.label }}
+                  {% if formGO.manufacture_honey_needs %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_honey_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_honey_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_polufabricat.label }}
+                  {% if formGO.manufacture_polufabricat %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_polufabricat }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_polufabricat(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_polufabricat_needs.label }}
+                  {% if formGO.manufacture_polufabricat_needs %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_polufabricat_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_polufabricat_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_bread.label }}
+                  {% if formGO.manufacture_bread %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_bread }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_bread(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_bread_needs.label }}
+                  {% if formGO.manufacture_bread_needs %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_bread_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_bread_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_others.label }}
+                  {% if formGO.manufacture_others %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_others }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_others(disabled=true) }}
+                {{ measurement_units['unit'] }}
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="label">
+                {{ form.manufacture_others_needs.label }}
+                  {% if formGO.manufacture_others_needs %}
+                  <p>Значение с БД ГО: {{ formGO.manufacture_others_needs }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {{ form.manufacture_others_needs(disabled=true) }}
+                {{ measurement_units['c'] }}
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+{#          {{ form.submit(class="btn btn-submit") }}#}
+        <a href="#" class="btn btn-next">Далее</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <p class="step-title">7. Потребность в кредитах</p>
+      <div class="input-group">
+        <div class="label">
+          {{ form.credit_amount.label }}
+            {% if formGO.credit_amount %}
+            <p>Значение с БД ГО: {{ formGO.credit_amount }}</p>
+            {% else %}
+            <p>Нет данных в БД ГО</p>
+            {% endif %}
+        </div>
+          <div class="input_with_measure">
+            {{ form.credit_amount(disabled=true) }}
+            {{ measurement_units['unit'] }}
+          </div>
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.credit_total.label }}
+            {% if formGO.credit_total %}
+            <p>Значение с БД ГО: {{ formGO.credit_total }}</p>
+            {% else %}
+            <p>Нет данных в БД ГО</p>
+            {% endif %}
+        </div>
+      <div class="input_with_measure">
+        {{ form.credit_total(disabled=true) }}
+        {{ measurement_units['tenge'] }}
+      </div>
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.credit_average_total.label }}
+            {% if formGO.credit_average_total %}
+            <p>Значение с БД ГО: {{ formGO.credit_average_total }}</p>
+            {% else %}
+            <p>Нет данных в БД ГО</p>
+            {% endif %}
+        </div>
+       <div class="input_with_measure">
+        {{ form.credit_average_total(disabled=true) }}
+        {{ measurement_units['tenge'] }}
+       </div>
+      </div>
+      <div class="input-group">
+        <div class="label">
+          {{ form.credit_zalog.label }}
+            {% if formGO.credit_zalog %}
+            <p>Значение с БД ГО: {{ formGO.credit_zalog }}</p>
+            {% else %}
+            <p>Нет данных в БД ГО</p>
+            {% endif %}
+        </div>
+      <div class="input_with_measure">
+        {{ form.credit_zalog(disabled=true) }}
+        {{ measurement_units['%'] }}
+      </div>
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Назад</a>
+{#        {{ form.submit(class="btn btn-submit") }}#}
+      </div>
+    </div>
+  </form>
+</body>
+{% endblock %}
