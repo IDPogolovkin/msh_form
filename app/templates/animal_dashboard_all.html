@@ -14,13 +14,17 @@
 <div class="grid-container">
       <!-- Main -->
       <div class="main-title">
+        <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Животноводство</p>
           <div class="nav_dash_links">
-            <p style="font-weight: bold; text-align: center;" class="font-weight-bold">Животноводство</p>
-
             <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
-              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants') }}">Растениеводство</a>
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
 {#            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_all') }}">Общая аналитика животноводства</a>#}
+            <form method="POST" class="filter_form">
+              {{ filterform.kato_4 }}  
+              {{ filterform.submit }}  
+            </form>
           </div>
+          
       </div>
       <main class="main-container">
 
@@ -43,7 +47,9 @@
             <div class="specialization">
               <p>Специализация в животноводстве</p>
               <div class="spec_block">
-                  {{ formData.specialization_animal }}
+                  {% for i in form %}
+                  {{ i.specialization_animal }},
+                  {% endfor %}
           </div>
           </div>
 

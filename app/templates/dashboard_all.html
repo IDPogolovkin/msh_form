@@ -36,9 +36,11 @@
   <div class="grid-container">
     {# Main #}
     <div class="main-title">
-      <p class="font-weight-bold">Социально-экономическое состояние</p>
+      <a style="margin-left: 30px;" class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
       <form method="POST" class="filter_form">
-      {{ filterform.kato_2 }}  
+      {{ filterform.kato_4 }}  
       {{ filterform.submit }}  
     </form>
     </div>
@@ -130,31 +132,31 @@
 {#             </ul>#}
            <ul class="bars">
              <li>
-              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_pashnya_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}"></div>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_pashnya_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
               <span>Пашня</span>
             </li>
              <li>
-              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_mnogoletnie_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}"></div>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_mnogoletnie_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
               <span>Насаждения</span>
             </li>
              <li>
-              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_zelej_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}"></div>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_zelej_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
               <span>Залежь</span>
             </li>
             <li>
-              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_pastbishe_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}"></div>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_pastbishe_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
               <span>Пастбища</span>
             </li>
             <li>
-              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_senokosy_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}"></div>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_senokosy_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
               <span>Сенокосы</span>
             </li>
             <li>
-              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_ogorody_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}"></div>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_ogorody_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
               <span>Огороды</span>
             </li>
             <li>
-              <div class="bar" data-percentage="{{ round(dashboard_all_data['dx_sad_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}"></div>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_sad_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
               <span>Сады</span>
             </li>
              </ul>

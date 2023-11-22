@@ -42,15 +42,51 @@ body {
 }
 
 .main-title {
-  display: flex;
   align-items: center;
   background-color: green;
   width: 100vw;
   margin-top: 3px;
+}
+.nav_dash_links{
+  display: flex;
   justify-content: space-between;
+  margin-left: 30px;
 }
 
-.main-title > p {
+.filter_form{
+  padding-right: 30px;
+  margin-left: auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  width: fit-content;
+}
+.filter_form select{
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+
+}
+.filter_form input{
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #34AF6D;
+  color: white;
+  font-size: 15px;
+  border: 1px solid transparent;
+
+}
+.filter_form input:hover{
+  transition: 0.5s;
+  color: #34AF6D;
+  background-color: white;
+  border: 1px solid #4AD489;
+}
+.main-title p {
   color: white;
   font-size: 20px;
   padding: 0 0 0 30px;

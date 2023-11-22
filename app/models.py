@@ -3,12 +3,22 @@ from flask_login import UserMixin
 from sqlalchemy.orm import relationship
 from datetime import timedelta, datetime, timezone
 
-@login_manager.user_loader
-def load_user(user_id):
-   return User.query.get(int(user_id))
+# class User_district(db.Model, UserMixin):
+#    id = db.Column(db.Integer, primary_key = True)
+#    login = db.Column(db.String(250))
+#    kato_2 = db.Column(db.String(1024))
+#    kato_2_name = db.Column(db.String(1024))
+#    kato_4 = db.Column(db.String(1024))
+#    kato_4_name = db.Column(db.String(1024))
+#    password = db.Column(db.String(250))
+#    is_district = db.Column(db.Boolean)
+#    def __repr__(self):
+#       return f"KATO_2('{self.kato_2}'), KATO_4('{self.kato_4}')"
+
 
 class User(db.Model, UserMixin):
    id = db.Column(db.Integer, primary_key = True)
+   login = db.Column(db.String(250), unique=True)
    kato_2 = db.Column(db.String(1024))
    kato_2_name = db.Column(db.String(1024))
    kato_4 = db.Column(db.String(1024))
@@ -16,6 +26,7 @@ class User(db.Model, UserMixin):
    kato_6 = db.Column(db.String(1024), unique=True)
    kato_6_name = db.Column(db.String(1024))
    password = db.Column(db.String(250))
+   is_district = db.Column(db.Boolean)
    def __repr__(self):
       return f"KATO_2('{self.kato_2}'), KATO_4('{self.kato_4}'),  KATO_6('{self.kato_6}')"
 
@@ -440,7 +451,7 @@ class Form_G_O(db.Model):
    kato_2_name = db.Column(db.String(1024))
    kato_4 = db.Column(db.String(1024))
    kato_4_name = db.Column(db.String(1024))
-   kato_6 = db.Column(db.String(1024), db.ForeignKey('user.kato_6'))
+   kato_6 = db.Column(db.String(1024))
    kato_6_name = db.Column(db.String(1024))
    form_year = db.Column(db.String(1024))
    labour_population = db.Column(db.BigInteger)
@@ -637,8 +648,8 @@ class Form_G_O(db.Model):
    credit_total = db.Column(db.BigInteger)
    credit_average_total = db.Column(db.BigInteger)
    credit_zalog = db.Column(db.Numeric(30, 2))
-   modified_date = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone(timedelta(hours=6))).strftime('%Y-%m-%d %H:%M:%S'), onupdate=datetime.now(timezone(timedelta(hours=6))).strftime('%Y-%m-%d %H:%M:%S'))
-   creation_date = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone(timedelta(hours=6))).strftime('%Y-%m-%d %H:%M:%S'))
+   modified_date = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone(timedelta(hours=6))), onupdate=datetime.now(timezone(timedelta(hours=6))))
+   creation_date = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone(timedelta(hours=6))))
 
 
 class Creditor(db.Model):

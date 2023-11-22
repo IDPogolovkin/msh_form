@@ -8,23 +8,29 @@ from sqlalchemy import distinct, column
 
 app.app_context().push()
 class LoginForm(FlaskForm):
-    kato_6 = StringField('Логин', validators=[DataRequired()])
+    login = StringField('Логин', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired(), Length(min=4, max=80)])
     remember = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
 
 class FilterForm(FlaskForm):
-    # # kato_6 = SelectField(('',''),('test',''))
-    # kato_6 = SelectField(choices=set([(i.kato_6, i.kato_6_name) for i in Form.query.all() ]))
-    # kato_4 = SelectField(choices=set([(i.kato_4, i.kato_4_name) for i in Form.query.all() ]))
-    kato_2 = SelectField(choices=set([(i.kato_2, i.kato_2_name) for i in Form.query.all() ]))
+    
+    kato_4 = SelectField(choices=[])
+    def set_filter_choices(self, kato_4):
+        choices = [(i.kato_6, i.kato_6_name) for i in Form.query.filter_by(kato_4=kato_4).all()]
+        choices.insert(0, (kato_4, 'Вся статистика'))
+        self.kato_4.choices = choices
+
     submit = SubmitField('Применить')
 
 class FilterHistory(FlaskForm):
     history_date = SelectField(choices=[])
 
     def set_history_date_choices(self, id):
-        self.history_date.choices = [(i.modified_date, i.modified_date.strftime('%Y-%m-%d %H:%M:%S')) for i in Form_old.query.filter_by(user_id=id).all()]
+        choices = [(i.modified_date, i.modified_date.strftime('%Y-%m-%d %H:%M:%S')) for i in Form_old.query.filter_by(user_id=id).all()]
+        choices.insert(0, ('', 'Выберите время'))
+        self.history_date.choices = choices
+
 
     submit = SubmitField('Применить')
 

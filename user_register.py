@@ -1,50 +1,53 @@
 from app import app, bcrypt, db
-from app.models import User
+from app.models import *
 import csv
 
 
 app.app_context().push()
 
-csv_file_path = 'MSH_USER.csv'
-counter = 0
-with open(csv_file_path, 'r', encoding='utf-8') as file:
-    csv_reader = csv.reader(file)
+# csv_file_path = 'MSH_USER_N.csv' #change
+# counter = 0
+# with open(csv_file_path, 'r', encoding='utf-8') as file:
+#     csv_reader = csv.reader(file)
 
-    next(csv_reader)
-    for row in csv_reader:
-        hashed_password = bcrypt.generate_password_hash(row[6]).decode('utf-8') 
+#     next(csv_reader)
+#     for row in csv_reader:
+#         hashed_password = bcrypt.generate_password_hash(row[4]).decode('utf-8') 
 
-        user = User(
-            kato_2=row[0],
-            kato_2_name=row[1],
-            kato_4=row[2],
-            kato_4_name=row[3],
-            kato_6=row[4],
-            kato_6_name=row[5],
-            password=hashed_password
-        )
+#         user = User( # change
+#             login = row[2],
+#             kato_2=row[0],
+#             kato_2_name=row[1],
+#             kato_4=row[2],
+#             kato_4_name=row[3],
+#             is_district = True, #change
+#             password=hashed_password
+#         )
                 
-        db.session.add(user)
-        db.session.commit()
-        counter += 1
-        print(counter, '-', user)
+#         db.session.add(user)
+#         db.session.commit()
+#         counter += 1
+#         print(counter, '-', user)
 
 
-# hashed_password = bcrypt.generate_password_hash('Test123').decode('utf-8') 
-# 
-# user = User(
-#     kato_2='test',
-#     kato_2_name='test',
-#     kato_4='test',
-#     kato_4_name='test',
-#     kato_6='test',
-#     kato_6_name='test',
-#     password=hashed_password
-# )
+hashed_password = bcrypt.generate_password_hash('Test123').decode('utf-8') 
 
-# db.session.add(user)
-# db.session.commit()
+user = User(
+    login = 'test2',
+    kato_2='35',
+    kato_2_name='КАРАГАНДИНСКАЯ ОБЛАСТЬ',
+    kato_4='3540',
+    kato_4_name='БУХАР-ЖЫРАУСКИЙ',
+    is_district = True,
+    password=hashed_password
+)
 
-# user = User.query.filter_by(id=2).first()
-# db.session.delete(user)
-# db.session.commit()
+db.session.add(user)
+db.session.commit()
+
+
+
+
+# for user in User_district.query.all():
+#     db.session.delete(user)
+#     db.session.commit()

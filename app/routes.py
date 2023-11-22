@@ -6,7 +6,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
 from decimal import Decimal
 from sqlalchemy import desc
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey, select
+from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey, select, types
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship
 from sqlalchemy.sql import func, text
 from sqlalchemy.sql.expression import text
@@ -15,7 +15,9 @@ from sqlalchemy import func, and_
 from sqlalchemy.inspection import inspect
 
 Base = declarative_base()
-
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 measurement_units = {
     'human': 'человек',
@@ -41,14 +43,18 @@ measurement_units = {
 @app.route('/',  methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
-        formData=Form.query.filter_by(user_id=current_user.id).first()
-        if formData:
-            return redirect(url_for('edit_form'))
+        if current_user.is_district:
+            return redirect(url_for('region_akim'))
+            
         else:
-            return redirect(url_for('form'))
+            formData=Form.query.filter_by(user_id=current_user.id).first()
+            if formData:
+                return redirect(url_for('edit_form'))
+            else:
+                return redirect(url_for('form_village'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(kato_6=form.kato_6.data).first()
+        user = User.query.filter_by(login=form.login.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
@@ -77,7 +83,10 @@ def account():
 
         return render_template('account.html', title = 'Личный кабинет', filterhistory=filterhistory,str=str,form=form,measurement_units=measurement_units, user=current_user)
     else:
-        formdata = Form_old.query.filter_by(user_id=current_user.id).order_by(text(f"modified_date = '{filterhistory.history_date.data}' DESC")).first()
+        if filterhistory.history_date.data != '':
+            formdata = Form_old.query.filter_by(user_id=current_user.id).order_by(text(f"modified_date = '{filterhistory.history_date.data}' DESC")).first()
+        else:
+            return redirect(url_for('account'))
         return render_template('account.html', title = 'Личный кабинет', filterhistory=filterhistory,str=str,form=form,measurement_units=measurement_units, user=current_user, formdata=formdata)
     
 
@@ -140,12 +149,37 @@ def edit_form():
 @app.route('/account/region', methods=['GET'])
 @login_required
 def region_akim():
-    formdata = Form.query.filter_by(user_id=current_user.id).first()
-    form = FormDataForm(obj=formdata)
-    formgo = Form_G_O.query.filter_by(kato_6=current_user.kato_6).first()    # поменяй на като 4
+    formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+    formgo_list = Form_G_O.query.filter_by(kato_4=current_user.kato_4).all()
+    count_form = len(formdata_list)
+    count_form_go = len(formgo_list)
+    inspector1 = inspect(Form)
+    inspector2 = inspect(Form_G_O)
+    columns = inspector1.columns.keys()
+    columnsgo = inspector2.columns.keys()
+
+    sum_formdata = Form(
+        **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
+            for column in columns}
+    )
+    sum_formdata_go = Form_G_O(
+        **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formgo_list)
+            for column in columnsgo}
+    )
+
+    sum_formdata.labour_average_income_family = sum_formdata.labour_average_income_family / count_form if count_form != 0 else "Cannot divide by zero"
+    sum_formdata.labour_household_size = sum_formdata.labour_household_size / count_form if count_form != 0 else "Cannot divide by zero"
+    sum_formdata.credit_average_total = sum_formdata.credit_average_total / count_form if count_form != 0 else "Cannot divide by zero"
+    
+    sum_formdata_go.labour_average_income_family = int(sum_formdata_go.labour_average_income_family / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
+    sum_formdata_go.labour_household_size = int(sum_formdata_go.labour_household_size / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
+    sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
+
+    form = FormDataForm(obj=sum_formdata)
+    formgo = sum_formdata_go   # поменяй на като 4
 
     return render_template('region_akim.html', str=str, form=form, formGO=formgo, user=current_user,
-                               measurement_units=measurement_units, formdata=formdata)
+                               measurement_units=measurement_units, formdata=formdata_list)
     
 
 @app.route('/add-creditors', methods=['POST', 'GET'])
@@ -202,6 +236,9 @@ def all_creditors():
 def dashboard_soc1():
 
     formData=Form.query.filter_by(user_id=current_user.id).first()
+    if current_user.is_district:
+        return redirect(url_for('dashboard_all'))
+
     return render_template('dashboard_social_pocazat.html', round=round, formData=formData, user=current_user)
 
 @app.route('/dashboard_animal', methods=['GET'])
@@ -218,13 +255,69 @@ def dashboard_plants():
     formData=Form.query.filter_by(user_id=current_user.id).first()
     return render_template('plants_dashboard.html', round=round, formData=formData, user=current_user)
 
+@app.route('/dashboard_plants_all', methods=['GET', 'POST'])
+@login_required
+def dashboard_plants_all():
+    filterform = FilterForm()
+    filterform.set_filter_choices(current_user.kato_4)
+    if request.method == 'GET':
+        formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+        count_form = len(formdata_list)
+        inspector1 = inspect(Form)
+        columns = inspector1.columns.keys()
+
+        sum_formdata = Form(
+            **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
+                for column in columns}
+        )
+        return render_template('plants_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
+    else:
+        if filterform.validate_on_submit:
+            formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
+            inspector1 = inspect(Form)
+            columns = inspector1.columns.keys()
+
+            sum_formdata = Form(
+                **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
+                    for column in columns}
+            )
+    return render_template('plants_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user)
+
+@app.route('/dashboard_animals_all', methods=['GET', 'POST'])
+@login_required
+def dashboard_animals_all():
+    filterform = FilterForm()
+    filterform.set_filter_choices(current_user.kato_4)
+    if request.method == 'GET':
+        formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+        count_form = len(formdata_list)
+        inspector1 = inspect(Form)
+        columns = inspector1.columns.keys()
+
+        sum_formdata = Form(
+            **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
+                for column in columns}
+        )
+        return render_template('animal_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
+    else:
+        if filterform.validate_on_submit:
+            formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
+            inspector1 = inspect(Form)
+            columns = inspector1.columns.keys()
+
+            sum_formdata = Form(
+                **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
+                    for column in columns}
+            )
+    return render_template('animal_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user)
+
 @app.route('/dashboard_all', methods=['GET', 'POST'])
 @login_required
 def dashboard_all():
     filterform = FilterForm()
-
+    filterform.set_filter_choices(current_user.kato_4)
     if request.method == 'GET':
-        formdata = Form.query.all()
+        formdata = Form.query.filter_by(kato_4=current_user.kato_4).all()
         counter = 0
         labour_labour_total = 0
         labour_population_total = 0
@@ -276,11 +369,17 @@ def dashboard_all():
             dx_sad_total += form.dx_sad
 
         
-        labour_household_size_total_average = round(house_total_dvor_total / counter, 2)
-        labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2)
-        labour_employed_precent += round((labour_active_total * 100) / labour_population_total, 2)
-        labour_unemployed_precent += round((labour_inactive_total* 100) / labour_population_total,2)
+        labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else "Cannot divide by zero"
+        labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else "Cannot divide by zero"
+        if int(labour_population_total) != 0:
+            labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 2)
+        else:
+            labour_employed_precent = 0  # or set it to some default value
 
+        if int(labour_population_total) != 0:
+            labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 2)
+        else:
+            labour_unemployed_precent = 0 
 
         dashboard_all_data = {
             'labour_total_econ_inactive_population_total':labour_total_econ_inactive_population_total,
@@ -311,8 +410,7 @@ def dashboard_all():
         return render_template('dashboard_all.html',filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
     else:
         if filterform.validate_on_submit:
-            print(filterform.kato_2.data)
-            formdata = Form.query.filter_by(kato_2 = filterform.kato_2.data).all()
+            formdata = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
             counter = 0
             labour_labour_total = 0
             labour_population_total = 0
@@ -364,10 +462,17 @@ def dashboard_all():
                 dx_sad_total += form.dx_sad
 
             
-            labour_household_size_total_average = round(house_total_dvor_total / counter, 2)
-            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2)
-            labour_employed_precent += round((labour_active_total * 100) / labour_population_total, 2)
-            labour_unemployed_precent += round((labour_inactive_total* 100) / labour_population_total,2)
+            labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else "Cannot divide by zero"
+            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else "Cannot divide by zero"
+            if int(labour_population_total) != 0:
+                labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 2)
+            else:
+                labour_employed_precent = 0  # or set it to some default value
+
+            if int(labour_population_total) != 0:
+                labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 2)
+            else:
+                labour_unemployed_precent = 0 
 
 
             dashboard_all_data = {
@@ -401,9 +506,9 @@ def dashboard_all():
     
 
 
-@app.route('/form', methods=['POST', 'GET'])
+@app.route('/form_village', methods=['POST', 'GET'])
 @login_required
-def form():
+def form_village():
     user = current_user
     form = FormDataForm()
     form_check = Form.query.filter_by(user_id=current_user.id).first()

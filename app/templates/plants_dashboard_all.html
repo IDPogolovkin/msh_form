@@ -14,14 +14,22 @@
 <div class="grid-container">
       <!-- Main -->
       <div class="main-title">
-        <p style="font-weight: bold; text-align: center;" class="font-weight-bold">Наличие земельных угодий и посевных площадей в домашних хозяйствах
+        <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Наличие земельных угодий и посевных площадей в домашних хозяйствах</p>
 
           <div class="nav_dash_links">
+
             <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
-              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animal') }}">Животноводство</a>
-{#            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_all') }}">Общая аналитика животноводства</a>#}
+            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
+{#           <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_all') }}">Общая аналитика животноводства</a>#}
+            <form method="POST" class="filter_form">
+              {{ filterform.kato_4 }}  
+              {{ filterform.submit }}  
+            </form>
           </div>
+          
+          
       </div>
+      
       <main class="main-container">
 
         <div class="main-cards">
@@ -44,7 +52,7 @@
             <div class="card-inner">
               <p class="text-primary">Земли в частной собственности, кв.м.</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.dx_number_ogorodov }}</span>
+            <span class="text-primary font-weight-bold">{{ formData.dx_cx_land }}</span>
           </div>
 
           <div class="card">
@@ -59,7 +67,9 @@
           <div class="specialization-rast">
                   <p>Специализация в растениеводстве</p>
                   <div class="spec_block">
-                      {{ formData.specialization_rastenivodstvo }}
+                      {% for i in form %}
+                      {{ i.specialization_rastenivodstvo }},
+                      {% endfor %}
                   </div>
           </div>
 

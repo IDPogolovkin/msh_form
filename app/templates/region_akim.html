@@ -1094,10 +1094,10 @@
               {% endif %}
           </div>
               <div class="specialization-rast">
-                  <p>Специализация в растениеводстве</p>
                   <div class="spec_block">
-                      {{ form.specialization_rastenivodstvo }}
-                      поменяй на специализацию в коде фронта, 1099 строка, я ебал твою форму с формы в форме
+                      {% for form in formdata %}
+                      {{ form.specialization_rastenivodstvo }},
+                      {% endfor %}
               </div>
           </div>
         </div>
@@ -1804,10 +1804,10 @@
               {% endif %}
           </div>
               <div class="specialization-rast">
-                  <p>Специализация в животноводстве</p>
                   <div class="spec_block">
-                      {{ form.specialization_animal }}
-                      поменяй на специализацию в коде фронта, 1809 строка, я ебал твою форму с формы в форме и тебя тоже ебал
+                      {% for form in formdata %}
+                      {{ form.specialization_animal }},
+                      {% endfor %}
               </div>
         </div>
         </div>

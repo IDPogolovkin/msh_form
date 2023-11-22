@@ -17,6 +17,8 @@ target/
 
 instance/
 
+user_register.py
+
 *.env
 
 venv/
