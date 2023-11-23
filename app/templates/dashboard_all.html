@@ -40,6 +40,7 @@
       <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
       <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
       <form method="POST" class="filter_form">
+      {{ filterform.hidden_tag() }}
       {{ filterform.kato_4 }}  
       {{ filterform.submit }}  
     </form>

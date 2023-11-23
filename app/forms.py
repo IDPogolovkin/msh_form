@@ -18,7 +18,7 @@ class FilterForm(FlaskForm):
     kato_4 = SelectField(choices=[])
     def set_filter_choices(self, kato_4):
         choices = [(i.kato_6, i.kato_6_name) for i in Form.query.filter_by(kato_4=kato_4).all()]
-        choices.insert(0, (kato_4, 'Вся статистика'))
+        choices.insert(0, (kato_4, 'Все данные'))
         self.kato_4.choices = choices
 
     submit = SubmitField('Применить')

@@ -146,17 +146,22 @@ def edit_form():
             flash("Данные не изменены! Некорректный формат.", 'danger')
             return render_template('edit_form.html',formGO = formgo,measurement_units=measurement_units, form=form, user=current_user)
 
-@app.route('/account/region', methods=['GET'])
+@app.route('/account/region', methods=['GET', 'POST'])
 @login_required
 def region_akim():
-    formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
-    formgo_list = Form_G_O.query.filter_by(kato_4=current_user.kato_4).all()
-    count_form = len(formdata_list)
-    count_form_go = len(formgo_list)
+
+    filterform = FilterForm()
+    filterform.set_filter_choices(current_user.kato_4)
     inspector1 = inspect(Form)
     inspector2 = inspect(Form_G_O)
     columns = inspector1.columns.keys()
     columnsgo = inspector2.columns.keys()
+    
+    formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+    formgo_list = Form_G_O.query.filter_by(kato_4=current_user.kato_4).all()
+    count_form = len(formdata_list)
+    count_form_go = len(formgo_list)
+    
 
     sum_formdata = Form(
         **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
@@ -172,14 +177,41 @@ def region_akim():
     sum_formdata.credit_average_total = sum_formdata.credit_average_total / count_form if count_form != 0 else "Cannot divide by zero"
     
     sum_formdata_go.labour_average_income_family = int(sum_formdata_go.labour_average_income_family / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
-    sum_formdata_go.labour_household_size = int(sum_formdata_go.labour_household_size / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
+    sum_formdata_go.labour_household_size = int(int(sum_formdata_go.labour_household_size / count_form_go)) if count_form_go != 0 else "Cannot divide by zero"
     sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
 
     form = FormDataForm(obj=sum_formdata)
-    formgo = sum_formdata_go   # поменяй на като 4
+    
+    if request.method == 'POST':
+        if filterform.validate_on_submit():
+            formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
+            formgo_list = Form_G_O.query.filter(Form_G_O.kato_6.startswith(filterform.kato_4.data)).all()
+            count_form = len(formdata_list)
+            count_form_go = len(formgo_list)
+            sum_formdata = Form(
+                **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
+                    for column in columns}
+            )
+            sum_formdata_go = Form_G_O(
+                **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formgo_list)
+                    for column in columnsgo}
+            )
+            sum_formdata.labour_average_income_family = sum_formdata.labour_average_income_family / count_form if count_form != 0 else "Cannot divide by zero"
+            sum_formdata.labour_household_size = sum_formdata.labour_household_size / count_form if count_form != 0 else "Cannot divide by zero"
+            sum_formdata.credit_average_total = sum_formdata.credit_average_total / count_form if count_form != 0 else "Cannot divide by zero"
+            
+            sum_formdata_go.labour_average_income_family = int(sum_formdata_go.labour_average_income_family / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
+            sum_formdata_go.labour_household_size = int(int(sum_formdata_go.labour_household_size / count_form_go)) if count_form_go != 0 else "Cannot divide by zero"
+            sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
 
-    return render_template('region_akim.html', str=str, form=form, formGO=formgo, user=current_user,
-                               measurement_units=measurement_units, formdata=formdata_list)
+            form = FormDataForm(obj=sum_formdata)
+
+            return render_template('region_akim.html', str=str, form=form, formGO=sum_formdata_go, user=current_user,
+                               measurement_units=measurement_units, formdata=formdata_list, filterform=filterform)
+        else:
+            flash(f'Возникла ошибка: {filterform.errors}', 'error')
+    return render_template('region_akim.html', str=str, form=form, formGO=sum_formdata_go, user=current_user,
+                               measurement_units=measurement_units, formdata=formdata_list,filterform=filterform)
     
 
 @app.route('/add-creditors', methods=['POST', 'GET'])
@@ -272,7 +304,7 @@ def dashboard_plants_all():
         )
         return render_template('plants_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
     else:
-        if filterform.validate_on_submit:
+        if filterform.validate_on_submit():
             formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
             inspector1 = inspect(Form)
             columns = inspector1.columns.keys()
@@ -281,6 +313,19 @@ def dashboard_plants_all():
                 **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
                     for column in columns}
             )
+        else:
+            flash(f'Возникла ошибка: {filterform.errors}', category='error')
+            formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+            count_form = len(formdata_list)
+            inspector1 = inspect(Form)
+            columns = inspector1.columns.keys()
+
+            sum_formdata = Form(
+                **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
+                    for column in columns}
+            )
+            return render_template('plants_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user)
+
     return render_template('plants_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user)
 
 @app.route('/dashboard_animals_all', methods=['GET', 'POST'])
@@ -300,7 +345,7 @@ def dashboard_animals_all():
         )
         return render_template('animal_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
     else:
-        if filterform.validate_on_submit:
+        if filterform.validate_on_submit():
             formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
             inspector1 = inspect(Form)
             columns = inspector1.columns.keys()
@@ -309,6 +354,18 @@ def dashboard_animals_all():
                 **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
                     for column in columns}
             )
+        else:
+            flash(f'Возникла ошибка: {filterform.errors}', category='error')
+            formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+            inspector1 = inspect(Form)
+            columns = inspector1.columns.keys()
+
+            sum_formdata = Form(
+                **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
+                    for column in columns}
+            )
+            return render_template('animal_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
+    
     return render_template('animal_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user)
 
 @app.route('/dashboard_all', methods=['GET', 'POST'])
@@ -409,7 +466,7 @@ def dashboard_all():
         }
         return render_template('dashboard_all.html',filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
     else:
-        if filterform.validate_on_submit:
+        if filterform.validate_on_submit():
             formdata = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
             counter = 0
             labour_labour_total = 0
@@ -474,6 +531,99 @@ def dashboard_all():
             else:
                 labour_unemployed_precent = 0 
 
+
+            dashboard_all_data = {
+                'labour_total_econ_inactive_population_total':labour_total_econ_inactive_population_total,
+                'labour_unemployed_total':labour_unemployed_total,
+                'labour_private_labour_total': labour_private_labour_total,
+                'labour_government_workers_total':labour_government_workers_total,
+                'labour_labour_total':labour_labour_total,
+                'labour_constant_population_total': labour_constant_population_total,
+                'labour_population_total': labour_population_total,
+                'labour_active_total': labour_active_total,
+                'labour_inactive_total': labour_inactive_total,
+                'labour_private_ogorod_total': labour_private_ogorod_total,
+                'house_total_dvor_total': house_total_dvor_total,
+                'house_zaselen_dvor_total': house_zaselen_dvor_total,
+                'labour_employed_precent': labour_employed_precent,
+                'labour_unemployed_precent': labour_unemployed_precent,
+                'labour_household_size_total_average': labour_household_size_total_average,
+                'labour_average_income_family_total_average': labour_average_income_family_total_average,
+                'dx_cx_land_total': dx_cx_land_total,
+                'dx_pashnya_total': dx_pashnya_total,
+                'dx_mnogoletnie_total': dx_mnogoletnie_total,
+                'dx_zelej_total': dx_zelej_total,
+                'dx_pastbishe_total': dx_pastbishe_total,
+                'dx_senokosy_total': dx_senokosy_total,
+                'dx_ogorody_total': dx_ogorody_total,
+                'dx_sad_total': dx_sad_total
+            }
+            return render_template('dashboard_all.html',filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
+        else:
+            flash(f'Возникла ошибка: {filterform.errors}','error')
+            formdata = Form.query.filter_by(kato_4=current_user.kato_4).all()
+            counter = 0
+            labour_labour_total = 0
+            labour_population_total = 0
+            labour_active_total = 0
+            labour_inactive_total = 0
+            labour_private_ogorod_total = 0
+            house_total_dvor_total = 0
+            house_zaselen_dvor_total = 0
+            labour_employed_precent = 0
+            labour_unemployed_precent = 0
+            labour_average_income_family_total = 0
+            labour_household_size_total = 0
+            labour_constant_population_total = 0
+            labour_government_workers_total = 0
+            labour_private_labour_total = 0
+            labour_total_econ_inactive_population_total = 0
+            labour_unemployed_total = 0
+            dx_cx_land_total = 0
+            dx_pashnya_total = 0
+            dx_mnogoletnie_total = 0
+            dx_zelej_total = 0
+            dx_pastbishe_total = 0
+            dx_senokosy_total = 0
+            dx_ogorody_total = 0
+            dx_sad_total = 0
+            for form in formdata:
+                counter += 1
+                labour_total_econ_inactive_population_total += form.labour_total_econ_inactive_population
+                labour_unemployed_total += form.labour_unemployed
+                labour_private_labour_total += form.labour_private_labour
+                labour_government_workers_total += form.labour_government_workers
+                labour_labour_total += form.labour_labour
+                labour_constant_population_total += form.labour_constant_population
+                labour_population_total += form.labour_population
+                labour_active_total += (form.labour_government_workers + form.labour_private_labour + form.labour_private_ogorod)
+                labour_inactive_total += (form.labour_unemployed + form.labour_total_econ_inactive_population)
+                labour_average_income_family_total += form.labour_average_income_family
+                labour_private_ogorod_total += form.labour_private_ogorod
+                labour_household_size_total += form.labour_household_size
+                house_total_dvor_total += form.house_total_dvor
+                house_zaselen_dvor_total += form.house_zaselen_dvor
+                dx_cx_land_total += form.dx_cx_land
+                dx_pashnya_total += form.dx_pashnya
+                dx_mnogoletnie_total += form.dx_mnogoletnie
+                dx_zelej_total += form.dx_zelej
+                dx_pastbishe_total += form.dx_pastbishe
+                dx_senokosy_total += form.dx_senokosy
+                dx_ogorody_total += form.dx_ogorody
+                dx_sad_total += form.dx_sad
+
+            
+            labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else "Cannot divide by zero"
+            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else "Cannot divide by zero"
+            if int(labour_population_total) != 0:
+                labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 2)
+            else:
+                labour_employed_precent = 0  # or set it to some default value
+
+            if int(labour_population_total) != 0:
+                labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 2)
+            else:
+                labour_unemployed_precent = 0 
 
             dashboard_all_data = {
                 'labour_total_econ_inactive_population_total':labour_total_econ_inactive_population_total,

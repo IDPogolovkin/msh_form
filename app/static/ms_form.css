@@ -55,7 +55,40 @@ select {
   border: #858585 2px solid;
   height: 3rem;
 }
+.filter_form{
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.filter_form select{
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 5px;
 
+}
+.filter_form input{
+  cursor: pointer;
+  border: none;
+  margin: 0 auto;
+  margin-top: 10px;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  border: 1px solid transparent;
+  background-color: var(--primary-color);
+  width: 100%;
+  max-width: 200px;;
+}
+.filter_form input:hover{
+  transition: 0.5s;
+  color: var(--primary-color);
+  background-color: white;
+  border: 1px solid var(--primary-color);
+}
 label {
   font-size: 17px;
 }

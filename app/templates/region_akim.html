@@ -4,14 +4,18 @@
 <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 
 <body>
-  <form action="#" class="form" method="POST">
+  <div action="#" class="form">
+    <h3 class="text-center">{{ user.kato_2_name }}</h3>
 
-    <h1 class="text-center">Анкета скрининг сельских округов {{ formdata.kato_4_name }} района</h1>
-    <h3 class="text-center">{{ formdata.kato_2_name }}</h3>
+    <h1 class="text-center">Анкета скрининг сельских округов района: "{{ user.kato_4_name }}" </h1>
     <br>
+    <form method="POST" class="filter_form">
+      {{ filterform.csrf_token }}
+      {{ filterform.kato_4 }}  
+      {{ filterform.submit }} 
+    </form>
     <h2 class="text-center">Редактирование</h2>
     {% if formdata %}
-    <h3 class="text-center">Последняя дата изменения: {{ str(formdata.modified_date).split('.')[0] }}</h3>
     {% else %}
     <h3 class="text-center"></h3>
     {% endif %}
@@ -33,8 +37,6 @@
     <div class="form-step form-step-active">
       <p class="step-title">1. Демография, занятость и уровень жизни населения</p>
 
-      {{ form.csrf_token }}
-      {{ form.hidden_tag() }}
 
       <div class="input-columns">
         <div class="subform">
@@ -3018,6 +3020,6 @@
 {#        {{ form.submit(class="btn btn-submit") }}#}
       </div>
     </div>
-  </form>
+  </div>
 </body>
 {% endblock %}

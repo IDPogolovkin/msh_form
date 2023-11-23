@@ -20,6 +20,7 @@
               <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
 {#            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_all') }}">Общая аналитика животноводства</a>#}
             <form method="POST" class="filter_form">
+              {{ filterform.hidden_tag() }}
               {{ filterform.kato_4 }}  
               {{ filterform.submit }}  
             </form>
@@ -47,9 +48,13 @@
             <div class="specialization">
               <p>Специализация в животноводстве</p>
               <div class="spec_block">
+                {% if form %}
                   {% for i in form %}
                   {{ i.specialization_animal }},
                   {% endfor %}
+                {% else %}
+                {{formData.specialization_animal}}
+                {% endif %}
           </div>
           </div>
 
