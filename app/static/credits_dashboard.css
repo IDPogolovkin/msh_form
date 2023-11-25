@@ -60,6 +60,8 @@ body {
   margin-top: 10px;
   margin-bottom: 5px;
   width: fit-content;
+  display: flex;
+  gap: 5px;
 }
 .filter_form select{
   cursor: pointer;
@@ -68,8 +70,10 @@ body {
   padding: 10px 10px;
   border-radius: 5px;
   font-size: 17px;
+  height: 30px;
 }
 .filter_form input{
+  height: 30px;
   cursor: pointer;
   border: none;
   outline: none;

@@ -407,6 +407,8 @@ def dashboard_business_all():
                 formdata_list)
                for column in columns}
         )
+        sum_formdata.infrastructure_polivy = round(sum_formdata.infrastructure_polivy / count_form, 2) if count_form != 0 else "Cannot divide by zero"
+
         return render_template('dashboard_business_all.html', filterform=filterform, round=round, formData=sum_formdata,
                                user=current_user, form=formdata_list)
     else:
@@ -505,6 +507,8 @@ def dashboard_credits_all():
                 formdata_list)
                for column in columns}
         )
+        sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else "Cannot divide by zero"
+
         return render_template('credits_dashboard_all.html', filterform=filterform, round=round, formData=sum_formdata,
                                user=current_user, form=formdata_list)
     else:
