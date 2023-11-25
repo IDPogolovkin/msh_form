@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Форма отчетности МСХ{% endblock %}
+{% extends "base.html" %} {% block title %}Аналитика{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_soc1.css') }}" />
 {# jquery #}
@@ -7,7 +7,7 @@
 <script src="{{ url_for('static', filename='plotly.js') }}" charset="utf-8"></script>
 {# ApexCharts #}
 <script src="{{ url_for('static', filename='apexcharts.js') }}"></script>
-<title>Dashboard</title>
+<title>Dashboard social</title>
 
 <body>
 
@@ -36,14 +36,20 @@
   <div class="grid-container">
     {# Main #}
     <div class="main-title">
-      <a style="margin-left: 30px;" class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
-      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
-      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
-      <form method="POST" class="filter_form">
-      {{ filterform.hidden_tag() }}
-      {{ filterform.kato_4 }}  
-      {{ filterform.submit }}  
-    </form>
+        <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Социально-экономическое состояние</p>
+        <div class="nav_dash_links">
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_all') }}">Бизнес</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
+          <form method="POST" class="filter_form">
+              {{ filterform.hidden_tag() }}
+              {{ filterform.kato_4 }}
+              {{ filterform.submit }}
+          </form>
+        </div>
+
     </div>
     <main class="main-container">
       <div class="main-cards">
@@ -182,70 +188,48 @@
                 <tr>
                   <th>Наименование</th>
                   <th>Всего человек</th>
-                  <th>В том чсиле мужчин</th>
-                  <th>В том чсиле женщин</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Численность Населения</td>
                   <td>{{ dashboard_all_data['labour_population_total'] }}</td>
-                  <td>0</td>
-                  <td>0</td>
                 </tr>
                 <tr>
                   <td>Из них постоянно проживающих</td>
                   <td>{{ dashboard_all_data['labour_constant_population_total'] }}</td>
-                  <td>0</td>
-                  <td>0</td>
                 </tr>
                 <tr>
                   <td>Рабочая сила</td>
                   <td>{{ dashboard_all_data['labour_labour_total'] }}</td>
-                  <td>0</td>
-                  <td>0</td>
                 </tr>
                 <tr>
                   <td>Занятое население в бюджетной сфере</td>
                   <td>{{ dashboard_all_data['labour_government_workers_total'] }}</td>
-                  <td>0</td>
-                  <td>0</td>
                 </tr>
                 <tr>
                   <td>Занятое население в частном секторе</td>
                   <td>{{ dashboard_all_data['labour_private_labour_total'] }}</td>
-                  <td>0</td>
-                  <td>0</td>
                 </tr>
                 <tr>
                   <td>Из них занятое население в личном подсобном хозяйстве</td>
                   <td>{{ dashboard_all_data['labour_private_ogorod_total'] }}</td>
-                  <td>0</td>
-                  <td>0</td>
                 </tr>
                 <tr>
                   <td>Лица, не входящие в состав рабочей силы</td>
                   <td>{{ dashboard_all_data['labour_total_econ_inactive_population_total'] }}</td>
-                  <td>0</td>
-                  <td>0</td>
                 </tr>
                 <tr>
                   <td>Безработные</td>
                   <td>{{ dashboard_all_data['labour_unemployed_total'] }}</td>
-                  <td>0</td>
-                  <td>0</td>
                 </tr>
                 <tr>
                   <td>Средний размер домашних хозяйств</td>
                   <td>{{ dashboard_all_data['labour_household_size_total_average'] }}</td>
-                  <td>0</td>
-                  <td>0</td>
                 </tr>
                 <tr>
                   <td>Средний доход на одну семью, в месяц</td>
                   <td>{{ dashboard_all_data['labour_average_income_family_total_average'] }}</td>
-                  <td>0</td>
-                  <td>0</td>
                 </tr>
 
               </tbody>
@@ -290,7 +274,11 @@
     var layout = {
       title: 'Категории населения',
       height: 485,
-      width: 478
+      width: 510,
+        legend: {
+              x:0.32,
+              y:-0.2
+            }
     };
 
     Plotly.newPlot('pie-chart', data, layout);
@@ -301,12 +289,14 @@
     const barChartOptions = {
       series: [
         {
+            name:'гектар',
           data: [{{ dashboard_all_data['dx_pashnya_total'] }}, {{ dashboard_all_data['dx_mnogoletnie_total'] }}, {{ dashboard_all_data['dx_zelej_total'] }}, {{ dashboard_all_data['dx_pastbishe_total'] }}, {{ dashboard_all_data['dx_senokosy_total'] }}, {{ dashboard_all_data['dx_ogorody_total'] }}, {{ dashboard_all_data['dx_sad_total'] }}],
             },
           ],
     chart: {
       type: 'bar',
-        height: 350,
+        height: 373,
+        width: 540,
           toolbar: {
         show: false,
             },
@@ -317,7 +307,7 @@
         distributed: true,
           borderRadius: 4,
             horizontal: false,
-              columnWidth: '40%',
+              columnWidth: '58%',
             },
     },
     dataLabels: {
@@ -331,7 +321,7 @@
           },
     yaxis: {
       title: {
-        text: 'Количество',
+        text: 'Количество гектар',
             },
     },
         };

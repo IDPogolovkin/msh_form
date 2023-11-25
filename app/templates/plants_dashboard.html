@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Форма отчетности МСХ{% endblock %}
+{% extends "base.html" %} {% block title %}Аналитика{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='animal_dashboard.css') }}" />
 <!-- jquery -->
@@ -18,8 +18,10 @@
 
           <div class="nav_dash_links">
             <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
-              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animal') }}">Животноводство</a>
-{#            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_all') }}">Общая аналитика животноводства</a>#}
+            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animal') }}">Животноводство</a>
+            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business') }}">Бизнес</a>
+            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling') }}">Переработка</a>
+            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits') }}">Кредиты</a>
           </div>
       </div>
       <main class="main-container">

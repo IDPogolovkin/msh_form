@@ -3,7 +3,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 <link rel="icon" type="image/x-icon" href="../static/img/msx.png">
 <div class="login-body">
-
+      {% if user.is_district %}
+       <p class="log_title">Цифровое Рабочее место Акима района</p>
+       {% else %}
+       <p class="log_title">Цифровое Рабочее место Акима села</p>
+       {% endif %}
   <div class="content-section">
     <form method="POST" action="" class="form">
       {{ form.hidden_tag() }}

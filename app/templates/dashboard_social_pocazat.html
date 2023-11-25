@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Форма отчетности МСХ{% endblock %}
+{% extends "base.html" %} {% block title %}Аналитика{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_soc1.css') }}" />
 <!-- jquery -->
@@ -7,7 +7,7 @@
 <script src="{{ url_for('static', filename='plotly.js') }}" charset="utf-8"></script>
 <!-- ApexCharts -->
 <script src="{{ url_for('static', filename='apexcharts.js') }}"></script>
-<title>Dashboard</title>
+<title>Dashboard social</title>
 
 <body>
 
@@ -16,9 +16,11 @@
       <div class="main-title">
         <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Социально-экономическое состояние</p>
           <div class="nav_dash_links">
-{#            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_all') }}">Общая аналитика соц. состояния</a>#}
           <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants') }}">Растениеводство</a>
-            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animal') }}">Животноводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animal') }}">Животноводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business') }}">Бизнес</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling') }}">Переработка</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits') }}">Кредиты</a>
           </div>
       </div>
       <main class="main-container">
@@ -224,9 +226,9 @@
         var layout = {
           title: 'Категории населения',
           height: 485,
-          width: 478,
+          width: 510,
             legend: {
-              x:0.3,
+              x:0.32,
               y:-0.2
             }
         };
@@ -245,7 +247,8 @@
           ],
           chart: {
             type: 'bar',
-            height: 350,
+            height: 373,
+            width: 540,
             toolbar: {
               show: false,
             },
@@ -256,7 +259,7 @@
               distributed: true,
               borderRadius: 4,
               horizontal: false,
-              columnWidth: '55%',
+              columnWidth: '58%',
             },
           },
           dataLabels: {

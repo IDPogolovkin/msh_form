@@ -1,0 +1,222 @@
+{% extends "base.html" %} {% block title %}Аналитика{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='recycling_dashboard.css') }}" />
+<!-- jquery -->
+<script src="{{ url_for('static', filename='jquery.js') }}" charset="utf-8"></script>
+<!-- plotly -->
+<script src="{{ url_for('static', filename='plotly.js') }}" charset="utf-8"></script>
+<!-- ApexCharts -->
+<script src="{{ url_for('static', filename='apexcharts.js') }}"></script>
+<title>Dashboard business</title>
+
+<body>
+
+<div class="grid-container">
+      <!-- Main -->
+      <div class="main-title">
+        <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Переработка</p>
+          <div class="nav_dash_links">
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_all') }}">Бизнес</a>
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
+            <form method="POST" class="filter_form">
+              {{ filterform.hidden_tag() }}
+              {{ filterform.kato_4 }}
+              {{ filterform.submit }}
+            </form>
+          </div>
+
+      </div>
+      <main class="main-container">
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Количество бизнеса по переработке</p>
+            </div>
+              <span class="text-primary font-weight-bold">{{ formData.manufacture_milk + formData.manufacture_meat + formData.manufacture_vegetables + formData.manufacture_mayo + formData.manufacture_fish + formData.manufacture_choco + formData.manufacture_beer + formData.manufacture_vodka + formData.manufacture_honey + formData.manufacture_polufabricat + formData.manufacture_bread + formData.manufacture_others }}</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Потребность в переработке продукции</p>
+            </div>
+              <span class="text-primary font-weight-bold">{{ formData.manufacture_milk_needs + formData.manufacture_meat_needs + formData.manufacture_vegetables_needs + formData.manufacture_mayo_needs + formData.manufacture_fish_needs + formData.manufacture_choco_needs + formData.manufacture_beer_needs + formData.manufacture_vodka_needs + formData.manufacture_honey_needs + formData.manufacture_polufabricat_needs + formData.manufacture_bread_needs + formData.manufacture_others_needs }}</span>
+          </div>
+
+        </div>
+
+        <div class="charts">
+          <!-- apexcharts bar chart -->
+          <div class="charts-card">
+            <p class="chart-title">Виды бизнеса по переработке продукции</p>
+            <div id="bar-chart"></div>
+          </div>
+
+          <!-- apexcharts bar chart -->
+          <div class="charts-card">
+            <p class="chart-title">Потребность по видам бизнеса по переработке продукции</p>
+            <div id="bar-chart1"></div>
+          </div>
+
+        </div>
+
+                      <!-- TABLE start -->
+          <section class="attendance">
+            <div class="attendance-list">
+              <h1>Список предприятий</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>№</th>
+                    <th>Наименование предприятия</th>
+                    <th>Расстояние от села, км</th>
+                    <th>Наименование готовой продукции</th>
+                    <th>Мощность, тонн/сутки, по готовой продукции</th>
+                    <th>Фактическая загрузка, %</th>
+                    <th>Наименование сырья - растения либо животные</th>
+                    <th>Потребность в сырье, тонн/сутки</th>
+                    <th>Цена закупа сырья, тенге за тонну</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>ИП "Бекшойнов"</td>
+                      <td>10</td>
+                    <td>Молоко</td>
+                    <td>44</td>
+                    <td>100</td>
+                    <td>Корова</td>
+                      <td>1</td>
+                      <td>988</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>ИП "АйлинСән салоны"</td>
+                       <td>10</td>
+                    <td>Мясо</td>
+                    <td>55</td>
+                    <td>100</td>
+                  <td>Корова</td>
+                      <td>1</td>
+                      <td>988</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>ИП "Назымқызы Г"</td>
+                       <td>10</td>
+                    <td>Мед</td>
+                    <td>22</td>
+                    <td>100</td>
+                      <td>Пчелы</td>
+                      <td>20</td>
+                      <td>988</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
+
+      </main>
+      <!-- End Main -->
+
+    </div>
+
+    <script>
+        // BAR CHART
+        const barChartOptions = {
+          series: [
+            {
+              name: 'предприятий',
+              data: [{{ formData.manufacture_milk }}, {{ formData.manufacture_meat }}, {{ formData.manufacture_vegetables }}, {{ formData.manufacture_mayo }}, {{ formData.manufacture_fish }}, {{ formData.manufacture_choco }}, {{ formData.manufacture_beer }}, {{ formData.manufacture_vodka }}, {{ formData.manufacture_honey }}, {{ formData.manufacture_polufabricat }}, {{ formData.manufacture_bread }}, {{ formData.manufacture_others }} ],
+            },
+          ],
+          chart: {
+            type: 'bar',
+            width: 680,
+            height: 850,
+            toolbar: {
+              show: false,
+            },
+          },
+          colors: ['#246dec', '#cc3c43', '#367952', '#e78719', '#4f35a1', '#f5b74f', '#90ee90'],
+          plotOptions: {
+            bar: {
+              distributed: true,
+              borderRadius: 4,
+              horizontal: true,
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          legend: {
+            show: false,
+          },
+          xaxis: {
+            title: {
+              text: 'Количество предприятий',
+            },
+            categories: ['Переработка молока', 'Переработка мяса', 'Переработка плодов', 'Производство майонеза', 'Переработка рыбы', 'Производство кондитерских изделий', 'Производство пива и др. напитков', 'Производство ликеро-водочных изделий', 'Продукция из меда', 'Производство полуфабрикатов', 'Производство хлебобулочных изделий', 'Прочее'],
+          },
+        };
+
+        const barChart = new ApexCharts(
+          document.querySelector('#bar-chart'),
+          barChartOptions
+        );
+        barChart.render();
+    </script>
+
+<script>
+        // BAR CHART 1
+        const barChartOptions1 = {
+          series: [
+            {
+              name: 'предприятий',
+              data: [{{ formData.manufacture_milk_needs }}, {{ formData.manufacture_meat_needs }}, {{ formData.manufacture_vegetables_needs }}, {{ formData.manufacture_mayo_needs }}, {{ formData.manufacture_fish_needs }}, {{ formData.manufacture_choco_needs }}, {{ formData.manufacture_beer_needs }}, {{ formData.manufacture_vodka_needs }}, {{ formData.manufacture_honey_needs }}, {{ formData.manufacture_polufabricat_needs }}, {{ formData.manufacture_bread_needs }}, {{ formData.manufacture_others_needs }}],
+            },
+          ],
+          chart: {
+            type: 'bar',
+            width: 680,
+            height: 850,
+            toolbar: {
+              show: false,
+            },
+          },
+          colors: ['#246dec', '#cc3c43', '#367952', '#e78719', '#4f35a1', '#f5b74f', '#90ee90'],
+          plotOptions: {
+            bar: {
+              distributed: true,
+              borderRadius: 4,
+              horizontal: true,
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          legend: {
+            show: false,
+          },
+          xaxis: {
+            title: {
+              text: 'Количество предприятий',
+            },
+              categories: ['Переработка молока', 'Переработка мяса', 'Переработка плодов', 'Производство майонеза', 'Переработка рыбы', 'Производство кондитерских изделий', 'Производство пива и др. напитков', 'Производство ликеро-водочных изделий', 'Продукция из меда', 'Производство полуфабрикатов', 'Производство хлебобулочных изделий', 'Прочее'],
+          },
+        };
+
+        const barChart1 = new ApexCharts(
+          document.querySelector('#bar-chart1'),
+          barChartOptions1
+        );
+        barChart1.render();
+    </script>
+</body>
+{% endblock %}

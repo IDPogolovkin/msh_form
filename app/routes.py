@@ -287,6 +287,27 @@ def dashboard_plants():
     formData=Form.query.filter_by(user_id=current_user.id).first()
     return render_template('plants_dashboard.html', round=round, formData=formData, user=current_user)
 
+@app.route('/dashboard_business', methods=['GET'])
+@login_required
+def dashboard_business():
+
+    formData=Form.query.filter_by(user_id=current_user.id).first()
+    return render_template('business_dashboard.html', round=round, formData=formData, user=current_user)
+
+@app.route('/dashboard_recycling', methods=['GET'])
+@login_required
+def dashboard_recycling():
+
+    formData=Form.query.filter_by(user_id=current_user.id).first()
+    return render_template('recycling_dashboard.html', round=round, formData=formData, user=current_user)
+
+@app.route('/dashboard_credits', methods=['GET'])
+@login_required
+def dashboard_credits():
+
+    formData=Form.query.filter_by(user_id=current_user.id).first()
+    return render_template('credits_dashboard.html', round=round, formData=formData, user=current_user)
+
 @app.route('/dashboard_plants_all', methods=['GET', 'POST'])
 @login_required
 def dashboard_plants_all():
@@ -367,6 +388,155 @@ def dashboard_animals_all():
             return render_template('animal_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
     
     return render_template('animal_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user)
+
+
+@app.route('/dashboard_business_all', methods=['GET', 'POST'])
+@login_required
+def dashboard_business_all():
+    filterform = FilterForm()
+    filterform.set_filter_choices(current_user.kato_4)
+    if request.method == 'GET':
+        formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+        count_form = len(formdata_list)
+        inspector1 = inspect(Form)
+        columns = inspector1.columns.keys()
+
+        sum_formdata = Form(
+            **{column: sum(
+                getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in
+                formdata_list)
+               for column in columns}
+        )
+        return render_template('dashboard_business_all.html', filterform=filterform, round=round, formData=sum_formdata,
+                               user=current_user, form=formdata_list)
+    else:
+        if filterform.validate_on_submit():
+            formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
+            inspector1 = inspect(Form)
+            columns = inspector1.columns.keys()
+
+            sum_formdata = Form(
+                **{column: sum(
+                    getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in
+                    formdata_list)
+                   for column in columns}
+            )
+        else:
+            flash(f'Возникла ошибка: {filterform.errors}', category='error')
+            formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+            inspector1 = inspect(Form)
+            columns = inspector1.columns.keys()
+
+            sum_formdata = Form(
+                **{column: sum(
+                    getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in
+                    formdata_list)
+                   for column in columns}
+            )
+            return render_template('dashboard_business_all.html', filterform=filterform, round=round,
+                                   formData=sum_formdata, user=current_user, form=formdata_list)
+
+    return render_template('dashboard_business_all.html', filterform=filterform, round=round, formData=sum_formdata,
+                           user=current_user)
+
+@app.route('/dashboard_recycling_all', methods=['GET', 'POST'])
+@login_required
+def dashboard_recycling_all():
+    filterform = FilterForm()
+    filterform.set_filter_choices(current_user.kato_4)
+    if request.method == 'GET':
+        formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+        count_form = len(formdata_list)
+        inspector1 = inspect(Form)
+        columns = inspector1.columns.keys()
+
+        sum_formdata = Form(
+            **{column: sum(
+                getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in
+                formdata_list)
+               for column in columns}
+        )
+        return render_template('recycling_dashboard_all.html', filterform=filterform, round=round, formData=sum_formdata,
+                               user=current_user, form=formdata_list)
+    else:
+        if filterform.validate_on_submit():
+            formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
+            inspector1 = inspect(Form)
+            columns = inspector1.columns.keys()
+
+            sum_formdata = Form(
+                **{column: sum(
+                    getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in
+                    formdata_list)
+                   for column in columns}
+            )
+        else:
+            flash(f'Возникла ошибка: {filterform.errors}', category='error')
+            formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+            inspector1 = inspect(Form)
+            columns = inspector1.columns.keys()
+
+            sum_formdata = Form(
+                **{column: sum(
+                    getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in
+                    formdata_list)
+                   for column in columns}
+            )
+            return render_template('recycling_dashboard_all.html', filterform=filterform, round=round,
+                                   formData=sum_formdata, user=current_user, form=formdata_list)
+
+    return render_template('recycling_dashboard_all.html', filterform=filterform, round=round, formData=sum_formdata,
+                           user=current_user)
+
+@app.route('/dashboard_credits_all', methods=['GET', 'POST'])
+@login_required
+def dashboard_credits_all():
+    filterform = FilterForm()
+    filterform.set_filter_choices(current_user.kato_4)
+    if request.method == 'GET':
+        formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+        count_form = len(formdata_list)
+        inspector1 = inspect(Form)
+        columns = inspector1.columns.keys()
+
+        sum_formdata = Form(
+            **{column: sum(
+                getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in
+                formdata_list)
+               for column in columns}
+        )
+        return render_template('credits_dashboard_all.html', filterform=filterform, round=round, formData=sum_formdata,
+                               user=current_user, form=formdata_list)
+    else:
+        if filterform.validate_on_submit():
+            formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
+            inspector1 = inspect(Form)
+            columns = inspector1.columns.keys()
+
+            sum_formdata = Form(
+                **{column: sum(
+                    getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in
+                    formdata_list)
+                   for column in columns}
+            )
+        else:
+            flash(f'Возникла ошибка: {filterform.errors}', category='error')
+            formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+            inspector1 = inspect(Form)
+            columns = inspector1.columns.keys()
+
+            sum_formdata = Form(
+                **{column: sum(
+                    getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in
+                    formdata_list)
+                   for column in columns}
+            )
+            return render_template('credits_dashboard_all.html', filterform=filterform, round=round,
+                                   formData=sum_formdata, user=current_user, form=formdata_list)
+
+    return render_template('credits_dashboard_all.html', filterform=filterform, round=round, formData=sum_formdata,
+                           user=current_user)
+
 
 @app.route('/dashboard_all', methods=['GET', 'POST'])
 @login_required

@@ -1,0 +1,120 @@
+{% extends "base.html" %} {% block title %}Аналитика{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='credits_dashboard.css') }}" />
+<!-- jquery -->
+<script src="{{ url_for('static', filename='jquery.js') }}" charset="utf-8"></script>
+<!-- plotly -->
+<script src="{{ url_for('static', filename='plotly.js') }}" charset="utf-8"></script>
+<!-- ApexCharts -->
+<script src="{{ url_for('static', filename='apexcharts.js') }}"></script>
+<title>Dashboard credits</title>
+
+<body>
+
+<div class="grid-container">
+      <!-- Main -->
+      <div class="main-title">
+        <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Потребность в кредитах</p>
+          <div class="nav_dash_links">
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants') }}">Растениеводство</a>
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animal') }}">Животноводство</a>
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business') }}">Бизнес</a>
+              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling') }}">Переработка</a>
+          </div>
+
+      </div>
+      <main class="main-container">
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Количество заявок</p>
+            </div>
+            <span class="text-primary font-weight-bold">{{ formData.credit_amount }}</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Общая потребность в кредитах, тенге</p>
+            </div>
+            <span class="text-primary font-weight-bold">{{ formData.credit_total }}</span>
+          </div>
+
+         <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Средний чек по кредиту</p>
+            </div>
+            <span class="text-primary font-weight-bold">{{ formData.credit_average_total }}</span>
+          </div>
+
+         <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Количество обеспеченных залогом</p>
+            </div>
+            <span class="text-primary font-weight-bold">{{ formData.credit_zalog }}</span>
+          </div>
+
+        </div>
+
+                           <!-- TABLE start -->
+          <section class="attendance">
+            <div class="attendance-list">
+              <h1>Список заемщиков</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>№</th>
+                    <th>ФИО потенциального заемщика</th>
+                    <th>ИИН</th>
+                    <th>Пол</th>
+                    <th>Доход семьи в месяц, тенге</th>
+                    <th>Цель кредита</th>
+                    <th>Запрашиваемая сумма кредита, тенге</th>
+                    <th>Наличие залогового обеспечения</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Әнуарбеков Дархан</td>
+                      <td>820621301769</td>
+                    <td>мужской</td>
+                    <td>250 000</td>
+                    <td>мал өсіру</td>
+                    <td>5 000 000</td>
+                      <td>ия</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Жүнісжанов Әділқазы</td>
+                       <td>700821301276</td>
+                    <td>мужской</td>
+                    <td>350 000</td>
+                  <td>мал өсіру</td>
+                      <td>8 625 000</td>
+                      <td>ия</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Жунусова Шынар</td>
+                       <td>800607400402</td>
+                    <td>женский</td>
+                    <td>400 000</td>
+                      <td>мал өсіру</td>
+                      <td>8 625 000</td>
+                      <td>ия</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
+
+      </main>
+      <!-- End Main -->
+
+    </div>
+</body>
+{% endblock %}

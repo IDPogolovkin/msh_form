@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Форма отчетности МСХ{% endblock %}
+{% extends "base.html" %} {% block title %}Аналитика{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='animal_dashboard.css') }}" />
 <!-- jquery -->
@@ -14,12 +14,13 @@
 <div class="grid-container">
       <!-- Main -->
       <div class="main-title">
+          <p style="font-weight: bold; text-align: center;" class="font-weight-bold">Животноводство</p>
           <div class="nav_dash_links">
-            <p style="font-weight: bold; text-align: center;" class="font-weight-bold">Животноводство</p>
-
             <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
-              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants') }}">Растениеводство</a>
-{#            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_all') }}">Общая аналитика животноводства</a>#}
+            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants') }}">Растениеводство</a>
+            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business') }}">Бизнес</a>
+            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling') }}">Переработка</a>
+            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits') }}">Кредиты</a>
           </div>
       </div>
       <main class="main-container">
@@ -40,14 +41,14 @@
             <span class="text-primary font-weight-bold">{{ formData.animal_skot_bird }}</span>
           </div>
 
-            <div class="specialization">
+        </div>
+
+          <div class="specialization-rast">
               <p>Специализация в животноводстве</p>
               <div class="spec_block">
                   {{ formData.specialization_animal }}
           </div>
           </div>
-
-        </div>
 
         <div class="charts">
           <!-- apexcharts bar chart -->
@@ -262,13 +263,13 @@
         const barChartOptions = {
           series: [
             {
-              name: 'голов',
+              name: 'тонн в год',
               data: [{{ formData.animal_meat_cow }}, {{ formData.animal_meat_sheep }}, {{ formData.animal_meat_horse }}, {{ formData.animal_meat_pig }}, {{ formData.animal_meat_camel }}, {{ formData.animal_meat_chicken }}, {{ formData.animal_meat_duck }}, {{ formData.animal_meat_gusi }}],
             },
           ],
           chart: {
             type: 'bar',
-            height: 430,
+            height: 530,
             toolbar: {
               show: false,
             },
@@ -290,7 +291,7 @@
           },
           xaxis: {
             title: {
-              text: 'Количество голов',
+              text: 'Тонн в год',
             },
             categories: ['Говядина', 'Баранина', 'Конина', 'Свинина', 'Верблюжатина', 'Куриное мясо', 'Утиное мясо', 'Гусиное мясо'],
           },
