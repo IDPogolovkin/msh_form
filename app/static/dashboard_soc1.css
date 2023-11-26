@@ -209,7 +209,7 @@ body {
 /* ----------- custom bar chart with jquery---------*/
 
 .chart{
-  width: 580px;
+  width: 500px;
   height: 450px;
   display: block;
 }
@@ -248,7 +248,7 @@ body {
   margin: 0;
   padding: 35px 0 33px 0;
   display: inline-block;
-  width: 580px;
+  width: 500px;
   max-height: 450px;
   box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -256,7 +256,7 @@ body {
 
 .bars li{
   display: table-cell;
-  width: 71px;
+  width: 65px;
   height: 420px;
   position: relative;
 }
@@ -271,11 +271,11 @@ body {
 .bars .bar{
   display: block;
   background: #26c04d;
-  width: 50px;
+  width: 45px;
   position: absolute;
   bottom: 0;
   max-height: 100%;
-  margin-left: 47px;
+  margin-left: 37px;
   margin-bottom: 5px;
   text-align: center;
   transition: 0.5s;
@@ -283,7 +283,7 @@ body {
 }
 
 .bars span{
-  margin-left: 37px;
+  margin-left: 27px;
 }
 
 .bars .bar:hover{
