@@ -304,6 +304,10 @@ body {
   border: 1px solid #d2d2d3;
   box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
 }
+
+.main-svg{
+  max-width: 420px;
+}
 .pie-chart{
   margin: 0;
   padding: 0;

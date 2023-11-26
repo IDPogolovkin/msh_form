@@ -111,7 +111,6 @@ body {
 .main-container {
   grid-area: main;
   overflow-y: auto;
-  width: 90%;
   margin: 0 auto;
 }
 
@@ -184,7 +183,6 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 15px;
   margin-bottom: 25px;
-  margin-left: 15px;
 }
 
 .charts-card {
@@ -344,7 +342,6 @@ body {
   margin-top: 20px;
 }
 .attendance-list{
-  width: 97%;
   padding: 10px;
   margin-top: 10px;
   background: #fff;
