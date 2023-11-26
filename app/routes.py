@@ -98,7 +98,7 @@ def edit_form():
     formgo = Form_G_O.query.filter_by(kato_6=current_user.kato_6).first()
 
     if request.method == 'GET':
-        return render_template('edit_form.html',str=str, form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formdata=formdata)
+        return render_template('edit_form.html',str=str, form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formData=formdata)
     else:
 
         if form.validate_on_submit():
