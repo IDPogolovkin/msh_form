@@ -10,19 +10,18 @@
 <title>Dashboard social</title>
 
 <body>
-
+  <div class="main-title">
+    <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Социально-экономическое состояние</p>
+      <div class="nav_dash_links">
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants') }}">Растениеводство</a>
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animal') }}">Животноводство</a>
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business') }}">Бизнес</a>
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling') }}">Переработка</a>
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits') }}">Кредиты</a>
+      </div>
+  </div>
 <div class="grid-container">
       <!-- Main -->
-      <div class="main-title">
-        <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Социально-экономическое состояние</p>
-          <div class="nav_dash_links">
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants') }}">Растениеводство</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animal') }}">Животноводство</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business') }}">Бизнес</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling') }}">Переработка</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits') }}">Кредиты</a>
-          </div>
-      </div>
       <main class="main-container">
 
         <div class="main-cards">
@@ -211,6 +210,7 @@
         var ultimateColors = [
         ['#90ee90', '#2e8b57'],
       ];
+      var windowWidth = window.innerWidth;
 
         var data = [{
           values: [{{ formData.labour_unemployed + formData.labour_total_econ_inactive_population }}, {{ formData.labour_government_workers + formData.labour_private_labour + formData.labour_private_ogorod }}],
@@ -226,9 +226,8 @@
         var layout = {
           title: 'Категории населения',
           height: 485,
-          width: 410,
             legend: {
-              x:0.32,
+              x: windowWidth > 1550 ? 0.34 : 0.22,
               y:-0.2
             }
         };

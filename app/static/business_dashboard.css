@@ -39,12 +39,13 @@ body {
     "header header header"
     "main main main";
   height: 100vh;
+  padding: 0 20px;
 }
 
 .main-title {
   align-items: center;
   background-color: green;
-  width: 100vw;
+  width: 100%;
   margin-top: 3px;
   padding-bottom: 2px;
 }
@@ -110,8 +111,8 @@ body {
 
 .main-container {
   grid-area: main;
-  overflow-y: auto;
   margin: 0 auto;
+  width: 100%;
 }
 
 .main-cards {
@@ -183,6 +184,14 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 15px;
   margin-bottom: 25px;
+}
+
+@media(min-width: 1550px) {
+  .charts{
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+  }
 }
 
 .charts-card {

@@ -11,28 +11,29 @@
 
 <body>
 
+  <div class="main-title">
+    <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Наличие земельных угодий и посевных площадей в домашних хозяйствах</p>
+
+      <div class="nav_dash_links">
+
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_all') }}">Бизнес</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
+        <form method="POST" class="filter_form">
+          {{ filterform.hidden_tag() }}
+          
+          {{ filterform.kato_4 }}  
+          {{ filterform.submit }}  
+        </form>
+      </div>
+      
+      
+  </div>
+
 <div class="grid-container">
       <!-- Main -->
-      <div class="main-title">
-        <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Наличие земельных угодий и посевных площадей в домашних хозяйствах</p>
-
-          <div class="nav_dash_links">
-
-            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
-            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
-            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_all') }}">Бизнес</a>
-            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
-            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
-            <form method="POST" class="filter_form">
-              {{ filterform.hidden_tag() }}
-              
-              {{ filterform.kato_4 }}  
-              {{ filterform.submit }}  
-            </form>
-          </div>
-          
-          
-      </div>
       
       <main class="main-container">
 

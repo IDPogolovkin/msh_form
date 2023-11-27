@@ -34,7 +34,6 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.2fr 3fr;
   grid-template-areas:
     "header header header"
     "main main main";
@@ -44,7 +43,7 @@ body {
 .main-title {
   align-items: center;
   background-color: green;
-  width: 100vw;
+  width: 100%;
   margin-top: 3px;
   padding-bottom: 2px;
 }
@@ -107,7 +106,6 @@ body {
 
 .main-container {
   grid-area: main;
-  overflow-y: auto;
   width: 98%;
   margin: 0 auto;
 }
@@ -181,6 +179,14 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
   margin-bottom: 25px;
+}
+
+@media(min-width: 1550px) {
+  .charts{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+  }
 }
 
 .charts-card {
@@ -347,6 +353,15 @@ body {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+@media(min-width: 1550px) {
+  .attendance{
+    margin-right: 0;
+  }
+  .attendance-list{
+    width: 700px;
+  }
 }
 .table{
   border-collapse: collapse;

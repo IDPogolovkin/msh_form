@@ -34,7 +34,6 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.2fr 3fr;
   grid-template-areas:
     "header header header"
     "main main main";
@@ -97,6 +96,10 @@ body {
   margin: 10px 0;
 }
 
+.main-title{
+  width: 100%;
+}
+
 .dash_link{
   color: white;
   font-size: 20px;
@@ -109,7 +112,6 @@ body {
 
 .main-container {
   grid-area: main;
-  overflow-y: auto;
   width: 99%;
   margin: 0 auto;
 }
@@ -285,7 +287,33 @@ body {
 .bars span{
   margin-left: 27px;
 }
+@media (min-width:1550px) {
+  .chart{
+    width: 610px;
+  }
+  .bars{
+    width: 610px;
+  }
+  .bars li{
+    width: 71px;
+  }
+  .bars .bar{
+    width: 52px;
+    margin-left: 62px;
+  }
+  .bars span{
+    margin-left: 52px;
+  }
+  .charts-card{
+    width: 610px;
+  }
+  .charts{
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+  }
 
+}
 .bars .bar:hover{
   background: #17C0EB;
   box-shadow: 0 0 10px 0 rgba(85, 239, 196, 0.5);
@@ -300,14 +328,24 @@ body {
 }
 
 /* ----------- custom pie chart with plotly ---------*/
+#pie-chart {
+  max-width: 610px;
+}
 .svg-container{
   border: 1px solid #d2d2d3;
   box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+  max-width: 610px;
 }
 
 .main-svg{
-  max-width: 420px;
+  max-width: 610px;
 }
+
+
+g .legend {
+  transform: translate(160.04, 418) !important;
+}
+
 .pie-chart{
   margin: 0;
   padding: 0;

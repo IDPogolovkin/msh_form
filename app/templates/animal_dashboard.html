@@ -11,18 +11,20 @@
 
 <body>
 
+  <div class="main-title">
+    <p style="font-weight: bold; text-align: center;" class="font-weight-bold">Животноводство</p>
+    <div class="nav_dash_links">
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants') }}">Растениеводство</a>
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business') }}">Бизнес</a>
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling') }}">Переработка</a>
+      <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits') }}">Кредиты</a>
+    </div>
+</div>
+
 <div class="grid-container">
       <!-- Main -->
-      <div class="main-title">
-          <p style="font-weight: bold; text-align: center;" class="font-weight-bold">Животноводство</p>
-          <div class="nav_dash_links">
-            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
-            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants') }}">Растениеводство</a>
-            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business') }}">Бизнес</a>
-            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling') }}">Переработка</a>
-            <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits') }}">Кредиты</a>
-          </div>
-      </div>
+      
       <main class="main-container">
 
         <div class="main-cards">

@@ -10,25 +10,26 @@
 <title>Dashboard business</title>
 
 <body>
+  <div class="main-title">
+    <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Несельскохозяйственные виды бизнеса</p>
+      <div class="nav_dash_links">
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
+        <form method="POST" class="filter_form">
+          {{ filterform.hidden_tag() }}
+          {{ filterform.kato_4 }}  
+          {{ filterform.submit }}  
+        </form>
+      </div>
+      
+  </div>
 
 <div class="grid-container">
       <!-- Main -->
-      <div class="main-title">
-        <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Несельскохозяйственные виды бизнеса</p>
-          <div class="nav_dash_links">
-              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
-              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
-              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
-              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
-              <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
-            <form method="POST" class="filter_form">
-              {{ filterform.hidden_tag() }}
-              {{ filterform.kato_4 }}  
-              {{ filterform.submit }}  
-            </form>
-          </div>
-          
-      </div>
+      
       <main class="main-container">
 
         <div class="main-cards">
