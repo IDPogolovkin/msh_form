@@ -60,6 +60,7 @@ body {
   margin-top: 10px;
   margin-bottom: 5px;
   width: fit-content;
+  display: flex;
 }
 .filter_form select{
   cursor: pointer;
@@ -68,7 +69,7 @@ body {
   padding: 10px 10px;
   font-size: 17px;
   border-radius: 5px;
-
+  height: 30px;
 }
 .filter_form input{
   cursor: pointer;
@@ -80,7 +81,7 @@ body {
   color: white;
   font-size: 15px;
   border: 1px solid transparent;
-
+  height: 30px;
 }
 .filter_form input:hover{
   transition: 0.5s;

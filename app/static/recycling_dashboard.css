@@ -396,6 +396,7 @@ table thead tr{
 
 .filter_form{
   padding-right: 30px;
+  display: flex;
 }
 .filter_form select{
   cursor: pointer;
@@ -403,7 +404,7 @@ table thead tr{
   outline: none;
   padding: 5px 10px;
   border-radius: 5px;
-
+  height: 30px;
 }
 .filter_form input{
   cursor: pointer;
@@ -415,7 +416,7 @@ table thead tr{
   color: white;
   font-size: 15px;
   border: 1px solid transparent;
-
+  height: 30px;
 }
 .filter_form input:hover{
   transition: 0.5s;
