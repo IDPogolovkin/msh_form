@@ -180,6 +180,8 @@ def region_akim():
     sum_formdata_go.labour_household_size = int(int(sum_formdata_go.labour_household_size / count_form_go)) if count_form_go != 0 else "Cannot divide by zero"
     sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
 
+    sum_formdata.credit_zalog = sum_formdata.credit_zalog / count_form if count_form != 0 else "Cannot divide by zero"
+    sum_formdata_go.credit_zalog = round(sum_formdata_go.credit_zalog / count_form_go, 2) if count_form_go != 0 else "Cannot divide by zero"
     form = FormDataForm(obj=sum_formdata)
     
     if request.method == 'POST':
@@ -323,6 +325,7 @@ def dashboard_plants_all():
             **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
                 for column in columns}
         )
+
         return render_template('plants_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
     else:
         if filterform.validate_on_submit():
@@ -508,6 +511,7 @@ def dashboard_credits_all():
                for column in columns}
         )
         sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else "Cannot divide by zero"
+        sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else "Cannot divide by zero"
 
         return render_template('credits_dashboard_all.html', filterform=filterform, round=round, formData=sum_formdata,
                                user=current_user, form=formdata_list)
@@ -535,6 +539,8 @@ def dashboard_credits_all():
                     formdata_list)
                    for column in columns}
             )
+            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else "Cannot divide by zero"
+
             return render_template('credits_dashboard_all.html', filterform=filterform, round=round,
                                    formData=sum_formdata, user=current_user, form=formdata_list)
 
