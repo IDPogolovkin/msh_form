@@ -99,6 +99,7 @@
 {#              <li><span>0%</span></li>#}
 {#            </ul>#}
             <ul class="bars">
+              <p class="bar_title">Процентное соотношение сельхоз. угодий ДМХ</p>
               <li><div class="bar" data-percentage="{{ round(formData.dx_pashnya * 100 / formData.dx_cx_land,2) }}"></div><span>Пашня</span></li>
               <li><div class="bar" data-percentage="{{ round(formData.dx_mnogoletnie * 100 / formData.dx_cx_land, 2) }}"></div><span>Насаждения</span></li>
               <li><div class="bar" data-percentage="{{ round(formData.dx_zelej * 100 / formData.dx_cx_land, 2) }}"></div><span>Залежь</span></li>
@@ -122,7 +123,7 @@
           <!-- TABLE start -->
           <section class="attendance">
             <div class="attendance-list">
-              <h1>Занятое население</h1>
+              <h1>Информация по населению</h1>
               <table class="table">
                 <thead>
                   <tr>
@@ -178,8 +179,13 @@
                     <td>{{ formData.labour_household_size }}</td>
                   </tr>
                 <tr>
+                  <tr>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D"></td>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D"></td>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D">тенге в месяц</td>
+                </tr>
                     <td>5</td>
-                    <td>Средний доход на одну семью, в месяц</td>
+                    <td>Средний доход на одну семью</td>
                     <td>{{ formData.labour_average_income_family }}</td>
                   </tr>
                 </tbody>
@@ -240,7 +246,7 @@
         const barChartOptions = {
           series: [
             {
-              name: "Гектар",
+              name: "кв. метров",
               data: [{{ formData.dx_pashnya }}, {{ formData.dx_mnogoletnie }}, {{ formData.dx_zelej }}, {{ formData.dx_pastbishe }}, {{ formData.dx_senokosy }}, {{ formData.dx_ogorody }}, {{ formData.dx_sad }}],
             },
           ],
@@ -272,7 +278,7 @@
           },
           yaxis: {
             title: {
-              text: 'Количество гектар',
+              text: 'Количество кв. метров',
             },
           },
         };

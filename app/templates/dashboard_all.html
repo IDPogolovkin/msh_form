@@ -11,27 +11,6 @@
 
 <body>
 
-  <style>
-    .pie-body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .x-box {
-      width: 36vh;
-      height: 36vh;
-      border-radius: 50%;
-      background-color: #2e8b57;
-      margin-bottom: 60px;
-
-      background:repeating-conic-gradient(
-        from 0deg,
-        #2e8b57 0deg calc(3.6deg * {{ dashboard_all_data['labour_employed_precent'] }}),
-        #90ee90 calc(3.6deg * {{ dashboard_all_data['labour_employed_precent'] }}) calc(3.6deg * 100));
-  </style>
   <div class="main-title">
         <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Социально-экономическое состояние</p>
         <div class="nav_dash_links">
@@ -119,17 +98,6 @@
           <div id="bar-chart"></div>
         </div>
 
-        {# hard coded pie chart #}
-{#         <div class="pie-body">#}
-{#           <div class="x-box">#}
-{#             <div class="x-box-cont">#}
-{#               <h3>Категории населения</h3>#}
-{#               <strong>Занятое население {{ dashboard_all_data['labour_employed_precent'] }}%</strong>#}
-{#               <strong>Безработные {{ dashboard_all_data['labour_unemployed_precent'] }}%</strong>#}
-{#               </div>#}
-{#             </div>#}
-{#           </div>#}
-
         {# bar chart with jquery #}
          <div class="chart">
 {#           <ul class="numbers">#}
@@ -138,6 +106,7 @@
 {#             <li><span>0%</span></li>#}
 {#             </ul>#}
            <ul class="bars">
+             <p class="bar_title">Процентное соотношение сельхоз. угодий ДМХ</p>
              <li>
               <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_pashnya_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
               <span>Пашня</span>
@@ -182,7 +151,7 @@
         {# TABLE start #}
         <section class="attendance">
           <div class="attendance-list">
-            <h1>Занятое население</h1>
+            <h1>Информация по населению</h1>
             <table class="table">
               <thead>
                 <tr>
@@ -228,7 +197,11 @@
                   <td>{{ dashboard_all_data['labour_household_size_total_average'] }}</td>
                 </tr>
                 <tr>
-                  <td>Средний доход на одну семью, в месяц</td>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D"></td>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D">тенге в месяц</td>
+                </tr>
+                <tr>
+                  <td>Средний доход на одну семью</td>
                   <td>{{ dashboard_all_data['labour_average_income_family_total_average'] }}</td>
                 </tr>
 
@@ -266,12 +239,14 @@
 
     var data = [{
       values: [{{ dashboard_all_data['labour_inactive_total'] }}, {{ dashboard_all_data['labour_active_total'] }}],
-    labels: ['Безработные', 'Занятое население'],
+      labels: ['Безработные', 'Занятое население'],
       type: 'pie',
-        marker: {
-      colors: ultimateColors[0]
-    },
-        }];
+      name: 'человек',
+      hoverinfo: 'value+label+percent+name',
+      marker: {
+        colors: ultimateColors[0]
+      },
+    }];
 
     var layout = {
       title: 'Категории населения',
@@ -290,7 +265,7 @@
     const barChartOptions = {
       series: [
         {
-            name:'гектар',
+            name:'кв. метров',
           data: [{{ dashboard_all_data['dx_pashnya_total'] }}, {{ dashboard_all_data['dx_mnogoletnie_total'] }}, {{ dashboard_all_data['dx_zelej_total'] }}, {{ dashboard_all_data['dx_pastbishe_total'] }}, {{ dashboard_all_data['dx_senokosy_total'] }}, {{ dashboard_all_data['dx_ogorody_total'] }}, {{ dashboard_all_data['dx_sad_total'] }}],
             },
           ],
@@ -322,7 +297,7 @@
           },
     yaxis: {
       title: {
-        text: 'Количество гектар',
+        text: 'Количество кв. метров',
             },
     },
         };

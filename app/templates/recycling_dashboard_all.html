@@ -53,14 +53,8 @@
         <div class="charts">
           <!-- apexcharts bar chart -->
           <div class="charts-card">
-            <p class="chart-title">Виды бизнеса по переработке продукции</p>
-            <div id="bar-chart"></div>
-          </div>
-
-          <!-- apexcharts bar chart -->
-          <div class="charts-card">
-            <p class="chart-title">Потребность по видам бизнеса по переработке продукции</p>
-            <div id="bar-chart1"></div>
+            <p class="chart-title">Наличие предприятий по переработке продукции</p>
+            <div id="stacked_chart"></div>
           </div>
 
         </div>
@@ -127,97 +121,67 @@
       <!-- End Main -->
 
     </div>
-
-    <script>
-        // BAR CHART
-        const barChartOptions = {
-          series: [
-            {
-              name: 'предприятий',
-              data: [{{ formData.manufacture_milk }}, {{ formData.manufacture_meat }}, {{ formData.manufacture_vegetables }}, {{ formData.manufacture_mayo }}, {{ formData.manufacture_fish }}, {{ formData.manufacture_choco }}, {{ formData.manufacture_beer }}, {{ formData.manufacture_vodka }}, {{ formData.manufacture_honey }}, {{ formData.manufacture_polufabricat }}, {{ formData.manufacture_bread }}, {{ formData.manufacture_others }} ],
-            },
-          ],
-          chart: {
-            type: 'bar',
-            width: 680,
-            height: 850,
-            toolbar: {
-              show: false,
-            },
-          },
-          colors: ['#246dec', '#cc3c43', '#367952', '#e78719', '#4f35a1', '#f5b74f', '#90ee90'],
-          plotOptions: {
-            bar: {
-              distributed: true,
-              borderRadius: 4,
-              horizontal: true,
-            },
-          },
-          dataLabels: {
-            enabled: false,
-          },
-          legend: {
-            show: false,
-          },
-          xaxis: {
-            title: {
-              text: 'Количество предприятий',
-            },
-            categories: ['Переработка молока', 'Переработка мяса', 'Переработка плодов', 'Производство майонеза', 'Переработка рыбы', 'Производство кондитерских изделий', 'Производство пива и др. напитков', 'Производство ликеро-водочных изделий', 'Продукция из меда', 'Производство полуфабрикатов', 'Производство хлебобулочных изделий', 'Прочее'],
-          },
-        };
-
-        const barChart = new ApexCharts(
-          document.querySelector('#bar-chart'),
-          barChartOptions
-        );
-        barChart.render();
-    </script>
-
 <script>
-        // BAR CHART 1
-        const barChartOptions1 = {
+      var options = {
           series: [
-            {
-              name: 'предприятий',
-              data: [{{ formData.manufacture_milk_needs }}, {{ formData.manufacture_meat_needs }}, {{ formData.manufacture_vegetables_needs }}, {{ formData.manufacture_mayo_needs }}, {{ formData.manufacture_fish_needs }}, {{ formData.manufacture_choco_needs }}, {{ formData.manufacture_beer_needs }}, {{ formData.manufacture_vodka_needs }}, {{ formData.manufacture_honey_needs }}, {{ formData.manufacture_polufabricat_needs }}, {{ formData.manufacture_bread_needs }}, {{ formData.manufacture_others_needs }}],
-            },
-          ],
+          {
+              name: 'В наличие',
+              data: [{{ formData.manufacture_milk }}, {{ formData.manufacture_meat }}, {{ formData.manufacture_vegetables }}, {{ formData.manufacture_mayo }}, {{ formData.manufacture_fish }}, {{ formData.manufacture_choco }}, {{ formData.manufacture_beer }}, {{ formData.manufacture_vodka }}, {{ formData.manufacture_honey }}, {{ formData.manufacture_polufabricat }}, {{ formData.manufacture_bread }}, {{ formData.manufacture_others }} ]
+          },
+          {
+              name: 'Потребность',
+              data: [{{ formData.manufacture_milk_needs }}, {{ formData.manufacture_meat_needs }}, {{ formData.manufacture_vegetables_needs }}, {{ formData.manufacture_mayo_needs }}, {{ formData.manufacture_fish_needs }}, {{ formData.manufacture_choco_needs }}, {{ formData.manufacture_beer_needs }}, {{ formData.manufacture_vodka_needs }}, {{ formData.manufacture_honey_needs }}, {{ formData.manufacture_polufabricat_needs }}, {{ formData.manufacture_bread_needs }}, {{ formData.manufacture_others_needs }}]
+          }],
           chart: {
-            type: 'bar',
-            width: 680,
-            height: 850,
-            toolbar: {
-              show: false,
-            },
+          type: 'bar',
+          height: 550,
+          stacked: true,
+          toolbar: {
+            show: false
           },
-          colors: ['#246dec', '#cc3c43', '#367952', '#e78719', '#4f35a1', '#f5b74f', '#90ee90'],
-          plotOptions: {
-            bar: {
-              distributed: true,
-              borderRadius: 4,
-              horizontal: true,
-            },
+          zoom: {
+            enabled: true
+          }
+        },
+        responsive: [{
+          breakpoint: 480,
+        }],
+        colors: ['#367952', '#e78719'],
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            borderRadius: 4,
+            columnWidth: '78%',
+            dataLabels: {
+              total: {
+                enabled: true,
+                style: {
+                  fontSize: '13px',
+                  fontWeight: 900
+                }
+              }
+            }
           },
-          dataLabels: {
-            enabled: false,
-          },
+        },
+        xaxis: {
+           {#title: {#}
+           {#   text: 'Наличие предприятий',#}
+           {# },#}
+          categories: ['Переработка молока', 'Переработка мяса', 'Переработка плодов', 'Производство майонеза', 'Переработка рыбы', 'Производство кондитерских изделий', 'Производство пива и др. напитков', 'Производство ликеро-водочных изделий', 'Продукция из меда', 'Производство полуфабрикатов', 'Производство хлебобулочных изделий', 'Прочее'],
+        },
           legend: {
-            show: false,
+            show: true,
+             position: 'top',
+              offsetX: -1000,
+              offsetY: 0
           },
-          xaxis: {
-            title: {
-              text: 'Количество предприятий',
-            },
-              categories: ['Переработка молока', 'Переработка мяса', 'Переработка плодов', 'Производство майонеза', 'Переработка рыбы', 'Производство кондитерских изделий', 'Производство пива и др. напитков', 'Производство ликеро-водочных изделий', 'Продукция из меда', 'Производство полуфабрикатов', 'Производство хлебобулочных изделий', 'Прочее'],
-          },
+        fill: {
+          opacity: 1
+        }
         };
 
-        const barChart1 = new ApexCharts(
-          document.querySelector('#bar-chart1'),
-          barChartOptions1
-        );
-        barChart1.render();
-    </script>
+        var stacked_chart = new ApexCharts(document.querySelector("#stacked_chart"), options);
+        stacked_chart.render();
+</script>
 </body>
 {% endblock %}

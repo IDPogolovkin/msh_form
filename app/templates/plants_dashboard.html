@@ -47,7 +47,7 @@
             <div class="card-inner">
               <p class="text-primary">Земли в частной собственности, кв.м.</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.dx_number_ogorodov }}</span>
+            <span class="text-primary font-weight-bold">{{ formData.dx_cx_land }}</span>
           </div>
 
           <div class="card">
@@ -327,7 +327,7 @@
         const barChartOptions1 = {
           series: [
             {
-              name: "Гектар",
+              name: "кв. метров",
               data: [{{ formData.dx_pashnya }}, {{ formData.dx_mnogoletnie }}, {{ formData.dx_zelej }}, {{ formData.dx_pastbishe }}, {{ formData.dx_senokosy }}, {{ formData.dx_ogorody }}, {{ formData.dx_sad }}],
             },
           ],
@@ -359,7 +359,7 @@
           },
           yaxis: {
             title: {
-              text: 'Количество гектар',
+              text: 'Количество кв. метров',
             },
           },
         };

@@ -248,10 +248,10 @@ body {
   background-color: #ffffff;
   border: 1px solid #d2d2d3;
   margin: 0;
-  padding: 35px 0 33px 0;
+  padding: 0 0 39px 0;
   display: inline-block;
   width: 500px;
-  max-height: 450px;
+  max-height: 447px;
   box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
@@ -259,7 +259,7 @@ body {
 .bars li{
   display: table-cell;
   width: 65px;
-  height: 420px;
+  height: 410px;
   position: relative;
 }
 
@@ -276,9 +276,8 @@ body {
   width: 45px;
   position: absolute;
   bottom: 0;
-  max-height: 100%;
+  max-height: 97%;
   margin-left: 37px;
-  margin-bottom: 5px;
   text-align: center;
   transition: 0.5s;
   transition-property: background, box-shadow;
@@ -286,6 +285,12 @@ body {
 
 .bars span{
   margin-left: 27px;
+}
+
+.bar_title{
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
 }
 @media (min-width:1550px) {
   .chart{
