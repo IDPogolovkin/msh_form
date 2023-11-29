@@ -68,27 +68,32 @@
           </div>
 
         </div>
-
+        {% if not check_filter_all %}
           <div class="specialization-rast">
                   <p>Специализация в растениеводстве по значениям анкетных данных</p>
                   <div class="spec_block">
-                    {% if form %}
-                      {% for i in form %}
-                      {{ i.specialization_rastenivodstvo }},
-                      {% endfor %}
-                    {% else %}
+                    
+                      
+                    
                     {{formData.specialization_rastenivodstvo}}
-                    {% endif %}
+                    
                   </div>
           </div>
-
         <div class="specialization-rast">
                   <p class="scoring_spec">Расчет уровня специализации в растениеводстве</p>
                   <div class="spec_block_score">
-                    {{formData.specialization_rastenivodstvo}}
+                    {{ factors_total }} - 
+                    {% if factors_total <= 7.75 %}
+                    Низкая
+                    {% elif factors_total < 12.75 and factors_total > 7.75 %}
+                    Средняя
+                    {% elif factors_total > 12.75 %}
+                    Высокая
+                    {% endif %}
                   </div>
           </div>
-
+          {% endif %}
+        
         <div class="charts">
           <!-- apexcharts bar chart -->
           <div class="charts-card">

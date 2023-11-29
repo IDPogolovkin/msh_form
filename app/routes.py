@@ -13,6 +13,8 @@ from sqlalchemy.sql.expression import text
 from sqlalchemy.orm import aliased
 from sqlalchemy import func, and_
 from sqlalchemy.inspection import inspect
+import statistics
+
 
 Base = declarative_base()
 @login_manager.user_loader
@@ -320,28 +322,84 @@ def dashboard_credits():
 def dashboard_plants_all():
     filterform = FilterForm()
     filterform.set_filter_choices(current_user.kato_4)
+    formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+    count_form = len(formdata_list)
+    inspector1 = inspect(Form)
+    columns = inspector1.columns.keys()
+    
+    sum_formdata = Form(
+        **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
+            for column in columns}
+    )
+
+    credit_amount_average_all = sum_formdata.credit_amount
+    credit_average_total_all = sum_formdata.credit_average_total
+    credit_total_all = sum_formdata.credit_total
+    credit_average_total_all = sum_formdata.credit_average_total / count_form
     if request.method == 'GET':
-        formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
-        count_form = len(formdata_list)
-        inspector1 = inspect(Form)
-        columns = inspector1.columns.keys()
-
-        sum_formdata = Form(
-            **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
-                for column in columns}
-        )
-
-        return render_template('plants_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
+        return render_template('plants_dashboard_all.html',check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
     else:
         if filterform.validate_on_submit():
             formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
             inspector1 = inspect(Form)
             columns = inspector1.columns.keys()
-
+            check_filter_all = False
+            if len(formdata_list)>1:
+                check_filter_all = True
             sum_formdata = Form(
                 **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
                     for column in columns}
             )
+            w_min = min(sum_formdata.dx_tomato, sum_formdata.dx_potato, sum_formdata.dx_cucumber, sum_formdata.dx_carrot, sum_formdata.dx_kapusta, sum_formdata.dx_svekla, sum_formdata.dx_onion, sum_formdata.dx_sweet_peper, sum_formdata.dx_chesnok, sum_formdata.dx_kabachek, sum_formdata.dx_fruits, sum_formdata.dx_korm)
+            w_max = max(sum_formdata.dx_tomato, sum_formdata.dx_potato, sum_formdata.dx_cucumber, sum_formdata.dx_carrot, sum_formdata.dx_kapusta, sum_formdata.dx_svekla, sum_formdata.dx_onion, sum_formdata.dx_sweet_peper, sum_formdata.dx_chesnok, sum_formdata.dx_kabachek, sum_formdata.dx_fruits, sum_formdata.dx_korm)
+            f1w1 = ((float((sum_formdata.dx_tomato - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w2 = ((float((sum_formdata.dx_cucumber - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w3 = ((float((sum_formdata.dx_potato - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w4 = ((float((sum_formdata.dx_carrot - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w5 = ((float((sum_formdata.dx_kapusta - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w6 = ((float((sum_formdata.dx_svekla - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w7 = ((float((sum_formdata.dx_onion - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w8 = ((float((sum_formdata.dx_sweet_peper - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w9 = ((float((sum_formdata.dx_chesnok - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w10 = ((float((sum_formdata.dx_kabachek - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w11 = ((float((sum_formdata.dx_fruits - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w12 = ((float((sum_formdata.dx_korm - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1_average = statistics.mean([f1w1, f1w2, f1w3, f1w4, f1w5, f1w6, f1w7, f1w8, f1w9, f1w10, f1w11, f1w12])
+
+            f2_w_min = min(sum_formdata.dx_pashnya, sum_formdata.dx_mnogoletnie, sum_formdata.dx_zelej, sum_formdata.dx_pastbishe, sum_formdata.dx_senokosy, sum_formdata.dx_ogorody, sum_formdata.dx_sad)
+            f2_w_max = max(sum_formdata.dx_pashnya, sum_formdata.dx_mnogoletnie, sum_formdata.dx_zelej, sum_formdata.dx_pastbishe, sum_formdata.dx_senokosy, sum_formdata.dx_ogorody, sum_formdata.dx_sad)
+            f2w1 = ((float((sum_formdata.dx_pashnya - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w2 = ((float((sum_formdata.dx_mnogoletnie - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w3 = ((float((sum_formdata.dx_zelej - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w4 = ((float((sum_formdata.dx_pastbishe - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w5 = ((float((sum_formdata.dx_senokosy - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w6 = ((float((sum_formdata.dx_ogorody - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w7 = ((float((sum_formdata.dx_sad - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2_average = statistics.mean([f2w1, f2w2, f2w3, f2w4, f2w5, f2w6, f2w7])
+
+            f3_w_min = min(sum_formdata.labour_private_ogorod, sum_formdata.labour_unemployed, sum_formdata.labour_total_econ_inactive_population)
+            f3_w_max = max(sum_formdata.labour_private_ogorod, sum_formdata.labour_unemployed, sum_formdata.labour_total_econ_inactive_population)
+            f3w1 = ((float((sum_formdata.labour_private_ogorod - f3_w_min) / (f3_w_max - f3_w_min))) * 100) * 0.2 if f3_w_max - f3_w_min > 0 else 0
+            f3w2 = ((float((sum_formdata.labour_unemployed - f3_w_min) / (f3_w_max - f3_w_min))) * 100) * 0.2 if f3_w_max - f3_w_min > 0 else 0
+            f3w3 = ((float((sum_formdata.labour_total_econ_inactive_population - f3_w_min) / (f3_w_max - f3_w_min))) * 100) * 0.2 if f3_w_max - f3_w_min > 0 else 0
+            f3_average = statistics.mean([f3w1, f3w2, f3w3])
+
+            f4w1 = sum_formdata.infrastructure_mtm * 0.2
+            f4w2 = sum_formdata.infrastructure_slad * 0.2
+            f4w3 = sum_formdata.infrastructure_garage * 0.2
+            f4w4 = sum_formdata.infrastructure_cycsterny * 0.2
+            f4w5 = sum_formdata.infrastructure_transformator * 0.2
+            f4w6 = sum_formdata.infrastructure_polivochnaya_sistema_ * 0.2
+            f4_average = statistics.mean([f4w1, f4w2, f4w3, f4w4, f4w5, f4w6])
+
+            f6w1 = float((sum_formdata.labour_average_income_family / 120000)) * 0.15 
+            f6w2 = float(sum_formdata.credit_amount / (credit_average_total_all / credit_amount_average_all)) * 0.15 if credit_amount_average_all > 0 else 0
+            f6w3 = float(sum_formdata.credit_total / credit_total_all) * 0.15 if credit_total_all > 0 else 0
+            f6w4 = float(sum_formdata.credit_average_total / credit_average_total_all) * 0.15 if credit_average_total_all > 0 else 0
+            f6w5 = float(sum_formdata.credit_zalog)
+            f6_average = statistics.mean([f6w1, f6w2, f6w3, f6w4, f6w5])
+
+            factors_total = round(f1_average + f2_average + f3_average + f4_average + f6_average, 2)
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
             formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
@@ -353,36 +411,103 @@ def dashboard_plants_all():
                 **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
                     for column in columns}
             )
-            return render_template('plants_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user)
+            return render_template('plants_dashboard_all.html',factors_total=factors_total, check_filter_all=check_filter_all,filterform=filterform,round=round, formData=sum_formdata, user=current_user)
 
-    return render_template('plants_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user)
+    return render_template('plants_dashboard_all.html',factors_total=factors_total,check_filter_all=check_filter_all, filterform=filterform,round=round, formData=sum_formdata, user=current_user)
 
 @app.route('/dashboard_animals_all', methods=['GET', 'POST'])
 @login_required
 def dashboard_animals_all():
     filterform = FilterForm()
     filterform.set_filter_choices(current_user.kato_4)
-    if request.method == 'GET':
-        formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
-        count_form = len(formdata_list)
-        inspector1 = inspect(Form)
-        columns = inspector1.columns.keys()
+    formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+    count_form = len(formdata_list)
+    inspector1 = inspect(Form)
+    columns = inspector1.columns.keys()
 
-        sum_formdata = Form(
-            **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
-                for column in columns}
-        )
-        return render_template('animal_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
+    sum_formdata = Form(
+        **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
+            for column in columns}
+    )
+    credit_amount_average_all = sum_formdata.credit_amount
+    credit_average_total_all = sum_formdata.credit_average_total
+    credit_total_all = sum_formdata.credit_total
+    credit_average_total_all = sum_formdata.credit_average_total / count_form
+    if request.method == 'GET':
+        
+        return render_template('animal_dashboard_all.html',check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
     else:
         if filterform.validate_on_submit():
             formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
             inspector1 = inspect(Form)
             columns = inspector1.columns.keys()
+            check_filter_all = False
+            if len(formdata_list)>1:
+                check_filter_all = True
 
             sum_formdata = Form(
                 **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
                     for column in columns}
             )
+            w_min = min(sum_formdata.animal_krs_milk, sum_formdata.animal_krs_meat, sum_formdata.animal_sheep, sum_formdata.animal_kozel, sum_formdata.animal_horse, sum_formdata.animal_chicken, sum_formdata.animal_gusi, sum_formdata.animal_duck, sum_formdata.animal_induk)
+            w_max = max(sum_formdata.animal_krs_milk, sum_formdata.animal_krs_meat, sum_formdata.animal_sheep, sum_formdata.animal_kozel, sum_formdata.animal_horse, sum_formdata.animal_chicken, sum_formdata.animal_gusi, sum_formdata.animal_duck, sum_formdata.animal_induk)
+            f1w1 = ((float((sum_formdata.animal_krs_milk - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w2 = ((float((sum_formdata.animal_krs_meat - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w3 = ((float((sum_formdata.animal_sheep - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w4 = ((float((sum_formdata.animal_kozel - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w5 = ((float((sum_formdata.animal_horse - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w6 = ((float((sum_formdata.animal_chicken - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w7 = ((float((sum_formdata.animal_gusi - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w8 = ((float((sum_formdata.animal_duck - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1w9 = ((float((sum_formdata.animal_induk - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
+            f1_average = statistics.mean([f1w1, f1w2, f1w3, f1w4, f1w5, f1w6, f1w7, f1w8, f1w9])
+
+            eggs_tonn = (sum_formdata.animal_egg_chicken * 60) / 1000000
+            f2_w_min = min(sum_formdata.animal_meat_cow, sum_formdata.animal_meat_sheep, sum_formdata.animal_meat_horse, sum_formdata.animal_meat_chicken, sum_formdata.animal_milk_cow, sum_formdata.animal_mil_kozel, sum_formdata.animal_milk_horse, eggs_tonn)
+            f2_w_max = max(sum_formdata.animal_meat_cow, sum_formdata.animal_meat_sheep, sum_formdata.animal_meat_horse, sum_formdata.animal_meat_chicken, sum_formdata.animal_milk_cow, sum_formdata.animal_mil_kozel, sum_formdata.animal_milk_horse, eggs_tonn)
+            f2w1 = ((float((sum_formdata.animal_meat_cow - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w2 = ((float((sum_formdata.animal_meat_sheep - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w3 = ((float((sum_formdata.animal_meat_horse - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w4 = ((float((sum_formdata.animal_meat_chicken - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w5 = ((float((sum_formdata.animal_milk_cow - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w6 = ((float((sum_formdata.animal_mil_kozel - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w7 = ((float((sum_formdata.animal_milk_horse - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2w8 = ((float((Decimal(eggs_tonn) - f2_w_min) / (f2_w_max - f2_w_min))) * 100) * 0.15 if f2_w_max - f2_w_min > 0 else 0
+            f2_average = statistics.mean([f2w1, f2w2, f2w3, f2w4, f2w5, f2w6, f2w7, f2w8])
+
+            f3_w_min = min(sum_formdata.animal_pashnya, sum_formdata.animal_mnogolet, sum_formdata.animal_zalej, sum_formdata.animal_pastbisha, sum_formdata.animal_senokos, sum_formdata.animal_ogorod, sum_formdata.animal_sad)
+            f3_w_max = max(sum_formdata.animal_pashnya, sum_formdata.animal_mnogolet, sum_formdata.animal_zalej, sum_formdata.animal_pastbisha, sum_formdata.animal_senokos, sum_formdata.animal_ogorod, sum_formdata.animal_sad)
+            f3w1 = ((float((sum_formdata.animal_pashnya - f3_w_min) / (f3_w_max - f3_w_min))) * 100) * 0.1 if f3_w_max - f3_w_min > 0 else 0
+            f3w2 = ((float((sum_formdata.animal_mnogolet - f3_w_min) / (f3_w_max - f3_w_min))) * 100) * 0.1 if f3_w_max - f3_w_min > 0 else 0
+            f3w3 = ((float((sum_formdata.animal_zalej - f3_w_min) / (f3_w_max - f3_w_min))) * 100) * 0.1 if f3_w_max - f3_w_min > 0 else 0
+            f3w4 = ((float((sum_formdata.animal_pastbisha - f3_w_min) / (f3_w_max - f3_w_min))) * 100) * 0.1 if f3_w_max - f3_w_min > 0 else 0
+            f3w5 = ((float((sum_formdata.animal_senokos - f3_w_min) / (f3_w_max - f3_w_min))) * 100) * 0.1 if f3_w_max - f3_w_min > 0 else 0
+            f3w6 = ((float((sum_formdata.animal_ogorod - f3_w_min) / (f3_w_max - f3_w_min))) * 100) * 0.1 if f3_w_max - f3_w_min > 0 else 0
+            f3w7 = ((float((sum_formdata.animal_sad - f3_w_min) / (f3_w_max - f3_w_min))) * 100) * 0.1 if f3_w_max - f3_w_min > 0 else 0
+            f3_average = statistics.mean([f3w1, f3w2, f3w3, f3w4, f3w5, f3w6, f3w7])
+
+            f4_w_min = min(sum_formdata.labour_private_ogorod, sum_formdata.labour_unemployed, sum_formdata.labour_total_econ_inactive_population)
+            f4_w_max = max(sum_formdata.labour_private_ogorod, sum_formdata.labour_unemployed, sum_formdata.labour_total_econ_inactive_population)
+            f4w1 = ((float((sum_formdata.labour_private_ogorod - f4_w_min) / (f4_w_max - f4_w_min))) * 100) * 0.2 if f4_w_max - f4_w_min > 0 else 0
+            f4w2 = ((float((sum_formdata.labour_unemployed - f4_w_min) / (f4_w_max - f4_w_min))) * 100) * 0.2 if f4_w_max - f4_w_min > 0 else 0
+            f4w3 = ((float((sum_formdata.labour_total_econ_inactive_population - f4_w_min) / (f4_w_max - f4_w_min))) * 100) * 0.2 if f4_w_max - f4_w_min > 0 else 0
+            f4_average = statistics.mean([f4w1, f4w2, f4w3])
+
+            f5w1 = sum_formdata.infrastructure_mtm * 0.15
+            f5w2 = sum_formdata.infrastructure_slad * 0.15
+            f5w3 = sum_formdata.infrastructure_garage * 0.15
+            f5w4 = sum_formdata.infrastructure_cycsterny * 0.15
+            f5w5 = sum_formdata.infrastructure_transformator * 0.15
+            f5w6 = sum_formdata.infrastructure_polivochnaya_sistema_ * 0.15
+            f5_average = statistics.mean([f5w1, f5w2, f5w3, f5w4, f5w5, f5w6])
+
+            f7w1 = float((sum_formdata.labour_average_income_family / 120000)) * 0.15 
+            f7w2 = float(sum_formdata.credit_amount / (credit_average_total_all / credit_amount_average_all)) * 0.15 if credit_amount_average_all > 0 else 0
+            f7w3 = float(sum_formdata.credit_total / credit_total_all) * 0.15 if credit_total_all > 0 else 0
+            f7w4 = float(sum_formdata.credit_average_total / credit_average_total_all) * 0.15 if credit_average_total_all > 0 else 0
+            f7w5 = float(sum_formdata.credit_zalog)
+            f7_average = statistics.mean([f7w1, f7w2, f7w3, f7w4, f7w5])
+            factors_total = round(f1_average + f2_average + f3_average + f4_average + f5_average + f7_average, 2)
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
             formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
@@ -393,9 +518,9 @@ def dashboard_animals_all():
                 **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
                     for column in columns}
             )
-            return render_template('animal_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
+            return render_template('animal_dashboard_all.html',factors_total=factors_total,check_filter_all=check_filter_all, filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
     
-    return render_template('animal_dashboard_all.html', filterform=filterform,round=round, formData=sum_formdata, user=current_user)
+    return render_template('animal_dashboard_all.html',factors_total=factors_total,check_filter_all=check_filter_all, filterform=filterform,round=round, formData=sum_formdata, user=current_user)
 
 
 @app.route('/dashboard_business_all', methods=['GET', 'POST'])
@@ -525,6 +650,7 @@ def dashboard_credits_all():
             formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
             inspector1 = inspect(Form)
             columns = inspector1.columns.keys()
+            count_form = len(formdata_list)
 
             sum_formdata = Form(
                 **{column: sum(
@@ -532,11 +658,15 @@ def dashboard_credits_all():
                     formdata_list)
                    for column in columns}
             )
+            sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else "Cannot divide by zero"
+            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else "Cannot divide by zero"
+
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
             formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
             inspector1 = inspect(Form)
             columns = inspector1.columns.keys()
+            count_form = len(formdata_list)
 
             sum_formdata = Form(
                 **{column: sum(
@@ -544,6 +674,7 @@ def dashboard_credits_all():
                     formdata_list)
                    for column in columns}
             )
+            sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else "Cannot divide by zero"
             sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else "Cannot divide by zero"
 
             return render_template('credits_dashboard_all.html', filterform=filterform, round=round,

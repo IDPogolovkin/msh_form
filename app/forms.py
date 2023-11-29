@@ -130,7 +130,7 @@ class FormDataForm(FlaskForm):
     infrastructure_transformator = IntegerField('Трансформаторная электро-подстанция')
     infrastructure_transformator_isused = IntegerField('Трансформаторная электро-подстанция')
     animal_dvor = IntegerField('Общее число дворов')
-    animal_skot_bird = IntegerField('из них имеет скот и птицу')
+    animal_skot_bird = IntegerField('Из них имеет скот и птицу')
     animal_cx_land = DecimalField('Сельскохозяйственные угодья домашних хозяйств')
     animal_pashnya = DecimalField('Пашня')
     animal_mnogolet = DecimalField('Многолетние насаждения')
