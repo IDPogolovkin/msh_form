@@ -65,7 +65,19 @@
                       {{ formData.specialization_rastenivodstvo }}
                   </div>
           </div>
-
+          <div class="specialization-rast">
+            <p class="scoring_spec">Расчет уровня специализации в растениеводстве</p>
+            <div class="spec_block_score">
+              {{ factors_total }} - 
+              {% if factors_total <= 7.75 %}
+              Низкая
+              {% elif factors_total < 12.75 and factors_total > 7.75 %}
+              Средняя
+              {% elif factors_total > 12.75 %}
+              Высокая
+              {% endif %}
+            </div>
+          </div>
         <div class="charts">
           <!-- apexcharts bar chart -->
           <div class="charts-card">
