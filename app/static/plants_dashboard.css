@@ -436,6 +436,10 @@ table thead tr{
   width: fit-content;
 }
 
+.scoring_spec{
+  color: #367952;
+}
+
 .specialization-rast p{
   font-weight: bold;
   font-size: 19px;
@@ -447,6 +451,15 @@ table thead tr{
   padding: 15px 10px;
   font-size: 18px;
   min-width: 70%;
+  width: fit-content;
+}
+
+.spec_block_score{
+  border: solid 1px green;
+  background-color: white;
+  padding: 15px 10px;
+  font-size: 18px;
+  min-width: 30%;
   width: fit-content;
 }
 

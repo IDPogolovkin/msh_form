@@ -51,7 +51,7 @@
         </div>
 
               <div class="specialization-rast">
-              <p>Специализация в животноводстве</p>
+              <p>Специализация в животноводстве по значениям анкетных данных</p>
               <div class="spec_block">
                 {% if form %}
                   {% for i in form %}
@@ -61,6 +61,13 @@
                 {{formData.specialization_animal}}
                 {% endif %}
           </div>
+          </div>
+
+      <div class="specialization-rast">
+                  <p class="scoring_spec">Расчет уровня специализации в животноводстве</p>
+                  <div class="spec_block_score">
+                    {{formData.specialization_rastenivodstvo}}
+                  </div>
           </div>
 
         <div class="charts">
