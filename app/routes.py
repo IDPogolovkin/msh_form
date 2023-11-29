@@ -270,8 +270,13 @@ def all_creditors():
 def dashboard_soc1():
 
     formData=Form.query.filter_by(user_id=current_user.id).first()
+    
     if current_user.is_district:
         return redirect(url_for('dashboard_all'))
+    else:
+        if not formData:
+            flash('Отсутствует анкета', 'info')
+            return redirect(url_for('login'))
 
     return render_template('dashboard_social_pocazat.html', round=round, formData=formData, user=current_user)
 

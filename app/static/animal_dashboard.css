@@ -60,6 +60,7 @@ body {
   margin-bottom: 5px;
   width: fit-content;
   display: flex;
+  gap:5px;
 }
 .filter_form select{
   cursor: pointer;

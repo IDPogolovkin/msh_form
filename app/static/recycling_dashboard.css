@@ -107,6 +107,7 @@ body {
 .main-container {
   grid-area: main;
   margin: 0 auto; 
+  padding: 0 40px;
 }
 
 .main-cards {
