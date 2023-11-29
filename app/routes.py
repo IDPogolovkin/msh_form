@@ -560,6 +560,9 @@ def dashboard_all():
     filterform.set_filter_choices(current_user.kato_4)
     if request.method == 'GET':
         formdata = Form.query.filter_by(kato_4=current_user.kato_4).all()
+        if not formdata:
+            flash('Отсутствуют анкеты', 'info')
+            return redirect(url_for('login'))
         counter = 0
         labour_labour_total = 0
         labour_population_total = 0
