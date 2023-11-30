@@ -463,6 +463,15 @@ table thead tr{
   width: fit-content;
 }
 
+.spec_block_score_bdgo{
+    border: solid 1px #e78719;
+  background-color: white;
+  padding: 15px 10px;
+  font-size: 18px;
+  min-width: 30%;
+  width: fit-content;
+}
+
 /* ---------- MEDIA QUERIES ---------- */
 
 

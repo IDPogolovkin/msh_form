@@ -297,7 +297,7 @@ def dashboard_animal():
     )
 
     credit_amount_average_all = sum_formdata.credit_amount
-    credit_average_total_all = sum_formdata.credit_average_total
+    # credit_average_total_all = sum_formdata.credit_average_total
     credit_total_all = sum_formdata.credit_total
     credit_average_total_all = sum_formdata.credit_average_total / len(formRegion)
 
@@ -354,9 +354,9 @@ def dashboard_animal():
     f5_average = statistics.mean([f5w1, f5w2, f5w3, f5w4, f5w5, f5w6])
     
     f7w1 = float((formData.labour_average_income_family / 120000)) * 0.15 
-    f7w2 = float(formData.credit_amount / (credit_average_total_all / credit_amount_average_all)) * 0.15 if credit_amount_average_all > 0 else 0
-    f7w3 = float(formData.credit_total / credit_total_all) * 0.15 if credit_total_all > 0 else 0
-    f7w4 = float(formData.credit_average_total / credit_average_total_all) * 0.15 if credit_average_total_all > 0 else 0
+    f7w2 = float((formData.credit_amount / credit_amount_average_all) * 0.15) if credit_amount_average_all > 0 else 0
+    f7w3 = float((formData.credit_total / credit_total_all) * 0.15) if credit_total_all > 0 else 0
+    f7w4 = float((formData.credit_average_total / credit_average_total_all) * 0.15) if credit_average_total_all > 0 else 0
     f7w5 = float(formData.credit_zalog)
     f7_average = statistics.mean([f7w1, f7w2, f7w3, f7w4, f7w5])
     factors_total = round(f1_average + f2_average + f3_average + f4_average + f5_average + f7_average, 2)
@@ -375,9 +375,10 @@ def dashboard_plants():
     )
 
     credit_amount_average_all = sum_formdata.credit_amount
-    credit_average_total_all = sum_formdata.credit_average_total
+    # credit_average_total_all = sum_formdata.credit_average_total
     credit_total_all = sum_formdata.credit_total
     credit_average_total_all = sum_formdata.credit_average_total / len(formRegion)
+
     w_min = min(formData.dx_tomato, formData.dx_potato, formData.dx_cucumber, formData.dx_carrot, formData.dx_kapusta, formData.dx_svekla, formData.dx_onion, formData.dx_sweet_peper, formData.dx_chesnok, formData.dx_kabachek, formData.dx_fruits, formData.dx_korm)
     w_max = max(formData.dx_tomato, formData.dx_potato, formData.dx_cucumber, formData.dx_carrot, formData.dx_kapusta, formData.dx_svekla, formData.dx_onion, formData.dx_sweet_peper, formData.dx_chesnok, formData.dx_kabachek, formData.dx_fruits, formData.dx_korm)
     f1w1 = ((float((formData.dx_tomato - w_min) / (w_max - w_min))) * 100) * 0.15 if w_max - w_min > 0 else 0
@@ -420,10 +421,10 @@ def dashboard_plants():
     f4w6 = formData.infrastructure_polivochnaya_sistema_ * 0.2
     f4_average = statistics.mean([f4w1, f4w2, f4w3, f4w4, f4w5, f4w6])
 
-    f6w1 = float((formData.labour_average_income_family / 120000)) * 0.15 
-    f6w2 = float(formData.credit_amount / (credit_average_total_all / credit_amount_average_all)) * 0.15 if credit_amount_average_all > 0 else 0
-    f6w3 = float(formData.credit_total / credit_total_all) * 0.15 if credit_total_all > 0 else 0
-    f6w4 = float(formData.credit_average_total / credit_average_total_all) * 0.15 if credit_average_total_all > 0 else 0
+    f6w1 = float((formData.labour_average_income_family / 120000) * 0.15)
+    f6w2 = float((formData.credit_amount / credit_amount_average_all) * 0.15) if credit_amount_average_all > 0 else 0
+    f6w3 = float((formData.credit_total / credit_total_all) * 0.15) if credit_total_all > 0 else 0
+    f6w4 = float((formData.credit_average_total / credit_average_total_all) * 0.15) if credit_average_total_all > 0 else 0
     f6w5 = float(formData.credit_zalog)
     f6_average = statistics.mean([f6w1, f6w2, f6w3, f6w4, f6w5])
 
@@ -467,7 +468,7 @@ def dashboard_plants_all():
     )
 
     credit_amount_average_all = sum_formdata.credit_amount
-    credit_average_total_all = sum_formdata.credit_average_total
+    # credit_average_total_all = sum_formdata.credit_average_total
     credit_total_all = sum_formdata.credit_total
     credit_average_total_all = sum_formdata.credit_average_total / count_form
     if request.method == 'GET':
@@ -527,7 +528,7 @@ def dashboard_plants_all():
             f4_average = statistics.mean([f4w1, f4w2, f4w3, f4w4, f4w5, f4w6])
 
             f6w1 = float((sum_formdata.labour_average_income_family / 120000)) * 0.15 
-            f6w2 = float(sum_formdata.credit_amount / (credit_average_total_all / credit_amount_average_all)) * 0.15 if credit_amount_average_all > 0 else 0
+            f6w2 = float(sum_formdata.credit_amount / credit_amount_average_all) * 0.15 if credit_amount_average_all > 0 else 0
             f6w3 = float(sum_formdata.credit_total / credit_total_all) * 0.15 if credit_total_all > 0 else 0
             f6w4 = float(sum_formdata.credit_average_total / credit_average_total_all) * 0.15 if credit_average_total_all > 0 else 0
             f6w5 = float(sum_formdata.credit_zalog)
@@ -636,7 +637,7 @@ def dashboard_animals_all():
             f5_average = statistics.mean([f5w1, f5w2, f5w3, f5w4, f5w5, f5w6])
 
             f7w1 = float((sum_formdata.labour_average_income_family / 120000)) * 0.15 
-            f7w2 = float(sum_formdata.credit_amount / (credit_average_total_all / credit_amount_average_all)) * 0.15 if credit_amount_average_all > 0 else 0
+            f7w2 = float(sum_formdata.credit_amount / credit_amount_average_all) * 0.15 if credit_amount_average_all > 0 else 0
             f7w3 = float(sum_formdata.credit_total / credit_total_all) * 0.15 if credit_total_all > 0 else 0
             f7w4 = float(sum_formdata.credit_average_total / credit_average_total_all) * 0.15 if credit_average_total_all > 0 else 0
             f7w5 = float(sum_formdata.credit_zalog)
