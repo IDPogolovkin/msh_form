@@ -174,16 +174,16 @@ def region_akim():
             for column in columnsgo}
     )
 
-    sum_formdata.labour_average_income_family = sum_formdata.labour_average_income_family / count_form if count_form != 0 else "Cannot divide by zero"
-    sum_formdata.labour_household_size = sum_formdata.labour_household_size / count_form if count_form != 0 else "Cannot divide by zero"
-    sum_formdata.credit_average_total = sum_formdata.credit_average_total / count_form if count_form != 0 else "Cannot divide by zero"
+    sum_formdata.labour_average_income_family = sum_formdata.labour_average_income_family / count_form if count_form != 0 else 0
+    sum_formdata.labour_household_size = sum_formdata.labour_household_size / count_form if count_form != 0 else 0
+    sum_formdata.credit_average_total = sum_formdata.credit_average_total / count_form if count_form != 0 else 0
     
-    sum_formdata_go.labour_average_income_family = int(sum_formdata_go.labour_average_income_family / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
-    sum_formdata_go.labour_household_size = int(int(sum_formdata_go.labour_household_size / count_form_go)) if count_form_go != 0 else "Cannot divide by zero"
-    sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
+    sum_formdata_go.labour_average_income_family = int(sum_formdata_go.labour_average_income_family / count_form_go) if count_form_go != 0 else 0
+    sum_formdata_go.labour_household_size = int(int(sum_formdata_go.labour_household_size / count_form_go)) if count_form_go != 0 else 0
+    sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else 0
 
-    sum_formdata.credit_zalog = sum_formdata.credit_zalog / count_form if count_form != 0 else "Cannot divide by zero"
-    sum_formdata_go.credit_zalog = round(sum_formdata_go.credit_zalog / count_form_go, 2) if count_form_go != 0 else "Cannot divide by zero"
+    sum_formdata.credit_zalog = sum_formdata.credit_zalog / count_form if count_form != 0 else 0
+    sum_formdata_go.credit_zalog = round(sum_formdata_go.credit_zalog / count_form_go, 2) if count_form_go != 0 else 0
     form = FormDataForm(obj=sum_formdata)
     
     if request.method == 'POST':
@@ -200,14 +200,16 @@ def region_akim():
                 **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formgo_list)
                     for column in columnsgo}
             )
-            sum_formdata.labour_average_income_family = sum_formdata.labour_average_income_family / count_form if count_form != 0 else "Cannot divide by zero"
-            sum_formdata.labour_household_size = sum_formdata.labour_household_size / count_form if count_form != 0 else "Cannot divide by zero"
-            sum_formdata.credit_average_total = sum_formdata.credit_average_total / count_form if count_form != 0 else "Cannot divide by zero"
+            sum_formdata.labour_average_income_family = sum_formdata.labour_average_income_family / count_form if count_form != 0 else 0
+            sum_formdata.labour_household_size = sum_formdata.labour_household_size / count_form if count_form != 0 else 0
+            sum_formdata.credit_average_total = sum_formdata.credit_average_total / count_form if count_form != 0 else 0
             
-            sum_formdata_go.labour_average_income_family = int(sum_formdata_go.labour_average_income_family / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
-            sum_formdata_go.labour_household_size = int(int(sum_formdata_go.labour_household_size / count_form_go)) if count_form_go != 0 else "Cannot divide by zero"
-            sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else "Cannot divide by zero"
+            sum_formdata_go.labour_average_income_family = int(sum_formdata_go.labour_average_income_family / count_form_go) if count_form_go != 0 else 0
+            sum_formdata_go.labour_household_size = int(int(sum_formdata_go.labour_household_size / count_form_go)) if count_form_go != 0 else 0
+            sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else 0
 
+            sum_formdata.credit_zalog = sum_formdata.credit_zalog / count_form if count_form != 0 else 0
+            sum_formdata_go.credit_zalog = round(sum_formdata_go.credit_zalog / count_form_go, 2) if count_form_go != 0 else 0
             form = FormDataForm(obj=sum_formdata)
 
             return render_template('region_akim.html', str=str, form=form, formGO=sum_formdata_go, user=current_user,
@@ -672,7 +674,7 @@ def dashboard_business_all():
                 formdata_list)
                for column in columns}
         )
-        sum_formdata.infrastructure_polivy = round(sum_formdata.infrastructure_polivy / count_form, 2) if count_form != 0 else "Cannot divide by zero"
+        sum_formdata.infrastructure_polivy = round(sum_formdata.infrastructure_polivy / count_form, 2) if count_form != 0 else 0
 
         return render_template('dashboard_business_all.html', filterform=filterform, round=round, formData=sum_formdata,
                                user=current_user, form=formdata_list)
@@ -772,8 +774,8 @@ def dashboard_credits_all():
                 formdata_list)
                for column in columns}
         )
-        sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else "Cannot divide by zero"
-        sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else "Cannot divide by zero"
+        sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else 0
+        sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else 0
 
         return render_template('credits_dashboard_all.html', filterform=filterform, round=round, formData=sum_formdata,
                                user=current_user, form=formdata_list)
@@ -790,8 +792,8 @@ def dashboard_credits_all():
                     formdata_list)
                    for column in columns}
             )
-            sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else "Cannot divide by zero"
-            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else "Cannot divide by zero"
+            sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else 0
+            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else 0
 
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
@@ -806,8 +808,8 @@ def dashboard_credits_all():
                     formdata_list)
                    for column in columns}
             )
-            sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else "Cannot divide by zero"
-            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else "Cannot divide by zero"
+            sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else 0
+            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else 0
 
             return render_template('credits_dashboard_all.html', filterform=filterform, round=round,
                                    formData=sum_formdata, user=current_user, form=formdata_list)
@@ -877,8 +879,8 @@ def dashboard_all():
             dx_sad_total += form.dx_sad
 
         
-        labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else "Cannot divide by zero"
-        labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else "Cannot divide by zero"
+        labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else 0
+        labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else 0
         if int(labour_population_total) != 0:
             labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 2)
         else:
@@ -970,8 +972,8 @@ def dashboard_all():
                 dx_sad_total += form.dx_sad
 
             
-            labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else "Cannot divide by zero"
-            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else "Cannot divide by zero"
+            labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else 0
+            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else 0
             if int(labour_population_total) != 0:
                 labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 2)
             else:
@@ -1064,8 +1066,8 @@ def dashboard_all():
                 dx_sad_total += form.dx_sad
 
             
-            labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else "Cannot divide by zero"
-            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else "Cannot divide by zero"
+            labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else 0
+            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else 0
             if int(labour_population_total) != 0:
                 labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 2)
             else:
