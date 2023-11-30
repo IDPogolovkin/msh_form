@@ -565,7 +565,7 @@ def dashboard_animals_all():
             for column in columns}
     )
     credit_amount_average_all = sum_formdata.credit_amount
-    credit_average_total_all = sum_formdata.credit_average_total
+    # credit_average_total_all = sum_formdata.credit_average_total
     credit_total_all = sum_formdata.credit_total
     credit_average_total_all = sum_formdata.credit_average_total / count_form
     if request.method == 'GET':
