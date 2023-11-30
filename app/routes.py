@@ -297,7 +297,7 @@ def dashboard_animal():
     )
 
     credit_amount_average_all = sum_formdata.credit_amount
-    # credit_average_total_all = sum_formdata.credit_average_total
+    credit_average_total_all = sum_formdata.credit_average_total
     credit_total_all = sum_formdata.credit_total
     credit_average_total_all = sum_formdata.credit_average_total / len(formRegion)
 
