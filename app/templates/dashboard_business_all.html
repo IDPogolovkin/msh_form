@@ -58,13 +58,20 @@
         </div>
 
         <div class="charts">
+        {% if not check_filter_all %}
           <!-- apexcharts bar chart -->
+          <div class="charts-card">
+            <p class="chart-title">Несельскохозяйственные виды бизнеса по видам деятельности</p>
+            <div id="stacked_chart1"></div>
+          </div>
+
+        {% else %}
+         <!-- apexcharts bar chart -->
           <div class="charts-card">
             <p class="chart-title">Несельскохозяйственные виды бизнеса по видам деятельности</p>
             <div id="stacked_chart"></div>
           </div>
-
-        </div>
+        {% endif %}
 
           <!-- TABLE start -->
           <section class="attendance">
@@ -210,6 +217,11 @@
            {# },#}
           categories: ['Автосервисы', 'Детские центры развития', 'Изготовление сувениров', 'Компьютерные услуги', 'Магазины', 'Ремонт техники', 'Металлопластиковые изделия', 'Оказание проф. услуг', 'Полиграфические услуги', 'Туризм', 'Услуги аренды', 'Услуги грузовых авто', 'Услуги СПА', 'Услуги общепита', 'Услуги по уборке', 'Услуги салонов красоты', 'Услуги химчистки', 'Швейный цех, ателье', 'Прочие виды услуг', 'Строительные услуги', 'Производство мебели', 'Производство строительных материалов', 'Сварочный цех', 'Деревообработка', 'Прочие виды промышленности'],
         },
+          yaxis: {
+            tickAmount: 8,
+            min: 0,
+            max: 20,
+        },
          legend: {
             show: true,
              position: 'top',
@@ -223,6 +235,74 @@
 
         var stacked_chart = new ApexCharts(document.querySelector("#stacked_chart"), options);
         stacked_chart.render();
+</script>
+
+<script>
+      var options1 = {
+          series: [
+          {
+              name: 'В наличии',
+              data: [{{ formData.noncx_sto }}, {{ formData.noncx_kindergarden }}, {{ formData.noncx_souvenier }}, {{ formData.noncx_pc_service }}, {{ formData.noncx_store }}, {{ formData.noncx_remont_bytovoi_tech }}, {{ formData.noncx_metal }}, {{ formData.noncx_accounting }}, {{ formData.noncx_photo }}, {{ formData.noncx_turism }}, {{ formData.noncx_rent }}, {{ formData.noncx_cargo }}, {{ formData.noncx_massage }}, {{ formData.noncx_foodcourt }}, {{ formData.noncx_cleaning }}, {{ formData.noncx_beuty }}, {{ formData.noncx_carwash }}, {{ formData.noncx_atelie }}, {{ formData.noncx_others }}, {{ formData.noncx_stroika }}, {{ formData.noncx_mebel }}, {{ formData.noncx_stroi_material }}, {{ formData.noncx_svarka }}, {{ formData.noncx_woodworking }}, {{ formData.noncx_others_uslugi }}]
+          },
+          {
+              name: 'Потребность',
+              data: [{{ formData.noncx_sto_needs }}, {{ formData.noncx_kindergarden_needs }}, {{ formData.noncx_souvenier_needs }}, {{ formData.noncx_pc_service_needs }}, {{ formData.noncx_store_needs }}, {{ formData.noncx_remont_bytovoi_tech_needs }}, {{ formData.noncx_metal_needs }}, {{ formData.noncx_accounting_needs }}, {{ formData.noncx_photo_needs }}, {{ formData.noncx_turism_needs }}, {{ formData.noncx_rent_needs }}, {{ formData.noncx_cargo_needs }}, {{ formData.noncx_massage_needs }}, {{ formData.noncx_foodcourt_needs }}, {{ formData.noncx_cleaning_needs }}, {{ formData.noncx_beuty_needs }}, {{ formData.noncx_carwash_needs }}, {{ formData.noncx_atelie_needs }}, {{ formData.noncx_others_needs }}, {{ formData.noncx_stroika_needs }}, {{ formData.noncx_mebel_needs }}, {{ formData.noncx_stroi_material_needs }}, {{ formData.noncx_svarka_needs }}, {{ formData.noncx_woodworking_needs }}, {{ formData.noncx_others_needs_uslugi }}]
+          }],
+          chart: {
+          type: 'bar',
+          height: 550,
+          stacked: true,
+          toolbar: {
+            show: false
+          },
+          zoom: {
+            enabled: true
+          }
+        },
+        responsive: [{
+          breakpoint: 480,
+        }],
+        colors: ['#367952', '#e78719'],
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            borderRadius: 4,
+            columnWidth: '78%',
+            dataLabels: {
+              total: {
+                enabled: true,
+                style: {
+                  fontSize: '13px',
+                  fontWeight: 900
+                }
+              }
+            }
+          },
+        },
+        xaxis: {
+           {#title: {#}
+           {#   text: 'Наличие предприятий',#}
+           {# },#}
+          categories: ['Автосервисы', 'Детские центры развития', 'Изготовление сувениров', 'Компьютерные услуги', 'Магазины', 'Ремонт техники', 'Металлопластиковые изделия', 'Оказание проф. услуг', 'Полиграфические услуги', 'Туризм', 'Услуги аренды', 'Услуги грузовых авто', 'Услуги СПА', 'Услуги общепита', 'Услуги по уборке', 'Услуги салонов красоты', 'Услуги химчистки', 'Швейный цех, ателье', 'Прочие виды услуг', 'Строительные услуги', 'Производство мебели', 'Производство строительных материалов', 'Сварочный цех', 'Деревообработка', 'Прочие виды промышленности'],
+        },
+          yaxis: {
+            tickAmount: 2,
+            min: 0,
+            max: 2,
+        },
+         legend: {
+            show: true,
+             position: 'top',
+              offsetX: -1000,
+              offsetY: 0
+          },
+        fill: {
+          opacity: 1
+        }
+        };
+
+        var stacked_chart1 = new ApexCharts(document.querySelector("#stacked_chart1"), options1);
+        stacked_chart1.render();
 </script>
 
 </body>

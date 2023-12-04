@@ -51,11 +51,20 @@
         </div>
 
         <div class="charts">
+          {% if not check_filter_all %}
           <!-- apexcharts bar chart -->
           <div class="charts-card">
-            <p class="chart-title">Наличие предприятий по переработке продукции</p>
+            <p class="chart-title">Несельскохозяйственные виды бизнеса по видам деятельности</p>
+            <div id="stacked_chart1"></div>
+          </div>
+
+        {% else %}
+         <!-- apexcharts bar chart -->
+          <div class="charts-card">
+            <p class="chart-title">Несельскохозяйственные виды бизнеса по видам деятельности</p>
             <div id="stacked_chart"></div>
           </div>
+        {% endif %}
 
         </div>
 
@@ -169,6 +178,11 @@
            {# },#}
           categories: ['Переработка молока', 'Переработка мяса', 'Переработка плодов', 'Производство майонеза', 'Переработка рыбы', 'Производство кондитерских изделий', 'Производство пива и др. напитков', 'Производство ликеро-водочных изделий', 'Продукция из меда', 'Производство полуфабрикатов', 'Производство хлебобулочных изделий', 'Прочее'],
         },
+           yaxis: {
+            tickAmount: 5,
+            min: 0,
+            max: 15,
+        },
           legend: {
             show: true,
              position: 'top',
@@ -182,6 +196,74 @@
 
         var stacked_chart = new ApexCharts(document.querySelector("#stacked_chart"), options);
         stacked_chart.render();
+</script>
+
+<script>
+      var options1 = {
+          series: [
+          {
+              name: 'В наличии',
+              data: [{{ formData.manufacture_milk }}, {{ formData.manufacture_meat }}, {{ formData.manufacture_vegetables }}, {{ formData.manufacture_mayo }}, {{ formData.manufacture_fish }}, {{ formData.manufacture_choco }}, {{ formData.manufacture_beer }}, {{ formData.manufacture_vodka }}, {{ formData.manufacture_honey }}, {{ formData.manufacture_polufabricat }}, {{ formData.manufacture_bread }}, {{ formData.manufacture_others }} ]
+          },
+          {
+              name: 'Потребность',
+              data: [{{ formData.manufacture_milk_needs }}, {{ formData.manufacture_meat_needs }}, {{ formData.manufacture_vegetables_needs }}, {{ formData.manufacture_mayo_needs }}, {{ formData.manufacture_fish_needs }}, {{ formData.manufacture_choco_needs }}, {{ formData.manufacture_beer_needs }}, {{ formData.manufacture_vodka_needs }}, {{ formData.manufacture_honey_needs }}, {{ formData.manufacture_polufabricat_needs }}, {{ formData.manufacture_bread_needs }}, {{ formData.manufacture_others_needs }}]
+          }],
+          chart: {
+          type: 'bar',
+          height: 550,
+          stacked: true,
+          toolbar: {
+            show: false
+          },
+          zoom: {
+            enabled: true
+          }
+        },
+        responsive: [{
+          breakpoint: 480,
+        }],
+        colors: ['#367952', '#e78719'],
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            borderRadius: 4,
+            columnWidth: '78%',
+            dataLabels: {
+              total: {
+                enabled: true,
+                style: {
+                  fontSize: '13px',
+                  fontWeight: 900
+                }
+              }
+            }
+          },
+        },
+        xaxis: {
+           {#title: {#}
+           {#   text: 'Наличие предприятий',#}
+           {# },#}
+          categories: ['Переработка молока', 'Переработка мяса', 'Переработка плодов', 'Производство майонеза', 'Переработка рыбы', 'Производство кондитерских изделий', 'Производство пива и др. напитков', 'Производство ликеро-водочных изделий', 'Продукция из меда', 'Производство полуфабрикатов', 'Производство хлебобулочных изделий', 'Прочее'],
+        },
+           yaxis: {
+            tickAmount: 2,
+            min: 0,
+            max: 2,
+        },
+          legend: {
+            show: true,
+             position: 'top',
+              offsetX: -1000,
+              offsetY: 0
+          },
+        fill: {
+          opacity: 1
+        }
+        };
+
+        var stacked_chart1 = new ApexCharts(document.querySelector("#stacked_chart1"), options1);
+        stacked_chart1.render();
 </script>
 </body>
 {% endblock %}
