@@ -548,12 +548,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
-        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
-        {% else %}
-        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
-        {% endif %}
+                {% if formGO.dx_potato and (formGO.dx_potato * 1.2 < form.dx_potato.data or formGO.dx_potato * 0.8 > form.dx_potato.data) %}
+                {{ form.dx_potato(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_potato(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['t/y'] }}
               </div>
             </div>
@@ -568,12 +567,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
-        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
-        {% else %}
-        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
-        {% endif %}
+                {% if formGO.dx_kapusta and (formGO.dx_kapusta * 1.2 < form.dx_kapusta.data or formGO.dx_kapusta * 0.8 > form.dx_kapusta.data) %}
+                {{ form.dx_kapusta(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_kapusta(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['t/y'] }}
               </div>
             </div>
@@ -589,10 +587,10 @@
               </div>
               <div class="input_with_measure">
                 {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
-        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
-        {% else %}
-        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
-        {% endif %}
+                {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
+                {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+                {% endif %}
                 {{ form.dx_carrot(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
