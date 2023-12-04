@@ -345,11 +345,23 @@ body {
 
 /* -------- Attendance List serction -----------  */
 .attendance{
-  margin-top: 20px;
-  margin-right: 20px;
+  margin-top: 20px
 }
-.attendance-list{
-  width: 100%;
+
+.attendance_spec{
+  margin-top: 20px;
+  padding: 0 8rem;
+}
+
+.attendance-list{ 
+  padding: 10px;
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-list-spec{
   padding: 10px;
   margin-top: 10px;
   background: #fff;
@@ -361,10 +373,17 @@ body {
   .attendance{
     margin-right: 0;
   }
-  .attendance-list{
+  .attendance{
     width: 700px;
   }
 }
+
+@media(max-width: 2140px) {
+  .attendance_spec{
+    padding: 0;
+  }
+}
+
 .table{
   border-collapse: collapse;
   margin: 25px 0;
