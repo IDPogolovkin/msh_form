@@ -169,7 +169,6 @@
         {% else %}
         {{ form.labour_total_econ_inactive_population(disabled=true) }}
         {% endif %}
-        {{ form.labour_total_econ_inactive_population(disabled=true) }}
         {{ measurement_units['human'] }}
       </div>
     </div>
@@ -255,7 +254,6 @@
         {% else %}
         {{ form.house_total_dvor(disabled=true) }}
         {% endif %}
-        {{ form.house_total_dvor(disabled=true) }}
          {{ measurement_units['unit'] }}
        </div>
       </div>
@@ -822,7 +820,6 @@
                 {% else %}
                 {{ form.kx_pansya(disabled=true) }}
                 {% endif %}
-                {{ form.kx_pansya(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
             </div>
@@ -3256,7 +3253,7 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_milk and (formGO.manufacture_milk * 1.2 < form.manufacture_milk.data or formGO.manufacture_milk * 0.8 > form.manufacture_milk.data) %}
+            {% if formGO.manufacture_milk and (float(formGO.manufacture_milk) * 1.2 < form.manufacture_milk.data or float(formGO.manufacture_milk) * 0.8 > form.manufacture_milk.data) %}
             {{ form.manufacture_milk(disabled=true, style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_milk(disabled=true) }}
@@ -3294,7 +3291,7 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_meat and (formGO.manufacture_meat * 1.2 < form.manufacture_meat.data or formGO.manufacture_meat * 0.8 > form.manufacture_meat.data) %}
+            {% if formGO.manufacture_meat and (float(formGO.manufacture_meat) * 1.2 < form.manufacture_meat.data or float(formGO.manufacture_meat) * 0.8 > form.manufacture_meat.data) %}
             {{ form.manufacture_meat(disabled=true, style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_meat(disabled=true) }}
@@ -3332,7 +3329,7 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_vegetables and (formGO.manufacture_vegetables * 1.2 < form.manufacture_vegetables.data or formGO.manufacture_vegetables * 0.8 > form.manufacture_vegetables.data) %}
+            {% if formGO.manufacture_vegetables and (float(formGO.manufacture_vegetables) * 1.2 < form.manufacture_vegetables.data or float(formGO.manufacture_vegetables) * 0.8 > form.manufacture_vegetables.data) %}
             {{ form.manufacture_vegetables(disabled=true, style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_vegetables(disabled=true) }}
@@ -3446,7 +3443,7 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_choco and (formGO.manufacture_choco * 1.2 < form.manufacture_choco.data or formGO.manufacture_choco * 0.8 > form.manufacture_choco.data) %}
+            {% if formGO.manufacture_choco and (float(formGO.manufacture_choco) * 1.2 < form.manufacture_choco.data or float(formGO.manufacture_choco) * 0.8 > form.manufacture_choco.data) %}
             {{ form.manufacture_choco(disabled=true, style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_choco(disabled=true) }}
@@ -3485,7 +3482,7 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_beer and (formGO.manufacture_beer * 1.2 < form.manufacture_beer.data or formGO.manufacture_beer * 0.8 > form.manufacture_beer.data) %}
+                {% if formGO.manufacture_beer and (float(formGO.manufacture_beer) * 1.2 < form.manufacture_beer.data or float(formGO.manufacture_beer) * 0.8 > form.manufacture_beer.data) %}
                 {{ form.manufacture_beer(disabled=true, style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_beer(disabled=true) }}
@@ -3637,7 +3634,7 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_bread and (formGO.manufacture_bread * 1.2 < form.manufacture_bread.data or formGO.manufacture_bread * 0.8 > form.manufacture_bread.data) %}
+                {% if formGO.manufacture_bread and (float(formGO.manufacture_bread) * 1.2 < form.manufacture_bread.data or float(formGO.manufacture_bread) * 0.8 > form.manufacture_bread.data) %}
                 {{ form.manufacture_bread(disabled=true, style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_bread(disabled=true) }}
