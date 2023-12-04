@@ -71,7 +71,7 @@
               {{ factors_total }} - 
               {% if factors_total <= 10 %}
               Низкая
-              {% elif factors_total < 15 and factors_total > 10 %}
+              {% elif factors_total <= 15 and factors_total > 10 %}
               Средняя
               {% elif factors_total > 15 %}
               Высокая
@@ -85,7 +85,7 @@
               {{ factors_total_go }} -
               {% if factors_total_go <= 10 %}
               Низкая
-              {% elif factors_total_go < 15 and factors_total_go > 10 %}
+              {% elif factors_total_go <= 15 and factors_total_go > 10 %}
               Средняя
               {% elif factors_total_go > 15 %}
               Высокая

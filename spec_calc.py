@@ -11,7 +11,7 @@ forms = Form.query.all()
 counter = 0
 data = [["kato_2", "kato_2_name", "kato_4", "kato_4_name", "kato_6", "kato_6_name", "form_calc_rast", "form_go_calc_rast", "form_calc_animal", "form_go_calc_animal"]]
 for form in forms:
-    formData_go=Form_G_O.query.filter_by(kato_4=form.kato_4).first()
+    formData_go=Form_G_O.query.filter_by(kato_6=form.kato_6).first()
     formRegion = Form.query.filter_by(kato_4 = form.kato_4).all()
     formRegion_go = Form_G_O.query.filter_by(kato_4 = form.kato_4).all()
     inspector1 = inspect(Form)

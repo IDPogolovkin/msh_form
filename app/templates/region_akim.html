@@ -49,7 +49,11 @@
                 {% endif %}
             </div>
           <div class="input_with_measure">
+              {% if formGO.labour_populaton and (formGO.labour_population * 1.2 < form.labour_population.data or formGO.labour_population * 0.8 > form.labour_population.data) %}
+              {{ form.labour_population(disabled=true, style = "border: 2px solid #C51E3A;") }}
+              {% else %}
               {{ form.labour_population(disabled=true) }}
+              {% endif %}
               {{ measurement_units['human'] }}
           </div>
           </div>
@@ -63,7 +67,11 @@
           {% endif %}
       </div>
       <div class="input_with_measure">
+        {% if formGO.labour_constant_opulation and (formGO.labour_constant_population * 1.2 < form.labour_constant_population.data or formGO.labour_constant_population * 0.8 > form.labour_constant_population.data) %}
+        {{ form.labour_constant_population(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
         {{ form.labour_constant_population(disabled=true) }}
+        {% endif %}
         {{ measurement_units['human'] }}
       </div>
     </div>
@@ -78,7 +86,11 @@
           {% endif %}
       </div>
       <div class="input_with_measure">
+        {% if formGO.labour_labour and (formGO.labour_labour * 1.2 < form.labour_labour.data or formGO.labour_labour * 0.8 > form.labour_labour.data) %}
+        {{ form.labour_labour(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
         {{ form.labour_labour(disabled=true) }}
+        {% endif %}
         {{ measurement_units['human'] }}
       </div>
     </div>
@@ -93,7 +105,11 @@
           {% endif %}
       </div>
       <div class="input_with_measure">
+        {% if formGO.labour_government_workers and (formGO.labour_government_workers * 1.2 < form.labour_government_workers.data or formGO.labour_government_workers * 0.8 > form.labour_government_workers.data) %}
+        {{ form.labour_government_workers(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
         {{ form.labour_government_workers(disabled=true) }}
+        {% endif %}
         {{ measurement_units['human'] }}
       </div>
     </div>
@@ -108,7 +124,11 @@
           {% endif %}
       </div>
       <div class="input_with_measure">
+        {% if formGO.labour_private_labour and (formGO.labour_private_labour * 1.2 < form.labour_private_labour.data or formGO.labour_private_labour * 0.8 > form.labour_private_labour.data) %}
+        {{ form.labour_private_labour(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
         {{ form.labour_private_labour(disabled=true) }}
+        {% endif %}
         {{ measurement_units['human'] }}
       </div>
     </div>
@@ -124,6 +144,11 @@
           {% endif %}
       </div>
       <div class="input_with_measure">
+        {% if formGO.labour_private_ogorod and (formGO.labour_private_ogorod * 1.2 < form.labour_private_ogorod.data or formGO.labour_private_ogorod * 0.8 > form.labour_private_ogorod.data) %}
+        {{ form.labour_private_ogorod(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.labour_private_ogorod(disabled=true) }}
+        {% endif %}
         {{ form.labour_private_ogorod(disabled=true) }}
         {{ measurement_units['human'] }}
       </div>
@@ -139,6 +164,11 @@
           {% endif %}
       </div>
       <div class="input_with_measure">
+        {% if formGO.labour_total_econ_inactive_population and (formGO.labour_total_econ_inactive_population * 1.2 < form.labour_total_econ_inactive_population.data or formGO.labour_total_econ_inactive_population * 0.8 > form.labour_total_econ_inactive_population.data) %}
+        {{ form.labour_total_econ_inactive_population(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.labour_total_econ_inactive_population(disabled=true) }}
+        {% endif %}
         {{ form.labour_total_econ_inactive_population(disabled=true) }}
         {{ measurement_units['human'] }}
       </div>
@@ -154,7 +184,11 @@
           {% endif %}
       </div>
       <div class="input_with_measure">
+        {% if formGO.labour_unemployed and (formGO.labour_unemployed * 1.2 < form.labour_unemployed.data or formGO.labour_unemployed * 0.8 > form.labour_unemployed.data) %}
+        {{ form.labour_unemployed(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
         {{ form.labour_unemployed(disabled=true) }}
+        {% endif %}
         {{ measurement_units['human'] }}
       </div>
     </div>
@@ -169,7 +203,11 @@
           {% endif %}
       </div>
       <div class="input_with_measure">
+        {% if formGO.labour_household_size and (formGO.labour_household_size * 1.2 < form.labour_household_size.data or formGO.labour_household_size * 0.8 > form.labour_household_size.data) %}
+        {{ form.labour_household_size(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
         {{ form.labour_household_size(disabled=true) }}
+        {% endif %}
         {{ measurement_units['human'] }}
       </div>
     </div>
@@ -184,8 +222,12 @@
           {% endif %}
       </div>
       <div class="input_with_measure">
+        {% if formGO.labour_average_income_family and (formGO.labour_average_income_family * 1.2 < form.labour_average_income_family.data or formGO.labour_average_income_family * 0.8 > form.labour_average_income_family.data) %}
+        {{ form.labour_average_income_family(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
         {{ form.labour_average_income_family(disabled=true) }}
-        {{ measurement_units['tg/m'] }}
+        {% endif %}
+          {{ measurement_units['tg/m'] }}
       </div>
     </div>
 </div>
@@ -208,6 +250,11 @@
             {% endif %}
         </div>
        <div class="input_with_measure">
+        {% if formGO.house_total_dvor and (formGO.house_total_dvor * 1.2 < form.house_total_dvor.data or formGO.house_total_dvor * 0.8 > form.house_total_dvor.data) %}
+        {{ form.house_total_dvor(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.house_total_dvor(disabled=true) }}
+        {% endif %}
         {{ form.house_total_dvor(disabled=true) }}
          {{ measurement_units['unit'] }}
        </div>
@@ -222,7 +269,11 @@
             {% endif %}
         </div>
           <div class="input_with_measure">
-        {{ form.house_zaselen_dvor(disabled=true) }}
+            {% if formGO.house_zaselen_dvor and (formGO.house_zaselen_dvor * 1.2 < form.house_zaselen_dvor.data or formGO.house_zaselen_dvor * 0.8 > form.house_zaselen_dvor.data) %}
+            {{ form.house_zaselen_dvor(disabled=true, style = "border: 2px solid #C51E3A;") }}
+            {% else %}
+            {{ form.house_zaselen_dvor(disabled=true) }}
+            {% endif %}
            {{ measurement_units['unit'] }}
           </div>
       </div>
@@ -246,7 +297,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dh_count and (formGO.dh_count * 1.2 < form.dh_count.data or formGO.dh_count * 0.8 > form.dh_count.data) %}
+                {{ form.dh_count(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dh_count(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['unit'] }}
               </div>
             </div>
@@ -261,7 +316,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_number_ogorodov and (formGO.dx_number_ogorodov * 1.2 < form.dx_number_ogorodov.data or formGO.dx_number_ogorodov * 0.8 > form.dx_number_ogorodov.data) %}
+                {{ form.dx_number_ogorodov(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_number_ogorodov(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['unit'] }}
               </div>
             </div>
@@ -276,7 +335,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_cx_land and (formGO.dx_cx_land * 1.2 < form.dx_cx_land.data or formGO.dx_cx_land * 0.8 > form.dx_cx_land.data) %}
+                {{ form.dx_cx_land(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_cx_land(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['square'] }}
               </div>
             </div>
@@ -293,7 +356,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_pashnya and (formGO.dx_pashnya * 1.2 < form.dx_pashnya.data or formGO.dx_pashnya * 0.8 > form.dx_pashnya.data) %}
+                {{ form.dx_pashnya(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_pashnya(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['square'] }}
               </div>
             </div>
@@ -308,7 +375,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_mnogoletnie and (formGO.dx_mnogoletnie * 1.2 < form.dx_mnogoletnie.data or formGO.dx_mnogoletnie * 0.8 > form.dx_mnogoletnie.data) %}
+                {{ form.dx_mnogoletnie(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_mnogoletnie(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['square'] }}
               </div>
             </div>
@@ -323,7 +394,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_zelej and (formGO.dx_zelej * 1.2 < form.dx_zelej.data or formGO.dx_zelej * 0.8 > form.dx_zelej.data) %}
+                {{ form.dx_zelej(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_zelej(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['square'] }}
               </div>
             </div>
@@ -338,7 +413,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_pastbishe and (formGO.dx_pastbishe * 1.2 < form.dx_pastbishe.data or formGO.dx_pastbishe * 0.8 > form.dx_pastbishe.data) %}
+                {{ form.dx_pastbishe(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_pastbishe(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['square'] }}
               </div>
             </div>
@@ -353,7 +432,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_senokosy and (formGO.dx_senokosy * 1.2 < form.dx_senokosy.data or formGO.dx_senokosy * 0.8 > form.dx_senokosy.data) %}
+                {{ form.dx_senokosy(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_senokosy(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['square'] }}
               </div>
             </div>
@@ -368,7 +451,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_ogorody and (formGO.dx_ogorody * 1.2 < form.dx_ogorody.data or formGO.dx_ogorody * 0.8 > form.dx_ogorody.data) %}
+                {{ form.dx_ogorody(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_ogorody(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['square'] }}
               </div>
             </div>
@@ -383,7 +470,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_sad and (formGO.dx_sad * 1.2 < form.dx_sad.data or formGO.dx_sad * 0.8 > form.dx_sad.data) %}
+                {{ form.dx_sad(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_sad(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['square'] }}
               </div>
             </div>
@@ -398,7 +489,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_urojai and (formGO.dx_urojai * 1.2 < form.dx_urojai.data or formGO.dx_urojai * 0.8 > form.dx_urojai.data) %}
+                {{ form.dx_urojai(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_urojai(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['t/y'] }}
               </div>
             </div>
@@ -415,7 +510,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_cucumber and (formGO.dx_cucumber * 1.2 < form.dx_cucumber.data or formGO.dx_cucumber * 0.8 > form.dx_cucumber.data) %}
+                {{ form.dx_cucumber(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_cucumber(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['t/y'] }}
               </div>
             </div>
@@ -430,7 +529,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.dx_tomato and (formGO.dx_tomato * 1.2 < form.dx_tomato.data or formGO.dx_tomato * 0.8 > form.dx_tomato.data) %}
+                {{ form.dx_tomato(disabled=true, style = "border: 2px solid #C51E3A;") }}
+                {% else %}
                 {{ form.dx_tomato(disabled=true) }}
+                {% endif %}
                 {{ measurement_units['t/y'] }}
               </div>
             </div>
@@ -445,6 +548,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_potato(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -460,6 +568,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_kapusta(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -475,6 +588,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_carrot(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -490,6 +608,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_svekla(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -505,6 +628,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_sweet_peper(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -520,6 +648,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_baklajan(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -535,6 +668,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_kabachek(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -550,6 +688,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_onion(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -565,6 +708,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_chesnok(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -580,6 +728,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_redis(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -595,6 +748,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_korm(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -610,6 +768,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.dx_fruits(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -625,6 +788,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_amount(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -640,6 +808,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kz_cx_land(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
@@ -657,6 +830,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_pansya(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
@@ -672,6 +850,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_mnogoletnie(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
@@ -688,6 +871,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_pastbishe(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
@@ -703,6 +891,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_senokosy(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
@@ -718,6 +911,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_urojai(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -735,6 +933,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_zerno(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -750,6 +953,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_rice(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -765,6 +973,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_maslichnye(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -780,6 +993,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_korm(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -795,6 +1013,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_mnogoletnie_derevo(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -810,6 +1033,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kz_cx_land_reserve(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
@@ -827,6 +1055,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_pansya_reserve(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
@@ -842,6 +1075,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_mnogoletnie_reserve(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
@@ -857,6 +1095,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_zelej_reserve(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
@@ -872,6 +1115,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_pastbishe_reserve(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
@@ -887,6 +1135,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.kx_senokosy_reserve(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
@@ -902,6 +1155,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_polivochnaya_sistema_(disabled=true) }}
                 {{ measurement_units['a'] }}
               </div>
@@ -917,6 +1175,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_polivochnaya_sistema_isused(disabled=true) }}
                 {{ measurement_units['used'] }}
               </div>
@@ -932,6 +1195,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_polivy(disabled=true) }}
                 {{ measurement_units['%'] }}
               </div>
@@ -947,6 +1215,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_mtm(disabled=true) }}
                 {{ measurement_units['a'] }}
               </div>
@@ -962,6 +1235,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_mtm_isused(disabled=true) }}
                 {{ measurement_units['used'] }}
               </div>
@@ -977,6 +1255,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_slad(disabled=true) }}
                 {{ measurement_units['a'] }}
               </div>
@@ -992,6 +1275,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_slad_isused(disabled=true) }}
                 {{ measurement_units['used'] }}
               </div>
@@ -1007,6 +1295,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_garage(disabled=true) }}
                 {{ measurement_units['a'] }}
               </div>
@@ -1022,6 +1315,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_garage_isused(disabled=true) }}
                 {{ measurement_units['used'] }}
               </div>
@@ -1037,6 +1335,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_cycsterny(disabled=true) }}
                 {{ measurement_units['a'] }}
               </div>
@@ -1052,6 +1355,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_cycsterny_isused(disabled=true) }}
                 {{ measurement_units['used'] }}
               </div>
@@ -1067,6 +1375,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_transformator(disabled=true) }}
                 {{ measurement_units['a'] }}
               </div>
@@ -1082,6 +1395,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.infrastructure_transformator_isused(disabled=true) }}
                 {{ measurement_units['used'] }}
               </div>
@@ -1123,6 +1441,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_dvor(disabled=true) }}
             {{ measurement_units['unit'] }}
           </div>
@@ -1138,6 +1461,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_skot_bird(disabled=true) }}
             {{ measurement_units['unit'] }}
           </div>
@@ -1153,6 +1481,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_cx_land(disabled=true) }}
             {{ measurement_units['square'] }}
           </div>
@@ -1170,6 +1503,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_pashnya(disabled=true) }}
             {{ measurement_units['square'] }}
           </div>
@@ -1185,6 +1523,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_mnogolet(disabled=true) }}
             {{ measurement_units['square'] }}
           </div>
@@ -1200,6 +1543,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_zalej(disabled=true) }}
             {{ measurement_units['square'] }}
           </div>
@@ -1215,6 +1563,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_pastbisha(disabled=true) }}
             {{ measurement_units['square'] }}
           </div>
@@ -1230,6 +1583,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_senokos(disabled=true) }}
             {{ measurement_units['square'] }}
           </div>
@@ -1245,6 +1603,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_ogorod(disabled=true) }}
             {{ measurement_units['square'] }}
           </div>
@@ -1260,6 +1623,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_sad(disabled=true) }}
             {{ measurement_units['square'] }}
           </div>
@@ -1275,6 +1643,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_krs_milk(disabled=true) }}
             {{ measurement_units['heads'] }}
           </div>
@@ -1290,6 +1663,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_krs_meat(disabled=true) }}
             {{ measurement_units['heads'] }}
           </div>
@@ -1305,6 +1683,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_sheep(disabled=true) }}
             {{ measurement_units['heads'] }}
           </div>
@@ -1320,6 +1703,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_kozel(disabled=true) }}
             {{ measurement_units['heads'] }}
           </div>
@@ -1335,6 +1723,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_horse(disabled=true) }}
             {{ measurement_units['heads'] }}
           </div>
@@ -1350,6 +1743,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_camel(disabled=true) }}
             {{ measurement_units['heads'] }}
           </div>
@@ -1365,6 +1763,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_pig(disabled=true) }}
             {{ measurement_units['heads'] }}
           </div>
@@ -1380,6 +1783,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_chicken(disabled=true) }}
             {{ measurement_units['heads'] }}
           </div>
@@ -1395,6 +1803,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_gusi(disabled=true) }}
             {{ measurement_units['heads'] }}
           </div>
@@ -1410,6 +1823,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_duck(disabled=true) }}
             {{ measurement_units['heads'] }}
           </div>
@@ -1425,6 +1843,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_induk(disabled=true) }}
             {{ measurement_units['heads'] }}
           </div>
@@ -1440,6 +1863,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_mik_total(disabled=true) }}
             {{ measurement_units['t/y'] }}
           </div>
@@ -1457,6 +1885,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.animal_milk_cow(disabled=true) }}
             {{ measurement_units['t/y'] }}
           </div>
@@ -1473,6 +1906,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_milkrate_cow(disabled=true) }}
                 {{ measurement_units['%'] }}
               </div>
@@ -1488,6 +1926,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_mil_kozel(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1503,6 +1946,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_milrate_kozel(disabled=true) }}
                 {{ measurement_units['%'] }}
               </div>
@@ -1518,6 +1966,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_milk_horse(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1533,6 +1986,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_milkrate_horse(disabled=true) }}
                 {{ measurement_units['%'] }}
               </div>
@@ -1548,6 +2006,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_milk_camel(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1563,6 +2026,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_milkrate_camel(disabled=true) }}
                 {{ measurement_units['%'] }}
               </div>
@@ -1578,6 +2046,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_meat_total(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1595,6 +2068,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_meat_cow(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1610,6 +2088,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_meat_sheep(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1625,6 +2108,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_meat_horse(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1640,6 +2128,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_meat_pig(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1655,6 +2148,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_meat_camel(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1670,6 +2168,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_meat_chicken(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1685,6 +2188,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_meat_duck(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1700,6 +2208,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_meat_gusi(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
@@ -1715,6 +2228,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_egg_total(disabled=true) }}
                 {{ measurement_units['t_p/y'] }}
               </div>
@@ -1732,6 +2250,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_egg_chicken(disabled=true) }}
                 {{ measurement_units['p/y'] }}
               </div>
@@ -1747,6 +2270,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_egg_gusi(disabled=true) }}
                 {{ measurement_units['p/y'] }}
               </div>
@@ -1762,6 +2290,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_egg_perepel(disabled=true) }}
                 {{ measurement_units['p/y'] }}
               </div>
@@ -1777,6 +2310,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_transformator(disabled=true) }}
                 {{ measurement_units['a'] }}
               </div>
@@ -1792,6 +2330,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.animal_transformator_isused(disabled=true) }}
                 {{ measurement_units['used'] }}
               </div>
@@ -1834,6 +2377,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_sto(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -1849,6 +2397,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_sto_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -1864,6 +2417,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_kindergarden(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -1879,6 +2437,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_kindergarden_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -1894,6 +2457,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_souvenier(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -1909,6 +2477,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_souvenier_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -1924,6 +2497,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_pc_service(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -1939,6 +2517,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_pc_service_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -1954,6 +2537,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_store(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -1969,6 +2557,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_store_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -1984,6 +2577,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_remont_bytovoi_tech(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -1999,6 +2597,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_remont_bytovoi_tech_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2014,6 +2617,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_metal(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2029,6 +2637,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_metal_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2044,6 +2657,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_accounting(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2059,6 +2677,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_accounting_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2074,6 +2697,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_photo(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2089,6 +2717,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_photo_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2104,6 +2737,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_turism(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2119,6 +2757,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_turism_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2134,6 +2777,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_rent(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2149,6 +2797,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_rent_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2164,6 +2817,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_cargo(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2179,6 +2837,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_cargo_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2194,6 +2857,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_massage(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2210,6 +2878,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_massage_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2225,6 +2898,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_foodcourt(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2240,6 +2918,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_foodcourt_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2255,6 +2938,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_cleaning(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2270,6 +2958,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_cleaning_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2285,6 +2978,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_beuty(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2300,6 +2998,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_beuty_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2315,6 +3018,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_carwash(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2330,6 +3038,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_carwash_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2345,6 +3058,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_atelie(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2360,6 +3078,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_atelie_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2375,6 +3098,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_others(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2390,6 +3118,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_others_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2406,6 +3139,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_stroika(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2421,6 +3159,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_stroika_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2437,6 +3180,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_mebel(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2452,6 +3200,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_mebel_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2467,6 +3220,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_stroi_material(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2482,6 +3240,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_stroi_material_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2497,6 +3260,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_svarka(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2512,6 +3280,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_svarka_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2527,6 +3300,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_woodworking(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2542,6 +3320,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_woodworking_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2557,6 +3340,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_others_uslugi(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2572,6 +3360,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.noncx_others_needs_uslugi(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2598,6 +3391,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_milk(disabled=true) }}
             {{ measurement_units['unit'] }}
           </div>
@@ -2613,6 +3411,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_milk_needs(disabled=true) }}
             {{ measurement_units['c'] }}
           </div>
@@ -2628,6 +3431,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_meat(disabled=true) }}
             {{ measurement_units['unit'] }}
           </div>
@@ -2643,6 +3451,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_meat_needs(disabled=true) }}
             {{ measurement_units['c'] }}
           </div>
@@ -2658,6 +3471,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_vegetables(disabled=true) }}
             {{ measurement_units['unit'] }}
           </div>
@@ -2673,6 +3491,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_vegetables_needs(disabled=true) }}
             {{ measurement_units['c'] }}
           </div>
@@ -2688,6 +3511,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_mayo(disabled=true) }}
             {{ measurement_units['unit'] }}
           </div>
@@ -2703,6 +3531,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_mayo_needs(disabled=true) }}
             {{ measurement_units['c'] }}
           </div>
@@ -2718,6 +3551,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_fish(disabled=true) }}
             {{ measurement_units['unit'] }}
           </div>
@@ -2733,6 +3571,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_fish_needs(disabled=true) }}
             {{ measurement_units['c'] }}
           </div>
@@ -2748,6 +3591,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_choco(disabled=true) }}
             {{ measurement_units['unit'] }}
           </div>
@@ -2763,6 +3611,11 @@
               {% endif %}
           </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.manufacture_choco_needs(disabled=true) }}
             {{ measurement_units['c'] }}
           </div>
@@ -2779,6 +3632,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_beer(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2794,6 +3652,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_beer_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2809,6 +3672,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_vodka(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2824,6 +3692,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_vodka_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2839,6 +3712,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_honey(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2854,6 +3732,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_honey_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2869,6 +3752,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_polufabricat(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2884,6 +3772,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_polufabricat_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2899,6 +3792,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_bread(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2914,6 +3812,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_bread_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2929,6 +3832,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_others(disabled=true) }}
                 {{ measurement_units['unit'] }}
               </div>
@@ -2944,6 +3852,11 @@
                   {% endif %}
               </div>
               <div class="input_with_measure">
+                {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
                 {{ form.manufacture_others_needs(disabled=true) }}
                 {{ measurement_units['c'] }}
               </div>
@@ -2968,6 +3881,11 @@
             {% endif %}
         </div>
           <div class="input_with_measure">
+            {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
             {{ form.credit_amount(disabled=true) }}
             {{ measurement_units['unit'] }}
           </div>
@@ -2982,6 +3900,11 @@
             {% endif %}
         </div>
       <div class="input_with_measure">
+        {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
         {{ form.credit_total(disabled=true) }}
         {{ measurement_units['tenge'] }}
       </div>
@@ -2996,6 +3919,11 @@
             {% endif %}
         </div>
        <div class="input_with_measure">
+        {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
         {{ form.credit_average_total(disabled=true) }}
         {{ measurement_units['tenge'] }}
        </div>
@@ -3010,6 +3938,11 @@
             {% endif %}
         </div>
       <div class="input_with_measure">
+        {% if formGO.xxxxxxxxxxxxxxxxx and (formGO.xxxxxxxxxxxxxxxxx * 1.2 < form.xxxxxxxxxxxxxxxxx.data or formGO.xxxxxxxxxxxxxxxxx * 0.8 > form.xxxxxxxxxxxxxxxxx.data) %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true, style = "border: 2px solid #C51E3A;") }}
+        {% else %}
+        {{ form.xxxxxxxxxxxxxxxxx(disabled=true) }}
+        {% endif %}
         {{ form.credit_zalog(disabled=true) }}
         {{ measurement_units['%'] }}
       </div>

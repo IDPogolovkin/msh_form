@@ -81,7 +81,7 @@
                     {{ factors_total }} - 
                     {% if factors_total <= 10 %}
                     Низкая
-                    {% elif factors_total < 15 and factors_total > 10 %}
+                    {% elif factors_total <= 15 and factors_total > 10 %}
                     Средняя
                     {% elif factors_total > 15 %}
                     Высокая
@@ -95,13 +95,53 @@
               {{ factors_total_go }} -
               {% if factors_total_go <= 10 %}
               Низкая
-              {% elif factors_total_go < 15 and factors_total_go > 10 %}
+              {% elif factors_total_go <= 15 and factors_total_go > 10 %}
               Средняя
               {% elif factors_total_go > 15 %}
               Высокая
               {% endif %}
             </div>
           </div>
+
+          {% else %}
+
+          <!-- TABLE start -->
+          <section class="attendance">
+            <div class="attendance-list">
+              <h1 style="text-align: center; font-size: 20px;">Оценка специализации в растениеводстве по сельским округам</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Сельский округ</th>
+                    <th>Значение специализации по данным анкет</th>
+                    <th>Значение специализации по данным БД ГО</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for table in spec_table %}
+                  <tr>
+                    <td>{{ table[0] }}</td>
+                    {% if table[1] <= 10 %}
+                    <td>{{ table[1] }} - Низкая</td>
+                    {% elif table[1] <= 15 and table[1] > 10 %}
+                    <td>{{ table[1] }} - Средняя</td>
+                    {% elif table[1] > 15 %}
+                    <td>{{ table[1] }} - Высокая</td>
+                    {% endif %}
+                    {% if table[2] <= 10 %}
+                    <td>{{ table[2] }} - Низкая</td>
+                    {% elif table[2] <= 15 and table[2] > 10 %}
+                    <td>{{ table[2] }} - Средняя</td>
+                    {% elif table[2] > 15 %}
+                    <td>{{ table[2] }} - Высокая</td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
 
           {% endif %}
         
