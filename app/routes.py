@@ -442,7 +442,7 @@ def edit_form():
     formgo = Form_G_O.query.filter_by(kato_6=current_user.kato_6).first()
 
     if request.method == 'GET':
-        return render_template('edit_form.html',str=str, form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formData=formdata)
+        return render_template('edit_form.html',str=str, float = float, form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formData=formdata)
     else:
 
         if form.validate_on_submit():
@@ -488,7 +488,7 @@ def edit_form():
         else:
             print(form.errors)
             flash("Данные не изменены! Некорректный формат.", 'danger')
-            return render_template('edit_form.html',formGO = formgo,measurement_units=measurement_units, form=form, user=current_user)
+            return render_template('edit_form.html', float = float, formGO = formgo,measurement_units=measurement_units, form=form, user=current_user)
 
 @app.route('/account/region', methods=['GET', 'POST'])
 @login_required

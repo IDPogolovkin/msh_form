@@ -67,7 +67,7 @@
           {% endif %}
       </div>
       <div class="input_with_measure">
-        {% if formGO.labour_constant_opulation and (formGO.labour_constant_population * 1.2 < form.labour_constant_population.data or formGO.labour_constant_population * 0.8 > form.labour_constant_population.data) %}
+        {% if formGO.labour_constant_population and (formGO.labour_constant_population * 1.2 < form.labour_constant_population.data or formGO.labour_constant_population * 0.8 > form.labour_constant_population.data) %}
         {{ form.labour_constant_population(disabled=true, style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.labour_constant_population(disabled=true) }}
@@ -149,7 +149,6 @@
         {% else %}
         {{ form.labour_private_ogorod(disabled=true) }}
         {% endif %}
-        {{ form.labour_private_ogorod(disabled=true) }}
         {{ measurement_units['human'] }}
       </div>
     </div>
@@ -627,7 +626,6 @@
                 {% else %}
                 {{ form.dx_sweet_peper(disabled=true) }}
                 {% endif %}
-                {{ form.dx_sweet_peper(disabled=true) }}
                 {{ measurement_units['t/y'] }}
               </div>
             </div>
@@ -1072,7 +1070,6 @@
                 {% else %}
                 {{ form.kx_zelej_reserve(disabled=true) }}
                 {% endif %}
-                {{ form.kx_zelej_reserve(disabled=true) }}
                 {{ measurement_units['gectar'] }}
               </div>
             </div>
