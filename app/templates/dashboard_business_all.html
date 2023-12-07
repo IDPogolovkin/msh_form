@@ -1,8 +1,6 @@
 {% extends "base.html" %} {% block title %}Аналитика{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='business_dashboard.css') }}" />
-<!-- jquery -->
-<script src="{{ url_for('static', filename='jquery.js') }}" charset="utf-8"></script>
 <!-- plotly -->
 <script src="{{ url_for('static', filename='plotly.js') }}" charset="utf-8"></script>
 <!-- ApexCharts -->
@@ -27,10 +25,12 @@
       
   </div>
 
+  <button id="load_btn" class="download-btn">Загрузить показатели аналитики</button>
+
 <div class="grid-container">
       <!-- Main -->
       
-      <main class="main-container">
+      <main class="main-container" id="main">
 
         <div class="main-cards">
 
@@ -164,10 +164,23 @@
           </section>
           <!-- TABLE end -->
 
+
+        </div>
       </main>
       <!-- End Main -->
 
     </div>
+
+<!-- jquery -->
+<script src="{{ url_for('static', filename='jquery.js') }}" charset="utf-8"></script>
+<script src="../static/printThis.js"></script>
+<script>
+$(document).ready(function(){
+    $("#load_btn").click(function(){
+        $("#main").printThis();
+    });
+});
+</script>
 
 <script>
       var options = {

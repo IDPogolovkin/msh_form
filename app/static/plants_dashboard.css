@@ -41,6 +41,20 @@ body {
   height: 100vh;
 }
 
+.download-btn{
+  display: flex;
+  font-size: medium;
+  cursor: pointer;
+  padding: 10px 8px;
+  border: none;
+  border-radius: 10px;
+  background-color: green;
+  color: #fff;
+  margin: 0 auto;
+  margin-top: 20px;
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
 .main-title {
   align-items: center;
   background-color: green;
