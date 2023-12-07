@@ -5,7 +5,7 @@ import csv
 
 app.app_context().push()
 
-csv_file_path = 'form_aul_amanat.csv'
+csv_file_path = 'spec_form.csv'
 counter = 0
 with open(csv_file_path, 'r', encoding='utf-8') as file:
     csv_reader = csv.reader(file)
@@ -217,7 +217,8 @@ with open(csv_file_path, 'r', encoding='utf-8') as file:
             credit_total = row[200],
             credit_average_total = row[201],
             credit_zalog = row[202],
-
+            specialization_rastenivodstvo_value = row[203],
+            specialization_animal_value = row[204],
         )
                 
         db.session.add(form)

@@ -57,12 +57,12 @@
           <div class="specialization-rast">
             <p class="scoring_spec">Расчет уровня специализации в животноводстве по данным анкет</p>
             <div class="spec_block_score">
-              {{ factors_total }} - 
-              {% if factors_total <= 10 %}
+              {{ formData.specialization_animal_value }} - 
+              {% if formData.specialization_animal_value <= 10 %}
               Низкая
-              {% elif factors_total <= 15 and factors_total > 10 %}
+              {% elif formData.specialization_animal_value <= 15 and formData.specialization_animal_value > 10 %}
               Средняя
-              {% elif factors_total > 15 %}
+              {% elif formData.specialization_animal_value > 15 %}
               Высокая
               {% endif %}
             </div>
@@ -71,12 +71,12 @@
       <div class="specialization-rast">
             <p>Расчет уровня специализации в животноводстве по данным БД ГО</p>
             <div class="spec_block_score_bdgo">
-              {{ factors_total_go }} -
-              {% if factors_total_go <= 10 %}
+              {{ formData_go.specialization_animal_value }} -
+              {% if formData_go.specialization_animal_value <= 10 %}
               Низкая
-              {% elif factors_total_go <= 15 and factors_total_go > 10 %}
+              {% elif formData_go.specialization_animal_value <= 15 and formData_go.specialization_animal_value > 10 %}
               Средняя
-              {% elif factors_total_go > 15 %}
+              {% elif formData_go.specialization_animal_value > 15 %}
               Высокая
               {% endif %}
             </div>

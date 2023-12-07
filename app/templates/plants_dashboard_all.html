@@ -78,12 +78,12 @@
         <div class="specialization-rast">
                   <p class="scoring_spec">Расчет уровня специализации в растениеводстве по данным анкет</p>
                   <div class="spec_block_score">
-                    {{ factors_total }} - 
-                    {% if factors_total <= 10 %}
+                    {{ formData.specialization_rastenivodstvo_value }} - 
+                    {% if formData.specialization_rastenivodstvo_value <= 10 %}
                     Низкая
-                    {% elif factors_total <= 15 and factors_total > 10 %}
+                    {% elif formData.specialization_rastenivodstvo_value <= 15 and formData.specialization_rastenivodstvo_value > 10 %}
                     Средняя
-                    {% elif factors_total > 15 %}
+                    {% elif formData.specialization_rastenivodstvo_value > 15 %}
                     Высокая
                     {% endif %}
                   </div>
@@ -92,12 +92,12 @@
          <div class="specialization-rast">
             <p>Расчет уровня специализации в растениеводстве по данным БД ГО</p>
             <div class="spec_block_score_bdgo">
-              {{ factors_total_go }} -
-              {% if factors_total_go <= 10 %}
+              {{ formdata_go.specialization_rastenivodstvo_value }} -
+              {% if formdata_go.specialization_rastenivodstvo_value <= 10 %}
               Низкая
-              {% elif factors_total_go <= 15 and factors_total_go > 10 %}
+              {% elif formdata_go.specialization_rastenivodstvo_value <= 15 and formdata_go.specialization_rastenivodstvo_value > 10 %}
               Средняя
-              {% elif factors_total_go > 15 %}
+              {% elif formdata_go.specialization_rastenivodstvo_value > 15 %}
               Высокая
               {% endif %}
             </div>

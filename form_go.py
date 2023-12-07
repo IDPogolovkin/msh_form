@@ -5,7 +5,7 @@ import csv
 
 app.app_context().push()
 
-csv_file_path = 'sdu_form3.csv'
+csv_file_path = 'spec_form_go.csv'
 counter = 0
 with open(csv_file_path, 'r', encoding='utf-8') as file:
     csv_reader = csv.reader(file)
@@ -13,7 +13,6 @@ with open(csv_file_path, 'r', encoding='utf-8') as file:
     next(csv_reader)
     
     for row in csv_reader:
-        
         form = Form_G_O(
             kato_2 = row[0],
             kato_2_name = row[1],
@@ -216,8 +215,15 @@ with open(csv_file_path, 'r', encoding='utf-8') as file:
             credit_total = row[198],
             credit_average_total = row[199],
             credit_zalog = row[200],
+            specialization_rastenivodstvo_value = row[201],
+            specialization_animal_value = row[202],
         )
         db.session.add(form)
         db.session.commit()
         counter += 1
         print(counter, '-', form)
+
+# forms = Form_G_O.query.all()
+# for form in forms:
+#     db.session.delete(form)
+#     db.session.commit()

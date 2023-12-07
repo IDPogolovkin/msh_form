@@ -19,779 +19,1167 @@
                 <h2>Форма за {{ formdata.form_year }} год</h2>
                 <h3>Последние изменения: {{ str(formdata.modified_date).split('.')[0] }}</h3>
                 <h4>1. Демография, занятость и уровень жизни населения</h4>
+                {% if formdata.labour_population %}
                 <div class="form-output">
                     <label class="label">{{ form.labour_population.label }}</label>
                     <p>{{ formdata.labour_population }} {{ measurement_units['human'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.labour_constant_population %}
                 <div class="form-output">
                     <label class="label">{{ form.labour_constant_population.label }}</label>
                     <p>{{ formdata.labour_constant_population }} {{ measurement_units['human'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.labour_labour %}
                 <div class="form-output">
                     <label class="label">{{ form.labour_labour.label }}</label>
                     <p>{{ formdata.labour_labour }} {{ measurement_units['human'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.labour_government_workers %}
                 <div class="form-output">
                     <label class="label">{{ form.labour_government_workers.label }}</label>
                     <p>{{ formdata.labour_government_workers }} {{ measurement_units['human'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.labour_private_labour %}
                 <div class="form-output">
                     <label class="label">{{ form.labour_private_labour.label }}</label>
                     <p>{{ formdata.labour_private_labour }} {{ measurement_units['human'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.labour_private_ogorod %}
                 <div class="form-output">
                     <label class="label">{{ form.labour_private_ogorod.label }}</label>
                     <p>{{ formdata.labour_private_ogorod }} {{ measurement_units['human'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.labour_total_econ_inactive_population %}
                 <div class="form-output">
                     <label class="label">{{ form.labour_total_econ_inactive_population.label }}</label>
                     <p>{{ formdata.labour_total_econ_inactive_population }} {{ measurement_units['human'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.labour_unemployed %}
                 <div class="form-output">
                     <label class="label">{{ form.labour_unemployed.label }}</label>
                     <p>{{ formdata.labour_unemployed }} {{ measurement_units['human'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.labour_household_size %}
                 <div class="form-output">
                     <label class="label">{{ form.labour_household_size.label }}</label>
                     <p>{{ formdata.labour_household_size }} {{ measurement_units['human'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.labour_average_income_family %}
                 <div class="form-output">
                     <label class="label">{{ form.labour_average_income_family.label }}</label>
                     <p>{{ formdata.labour_average_income_family }} {{ measurement_units['tg/m'] }}</p>
                 </div>
+                {% endif %}
                 <h4>2. Жилищные условия</h4>
+                {% if formdata.house_total_dvor %}
                 <div class="form-output">
                     <label class="label">{{ form.house_total_dvor.label }}</label>
                     <p>{{ formdata.house_total_dvor }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.house_zaselen_dvor %}
                 <div class="form-output">
                     <label class="label">{{ form.house_zaselen_dvor.label }}</label>
                     <p>{{ formdata.house_zaselen_dvor }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
                 <h4>3. Растениеводство</h4>
+                {% if formdata.dh_count %}
                 <div class="form-output">
                     <label class="label">{{ form.dh_count.label }}</label>
                     <p>{{ formdata.dh_count }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_number_ogorodov %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_number_ogorodov.label }}</label>
                     <p>{{ formdata.dx_number_ogorodov }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_cx_land %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_cx_land.label }}</label>
                     <p>{{ formdata.dx_cx_land }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_pashnya %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_pashnya.label }}</label>
                     <p>{{ formdata.dx_pashnya }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_mnogoletnie %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_mnogoletnie.label }}</label>
                     <p>{{ formdata.dx_mnogoletnie }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_zelej %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_zelej.label }}</label>
                     <p>{{ formdata.dx_zelej }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_pastbishe %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_pastbishe.label }}</label>
                     <p>{{ formdata.dx_pastbishe }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_senokosy %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_senokosy.label }}</label>
                     <p>{{ formdata.dx_senokosy }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_ogorody %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_ogorody.label }}</label>
                     <p>{{ formdata.dx_ogorody }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_sad %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_sad.label }}</label>
                     <p>{{ formdata.dx_sad }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_urojai %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_urojai.label }}</label>
                     <p>{{ formdata.dx_urojai }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_cucumber %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_cucumber.label }}</label>
                     <p>{{ formdata.dx_cucumber }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_tomato %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_tomato.label }}</label>
                     <p>{{ formdata.dx_tomato }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_potato %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_potato.label }}</label>
                     <p>{{ formdata.dx_potato }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_kapusta %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_kapusta.label }}</label>
                     <p>{{ formdata.dx_kapusta }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_carrot %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_carrot.label }}</label>
                     <p>{{ formdata.dx_carrot }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_svekla %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_svekla.label }}</label>
                     <p>{{ formdata.dx_svekla }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_sweet_peper %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_sweet_peper.label }}</label>
                     <p>{{ formdata.dx_sweet_peper }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_baklajan %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_baklajan.label }}</label>
                     <p>{{ formdata.dx_baklajan }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_kabachek %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_kabachek.label }}</label>
                     <p>{{ formdata.dx_kabachek }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_onion %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_onion.label }}</label>
                     <p>{{ formdata.dx_onion }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_chesnok %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_chesnok.label }}</label>
                     <p>{{ formdata.dx_chesnok }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_redis %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_redis.label }}</label>
                     <p>{{ formdata.dx_redis }} {{ measurement_units['t/y'] }}</p>
+                    {% if formdata.dx_korm %}
+                    {% endif %}
                 </div><div class="form-output">
                     <label class="label">{{ form.dx_korm.label }}</label>
                     <p>{{ formdata.dx_korm }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.dx_fruits %}
                 <div class="form-output">
                     <label class="label">{{ form.dx_fruits.label }}</label>
                     <p>{{ formdata.dx_fruits }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_amount %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_amount.label }}</label>
                     <p>{{ formdata.kx_amount }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kz_cx_land %}
                 <div class="form-output">
                     <label class="label">{{ form.kz_cx_land.label }}</label>
                     <p>{{ formdata.kz_cx_land }} {{ measurement_units['gectar'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_pansya %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_pansya.label }}</label>
                     <p>{{ formdata.kx_pansya }} {{ measurement_units['gectar'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_mnogoletnie %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_mnogoletnie.label }}</label>
                     <p>{{ formdata.kx_mnogoletnie }} {{ measurement_units['gectar'] }}</p>
+                    {% if formdata.kx_zelej %}
+                    {% endif %}
                 </div><div class="form-output">
                     <label class="label">{{ form.kx_zelej.label }}</label>
                     <p>{{ formdata.kx_zelej }} {{ measurement_units['gectar'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_pastbishe %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_pastbishe.label }}</label>
                     <p>{{ formdata.kx_pastbishe }} {{ measurement_units['gectar'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_senokosy %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_senokosy.label }}</label>
                     <p>{{ formdata.kx_senokosy }} {{ measurement_units['gectar'] }}</p>
+                    {% if formdata.kx_urojai %}
+                    {% endif %}
                 </div><div class="form-output">
                     <label class="label">{{ form.kx_urojai.label }}</label>
                     <p>{{ formdata.kx_urojai }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_zerno %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_zerno.label }}</label>
                     <p>{{ formdata.kx_zerno }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_rice %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_rice.label }}</label>
                     <p>{{ formdata.kx_rice }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_maslichnye %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_maslichnye.label }}</label>
                     <p>{{ formdata.kx_maslichnye }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_korm %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_korm.label }}</label>
                     <p>{{ formdata.kx_korm }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_mnogoletnie_derevo %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_mnogoletnie_derevo.label }}</label>
                     <p>{{ formdata.kx_mnogoletnie_derevo }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kz_cx_land_reserve %}
                 <div class="form-output">
                     <label class="label">{{ form.kz_cx_land_reserve.label }}</label>
                     <p>{{ formdata.kz_cx_land_reserve }} {{ measurement_units['gectar'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_pansya_reserve %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_pansya_reserve.label }}</label>
                     <p>{{ formdata.kx_pansya_reserve }} {{ measurement_units['gectar'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_mnogoletnie_reserve %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_mnogoletnie_reserve.label }}</label>
                     <p>{{ formdata.kx_mnogoletnie_reserve }} {{ measurement_units['gectar'] }}</p>
                 </div>
+                {% endif %}
 
+                {% if formdata.kx_zelej_reserve %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_zelej_reserve.label }}</label>
                     <p>{{ formdata.kx_zelej_reserve }} {{ measurement_units['gectar'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_pastbishe_reserve %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_pastbishe_reserve.label }}</label>
                     <p>{{ formdata.kx_pastbishe_reserve }} {{ measurement_units['gectar'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.kx_senokosy_reserve %}
                 <div class="form-output">
                     <label class="label">{{ form.kx_senokosy_reserve.label }}</label>
                     <p>{{ formdata.kx_senokosy_reserve }} {{ measurement_units['gectar'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_polivochnaya_sistema_ %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_polivochnaya_sistema_.label }}</label>
                     <p>{{ formdata.infrastructure_polivochnaya_sistema_ }} {{ measurement_units['a'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_polivochnaya_sistema_isused %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_polivochnaya_sistema_isused.label }}</label>
                     <p>{{ formdata.infrastructure_polivochnaya_sistema_isused }} {{ measurement_units['used'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_polivy %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_polivy.label }}</label>
                     <p>{{ formdata.infrastructure_polivy }} {{ measurement_units['%'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_mtm %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_mtm.label }}</label>
                     <p>{{ formdata.infrastructure_mtm }} {{ measurement_units['a'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_mtm_isused %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_mtm_isused.label }}</label>
                     <p>{{ formdata.infrastructure_mtm_isused }} {{ measurement_units['used'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_slad %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_slad.label }}</label>
                     <p>{{ formdata.infrastructure_slad }} {{ measurement_units['a'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_slad_isused %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_slad_isused.label }}</label>
                     <p>{{ formdata.infrastructure_slad_isused }} {{ measurement_units['used'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_garage %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_garage.label }}</label>
                     <p>{{ formdata.infrastructure_garage }} {{ measurement_units['a'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_garage_isused %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_garage_isused.label }}</label>
                     <p>{{ formdata.infrastructure_garage_isused }} {{ measurement_units['used'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_cycsterny %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_cycsterny.label }}</label>
                     <p>{{ formdata.infrastructure_cycsterny }} {{ measurement_units['a'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_cycsterny_isused %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_cycsterny_isused.label }}</label>
                     <p>{{ formdata.infrastructure_cycsterny_isused }} {{ measurement_units['used'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_transformator %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_transformator.label }}</label>
                     <p>{{ formdata.infrastructure_transformator }} {{ measurement_units['a'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.infrastructure_transformator_isused %}
                 <div class="form-output">
                     <label class="label">{{ form.infrastructure_transformator_isused.label }}</label>
                     <p>{{ formdata.infrastructure_transformator_isused }} {{ measurement_units['used'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.specialization_rastenivodstvo %}
                 <div class="form-output">
                     <label class="label">Специализация растениеводства</label>
                     <p>{{ formdata.specialization_rastenivodstvo }}</p>
                 </div>
+                {% endif %}
                 <h4>4. Животноводство</h4>
+                {% if formdata.animal_dvor %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_dvor.label }}</label>
                     <p>{{ formdata.animal_dvor }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_skot_bird %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_skot_bird.label }}</label>
                     <p>{{ formdata.animal_skot_bird }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_cx_land %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_cx_land.label }}</label>
                     <p>{{ formdata.animal_cx_land }} {{ measurement_units['square'] }}</p>
+                    {% if formdata.animal_pashnya %}
+                    {% endif %}
                 </div><div class="form-output">
                     <label class="label">{{ form.animal_pashnya.label }}</label>
                     <p>{{ formdata.animal_pashnya }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_mnogolet %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_mnogolet.label }}</label>
                     <p>{{ formdata.animal_mnogolet }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_zalej %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_zalej.label }}</label>
                     <p>{{ formdata.animal_zalej }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_pastbisha %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_pastbisha.label }}</label>
                     <p>{{ formdata.animal_pastbisha }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_senokos %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_senokos.label }}</label>
                     <p>{{ formdata.animal_senokos }} {{ measurement_units['square'] }}</p>
+                    {% if formdata.animal_ogorod %}
+                    {% endif %}
                 </div><div class="form-output">
                     <label class="label">{{ form.animal_ogorod.label }}</label>
                     <p>{{ formdata.animal_ogorod }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_sad %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_sad.label }}</label>
                     <p>{{ formdata.animal_sad }} {{ measurement_units['square'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_krs_milk %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_krs_milk.label }}</label>
                     <p>{{ formdata.animal_krs_milk }} {{ measurement_units['heads'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_krs_meat %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_krs_meat.label }}</label>
                     <p>{{ formdata.animal_krs_meat }} {{ measurement_units['heads'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_sheep %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_sheep.label }}</label>
                     <p>{{ formdata.animal_sheep }} {{ measurement_units['heads'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_kozel %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_kozel.label }}</label>
                     <p>{{ formdata.animal_kozel }} {{ measurement_units['heads'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_horse %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_horse.label }}</label>
                     <p>{{ formdata.animal_horse }} {{ measurement_units['heads'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_camel %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_camel.label }}</label>
                     <p>{{ formdata.animal_camel }} {{ measurement_units['heads'] }}</p>
+                    {% if formdata.animal_pig %}
+                    {% endif %}
                 </div><div class="form-output">
                     <label class="label">{{ form.animal_pig.label }}</label>
                     <p>{{ formdata.animal_pig }} {{ measurement_units['heads'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_chicken %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_chicken.label }}</label>
                     <p>{{ formdata.animal_chicken }} {{ measurement_units['heads'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_gusi %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_gusi.label }}</label>
                     <p>{{ formdata.animal_gusi }} {{ measurement_units['heads'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_duck %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_duck.label }}</label>
                     <p>{{ formdata.animal_duck }} {{ measurement_units['heads'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_induk %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_induk.label }}</label>
                     <p>{{ formdata.animal_induk }} {{ measurement_units['heads'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_mik_total %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_mik_total.label }}</label>
                     <p>{{ formdata.animal_mik_total }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_milk_cow %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_milk_cow.label }}</label>
                     <p>{{ formdata.animal_milk_cow }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_milkrate_cow %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_milkrate_cow.label }}</label>
                     <p>{{ formdata.animal_milkrate_cow }} {{ measurement_units['%'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_mil_kozel %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_mil_kozel.label }}</label>
                     <p>{{ formdata.animal_mil_kozel }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_milrate_kozel %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_milrate_kozel.label }}</label>
                     <p>{{ formdata.animal_milrate_kozel }} {{ measurement_units['%'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_milk_horse %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_milk_horse.label }}</label>
                     <p>{{ formdata.animal_milk_horse }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_milkrate_horse %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_milkrate_horse.label }}</label>
                     <p>{{ formdata.animal_milkrate_horse }} {{ measurement_units['%'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_milk_camel %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_milk_camel.label }}</label>
                     <p>{{ formdata.animal_milk_camel }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_milkrate_camel %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_milkrate_camel.label }}</label>
                     <p>{{ formdata.animal_milkrate_camel }} {{ measurement_units['%'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_meat_total %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_meat_total.label }}</label>
                     <p>{{ formdata.animal_meat_total }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_meat_cow %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_meat_cow.label }}</label>
                     <p>{{ formdata.animal_meat_cow }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_meat_sheep %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_meat_sheep.label }}</label>
                     <p>{{ formdata.animal_meat_sheep }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_meat_horse %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_meat_horse.label }}</label>
                     <p>{{ formdata.animal_meat_horse }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_meat_pig %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_meat_pig.label }}</label>
                     <p>{{ formdata.animal_meat_pig }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_meat_camel %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_meat_camel.label }}</label>
                     <p>{{ formdata.animal_meat_camel }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_meat_chicken %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_meat_chicken.label }}</label>
                     <p>{{ formdata.animal_meat_chicken }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_meat_duck %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_meat_duck.label }}</label>
                     <p>{{ formdata.animal_meat_duck }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_meat_gusi %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_meat_gusi.label }}</label>
                     <p>{{ formdata.animal_meat_gusi }} {{ measurement_units['t/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_egg_total %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_egg_total.label }}</label>
                     <p>{{ formdata.animal_egg_total }} {{ measurement_units['t_p/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_egg_chicken %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_egg_chicken.label }}</label>
                     <p>{{ formdata.animal_egg_chicken }} {{ measurement_units['p/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_egg_gusi %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_egg_gusi.label }}</label>
                     <p>{{ formdata.animal_egg_gusi }} {{ measurement_units['p/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_egg_perepel %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_egg_perepel.label }}</label>
                     <p>{{ formdata.animal_egg_perepel }} {{ measurement_units['p/y'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_transformator %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_transformator.label }}</label>
                     <p>{{ formdata.animal_transformator }} {{ measurement_units['a'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.animal_transformator_isused %}
                 <div class="form-output">
                     <label class="label">{{ form.animal_transformator_isused.label }}</label>
                     <p>{{ formdata.animal_transformator_isused }} {{ measurement_units['used'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.specialization_animal %}
                 <div class="form-output">
                     <label class="label">Специализация животноводства</label>
                     <p>{{ formdata.specialization_animal }}</p>
                 </div>
+                {% endif %}
                 <h4>5. Несельскохозяйственные виды бизнеса</h4>
+                {% if formdata.noncx_sto %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_sto.label }}</label>
                     <p>{{ formdata.noncx_sto }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_sto_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_sto_needs.label }}</label>
                     <p>{{ formdata.noncx_sto_needs }} {{ measurement_units['c'] }}</p>
+                    {% if formdata.noncx_kindergarden %}
+                    {% endif %}
                 </div><div class="form-output">
                     <label class="label">{{ form.noncx_kindergarden.label }}</label>
                     <p>{{ formdata.noncx_kindergarden }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_kindergarden_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_kindergarden_needs.label }}</label>
                     <p>{{ formdata.noncx_kindergarden_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_souvenier %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_souvenier.label }}</label>
                     <p>{{ formdata.noncx_souvenier }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_souvenier_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_souvenier_needs.label }}</label>
                     <p>{{ formdata.noncx_souvenier_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_pc_service %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_pc_service.label }}</label>
                     <p>{{ formdata.noncx_pc_service }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_pc_service_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_pc_service_needs.label }}</label>
                     <p>{{ formdata.noncx_pc_service_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_store %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_store.label }}</label>
                     <p>{{ formdata.noncx_store }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_store_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_store_needs.label }}</label>
                     <p>{{ formdata.noncx_store_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_remont_bytovoi_tech %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_remont_bytovoi_tech.label }}</label>
                     <p>{{ formdata.noncx_remont_bytovoi_tech }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_remont_bytovoi_tech_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_remont_bytovoi_tech_needs.label }}</label>
                     <p>{{ formdata.noncx_remont_bytovoi_tech_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_metal %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_metal.label }}</label>
                     <p>{{ formdata.noncx_metal }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_metal_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_metal_needs.label }}</label>
                     <p>{{ formdata.noncx_metal_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_accounting %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_accounting.label }}</label>
                     <p>{{ formdata.noncx_accounting }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_accounting_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_accounting_needs.label }}</label>
                     <p>{{ formdata.noncx_accounting_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_photo %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_photo.label }}</label>
                     <p>{{ formdata.noncx_photo }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_photo_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_photo_needs.label }}</label>
                     <p>{{ formdata.noncx_photo_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_turism %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_turism.label }}</label>
                     <p>{{ formdata.noncx_turism }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_turism_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_turism_needs.label }}</label>
                     <p>{{ formdata.noncx_turism_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_rent %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_rent.label }}</label>
                     <p>{{ formdata.noncx_rent }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_rent_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_rent_needs.label }}</label>
                     <p>{{ formdata.noncx_rent_needs }} {{ measurement_units['c'] }}</p>
+                    {% if formdata.noncx_cargo %}
+                    {% endif %}
                 </div><div class="form-output">
                     <label class="label">{{ form.noncx_cargo.label }}</label>
                     <p>{{ formdata.noncx_cargo }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_cargo_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_cargo_needs.label }}</label>
                     <p>{{ formdata.noncx_cargo_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_massage %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_massage.label }}</label>
                     <p>{{ formdata.noncx_massage }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_massage_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_massage_needs.label }}</label>
                     <p>{{ formdata.noncx_massage_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_foodcourt %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_foodcourt.label }}</label>
                     <p>{{ formdata.noncx_foodcourt }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_foodcourt_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_foodcourt_needs.label }}</label>
                     <p>{{ formdata.noncx_foodcourt_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_cleaning %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_cleaning.label }}</label>
                     <p>{{ formdata.noncx_cleaning }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_cleaning_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_cleaning_needs.label }}</label>
                     <p>{{ formdata.noncx_cleaning_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_beuty %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_beuty.label }}</label>
                     <p>{{ formdata.noncx_beuty }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_beuty_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_beuty_needs.label }}</label>
                     <p>{{ formdata.noncx_beuty_needs }} {{ measurement_units['c'] }}</p>
+                    {% if formdata.noncx_carwash %}
+                    {% endif %}
                 </div><div class="form-output">
                     <label class="label">{{ form.noncx_carwash.label }}</label>
                     <p>{{ formdata.noncx_carwash }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_carwash_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_carwash_needs.label }}</label>
                     <p>{{ formdata.noncx_carwash_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_atelie %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_atelie.label }}</label>
                     <p>{{ formdata.noncx_atelie }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_atelie_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_atelie_needs.label }}</label>
                     <p>{{ formdata.noncx_atelie_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_others %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_others.label }}</label>
                     <p>{{ formdata.noncx_others }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_others_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_others_needs.label }}</label>
                     <p>{{ formdata.noncx_others_needs }} {{ measurement_units['c'] }}</p>
+                    {% if formdata.noncx_stroika %}
+                    {% endif %}
                 </div><div class="form-output">
                     <label class="label">{{ form.noncx_stroika.label }}</label>
                     <p>{{ formdata.noncx_stroika }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_stroika_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_stroika_needs.label }}</label>
                     <p>{{ formdata.noncx_stroika_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_mebel %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_mebel.label }}</label>
                     <p>{{ formdata.noncx_mebel }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_mebel_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_mebel_needs.label }}</label>
                     <p>{{ formdata.noncx_mebel_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_stroi_material %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_stroi_material.label }}</label>
                     <p>{{ formdata.noncx_stroi_material }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_stroi_material_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_stroi_material_needs.label }}</label>
                     <p>{{ formdata.noncx_stroi_material_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_svarka %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_svarka.label }}</label>
                     <p>{{ formdata.noncx_svarka }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_svarka_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_svarka_needs.label }}</label>
                     <p>{{ formdata.noncx_svarka_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_woodworking %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_woodworking.label }}</label>
                     <p>{{ formdata.noncx_woodworking }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_woodworking_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_woodworking_needs.label }}</label>
                     <p>{{ formdata.noncx_woodworking_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_others_uslugi %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_others_uslugi.label }}</label>
                     <p>{{ formdata.noncx_others_uslugi }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.noncx_others_needs_uslugi %}
                 <div class="form-output">
                     <label class="label">{{ form.noncx_others_needs_uslugi.label }}</label>
                     <p>{{ formdata.noncx_others_needs_uslugi }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
                 <h4>6. Переработка сельхозпродукции и пищевая промышленность</h4>
+                {% if formdata.manufacture_milk %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_milk.label }}</label>
                     <p>{{ formdata.manufacture_milk }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_milk_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_milk_needs.label }}</label>
                     <p>{{ formdata.manufacture_milk_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_meat %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_meat.label }}</label>
                     <p>{{ formdata.manufacture_meat }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_meat_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_meat_needs.label }}</label>
                     <p>{{ formdata.manufacture_meat_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_vegetables %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_vegetables.label }}</label>
                     <p>{{ formdata.manufacture_vegetables }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_vegetables_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_vegetables_needs.label }}</label>
                     <p>{{ formdata.manufacture_vegetables_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_mayo %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_mayo.label }}</label>
                     <p>{{ formdata.manufacture_mayo }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_mayo_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_mayo_needs.label }}</label>
                     <p>{{ formdata.manufacture_mayo_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_fish %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_fish.label }}</label>
                     <p>{{ formdata.manufacture_fish }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_fish_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_fish_needs.label }}</label>
                     <p>{{ formdata.manufacture_fish_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_choco %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_choco.label }}</label>
                     <p>{{ formdata.manufacture_choco }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_choco_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_choco_needs.label }}</label>
                     <p>{{ formdata.manufacture_choco_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_beer %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_beer.label }}</label>
                     <p>{{ formdata.manufacture_beer }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_beer_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_beer_needs.label }}</label>
                     <p>{{ formdata.manufacture_beer_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_vodka %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_vodka.label }}</label>
                     <p>{{ formdata.manufacture_vodka }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_vodka_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_vodka_needs.label }}</label>
                     <p>{{ formdata.manufacture_vodka_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_honey %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_honey.label }}</label>
                     <p>{{ formdata.manufacture_honey }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_honey_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_honey_needs.label }}</label>
                     <p>{{ formdata.manufacture_honey_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_polufabricat %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_polufabricat.label }}</label>
                     <p>{{ formdata.manufacture_polufabricat }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_polufabricat_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_polufabricat_needs.label }}</label>
                     <p>{{ formdata.manufacture_polufabricat_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_bread %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_bread.label }}</label>
                     <p>{{ formdata.manufacture_bread }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_bread_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_bread_needs.label }}</label>
                     <p>{{ formdata.manufacture_bread_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_others %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_others.label }}</label>
                     <p>{{ formdata.manufacture_others }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.manufacture_others_needs %}
                 <div class="form-output">
                     <label class="label">{{ form.manufacture_others_needs.label }}</label>
                     <p>{{ formdata.manufacture_others_needs }} {{ measurement_units['c'] }}</p>
                 </div>
+                {% endif %}
                 <h4>7. Потребность в кредитах</h4>
+                {% if formdata.credit_amount %}
                 <div class="form-output">
                     <label class="label">{{ form.credit_amount.label }}</label>
                     <p>{{ formdata.credit_amount }} {{ measurement_units['unit'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.credit_total %}
                 <div class="form-output">
                     <label class="label">{{ form.credit_total.label }}</label>
                     <p>{{ formdata.credit_total }} {{ measurement_units['tenge'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.credit_average_total %}
                 <div class="form-output">
                     <label class="label">{{ form.credit_average_total.label }}</label>
                     <p>{{ formdata.credit_average_total }} {{ measurement_units['tenge'] }}</p>
                 </div>
+                {% endif %}
+                {% if formdata.credit_zalog %}
                 <div class="form-output">
                     <label class="label">{{ form.credit_zalog.label }}</label>
                     <p>{{ formdata.credit_zalog }} {{ measurement_units['%'] }}</p>
                 </div>
+                {% endif %}
             </div>
             {% endif %}
         </div>
