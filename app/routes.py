@@ -696,16 +696,16 @@ def dashboard_credits():
 def dashboard_plants_all():
     filterform = FilterForm()
     filterform.set_filter_choices(current_user.kato_4)
-    formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+    formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).order_by(Form.kato_6_name).all()
     inspector1 = inspect(Form)
     columns = inspector1.columns.keys()
-
+    formdata_list_go = Form_G_O.query.filter_by(kato_4 = current_user.kato_4).order_by(Form_G_O.kato_6_name).all()
     sum_formdata = Form(
         **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
             for column in columns}
     )   
     if request.method == 'GET':
-        return render_template('plants_dashboard_all.html',check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
+        return render_template('plants_dashboard_all.html',zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
     else:
         if filterform.validate_on_submit():
             check_filter_all = False
@@ -716,15 +716,16 @@ def dashboard_plants_all():
             formdata_list_go = Form_G_O.query.filter_by(kato_6 = formdata_list[0].kato_6).first()
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
-            return render_template('plants_dashboard_all.html',check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
-    return render_template('plants_dashboard_all.html',formdata_go=formdata_list_go, check_filter_all=check_filter_all, filterform=filterform,round=round, formData=formdata_list[0], user=current_user)
+            return render_template('plants_dashboard_all.html',zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
+    return render_template('plants_dashboard_all.html',zip = zip,form_go=formdata_list_go,formdata_go=formdata_list_go, check_filter_all=check_filter_all, filterform=filterform,round=round, formData=formdata_list[0], user=current_user)
 
 @app.route('/dashboard_animals_all', methods=['GET', 'POST'])
 @login_required
 def dashboard_animals_all():
     filterform = FilterForm()
     filterform.set_filter_choices(current_user.kato_4)
-    formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+    formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).order_by(Form.kato_6_name).all()
+    formdata_list_go = Form_G_O.query.filter_by(kato_4 = current_user.kato_4).order_by(Form_G_O.kato_6_name).all()
     inspector1 = inspect(Form)
     columns = inspector1.columns.keys()
 
@@ -734,7 +735,7 @@ def dashboard_animals_all():
     )
     if request.method == 'GET':
         
-        return render_template('animal_dashboard_all.html',check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
+        return render_template('animal_dashboard_all.html',zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
     else:
         if filterform.validate_on_submit():
             check_filter_all = False
@@ -746,9 +747,9 @@ def dashboard_animals_all():
             
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
-            return render_template('animal_dashboard_all.html',check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, form=formdata_list)
+            return render_template('animal_dashboard_all.html',zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
     
-    return render_template('animal_dashboard_all.html',formdata_go=formdata_list_go,check_filter_all=check_filter_all, filterform=filterform,round=round, formData=formdata_list[0], user=current_user)
+    return render_template('animal_dashboard_all.html',zip = zip,form_go=formdata_list_go,formdata_go=formdata_list_go,check_filter_all=check_filter_all, filterform=filterform,round=round, formData=formdata_list[0], user=current_user)
 
 
 @app.route('/dashboard_business_all', methods=['GET', 'POST'])

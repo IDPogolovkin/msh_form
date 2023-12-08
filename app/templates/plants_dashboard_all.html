@@ -118,22 +118,22 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for table in spec_table %}
+                  {% for form, form_go in zip(forms, form_go) %}
                   <tr>
-                    <td>{{ table[0] }}</td>
-                    {% if table[1] <= 10 %}
-                    <td>{{ table[1] }} - Низкая</td>
-                    {% elif table[1] <= 15 and table[1] > 10 %}
-                    <td>{{ table[1] }} - Средняя</td>
-                    {% elif table[1] > 15 %}
-                    <td>{{ table[1] }} - Высокая</td>
+                    <td>{{ form.kato_6_name }}</td>
+                    {% if form.specialization_rastenivodstvo_value <= 10 %}
+                    <td>{{ form.specialization_rastenivodstvo_value }} - Низкая</td>
+                    {% elif form.specialization_rastenivodstvo_value <= 15 and form.specialization_rastenivodstvo_value > 10 %}
+                    <td>{{ form.specialization_rastenivodstvo_value }} - Средняя</td>
+                    {% elif form.specialization_rastenivodstvo_value > 15 %}
+                    <td>{{ form.specialization_rastenivodstvo_value }} - Высокая</td>
                     {% endif %}
-                    {% if table[2] <= 10 %}
-                    <td>{{ table[2] }} - Низкая</td>
-                    {% elif table[2] <= 15 and table[2] > 10 %}
-                    <td>{{ table[2] }} - Средняя</td>
-                    {% elif table[2] > 15 %}
-                    <td>{{ table[2] }} - Высокая</td>
+                    {% if form_go.specialization_rastenivodstvo_value <= 10 %}
+                    <td>{{ form_go.specialization_rastenivodstvo_value }} - Низкая</td>
+                    {% elif form_go.specialization_rastenivodstvo_value <= 15 and form_go.specialization_rastenivodstvo_value > 10 %}
+                    <td>{{ form_go.specialization_rastenivodstvo_value }} - Средняя</td>
+                    {% elif form_go.specialization_rastenivodstvo_value > 15 %}
+                    <td>{{ form_go.specialization_rastenivodstvo_value }} - Высокая</td>
                     {% endif %}
                   </tr>
                   {% endfor %}

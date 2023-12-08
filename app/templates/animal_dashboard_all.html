@@ -98,22 +98,22 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for table in spec_table %}
+                  {% for form, form_go in zip(forms, form_go) %}
                   <tr>
-                    <td>{{ table[0] }}</td>
-                    {% if table[3] <= 10 %}
-                    <td>{{ table[3] }} - Низкая</td>
-                    {% elif table[3] <= 15 and table[3] > 10 %}
-                    <td>{{ table[3] }} - Средняя</td>
-                    {% elif table[3] > 15 %}
-                    <td>{{ table[3] }} - Высокая</td>
+                    <td>{{ form.kato_6_name }}</td>
+                    {% if form.specialization_animal_value <= 10 %}
+                    <td>{{ form.specialization_animal_value }} - Низкая</td>
+                    {% elif form.specialization_animal_value <= 15 and form.specialization_animal_value > 10 %}
+                    <td>{{ form.specialization_animal_value }} - Средняя</td>
+                    {% elif form.specialization_animal_value > 15 %}
+                    <td>{{ form.specialization_animal_value }} - Высокая</td>
                     {% endif %}
-                    {% if table[4] <= 10 %}
-                    <td>{{ table[4] }} - Низкая</td>
-                    {% elif table[4] <= 15 and table[4] > 10 %}
-                    <td>{{ table[4] }} - Средняя</td>
-                    {% elif table[4] > 15 %}
-                    <td>{{ table[4] }} - Высокая</td>
+                    {% if form_go.specialization_animal_value <= 10 %}
+                    <td>{{ form_go.specialization_animal_value }} - Низкая</td>
+                    {% elif form_go.specialization_animal_value <= 15 and form_go.specialization_animal_value > 10 %}
+                    <td>{{ form_go.specialization_animal_value }} - Средняя</td>
+                    {% elif form_go.specialization_animal_value > 15 %}
+                    <td>{{ form_go.specialization_animal_value }} - Высокая</td>
                     {% endif %}
                   </tr>
                   {% endfor %}
