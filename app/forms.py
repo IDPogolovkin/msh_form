@@ -13,14 +13,23 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Запомнить меня')
     submit = SubmitField('Войти')
 
+class FilterFormObl(FlaskForm):
+    kato_2 = SelectField(choices=[])
+     
+    def set_filter_choices_obl(self, kato_2):
+        choices = [(i.kato_4, i.kato_4_name) for i in Form.query.filter_by(kato_2=kato_2).order_by(Form.kato_4_name).all()]
+        choices = list(set(choices))
+        choices.insert(0, (kato_2, 'Все данные'))
+        self.kato_2.choices = choices
+    submit = SubmitField('Применить')
+
 class FilterForm(FlaskForm):
-    
     kato_4 = SelectField(choices=[])
     def set_filter_choices(self, kato_4):
         choices = [(i.kato_6, i.kato_6_name) for i in Form.query.filter_by(kato_4=kato_4).order_by(Form.kato_6_name).all()]
         choices.insert(0, (kato_4, 'Все данные'))
         self.kato_4.choices = choices
-
+    
     submit = SubmitField('Применить')
 
 class FilterHistory(FlaskForm):

@@ -12,13 +12,13 @@
     <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Переработка</p>
       <div class="nav_dash_links">
           <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_all') }}">Бизнес</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
-        <form method="POST" class="filter_form">
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_obl') }}">Растениеводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_obl') }}">Животноводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_obl') }}">Бизнес</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_obl') }}">Кредиты</a>
+        <form method="POST" style="gap: 5px;" class="filter_form">
           {{ filterform.hidden_tag() }}
-          {{ filterform.kato_4 }}
+          {{ filterform.kato_2 }}
           {{ filterform.submit }}
         </form>
       </div>

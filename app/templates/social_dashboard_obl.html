@@ -12,15 +12,16 @@
   <div class="main-title">
         <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Социально-экономическое состояние</p>
         <div class="nav_dash_links">
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_all') }}">Бизнес</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
-          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_obl') }}">Растениеводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_obl') }}">Животноводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_obl') }}">Бизнес</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_obl') }}">Переработка</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_obl') }}">Кредиты</a>
+          
           <form method="POST" class="filter_form">
-              {{ filterform.hidden_tag() }}
-              {{ filterform.kato_4 }}
-              {{ filterform.submit }}
+            {{ filterform.hidden_tag() }}
+            {{ filterform.kato_2 }}
+            {{ filterform.submit }}
           </form>
         </div>
 

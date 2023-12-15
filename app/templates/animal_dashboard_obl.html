@@ -12,13 +12,13 @@
     <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Животноводство</p>
       <div class="nav_dash_links">
         <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
-        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
-        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_all') }}">Бизнес</a>
-        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
-        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_obl') }}">Растениеводство</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_obl') }}">Бизнес</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_obl') }}">Переработка</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_obl') }}">Кредиты</a> 
         <form method="POST" class="filter_form">
           {{ filterform.hidden_tag() }}
-          {{ filterform.kato_4 }}  
+          {{ filterform.kato_2 }}  
           {{ filterform.submit }}  
         </form>
       </div>
@@ -47,44 +47,8 @@
           </div>
 
         </div>
-        {% if not check_filter_all %}
-
-          <div class="specialization-rast">
-              <p>Специализация в животноводстве по значениям анкетных данных</p>
-              <div class="spec_block">
-                {{formData.specialization_animal}}
-              </div>
-          </div>
-
-     <div class="specialization-rast">
-            <p class="scoring_spec">Расчет уровня специализации в животноводстве по данным анкет</p>
-            <div class="spec_block_score">
-              {{ formData.specialization_animal_value }} -
-              {% if formData.specialization_animal_value <= 10 %}
-              Низкая
-              {% elif formData.specialization_animal_value <= 15 and formData.specialization_animal_value > 10 %}
-              Средняя
-              {% elif formData.specialization_animal_value > 15 %}
-              Высокая
-              {% endif %}
-            </div>
-          </div>
-
-        <div class="specialization-rast">
-            <p>Расчет уровня специализации в животноводстве по данным БД ГО</p>
-            <div class="spec_block_score_bdgo">
-              {{ formdata_go.specialization_animal_value }} -
-              {% if formdata_go.specialization_animal_value <= 10 %}
-              Низкая
-              {% elif formdata_go.specialization_animal_value <= 15 and formdata_go.specialization_animal_value > 10 %}
-              Средняя
-              {% elif formdata_go.specialization_animal_value > 15 %}
-              Высокая
-              {% endif %}
-            </div>
-          </div>
-
-          {% else %}
+          {% if check_filter_obl: %}
+        
           <!-- TABLE start -->
           <section class="attendance_spec">
             <div class="attendance-list-spec">

@@ -27,6 +27,7 @@ class User(db.Model, UserMixin):
    kato_6_name = db.Column(db.String(1024))
    password = db.Column(db.String(250))
    is_district = db.Column(db.Boolean)
+   is_obl = db.Column(db.Boolean)
    def __repr__(self):
       return f"KATO_2('{self.kato_2}'), KATO_4('{self.kato_4}'),  KATO_6('{self.kato_6}')"
 

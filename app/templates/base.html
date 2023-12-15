@@ -13,7 +13,12 @@
     <div class="logo_block">
       {# <img src="../static/img/msx.png" class="logo" alt="МСХ" />#}
     {% if user.is_authenticated %}
-        {% if user.is_district %}
+        {% if user.is_obl %}
+        <div>
+          <p class="logo_text">Цифровое Рабочее место Акима района</p>
+         <p class="logo_text_under">{{ user.kato_2_name }}</p>
+        </div>
+        {% elif user.is_district %}
             <div>
                 <p class="logo_text">Цифровое Рабочее место Акима района</p>
                <p class="logo_text_under">{{ user.kato_4_name }}</p>
@@ -32,8 +37,10 @@
       {% if user.is_district %}
       <a class="nav_link" id="portfolio" href="{{ url_for('region_akim') }}">Анкеты</a>
       {% else %}
+      {% if not user.is_obl %}
       <a class="nav_link" id="portfolio" href="{{ url_for('account') }}">История</a>
       <a class="nav_link" id="portfolio" href="{{ url_for('edit_form') }}">Ввести данные</a>
+      {% endif %}
       {% endif %}
 {#      <a class="nav_link" id="portfolio" href="{{ url_for('add_creditors') }}">Добавить заемщиков</a>#}
 {#      <a class="nav_link" id="portfolio" href="{{ url_for('all_creditors') }}">Заемщики</a>#}

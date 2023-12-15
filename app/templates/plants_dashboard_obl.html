@@ -15,14 +15,14 @@
       <div class="nav_dash_links">
 
         <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
-        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
-        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_all') }}">Бизнес</a>
-        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
-        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_obl') }}">Животноводство</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_obl') }}">Бизнес</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_obl') }}">Переработка</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_obl') }}">Кредиты</a> 
         <form method="POST" class="filter_form">
           {{ filterform.hidden_tag() }}
           
-          {{ filterform.kato_4 }}  
+          {{ filterform.kato_2 }}  
           {{ filterform.submit }}  
         </form>
       </div>
@@ -68,44 +68,10 @@
           </div>
 
         </div>
-        {% if not check_filter_all %}
-          <div class="specialization-rast">
-                  <p>Специализация в растениеводстве по значениям анкетных данных</p>
-                  <div class="spec_block">
-                    {{formData.specialization_rastenivodstvo}}
-                  </div>
-          </div>
-        <div class="specialization-rast">
-                  <p class="scoring_spec">Расчет уровня специализации в растениеводстве по данным анкет</p>
-                  <div class="spec_block_score">
-                    {{ formData.specialization_rastenivodstvo_value }} - 
-                    {% if formData.specialization_rastenivodstvo_value <= 10 %}
-                    Низкая
-                    {% elif formData.specialization_rastenivodstvo_value <= 15 and formData.specialization_rastenivodstvo_value > 10 %}
-                    Средняя
-                    {% elif formData.specialization_rastenivodstvo_value > 15 %}
-                    Высокая
-                    {% endif %}
-                  </div>
-          </div>
-
-         <div class="specialization-rast">
-            <p>Расчет уровня специализации в растениеводстве по данным БД ГО</p>
-            <div class="spec_block_score_bdgo">
-              {{ formdata_go.specialization_rastenivodstvo_value }} -
-              {% if formdata_go.specialization_rastenivodstvo_value <= 10 %}
-              Низкая
-              {% elif formdata_go.specialization_rastenivodstvo_value <= 15 and formdata_go.specialization_rastenivodstvo_value > 10 %}
-              Средняя
-              {% elif formdata_go.specialization_rastenivodstvo_value > 15 %}
-              Высокая
-              {% endif %}
-            </div>
-          </div>
-
-          {% else %}
+        
 
           <!-- TABLE start -->
+          {% if check_filter_obl: %}
           <section class="attendance_spec">
             <div class="attendance-list-spec">
               <h1 style="text-align: center; font-size: 20px;">Оценка специализации в растениеводстве по сельским округам</h1>
@@ -142,7 +108,6 @@
             </div>
           </section>
           <!-- TABLE end -->
-
           {% endif %}
         
         <div class="charts">

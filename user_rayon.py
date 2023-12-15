@@ -21,6 +21,7 @@ with open(csv_file_path, 'r', encoding='utf-8') as file:
             kato_4=row[2],
             kato_4_name=row[3],
             is_district = True, #change
+            is_obl = False,
             password=hashed_password
         )
                 
