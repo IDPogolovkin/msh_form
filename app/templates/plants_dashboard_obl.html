@@ -1,0 +1,465 @@
+{% extends "base.html" %} {% block title %}Аналитика{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='plants_dashboard.css') }}" />
+<!-- plotly -->
+<script src="{{ url_for('static', filename='plotly.js') }}" charset="utf-8"></script>
+<!-- ApexCharts -->
+<script src="{{ url_for('static', filename='apexcharts.js') }}"></script>
+<title>Dashboard plants</title>
+
+<body>
+
+  <div class="main-title">
+    <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Наличие земельных угодий и посевных площадей в домашних хозяйствах</p>
+
+      <div class="nav_dash_links">
+
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_all') }}">Бизнес</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
+        <form method="POST" class="filter_form">
+          {{ filterform.hidden_tag() }}
+          
+          {{ filterform.kato_4 }}  
+          {{ filterform.submit }}  
+        </form>
+      </div>
+      
+      
+  </div>
+
+<button id="load_btn" class="download-btn">Загрузить показатели аналитики</button>
+
+<div class="grid-container">
+      <!-- Main -->
+      
+      <main class="main-container" id="main">
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Количество ДМХ</p>
+            </div>
+            <span class="text-primary font-weight-bold">{{ formData.dh_count }}</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Количество ДМХ с посевными площадями</p>
+            </div>
+            <span class="text-primary font-weight-bold">{{ formData.dx_number_ogorodov }}</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Земли в частной собственности, кв.м.</p>
+            </div>
+            <span class="text-primary font-weight-bold">{{ formData.dx_cx_land }}</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Посевные площади СХ культур, кв.м.</p>
+            </div>
+            <span class="text-primary font-weight-bold">{{ formData.dx_cx_land }}</span>
+          </div>
+
+        </div>
+        {% if not check_filter_all %}
+          <div class="specialization-rast">
+                  <p>Специализация в растениеводстве по значениям анкетных данных</p>
+                  <div class="spec_block">
+                    {{formData.specialization_rastenivodstvo}}
+                  </div>
+          </div>
+        <div class="specialization-rast">
+                  <p class="scoring_spec">Расчет уровня специализации в растениеводстве по данным анкет</p>
+                  <div class="spec_block_score">
+                    {{ formData.specialization_rastenivodstvo_value }} - 
+                    {% if formData.specialization_rastenivodstvo_value <= 10 %}
+                    Низкая
+                    {% elif formData.specialization_rastenivodstvo_value <= 15 and formData.specialization_rastenivodstvo_value > 10 %}
+                    Средняя
+                    {% elif formData.specialization_rastenivodstvo_value > 15 %}
+                    Высокая
+                    {% endif %}
+                  </div>
+          </div>
+
+         <div class="specialization-rast">
+            <p>Расчет уровня специализации в растениеводстве по данным БД ГО</p>
+            <div class="spec_block_score_bdgo">
+              {{ formdata_go.specialization_rastenivodstvo_value }} -
+              {% if formdata_go.specialization_rastenivodstvo_value <= 10 %}
+              Низкая
+              {% elif formdata_go.specialization_rastenivodstvo_value <= 15 and formdata_go.specialization_rastenivodstvo_value > 10 %}
+              Средняя
+              {% elif formdata_go.specialization_rastenivodstvo_value > 15 %}
+              Высокая
+              {% endif %}
+            </div>
+          </div>
+
+          {% else %}
+
+          <!-- TABLE start -->
+          <section class="attendance_spec">
+            <div class="attendance-list-spec">
+              <h1 style="text-align: center; font-size: 20px;">Оценка специализации в растениеводстве по сельским округам</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Сельский округ</th>
+                    <th>Значение специализации по данным анкет</th>
+                    <th>Значение специализации по данным БД ГО</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for form, form_go in zip(forms, form_go) %}
+                  <tr>
+                    <td>{{ form.kato_6_name }}</td>
+                    {% if form.specialization_rastenivodstvo_value <= 10 %}
+                    <td>{{ form.specialization_rastenivodstvo_value }} - Низкая</td>
+                    {% elif form.specialization_rastenivodstvo_value <= 15 and form.specialization_rastenivodstvo_value > 10 %}
+                    <td>{{ form.specialization_rastenivodstvo_value }} - Средняя</td>
+                    {% elif form.specialization_rastenivodstvo_value > 15 %}
+                    <td>{{ form.specialization_rastenivodstvo_value }} - Высокая</td>
+                    {% endif %}
+                    {% if form_go.specialization_rastenivodstvo_value <= 10 %}
+                    <td>{{ form_go.specialization_rastenivodstvo_value }} - Низкая</td>
+                    {% elif form_go.specialization_rastenivodstvo_value <= 15 and form_go.specialization_rastenivodstvo_value > 10 %}
+                    <td>{{ form_go.specialization_rastenivodstvo_value }} - Средняя</td>
+                    {% elif form_go.specialization_rastenivodstvo_value > 15 %}
+                    <td>{{ form_go.specialization_rastenivodstvo_value }} - Высокая</td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
+
+          {% endif %}
+        
+        <div class="charts">
+  
+        <!-- TABLE start -->
+          <section class="attendance">
+            <div class="attendance-list">
+              <h1>Участки под сельскохозяйственными угодьями</h1>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td style="font-weight: 800; color: white; padding: 20px 20px; background-color: #34AF6D">Наименование</td>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D">кв.метров</td>
+                  </tr>
+                  <tr>
+                    <td>Всего</td>
+                    <td>{{ formData.dx_cx_land }}</td>
+                  </tr>
+                  <tr>
+                    <td>Пашня</td>
+                    <td>{{ formData.dx_pashnya }}</td>
+                  </tr>
+                  <tr>
+                    <td>Многолетние насаждения</td>
+                    <td>{{ formData.dx_mnogoletnie }}</td>
+                  </tr>
+                 <tr>
+                    <td>Залежь</td>
+                    <td>{{ formData.dx_zelej }}</td>
+                  </tr>
+                <tr>
+                    <td>Пастбища</td>
+                    <td>{{ formData.dx_pastbishe }}</td>
+                  </tr>
+                <tr>
+                    <td>Сенокосы</td>
+                    <td>{{ formData.dx_senokosy }}</td>
+                  </tr>
+                 <tr>
+                    <td>Сенокосы</td>
+                    <td>{{ formData.dx_senokosy }}</td>
+                  </tr>
+                 <tr>
+                    <td>Сенокосы</td>
+                    <td>{{ formData.dx_senokosy }}</td>
+                  </tr>
+                  <tr>
+                    <td>Огороды</td>
+                    <td>{{ formData.dx_ogorody }}</td>
+                  </tr>
+                  <tr>
+                    <td>Сады</td>
+                    <td>{{ formData.dx_sad }}</td>
+                  </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                 <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                 <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                 <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                 <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                 <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
+
+           <!-- apexcharts bar chart -->
+           <div class="charts-card">
+            <p class="chart-title">Объем урожая сельскохозяйственных культур</p>
+            <div id="bar-chart"></div>
+          </div>
+
+
+            <!-- TABLE start -->
+          <section class="attendance">
+            <div class="attendance-list">
+{#              <h1>Объем урожая сельскохозяйственных культур</h1>#}
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Объем урожая сельскохозяйственных культур</th>
+                    <th>тонн в год</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Всего</td>
+                    <td>{{ formData.dx_urojai }}</td>
+                  </tr>
+                  <tr>
+                    <td>Огурцы</td>
+                    <td>{{ formData.dx_cucumber }}</td>
+                  </tr>
+                  <tr>
+                    <td>Помидоры</td>
+                    <td>{{ formData.dx_tomato }}</td>
+                  </tr>
+                  <tr>
+                    <td>Картофель</td>
+                    <td>{{ formData.dx_potato }}</td>
+                  </tr>
+                <tr>
+                    <td>Капуста</td>
+                    <td>{{ formData.dx_kapusta }}</td>
+                  </tr>
+                <tr>
+                    <td>Морковь</td>
+                    <td>{{ formData.dx_carrot }}</td>
+                  </tr>
+                <tr>
+                    <td>Свекла</td>
+                    <td>{{ formData.dx_svekla }}</td>
+                  </tr>
+                <tr>
+                    <td>Сладкий перец</td>
+                    <td>{{ formData.dx_sweet_peper }}</td>
+                  </tr>
+                <tr>
+                    <td>Баклажаны</td>
+                    <td>{{ formData.dx_baklajan }}</td>
+                  </tr>
+                <tr>
+                    <td>Кабачки</td>
+                    <td>{{ formData.dx_kabachek }}</td>
+                  </tr>
+                <tr>
+                    <td>Лук</td>
+                    <td>{{ formData.dx_onion }}</td>
+                  </tr>
+                 <tr>
+                    <td>Чеснок</td>
+                    <td>{{ formData.dx_chesnok }}</td>
+                  </tr>
+                 <tr>
+                    <td>Редис</td>
+                    <td>{{ formData.dx_redis }}</td>
+                  </tr>
+                 <tr>
+                    <td>Кормовые культуры</td>
+                    <td>{{ formData.dx_korm }}</td>
+                  </tr>
+                 <tr>
+                    <td>Культуры многолетние (плодовые, ягодные насаждения)</td>
+                    <td>{{ formData.dx_fruits }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
+
+            <!-- apexcharts bar chart -->
+            <div class="charts-card-bar">
+              <p class="chart-title">Сельскохозяйственные угодья домашних хозяйств</p>
+              <div id="bar-chart1"></div>
+            </div>
+        </div>
+      </main>
+      <!-- End Main -->
+
+    </div>
+
+    <!-- Custom JS -->
+    <!-- jquery -->
+    <script src="{{ url_for('static', filename='jquery.js') }}" charset="utf-8"></script>
+    <script src="../static/printThis.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#load_btn").click(function(){
+            $("#main").printThis();
+        });
+    });
+    </script>
+    <!-- Custom bar chart jquery script -->
+    <script type="text/javascript">
+      $(function(){
+        $('.bars li .bar').each(function(key, bar){
+          var percentage = $(this).data('percentage');
+          $(this).animate({
+            'height' : percentage + '%'
+          },1000);
+        });
+      });
+      </script>
+
+      <script>
+        var ultimateColors = [
+        ['#90ee90', '#2e8b57'],
+      ];
+
+        var data = [{
+          values: [{{ formData.labour_unemployed + formData.labour_total_econ_inactive_population }}, {{ formData.labour_government_workers + formData.labour_private_labour + formData.labour_private_ogorod }}],
+          labels: ['Безработные', 'Занятое население'],
+          type: 'pie',
+          marker: {
+    colors: ultimateColors[0]
+  },
+        }];
+
+        var layout = {
+          title: 'Категории населения',
+          height: 485,
+          width: 478
+        };
+
+        Plotly.newPlot('pie-chart', data, layout);
+      </script>
+
+    <script>
+        // BAR CHART
+        const barChartOptions = {
+          series: [
+            {
+              name: 'тонн в год',
+              data: [{{ formData.dx_cucumber }}, {{ formData.dx_tomato }}, {{ formData.dx_potato }}, {{ formData.dx_kapusta }}, {{ formData.dx_carrot }}, {{ formData.dx_svekla }}, {{ formData.dx_sweet_peper }}, {{ formData.dx_baklajan }}, {{ formData.dx_kabachek }}, {{ formData.dx_onion }}, {{ formData.dx_chesnok }}, {{ formData.dx_redis }}, {{ formData.dx_korm }}, {{ formData.dx_fruits }}],
+            },
+          ],
+          chart: {
+            type: 'bar',
+            height: 660,
+            toolbar: {
+              show: false,
+            },
+          },
+          colors: ['#90ee90', '#cc3c43', '#9d5612', '#367952', '#f5b74f', 'rgba(40,8,246,0.79)', '#cc3c43', '#4f35a1'],
+          plotOptions: {
+            bar: {
+              distributed: true,
+              borderRadius: 4,
+              horizontal: true,
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          legend: {
+            show: false,
+          },
+          xaxis: {
+            title: {
+              text: 'тонн в год',
+            },
+            categories:['Огурцы', 'Помидоры', 'Картофель', 'Капуста', 'Морковь', 'Свекла', 'Сладкий перец', 'Баклажаны', 'Кабачки', 'Лук', 'Чеснок', 'Редис', 'Кормовые культуры', 'Культуры многолетние (плодовые, ягодные насаждения)'],
+          },
+        };
+
+        const barChart = new ApexCharts(
+          document.querySelector('#bar-chart'),
+          barChartOptions
+        );
+        barChart.render();
+    </script>
+ <script>
+        // BAR CHART1
+        const barChartOptions1 = {
+          series: [
+            {
+              name: "кв. метров",
+              data: [{{ formData.dx_pashnya }}, {{ formData.dx_mnogoletnie }}, {{ formData.dx_zelej }}, {{ formData.dx_pastbishe }}, {{ formData.dx_senokosy }}, {{ formData.dx_ogorody }}, {{ formData.dx_sad }}],
+            },
+          ],
+          chart: {
+            type: 'bar',
+              width: 645,
+            height: 400,
+            toolbar: {
+              show: false,
+            },
+          },
+          colors: ['#246dec', '#cc3c43', '#367952', '#e78719', '#4f35a1', '#f5b74f', '#90ee90'],
+          plotOptions: {
+            bar: {
+              distributed: true,
+              borderRadius: 4,
+              horizontal: false,
+              columnWidth: '55%',
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          legend: {
+            show: false,
+          },
+          xaxis: {
+            categories: ['Пашня', 'Многолетние насаждения', 'Залежь', 'Пастбища', 'Сенокосы', 'Огороды', 'Сады'],
+          },
+          yaxis: {
+            title: {
+              text: 'Количество кв. метров',
+            },
+          },
+        };
+
+        const barChart1 = new ApexCharts(
+          document.querySelector('#bar-chart1'),
+          barChartOptions1
+        );
+        barChart1.render();
+    </script>
+</body>
+{% endblock %}

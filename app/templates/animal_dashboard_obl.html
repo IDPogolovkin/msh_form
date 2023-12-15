@@ -1,0 +1,392 @@
+{% extends "base.html" %} {% block title %}Аналитика{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='animal_dashboard.css') }}" />
+<!-- plotly -->
+<script src="{{ url_for('static', filename='plotly.js') }}" charset="utf-8"></script>
+<!-- ApexCharts -->
+<script src="{{ url_for('static', filename='apexcharts.js') }}"></script>
+<title>Dashboard animal</title>
+
+<body>
+  <div class="main-title">
+    <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Животноводство</p>
+      <div class="nav_dash_links">
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_all') }}">Бизнес</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
+        <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
+        <form method="POST" class="filter_form">
+          {{ filterform.hidden_tag() }}
+          {{ filterform.kato_4 }}  
+          {{ filterform.submit }}  
+        </form>
+      </div>
+      
+  </div>
+
+<button id="load_btn" class="download-btn">Загрузить показатели аналитики</button>
+
+<div class="grid-container">
+      <!-- Main -->
+      <main class="main-container" id="main">
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Общее количество дворов</p>
+            </div>
+            <span class="text-primary font-weight-bold">{{ formData.animal_dvor }}</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Количество дворов, имеющие скот и птицу</p>
+            </div>
+            <span class="text-primary font-weight-bold">{{ formData.animal_skot_bird }}</span>
+          </div>
+
+        </div>
+        {% if not check_filter_all %}
+
+          <div class="specialization-rast">
+              <p>Специализация в животноводстве по значениям анкетных данных</p>
+              <div class="spec_block">
+                {{formData.specialization_animal}}
+              </div>
+          </div>
+
+     <div class="specialization-rast">
+            <p class="scoring_spec">Расчет уровня специализации в животноводстве по данным анкет</p>
+            <div class="spec_block_score">
+              {{ formData.specialization_animal_value }} -
+              {% if formData.specialization_animal_value <= 10 %}
+              Низкая
+              {% elif formData.specialization_animal_value <= 15 and formData.specialization_animal_value > 10 %}
+              Средняя
+              {% elif formData.specialization_animal_value > 15 %}
+              Высокая
+              {% endif %}
+            </div>
+          </div>
+
+        <div class="specialization-rast">
+            <p>Расчет уровня специализации в животноводстве по данным БД ГО</p>
+            <div class="spec_block_score_bdgo">
+              {{ formdata_go.specialization_animal_value }} -
+              {% if formdata_go.specialization_animal_value <= 10 %}
+              Низкая
+              {% elif formdata_go.specialization_animal_value <= 15 and formdata_go.specialization_animal_value > 10 %}
+              Средняя
+              {% elif formdata_go.specialization_animal_value > 15 %}
+              Высокая
+              {% endif %}
+            </div>
+          </div>
+
+          {% else %}
+          <!-- TABLE start -->
+          <section class="attendance_spec">
+            <div class="attendance-list-spec">
+              <h1 style="text-align: center; font-size: 20px;">Оценка специализации в животноводстве по сельским округам</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Сельский округ</th>
+                    <th>Значение специализации по данным анкет</th>
+                    <th>Значение специализации по данным БД ГО</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for form, form_go in zip(forms, form_go) %}
+                  <tr>
+                    <td>{{ form.kato_6_name }}</td>
+                    {% if form.specialization_animal_value <= 10 %}
+                    <td>{{ form.specialization_animal_value }} - Низкая</td>
+                    {% elif form.specialization_animal_value <= 15 and form.specialization_animal_value > 10 %}
+                    <td>{{ form.specialization_animal_value }} - Средняя</td>
+                    {% elif form.specialization_animal_value > 15 %}
+                    <td>{{ form.specialization_animal_value }} - Высокая</td>
+                    {% endif %}
+                    {% if form_go.specialization_animal_value <= 10 %}
+                    <td>{{ form_go.specialization_animal_value }} - Низкая</td>
+                    {% elif form_go.specialization_animal_value <= 15 and form_go.specialization_animal_value > 10 %}
+                    <td>{{ form_go.specialization_animal_value }} - Средняя</td>
+                    {% elif form_go.specialization_animal_value > 15 %}
+                    <td>{{ form_go.specialization_animal_value }} - Высокая</td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
+
+          {% endif %}
+
+        <div class="charts">
+          <!-- apexcharts bar chart -->
+          <div class="charts-card">
+            <p class="chart-title">Валовой сбор мяса</p>
+            <div id="bar-chart"></div>
+          </div>
+
+        <!-- TABLE start -->
+          <section class="attendance">
+            <div class="attendance-list">
+              <h1>Производство продукции животноводства</h1>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D">Валовой надой молока</td>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D">тонн в год, всего</td>
+                  </tr>
+                  <tr>
+                    <td>Общий валовой надой молока</td>
+                    <td>{{ formData.animal_mik_total }}</td>
+                  </tr>
+                  <tr>
+                    <td>Коровье молоко</td>
+                    <td>{{ formData.animal_milk_cow }}</td>
+                  </tr>
+                  <tr>
+                    <td>Козье молоко</td>
+                    <td>{{ formData.animal_mil_kozel }}</td>
+                  </tr>
+                 <tr>
+                    <td>Кобылье молоко</td>
+                    <td>{{ formData.animal_milk_horse }}</td>
+                  </tr>
+                <tr>
+                    <td>Верблюжье молоко</td>
+                    <td>{{ formData.animal_milk_camel }}</td>
+                  </tr>
+                <tr>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D">Доля молока по видам</td>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D">%</td>
+                  </tr>
+                  <tr>
+                    <td>Коровье молоко</td>
+                  <td>{{ formData.animal_milkrate_cow }}</td>
+                  </tr>
+                <tr>
+                    <td>Козье молоко</td>
+                    <td>{{ formData.animal_milrate_kozel }}</td>
+                  </tr>
+                 <tr>
+                    <td>Кобылье молоко</td>
+                    <td>{{ formData.animal_milkrate_horse }}</td>
+                  </tr>
+                <tr>
+                    <td>Верблюжье молоко</td>
+                    <td>{{ formData.animal_milkrate_camel }}</td>
+                  </tr>
+                <tr>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D">Валовой сбор мяса</td>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D">тонн в год, всего</td>
+                  </tr>
+                <tr>
+                    <td>Валовой сбор всего мяса</td>
+                    <td>{{ formData.animal_meat_total }}</td>
+                  </tr>
+                <tr>
+                    <td>Говядина</td>
+                    <td>{{ formData.animal_meat_cow }}</td>
+                  </tr>
+                <tr>
+                    <td>Баранина</td>
+                    <td>{{ formData.animal_meat_sheep }}</td>
+                  </tr>
+                <tr>
+                    <td>Конина</td>
+                    <td>{{ formData.animal_meat_horse }}</td>
+                  </tr>
+                <tr>
+                    <td>Свинина</td>
+                    <td>{{ formData.animal_meat_pig }}</td>
+                  </tr>
+                <tr>
+                    <td>Верблюжатина</td>
+                    <td>{{ formData.animal_meat_camel }}</td>
+                  </tr>
+                <tr>
+                    <td>Куриное мясо</td>
+                    <td>{{ formData.animal_meat_chicken }}</td>
+                  </tr>
+                <tr>
+                    <td>Утиное мясо</td>
+                    <td>{{ formData.animal_meat_duck }}</td>
+                  </tr>
+                <tr>
+                    <td>Гусиное мясо</td>
+                    <td>{{ formData.animal_meat_gusi }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
+
+            <!-- TABLE start -->
+          <section class="attendance">
+            <div class="attendance-list">
+              <h1>Количество скота и птицы, голов</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Наименование скота и птицы</th>
+                    <th>Количество голов</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>КРС молочный</td>
+                    <td>{{ formData.animal_krs_milk }}</td>
+                  </tr>
+                  <tr>
+                    <td>КРС мясной</td>
+                    <td>{{ formData.animal_krs_meat }}</td>
+                  </tr>
+                  <tr>
+                    <td>Овцы, бараны</td>
+                    <td>{{ formData.animal_sheep }}</td>
+                  </tr>
+                  <tr>
+                    <td>Козы, козлы</td>
+                    <td>{{ formData.animal_kozel }}</td>
+                  </tr>
+                <tr>
+                    <td>Лошади</td>
+                    <td>{{ formData.animal_horse }}</td>
+                  </tr>
+                <tr>
+                    <td>Верблюды</td>
+                    <td>{{ formData.animal_camel }}</td>
+                  </tr>
+                <tr>
+                    <td>Свиньи</td>
+                    <td>{{ formData.animal_pig }}</td>
+                  </tr>
+                <tr>
+                    <td>Куры</td>
+                    <td>{{ formData.animal_chicken }}</td>
+                  </tr>
+                <tr>
+                    <td>Гуси</td>
+                    <td>{{ formData.animal_gusi }}</td>
+                  </tr>
+                <tr>
+                    <td>Утки</td>
+                    <td>{{ formData.animal_duck }}</td>
+                  </tr>
+                <tr>
+                    <td>Индюки</td>
+                    <td>{{ formData.animal_induk }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
+        </div>
+
+      </main>
+      <!-- End Main -->
+
+    </div>
+
+    <!-- Custom JS -->
+
+  <!-- jquery -->
+<script src="{{ url_for('static', filename='jquery.js') }}" charset="utf-8"></script>
+    <script src="../static/printThis.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#load_btn").click(function(){
+            $("#main").printThis();
+        });
+    });
+    </script>
+      <!-- Custom bar chart jquery script -->
+    <script type="text/javascript">
+      $(function(){
+        $('.bars li .bar').each(function(key, bar){
+          var percentage = $(this).data('percentage');
+          $(this).animate({
+            'height' : percentage + '%'
+          },1000);
+        });
+      });
+      </script>
+
+      <script>
+        var ultimateColors = [
+        ['#90ee90', '#2e8b57'],
+      ];
+
+        var data = [{
+          values: [{{ formData.labour_unemployed + formData.labour_total_econ_inactive_population }}, {{ formData.labour_government_workers + formData.labour_private_labour + formData.labour_private_ogorod }}],
+          labels: ['Безработные', 'Занятое население'],
+          type: 'pie',
+          marker: {
+    colors: ultimateColors[0]
+  },
+        }];
+
+        var layout = {
+          title: 'Категории населения',
+          height: 485,
+          width: 478
+        };
+
+        Plotly.newPlot('pie-chart', data, layout);
+      </script>
+
+    <script>
+        // BAR CHART
+        const barChartOptions = {
+          series: [
+            {
+              name: 'тонн в год',
+              data: [{{ formData.animal_meat_cow }}, {{ formData.animal_meat_sheep }}, {{ formData.animal_meat_horse }}, {{ formData.animal_meat_pig }}, {{ formData.animal_meat_camel }}, {{ formData.animal_meat_chicken }}, {{ formData.animal_meat_duck }}, {{ formData.animal_meat_gusi }}],
+            },
+          ],
+          chart: {
+            type: 'bar',
+            height: 530,
+            toolbar: {
+              show: false,
+            },
+          },
+          colors: ['#246dec', '#cc3c43', '#367952', '#e78719', '#4f35a1', '#f5b74f', '#90ee90'],
+          plotOptions: {
+            bar: {
+              distributed: true,
+              borderRadius: 4,
+              horizontal: true,
+              columnWidth: '53%',
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          legend: {
+            show: false,
+          },
+          xaxis: {
+            title: {
+              text: 'тонн в год',
+            },
+            categories: ['Говядина', 'Баранина', 'Конина', 'Свинина', 'Верблюжатина', 'Куриное мясо', 'Утиное мясо', 'Гусиное мясо'],
+          },
+        };
+
+        const barChart = new ApexCharts(
+          document.querySelector('#bar-chart'),
+          barChartOptions
+        );
+        barChart.render();
+    </script>
+</body>
+{% endblock %}

@@ -1,0 +1,322 @@
+{% extends "base.html" %} {% block title %}Аналитика{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='business_dashboard.css') }}" />
+<!-- plotly -->
+<script src="{{ url_for('static', filename='plotly.js') }}" charset="utf-8"></script>
+<!-- ApexCharts -->
+<script src="{{ url_for('static', filename='apexcharts.js') }}"></script>
+<title>Dashboard business</title>
+
+<body>
+  <div class="main-title">
+    <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Несельскохозяйственные виды бизнеса</p>
+      <div class="nav_dash_links">
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_soc1') }}">Социально-экономическое состояние</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
+        <form method="POST" class="filter_form">
+          {{ filterform.hidden_tag() }}
+          {{ filterform.kato_4 }}  
+          {{ filterform.submit }}  
+        </form>
+      </div>
+      
+  </div>
+
+  <button id="load_btn" class="download-btn">Загрузить показатели аналитики</button>
+
+<div class="grid-container">
+      <!-- Main -->
+      
+      <main class="main-container" id="main">
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Количество несельскохозяйственного бизнеса</p>
+            </div>
+              <span class="text-primary font-weight-bold">{{ formData.noncx_sto + formData.noncx_kindergarden + formData.noncx_souvenier + formData.noncx_pc_service + formData.noncx_store + formData.noncx_remont_bytovoi_tech + formData.noncx_metal + formData.noncx_accounting + formData.noncx_photo + formData.noncx_turism + formData.noncx_rent + formData.noncx_cargo + formData.noncx_massage + formData.noncx_foodcourt + formData.noncx_cleaning + formData.noncx_beuty + formData.noncx_carwash + formData.noncx_atelie + formData.noncx_others + formData.noncx_stroika + formData.noncx_mebel + formData.noncx_stroi_material + formData.noncx_svarka + formData.noncx_woodworking + formData.noncx_others_uslugi }}</span>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Потребность в несельскохозяйственном бизнесе</p>
+            </div>
+              <span class="text-primary font-weight-bold">{{ formData.noncx_sto_needs + formData.noncx_kindergarden_needs + formData.noncx_souvenier_needs + formData.noncx_pc_service_needs + formData.noncx_store_needs + formData.noncx_remont_bytovoi_tech_needs + formData.noncx_metal_needs + formData.noncx_accounting_needs + formData.noncx_photo_needs + formData.noncx_turism_needs + formData.noncx_rent_needs + formData.noncx_cargo_needs + formData.noncx_massage_needs + formData.noncx_foodcourt_needs + formData.noncx_cleaning_needs + formData.noncx_beuty_needs + formData.noncx_carwash_needs + formData.noncx_atelie_needs + formData.noncx_others_needs + formData.noncx_stroika_needs + formData.noncx_mebel_needs + formData.noncx_stroi_material_needs + formData.noncx_svarka_needs + formData.noncx_woodworking_needs + formData.noncx_others_needs_uslugi }}</span>
+          </div>
+
+        <div class="card">
+            <div class="card-inner">
+              <p class="text-primary">Процент покрытия поливом посевных площадей, %</p>
+            </div>
+              <span class="text-primary font-weight-bold">{{ formData.infrastructure_polivy }}</span>
+          </div>
+
+        </div>
+
+        <div class="charts">
+        {% if not check_filter_all %}
+          <!-- apexcharts bar chart -->
+          <div class="charts-card">
+            <p class="chart-title">Несельскохозяйственные виды бизнеса по видам деятельности</p>
+            <div id="stacked_chart1"></div>
+          </div>
+
+        {% else %}
+         <!-- apexcharts bar chart -->
+          <div class="charts-card">
+            <p class="chart-title">Несельскохозяйственные виды бизнеса по видам деятельности</p>
+            <div id="stacked_chart"></div>
+          </div>
+        {% endif %}
+
+          <!-- TABLE start -->
+          <section class="attendance">
+            <div class="attendance-list">
+              <h1>Список предприятий</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>№</th>
+                    <th>Наименование предприятия</th>
+                    <th>БИН/ ИИН компании</th>
+                    <th>Наименование готовой продукции/ услуги</th>
+                    <th>Фактическая загрузка, %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>ИП "Бекшойнов"</td>
+                    <td>790701300370</td>
+                    <td>СТО</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>ИП "АйлинСән салоны"</td>
+                    <td>820131400564</td>
+                    <td>Шаштараз</td>
+                    <td>100</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>ИП "Назымқызы Г"</td>
+                    <td>940427451256</td>
+                    <td>фото сурет</td>
+                    <td>100</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
+
+                                <!-- TABLE start -->
+          <section class="attendance">
+            <div class="attendance-list">
+              <h1>Инфраструктура</h1>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Наименование показателя</th>
+                    <th>Наличие</th>
+                    <th>Использование</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Здание МТМ (машино-тракторная мастерская)</td>
+                    <td>{{ formData.infrastructure_mtm }}</td>
+                    <td>{{ formData.infrastructure_mtm_isused }}</td>
+                  </tr>
+                  <tr>
+                    <td>Склады для хранения сырья и готовой продукции</td>
+                    <td>{{ formData.infrastructure_slad }}</td>
+                    <td>{{ formData.infrastructure_slad_isused }}</td>
+                  </tr>
+                  <tr>
+                    <td>Гаражи, ангары для хранения с/х техники и автотранспорта</td>
+                    <td>{{ formData.infrastructure_garage }}</td>
+                    <td>{{ formData.infrastructure_garage_isused }}</td>
+                  </tr>
+                <tr>
+                    <td>Цистерны для хранения ГСМ (горюче-смазочные материалы)</td>
+                    <td>{{ formData.infrastructure_cycsterny }}</td>
+                    <td>{{ formData.infrastructure_cycsterny_isused }}</td>
+                  </tr>
+                <tr>
+                    <td>Трансформаторная электро-подстанция</td>
+                    <td>{{ formData.infrastructure_transformator }}</td>
+                    <td>{{ formData.infrastructure_transformator_isused }}</td>
+                  </tr>
+                <tr>
+                    <td>Обеспеченность водой для полива</td>
+                    <td>{{ formData.infrastructure_polivochnaya_sistema_ }}</td>
+                    <td>{{ formData.infrastructure_polivochnaya_sistema_isused }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- TABLE end -->
+
+
+        </div>
+      </main>
+      <!-- End Main -->
+
+    </div>
+
+<!-- jquery -->
+<script src="{{ url_for('static', filename='jquery.js') }}" charset="utf-8"></script>
+<script src="../static/printThis.js"></script>
+<script>
+$(document).ready(function(){
+    $("#load_btn").click(function(){
+        $("#main").printThis();
+    });
+});
+</script>
+
+<script>
+      var options = {
+          series: [
+          {
+              name: 'В наличии',
+              data: [{{ formData.noncx_sto }}, {{ formData.noncx_kindergarden }}, {{ formData.noncx_souvenier }}, {{ formData.noncx_pc_service }}, {{ formData.noncx_store }}, {{ formData.noncx_remont_bytovoi_tech }}, {{ formData.noncx_metal }}, {{ formData.noncx_accounting }}, {{ formData.noncx_photo }}, {{ formData.noncx_turism }}, {{ formData.noncx_rent }}, {{ formData.noncx_cargo }}, {{ formData.noncx_massage }}, {{ formData.noncx_foodcourt }}, {{ formData.noncx_cleaning }}, {{ formData.noncx_beuty }}, {{ formData.noncx_carwash }}, {{ formData.noncx_atelie }}, {{ formData.noncx_others }}, {{ formData.noncx_stroika }}, {{ formData.noncx_mebel }}, {{ formData.noncx_stroi_material }}, {{ formData.noncx_svarka }}, {{ formData.noncx_woodworking }}, {{ formData.noncx_others_uslugi }}]
+          },
+          {
+              name: 'Потребность',
+              data: [{{ formData.noncx_sto_needs }}, {{ formData.noncx_kindergarden_needs }}, {{ formData.noncx_souvenier_needs }}, {{ formData.noncx_pc_service_needs }}, {{ formData.noncx_store_needs }}, {{ formData.noncx_remont_bytovoi_tech_needs }}, {{ formData.noncx_metal_needs }}, {{ formData.noncx_accounting_needs }}, {{ formData.noncx_photo_needs }}, {{ formData.noncx_turism_needs }}, {{ formData.noncx_rent_needs }}, {{ formData.noncx_cargo_needs }}, {{ formData.noncx_massage_needs }}, {{ formData.noncx_foodcourt_needs }}, {{ formData.noncx_cleaning_needs }}, {{ formData.noncx_beuty_needs }}, {{ formData.noncx_carwash_needs }}, {{ formData.noncx_atelie_needs }}, {{ formData.noncx_others_needs }}, {{ formData.noncx_stroika_needs }}, {{ formData.noncx_mebel_needs }}, {{ formData.noncx_stroi_material_needs }}, {{ formData.noncx_svarka_needs }}, {{ formData.noncx_woodworking_needs }}, {{ formData.noncx_others_needs_uslugi }}]
+          }],
+          chart: {
+          type: 'bar',
+          height: 550,
+          stacked: true,
+          toolbar: {
+            show: false
+          },
+          zoom: {
+            enabled: true
+          }
+        },
+        responsive: [{
+          breakpoint: 480,
+        }],
+        colors: ['#367952', '#e78719'],
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            borderRadius: 4,
+            columnWidth: '78%',
+            dataLabels: {
+              total: {
+                enabled: true,
+                style: {
+                  fontSize: '13px',
+                  fontWeight: 900
+                }
+              }
+            }
+          },
+        },
+        xaxis: {
+           {#title: {#}
+           {#   text: 'Наличие предприятий',#}
+           {# },#}
+          categories: ['Автосервисы', 'Детские центры развития', 'Изготовление сувениров', 'Компьютерные услуги', 'Магазины', 'Ремонт техники', 'Металлопластиковые изделия', 'Оказание проф. услуг', 'Полиграфические услуги', 'Туризм', 'Услуги аренды', 'Услуги грузовых авто', 'Услуги СПА', 'Услуги общепита', 'Услуги по уборке', 'Услуги салонов красоты', 'Услуги химчистки', 'Швейный цех, ателье', 'Прочие виды услуг', 'Строительные услуги', 'Производство мебели', 'Производство строительных материалов', 'Сварочный цех', 'Деревообработка', 'Прочие виды промышленности'],
+        },
+          yaxis: {
+            tickAmount: 8,
+            min: 0,
+            max: 20,
+        },
+         legend: {
+            show: true,
+             position: 'top',
+              offsetX: -1000,
+              offsetY: 0
+          },
+        fill: {
+          opacity: 1
+        }
+        };
+
+        var stacked_chart = new ApexCharts(document.querySelector("#stacked_chart"), options);
+        stacked_chart.render();
+</script>
+
+<script>
+      var options1 = {
+          series: [
+          {
+              name: 'В наличии',
+              data: [{{ formData.noncx_sto }}, {{ formData.noncx_kindergarden }}, {{ formData.noncx_souvenier }}, {{ formData.noncx_pc_service }}, {{ formData.noncx_store }}, {{ formData.noncx_remont_bytovoi_tech }}, {{ formData.noncx_metal }}, {{ formData.noncx_accounting }}, {{ formData.noncx_photo }}, {{ formData.noncx_turism }}, {{ formData.noncx_rent }}, {{ formData.noncx_cargo }}, {{ formData.noncx_massage }}, {{ formData.noncx_foodcourt }}, {{ formData.noncx_cleaning }}, {{ formData.noncx_beuty }}, {{ formData.noncx_carwash }}, {{ formData.noncx_atelie }}, {{ formData.noncx_others }}, {{ formData.noncx_stroika }}, {{ formData.noncx_mebel }}, {{ formData.noncx_stroi_material }}, {{ formData.noncx_svarka }}, {{ formData.noncx_woodworking }}, {{ formData.noncx_others_uslugi }}]
+          },
+          {
+              name: 'Потребность',
+              data: [{{ formData.noncx_sto_needs }}, {{ formData.noncx_kindergarden_needs }}, {{ formData.noncx_souvenier_needs }}, {{ formData.noncx_pc_service_needs }}, {{ formData.noncx_store_needs }}, {{ formData.noncx_remont_bytovoi_tech_needs }}, {{ formData.noncx_metal_needs }}, {{ formData.noncx_accounting_needs }}, {{ formData.noncx_photo_needs }}, {{ formData.noncx_turism_needs }}, {{ formData.noncx_rent_needs }}, {{ formData.noncx_cargo_needs }}, {{ formData.noncx_massage_needs }}, {{ formData.noncx_foodcourt_needs }}, {{ formData.noncx_cleaning_needs }}, {{ formData.noncx_beuty_needs }}, {{ formData.noncx_carwash_needs }}, {{ formData.noncx_atelie_needs }}, {{ formData.noncx_others_needs }}, {{ formData.noncx_stroika_needs }}, {{ formData.noncx_mebel_needs }}, {{ formData.noncx_stroi_material_needs }}, {{ formData.noncx_svarka_needs }}, {{ formData.noncx_woodworking_needs }}, {{ formData.noncx_others_needs_uslugi }}]
+          }],
+          chart: {
+          type: 'bar',
+          height: 550,
+          stacked: true,
+          toolbar: {
+            show: false
+          },
+          zoom: {
+            enabled: true
+          }
+        },
+        responsive: [{
+          breakpoint: 480,
+        }],
+        colors: ['#367952', '#e78719'],
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            borderRadius: 4,
+            columnWidth: '78%',
+            dataLabels: {
+              total: {
+                enabled: true,
+                style: {
+                  fontSize: '13px',
+                  fontWeight: 900
+                }
+              }
+            }
+          },
+        },
+        xaxis: {
+           {#title: {#}
+           {#   text: 'Наличие предприятий',#}
+           {# },#}
+          categories: ['Автосервисы', 'Детские центры развития', 'Изготовление сувениров', 'Компьютерные услуги', 'Магазины', 'Ремонт техники', 'Металлопластиковые изделия', 'Оказание проф. услуг', 'Полиграфические услуги', 'Туризм', 'Услуги аренды', 'Услуги грузовых авто', 'Услуги СПА', 'Услуги общепита', 'Услуги по уборке', 'Услуги салонов красоты', 'Услуги химчистки', 'Швейный цех, ателье', 'Прочие виды услуг', 'Строительные услуги', 'Производство мебели', 'Производство строительных материалов', 'Сварочный цех', 'Деревообработка', 'Прочие виды промышленности'],
+        },
+          yaxis: {
+            tickAmount: 2,
+            min: 0,
+            max: 2,
+        },
+         legend: {
+            show: true,
+             position: 'top',
+              offsetX: -1000,
+              offsetY: 0
+          },
+        fill: {
+          opacity: 1
+        }
+        };
+
+        var stacked_chart1 = new ApexCharts(document.querySelector("#stacked_chart1"), options1);
+        stacked_chart1.render();
+</script>
+
+</body>
+{% endblock %}

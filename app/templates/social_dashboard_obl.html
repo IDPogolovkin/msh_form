@@ -1,0 +1,321 @@
+{% extends "base.html" %} {% block title %}Аналитика{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='dashboard_soc1.css') }}" />
+{# plotly #}
+<script src="{{ url_for('static', filename='plotly.js') }}" charset="utf-8"></script>
+{# ApexCharts #}
+<script src="{{ url_for('static', filename='apexcharts.js') }}"></script>
+<title>Dashboard social</title>
+
+<body>
+
+  <div class="main-title">
+        <p style="text-align: center; font-weight: bold;" class="font-weight-bold">Социально-экономическое состояние</p>
+        <div class="nav_dash_links">
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_plants_all') }}">Растениеводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_animals_all') }}">Животноводство</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_business_all') }}">Бизнес</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_recycling_all') }}">Переработка</a>
+          <a class="dash_link" id="portfolio" href="{{ url_for('dashboard_credits_all') }}">Кредиты</a>
+          <form method="POST" class="filter_form">
+              {{ filterform.hidden_tag() }}
+              {{ filterform.kato_4 }}
+              {{ filterform.submit }}
+          </form>
+        </div>
+
+    </div>
+
+    <button id="load_btn" class="download-btn">Загрузить показатели аналитики</button>
+
+  <div class="grid-container">
+    {# Main #}
+
+    <main class="main-container" id="main">
+      <div class="main-cards">
+
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Численность населения</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_population_total'] }}</span>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Экономически активное население</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_active_total'] }}</span>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Экономически неактивное население</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_inactive_total'] }}</span>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Средний доход на семью, тенге/месяц</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_average_income_family_total_average'] }}</span>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Занятые в ЛПХ</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_private_ogorod_total'] }}</span>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Средний размер ДМХ</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_household_size_total_average'] }}</span>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Количество доворов</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['house_total_dvor_total'] }}</span>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <p class="text-primary">Количество заселенных доворов</p>
+          </div>
+          <span class="text-primary font-weight-bold">{{ dashboard_all_data['house_zaselen_dvor_total'] }}</span>
+        </div>
+
+      </div>
+
+      <div class="charts">
+        {# apexcharts bar chart #}
+        <div class="charts-card">
+          <p class="chart-title">Сельскохозяйственные угодья домашних хозяйств</p>
+          <div id="bar-chart"></div>
+        </div>
+
+        {# bar chart with jquery #}
+         <div class="chart">
+{#           <ul class="numbers">#}
+{#             <li><span>100%</span></li>#}
+{#             <li><span>50%</span></li>#}
+{#             <li><span>0%</span></li>#}
+{#             </ul>#}
+           <ul class="bars">
+             <p class="bar_title">Процентное соотношение сельхоз. угодий ДМХ</p>
+             <li>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_pashnya_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
+              <span>Пашня</span>
+            </li>
+             <li>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_mnogoletnie_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
+              <span>Насаждения</span>
+            </li>
+             <li>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_zelej_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
+              <span>Залежь</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_pastbishe_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
+              <span>Пастбища</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_senokosy_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
+              <span>Сенокосы</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_ogorody_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
+              <span>Огороды</span>
+            </li>
+            <li>
+              <div class="bar" data-percentage="{% if dashboard_all_data['dx_cx_land_total'] != 0 %}{{ round(dashboard_all_data['dx_sad_total'] * 100 / dashboard_all_data['dx_cx_land_total'], 2) }}{% else %}{{ 0 }}{% endif %}"></div>
+              <span>Сады</span>
+            </li>
+             </ul>
+          </div>
+
+        {# pie chart with plotly #}
+         <div class='pie-chart' id="pie-chart"></div>
+
+        {# apexcharts area-chart #}
+        {# <div class="charts-card">
+            <p class="chart-title">Purchase and Sales Orders</p>
+            <div id="area-chart"></div>
+          </div> #}
+
+      </div>
+        {# TABLE start #}
+        <section class="attendance">
+          <div class="attendance-list">
+            <h1>Информация по населению</h1>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Наименование</th>
+                  <th>Всего человек</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Численность Населения</td>
+                  <td>{{ dashboard_all_data['labour_population_total'] }}</td>
+                </tr>
+                <tr>
+                  <td>Из них постоянно проживающих</td>
+                  <td>{{ dashboard_all_data['labour_constant_population_total'] }}</td>
+                </tr>
+                <tr>
+                  <td>Рабочая сила</td>
+                  <td>{{ dashboard_all_data['labour_labour_total'] }}</td>
+                </tr>
+                <tr>
+                  <td>Занятое население в бюджетной сфере</td>
+                  <td>{{ dashboard_all_data['labour_government_workers_total'] }}</td>
+                </tr>
+                <tr>
+                  <td>Занятое население в частном секторе</td>
+                  <td>{{ dashboard_all_data['labour_private_labour_total'] }}</td>
+                </tr>
+                <tr>
+                  <td>Из них занятое население в личном подсобном хозяйстве</td>
+                  <td>{{ dashboard_all_data['labour_private_ogorod_total'] }}</td>
+                </tr>
+                <tr>
+                  <td>Лица, не входящие в состав рабочей силы</td>
+                  <td>{{ dashboard_all_data['labour_total_econ_inactive_population_total'] }}</td>
+                </tr>
+                <tr>
+                  <td>Безработные</td>
+                  <td>{{ dashboard_all_data['labour_unemployed_total'] }}</td>
+                </tr>
+                <tr>
+                  <td>Средний размер домашних хозяйств</td>
+                  <td>{{ dashboard_all_data['labour_household_size_total_average'] }}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D"></td>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D">тенге в месяц</td>
+                </tr>
+                <tr>
+                  <td>Средний доход на одну семью</td>
+                  <td>{{ dashboard_all_data['labour_average_income_family_total_average'] }}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </section>
+{#        TABLE end#}
+    </main>
+{#    End Main#}
+
+  </div>
+
+{#  Custom JS#}
+    {# jquery #}
+    <script src="{{ url_for('static', filename='jquery.js') }}" charset="utf-8"></script>
+    <script src="../static/printThis.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#load_btn").click(function(){
+            $("#main").printThis();
+        });
+    });
+    </script>
+  {# Custom bar chart jquery script #}
+  <script type="text/javascript">
+    $(function () {
+      $('.bars li .bar').each(function (key, bar) {
+        var percentage = $(this).data('percentage');
+        $(this).animate({
+          'height': percentage + '%'
+        }, 1000);
+      });
+    });
+  </script>
+
+  <script>
+    var ultimateColors = [
+      ['#90ee90', '#2e8b57'],
+    ];
+
+    var windowWidth = window.innerWidth;
+
+    var data = [{
+      values: [{{ dashboard_all_data['labour_inactive_total'] }}, {{ dashboard_all_data['labour_active_total'] }}],
+      labels: ['Безработные', 'Занятое население'],
+      type: 'pie',
+      name: 'человек',
+      hoverinfo: 'value+label+percent+name',
+      marker: {
+        colors: ultimateColors[0]
+      },
+    }];
+
+    var layout = {
+      title: 'Категории населения',
+      height: 485,
+        legend: {
+              x: windowWidth > 1550 ? 0.34 : 0.22,
+              y:-0.2
+            }
+    };
+
+    Plotly.newPlot('pie-chart', data, layout);
+  </script>
+
+  <script>
+    // BAR CHART
+    const barChartOptions = {
+      series: [
+        {
+            name:'кв. метров',
+          data: [{{ dashboard_all_data['dx_pashnya_total'] }}, {{ dashboard_all_data['dx_mnogoletnie_total'] }}, {{ dashboard_all_data['dx_zelej_total'] }}, {{ dashboard_all_data['dx_pastbishe_total'] }}, {{ dashboard_all_data['dx_senokosy_total'] }}, {{ dashboard_all_data['dx_ogorody_total'] }}, {{ dashboard_all_data['dx_sad_total'] }}],
+            },
+          ],
+    chart: {
+      type: 'bar',
+        height: 373,
+        width: 540,
+          toolbar: {
+        show: false,
+            },
+    },
+    colors: ['#246dec', '#cc3c43', '#367952', '#e78719', '#4f35a1', '#f5b74f', '#90ee90'],
+      plotOptions: {
+      bar: {
+        distributed: true,
+          borderRadius: 4,
+            horizontal: false,
+              columnWidth: '58%',
+            },
+    },
+    dataLabels: {
+      enabled: false,
+          },
+    legend: {
+      show: false,
+          },
+    xaxis: {
+      categories: ['Пашня', 'Многолетние насаждения', 'Залежь', 'Пастбища', 'Сенокосы', 'Огороды', 'Сады'],
+          },
+    yaxis: {
+      title: {
+        text: 'Количество кв. метров',
+            },
+    },
+        };
+
+    const barChart = new ApexCharts(
+      document.querySelector('#bar-chart'),
+      barChartOptions
+    );
+    barChart.render();
+  </script>
+</body>
+{% endblock %}
