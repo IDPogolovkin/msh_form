@@ -6,21 +6,7 @@ import csv
 app.app_context().push()
 
 csv_file_path = 'form_go_fixed.csv'
-csv_file_path2 = 'spec_form_go.csv'
-counter = 0
-with open(csv_file_path2, 'r', encoding='utf-8') as file2:
-    csv_reader2 = csv.reader(file2)
-
-    next(csv_reader2)
-    for row2 in csv_reader2:
-        form = db.session.query(Form_G_O).filter_by(kato_6=row2[4]).first()
-
-        form.specialization_rastenivodstvo_value = row2[201]
-        form.specialization_animal_value = row2[202]
-        db.session.commit()
-        counter+=1
-        print(counter, '-', form)
-
+csv_file_path2 = 'form_go_with_spec.CSV'
 
 
 # with open(csv_file_path, 'r', encoding='utf-8') as file:
@@ -238,7 +224,21 @@ with open(csv_file_path2, 'r', encoding='utf-8') as file2:
 #         db.session.commit()
 #         counter += 1
 #         print(counter, '-', form)
+counter = 0
+with open(csv_file_path2, 'r', encoding='utf-8') as file2:
+    csv_reader2 = csv.reader(file2)
 
+    next(csv_reader2)
+    for row2 in csv_reader2:
+        form = db.session.query(Form_G_O).filter_by(kato_6=row2[4]).first()
+        if form:
+            form.specialization_rastenivodstvo_value = row2[201]
+            form.specialization_animal_value = row2[202]
+            db.session.commit()
+            counter+=1
+            print(counter,'Заполнение специализации - ', form)
+        else:
+            print(counter, '-', row2[4], 'not found')
 # counter = 0
 # forms = Form_G_O.query.all()
 # for form in forms:
