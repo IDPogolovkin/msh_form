@@ -467,7 +467,16 @@ def edit_form():
                 if field.name.startswith('specialization_animal_'):
                     if field.data == True:
                         spec_str_animal += str(field.label.text) + ', '
+            
             new_form = Form(**form_data)
+            if spec_str_animal:
+                new_form.specialization_animal = spec_str_animal[:-2]
+            else:
+                new_form.specialization_animal = formdata.specialization_animal
+            if spec_str_rast:
+                new_form.specialization_rastenivodstvo = spec_str_rast[:-2]
+            else:
+                new_form.specialization_rastenivodstvo = formdata.specialization_rastenivodstvo
             new_form.kato_2 = current_user.kato_2
             new_form.kato_2_name = current_user.kato_2_name
             new_form.kato_4 = current_user.kato_4
@@ -478,8 +487,6 @@ def edit_form():
             new_form.form_year = datetime.now().year
             new_form.creation_date = datetime.now(timezone(timedelta(hours=6)))
             new_form.modified_date = datetime.now(timezone(timedelta(hours=6)))
-            new_form.specialization_animal = spec_str_animal[:-2]
-            new_form.specialization_rastenivodstvo = spec_str_rast[:-2]
             formdata.modified_date = datetime.now(timezone(timedelta(hours=6)))
             changed_fields = {}
             for key, value in form_data.items():
@@ -511,7 +518,6 @@ def edit_form():
             old_form.specialization_animal_value = formdata.specialization_animal_value
             old_form.specialization_rastenivodstvo_value = formdata.specialization_rastenivodstvo_value
             spec_calculations = spec_calc([new_form])
-            print(spec_calculations[0])
             new_form.specialization_rastenivodstvo_value = spec_calculations[0][1]
             new_form.specialization_animal_value = spec_calculations[0][3]
             db.session.delete(formdata)

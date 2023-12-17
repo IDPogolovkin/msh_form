@@ -43,14 +43,14 @@
           <div class="input-group">
             <div class="label">
               {{ form.labour_population.label }}
-                {% if formGO.labour_population %}
+                {% if 0 <= formGO.labour_population %}
                 <p>Значение с БД ГО: {{ formGO.labour_population }}</p>
                 {% else %}
                 <p>Нет данных в БД ГО</p>
                 {% endif %}
             </div>
           <div class="input_with_measure">
-              {% if formGO.labour_populaton and (formGO.labour_population * 1.2 < form.labour_population.data or formGO.labour_population * 0.8 > form.labour_population.data) %}
+              {% if (0<=formGO.labour_population) and (float(formGO.labour_population) * 1.2 < form.labour_population.data or float(formGO.labour_population) * 0.8 > form.labour_population.data) %}
               {{ form.labour_population(style = "border: 2px solid #C51E3A;") }}
               {% else %}
               {{ form.labour_population }}
@@ -61,14 +61,14 @@
      <div class="input-group">
       <div class="label">
         {{ form.labour_constant_population.label }}
-          {% if formGO.labour_constant_population %}
+          {% if 0 <= formGO.labour_constant_population %}
           <p>Значение с БД ГО: {{ formGO.labour_constant_population }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
           {% endif %}
       </div>
       <div class="input_with_measure">
-        {% if formGO.labour_constant_population and (formGO.labour_constant_population * 1.2 < form.labour_constant_population.data or formGO.labour_constant_population * 0.8 > form.labour_constant_population.data) %}
+        {% if (0<=formGO.labour_constant_population) and (float(formGO.labour_constant_population) * 1.2 < form.labour_constant_population.data or float(formGO.labour_constant_population) * 0.8 > form.labour_constant_population.data) %}
         {{ form.labour_constant_population(style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.labour_constant_population }}
@@ -80,14 +80,14 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_labour.label }}
-          {% if formGO.labour_labour %}
+          {% if 0 <= formGO.labour_labour %}
           <p>Значение с БД ГО: {{ formGO.labour_labour }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
           {% endif %}
       </div>
       <div class="input_with_measure">
-        {% if formGO.labour_labour and (formGO.labour_labour * 1.2 < form.labour_labour.data or formGO.labour_labour * 0.8 > form.labour_labour.data) %}
+        {% if (0<=formGO.labour_labour) and (float(formGO.labour_labour) * 1.2 < form.labour_labour.data or float(formGO.labour_labour) * 0.8 > form.labour_labour.data) %}
         {{ form.labour_labour( style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.labour_labour }}
@@ -99,14 +99,14 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_government_workers.label }}
-          {% if formGO.labour_government_workers %}
+          {% if 0 <= formGO.labour_government_workers %}
           <p>Значение с БД ГО: {{ formGO.labour_government_workers }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
           {% endif %}
       </div>
       <div class="input_with_measure">
-        {% if formGO.labour_government_workers and (formGO.labour_government_workers * 1.2 < form.labour_government_workers.data or formGO.labour_government_workers * 0.8 > form.labour_government_workers.data) %}
+        {% if (0<=formGO.labour_government_workers) and (float(formGO.labour_government_workers) * 1.2 < form.labour_government_workers.data or float(formGO.labour_government_workers) * 0.8 > form.labour_government_workers.data) %}
         {{ form.labour_government_workers( style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.labour_government_workers }}
@@ -118,14 +118,14 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_private_labour.label }}
-          {% if formGO.labour_private_labour %}
+          {% if 0 <= formGO.labour_private_labour %}
           <p>Значение с БД ГО: {{ formGO.labour_private_labour }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
           {% endif %}
       </div>
       <div class="input_with_measure">
-        {% if formGO.labour_private_labour and (formGO.labour_private_labour * 1.2 < form.labour_private_labour.data or formGO.labour_private_labour * 0.8 > form.labour_private_labour.data) %}
+        {% if (0<=formGO.labour_private_labour) and (float(formGO.labour_private_labour) * 1.2 < form.labour_private_labour.data or float(formGO.labour_private_labour) * 0.8 > form.labour_private_labour.data) %}
         {{ form.labour_private_labour(style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.labour_private_labour }}
@@ -138,14 +138,14 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_private_ogorod.label }}
-          {% if formGO.labour_private_ogorod %}
+          {% if 0 <= formGO.labour_private_ogorod %}
           <p>Значение с БД ГО: {{ formGO.labour_private_ogorod }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
           {% endif %}
       </div>
       <div class="input_with_measure">
-        {% if formGO.labour_private_ogorod and (formGO.labour_private_ogorod * 1.2 < form.labour_private_ogorod.data or formGO.labour_private_ogorod * 0.8 > form.labour_private_ogorod.data) %}
+        {% if (0<=formGO.labour_private_ogorod) and (float(formGO.labour_private_ogorod) * 1.2 < form.labour_private_ogorod.data or float(formGO.labour_private_ogorod) * 0.8 > form.labour_private_ogorod.data) %}
         {{ form.labour_private_ogorod(style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.labour_private_ogorod }}
@@ -157,14 +157,14 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_total_econ_inactive_population.label }}
-          {% if formGO.labour_total_econ_inactive_population %}
+          {% if 0 <= formGO.labour_total_econ_inactive_population %}
           <p>Значение с БД ГО: {{ formGO.labour_total_econ_inactive_population }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
           {% endif %}
       </div>
       <div class="input_with_measure">
-        {% if formGO.labour_total_econ_inactive_population and (formGO.labour_total_econ_inactive_population * 1.2 < form.labour_total_econ_inactive_population.data or formGO.labour_total_econ_inactive_population * 0.8 > form.labour_total_econ_inactive_population.data) %}
+        {% if (0<=formGO.labour_total_econ_inactive_population) and (float(formGO.labour_total_econ_inactive_population) * 1.2 < form.labour_total_econ_inactive_population.data or float(formGO.labour_total_econ_inactive_population) * 0.8 > form.labour_total_econ_inactive_population.data) %}
         {{ form.labour_total_econ_inactive_population(style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.labour_total_econ_inactive_population }}
@@ -176,14 +176,14 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_unemployed.label }}
-          {% if formGO.labour_unemployed %}
+          {% if 0 <= formGO.labour_unemployed %}
           <p>Значение с БД ГО: {{ formGO.labour_unemployed }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
           {% endif %}
       </div>
       <div class="input_with_measure">
-        {% if formGO.labour_unemployed and (formGO.labour_unemployed * 1.2 < form.labour_unemployed.data or formGO.labour_unemployed * 0.8 > form.labour_unemployed.data) %}
+        {% if (0<=formGO.labour_unemployed) and (float(formGO.labour_unemployed) * 1.2 < form.labour_unemployed.data or float(formGO.labour_unemployed) * 0.8 > form.labour_unemployed.data) %}
         {{ form.labour_unemployed( style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.labour_unemployed }}
@@ -195,14 +195,14 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_household_size.label }}
-          {% if formGO.labour_household_size %}
+          {% if 0 <= formGO.labour_household_size %}
           <p>Значение с БД ГО: {{ formGO.labour_household_size }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
           {% endif %}
       </div>
       <div class="input_with_measure">
-        {% if formGO.labour_household_size and (formGO.labour_household_size * 1.2 < form.labour_household_size.data or formGO.labour_household_size * 0.8 > form.labour_household_size.data) %}
+        {% if (0<=formGO.labour_household_size) and (float(formGO.labour_household_size) * 1.2 < form.labour_household_size.data or float(formGO.labour_household_size) * 0.8 > form.labour_household_size.data) %}
         {{ form.labour_household_size( style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.labour_household_size }}
@@ -214,14 +214,14 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_average_income_family.label }}
-          {% if formGO.labour_average_income_family %}
+          {% if 0 <= formGO.labour_average_income_family %}
           <p>Значение с БД ГО: {{ formGO.labour_average_income_family }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
           {% endif %}
       </div>
       <div class="input_with_measure">
-        {% if formGO.labour_average_income_family and (formGO.labour_average_income_family * 1.2 < form.labour_average_income_family.data or formGO.labour_average_income_family * 0.8 > form.labour_average_income_family.data) %}
+        {% if (0<=formGO.labour_average_income_family) and (float(formGO.labour_average_income_family) * 1.2 < form.labour_average_income_family.data or float(formGO.labour_average_income_family) * 0.8 > form.labour_average_income_family.data) %}
         {{ form.labour_average_income_family(style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.labour_average_income_family }}
@@ -242,14 +242,14 @@
       <div class="input-group">
         <div class="label">
           {{ form.house_total_dvor.label }}
-            {% if formGO.house_total_dvor %}
+            {% if 0 <= formGO.house_total_dvor %}
             <p>Значение с БД ГО: {{ formGO.house_total_dvor }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>
             {% endif %}
         </div>
        <div class="input_with_measure">
-        {% if formGO.house_total_dvor and (formGO.house_total_dvor * 1.2 < form.house_total_dvor.data or formGO.house_total_dvor * 0.8 > form.house_total_dvor.data) %}
+        {% if (0<=formGO.house_total_dvor) and (float(formGO.house_total_dvor) * 1.2 < form.house_total_dvor.data or float(formGO.house_total_dvor) * 0.8 > form.house_total_dvor.data) %}
         {{ form.house_total_dvor(style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.house_total_dvor }}
@@ -260,14 +260,14 @@
       <div class="input-group">
         <div class="label">
           {{ form.house_zaselen_dvor.label }}
-            {% if formGO.house_zaselen_dvor %}
+            {% if 0 <= formGO.house_zaselen_dvor %}
             <p>Значение с БД ГО: {{ formGO.house_zaselen_dvor }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>
             {% endif %}
         </div>
           <div class="input_with_measure">
-            {% if formGO.house_zaselen_dvor and (formGO.house_zaselen_dvor * 1.2 < form.house_zaselen_dvor.data or formGO.house_zaselen_dvor * 0.8 > form.house_zaselen_dvor.data) %}
+            {% if (0<=formGO.house_zaselen_dvor) and (float(formGO.house_zaselen_dvor) * 1.2 < form.house_zaselen_dvor.data or float(formGO.house_zaselen_dvor) * 0.8 > form.house_zaselen_dvor.data) %}
             {{ form.house_zaselen_dvor( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.house_zaselen_dvor}}
@@ -288,14 +288,14 @@
           <div class="input-group">
               <div class="label">
                 {{ form.dh_count.label }}
-                  {% if formGO.dh_count %}
+                  {% if 0 <= formGO.dh_count %}
                   <p>Значение с БД ГО: {{ formGO.dh_count }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dh_count and (formGO.dh_count * 1.2 < form.dh_count.data or formGO.dh_count * 0.8 > form.dh_count.data) %}
+                {% if (0<=formGO.dh_count) and (float(formGO.dh_count) * 1.2 < form.dh_count.data or float(formGO.dh_count) * 0.8 > form.dh_count.data) %}
                 {{ form.dh_count( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dh_count }}
@@ -307,14 +307,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_number_ogorodov.label }}
-                  {% if formGO.dx_number_ogorodov %}
+                  {% if 0 <= formGO.dx_number_ogorodov %}
                   <p>Значение с БД ГО: {{ formGO.dx_number_ogorodov }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_number_ogorodov and (formGO.dx_number_ogorodov * 1.2 < form.dx_number_ogorodov.data or formGO.dx_number_ogorodov * 0.8 > form.dx_number_ogorodov.data) %}
+                {% if (0<=formGO.dx_number_ogorodov) and (float(formGO.dx_number_ogorodov) * 1.2 < form.dx_number_ogorodov.data or float(formGO.dx_number_ogorodov) * 0.8 > form.dx_number_ogorodov.data) %}
                 {{ form.dx_number_ogorodov( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_number_ogorodov }}
@@ -326,14 +326,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_cx_land.label }}
-                  {% if formGO.dx_cx_land %}
+                  {% if 0 <= formGO.dx_cx_land %}
                   <p>Значение с БД ГО: {{ formGO.dx_cx_land }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_cx_land and (formGO.dx_cx_land * 1.2 < form.dx_cx_land.data or formGO.dx_cx_land * 0.8 > form.dx_cx_land.data) %}
+                {% if (0<=formGO.dx_cx_land) and (float(formGO.dx_cx_land) * 1.2 < form.dx_cx_land.data or float(formGO.dx_cx_land) * 0.8 > form.dx_cx_land.data) %}
                 {{ form.dx_cx_land( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_cx_land }}
@@ -347,14 +347,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_pashnya.label }}
-                  {% if formGO.dx_pashnya %}
+                  {% if 0 <= formGO.dx_pashnya %}
                   <p>Значение с БД ГО: {{ formGO.dx_pashnya }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_pashnya and (formGO.dx_pashnya * 1.2 < form.dx_pashnya.data or formGO.dx_pashnya * 0.8 > form.dx_pashnya.data) %}
+                {% if (0<=formGO.dx_pashnya) and (float(formGO.dx_pashnya) * 1.2 < form.dx_pashnya.data or float(formGO.dx_pashnya) * 0.8 > form.dx_pashnya.data) %}
                 {{ form.dx_pashnya( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_pashnya }}
@@ -366,14 +366,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_mnogoletnie.label }}
-                  {% if formGO.dx_mnogoletnie %}
+                  {% if 0 <= formGO.dx_mnogoletnie %}
                   <p>Значение с БД ГО: {{ formGO.dx_mnogoletnie }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_mnogoletnie and (formGO.dx_mnogoletnie * 1.2 < form.dx_mnogoletnie.data or formGO.dx_mnogoletnie * 0.8 > form.dx_mnogoletnie.data) %}
+                {% if (0<=formGO.dx_mnogoletnie) and (float(formGO.dx_mnogoletnie) * 1.2 < form.dx_mnogoletnie.data or float(formGO.dx_mnogoletnie) * 0.8 > form.dx_mnogoletnie.data) %}
                 {{ form.dx_mnogoletnie( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_mnogoletnie }}
@@ -385,14 +385,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_zelej.label }}
-                  {% if formGO.dx_zelej %}
+                  {% if 0 <= formGO.dx_zelej %}
                   <p>Значение с БД ГО: {{ formGO.dx_zelej }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_zelej and (formGO.dx_zelej * 1.2 < form.dx_zelej.data or formGO.dx_zelej * 0.8 > form.dx_zelej.data) %}
+                {% if (0<=formGO.dx_zelej) and (float(formGO.dx_zelej) * 1.2 < form.dx_zelej.data or float(formGO.dx_zelej) * 0.8 > form.dx_zelej.data) %}
                 {{ form.dx_zelej( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_zelej }}
@@ -404,14 +404,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_pastbishe.label }}
-                  {% if formGO.dx_pastbishe %}
+                  {% if 0 <= formGO.dx_pastbishe %}
                   <p>Значение с БД ГО: {{ formGO.dx_pastbishe }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_pastbishe and (formGO.dx_pastbishe * 1.2 < form.dx_pastbishe.data or formGO.dx_pastbishe * 0.8 > form.dx_pastbishe.data) %}
+                {% if (0<=formGO.dx_pastbishe) and (float(formGO.dx_pastbishe) * 1.2 < form.dx_pastbishe.data or float(formGO.dx_pastbishe) * 0.8 > form.dx_pastbishe.data) %}
                 {{ form.dx_pastbishe( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_pastbishe }}
@@ -423,14 +423,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_senokosy.label }}
-                  {% if formGO.dx_senokosy %}
+                  {% if 0 <= formGO.dx_senokosy %}
                   <p>Значение с БД ГО: {{ formGO.dx_senokosy }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_senokosy and (formGO.dx_senokosy * 1.2 < form.dx_senokosy.data or formGO.dx_senokosy * 0.8 > form.dx_senokosy.data) %}
+                {% if (0<=formGO.dx_senokosy) and (float(formGO.dx_senokosy) * 1.2 < form.dx_senokosy.data or float(formGO.dx_senokosy) * 0.8 > form.dx_senokosy.data) %}
                 {{ form.dx_senokosy( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_senokosy }}
@@ -442,14 +442,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_ogorody.label }}
-                  {% if formGO.dx_ogorody %}
+                  {% if 0 <= formGO.dx_ogorody %}
                   <p>Значение с БД ГО: {{ formGO.dx_ogorody }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_ogorody and (formGO.dx_ogorody * 1.2 < form.dx_ogorody.data or formGO.dx_ogorody * 0.8 > form.dx_ogorody.data) %}
+                {% if (0<=formGO.dx_ogorody) and (float(formGO.dx_ogorody) * 1.2 < form.dx_ogorody.data or float(formGO.dx_ogorody) * 0.8 > form.dx_ogorody.data) %}
                 {{ form.dx_ogorody(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_ogorody }}
@@ -461,14 +461,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_sad.label }}
-                  {% if formGO.dx_sad %}
+                  {% if 0 <= formGO.dx_sad %}
                   <p>Значение с БД ГО: {{ formGO.dx_sad }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_sad and (formGO.dx_sad * 1.2 < form.dx_sad.data or formGO.dx_sad * 0.8 > form.dx_sad.data) %}
+                {% if (0<=formGO.dx_sad) and (float(formGO.dx_sad) * 1.2 < form.dx_sad.data or float(formGO.dx_sad) * 0.8 > form.dx_sad.data) %}
                 {{ form.dx_sad( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_sad}}
@@ -480,14 +480,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_urojai.label }}
-                  {% if formGO.dx_urojai %}
+                  {% if 0 <= formGO.dx_urojai %}
                   <p>Значение с БД ГО: {{ formGO.dx_urojai }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_urojai and (formGO.dx_urojai * 1.2 < form.dx_urojai.data or formGO.dx_urojai * 0.8 > form.dx_urojai.data) %}
+                {% if (0<=formGO.dx_urojai) and (float(formGO.dx_urojai) * 1.2 < form.dx_urojai.data or float(formGO.dx_urojai) * 0.8 > form.dx_urojai.data) %}
                 {{ form.dx_urojai( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_urojai }}
@@ -501,14 +501,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_cucumber.label }}
-                  {% if formGO.dx_cucumber %}
+                  {% if 0 <= formGO.dx_cucumber %}
                   <p>Значение с БД ГО: {{ formGO.dx_cucumber }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_cucumber and (formGO.dx_cucumber * 1.2 < form.dx_cucumber.data or formGO.dx_cucumber * 0.8 > form.dx_cucumber.data) %}
+                {% if (0<=formGO.dx_cucumber) and (float(formGO.dx_cucumber) * 1.2 < form.dx_cucumber.data or float(formGO.dx_cucumber) * 0.8 > form.dx_cucumber.data) %}
                 {{ form.dx_cucumber( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_cucumber }}
@@ -520,14 +520,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_tomato.label }}
-                  {% if formGO.dx_tomato %}
+                  {% if 0 <= formGO.dx_tomato %}
                   <p>Значение с БД ГО: {{ formGO.dx_tomato }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_tomato and (formGO.dx_tomato * 1.2 < form.dx_tomato.data or formGO.dx_tomato * 0.8 > form.dx_tomato.data) %}
+                {% if (0<=formGO.dx_tomato) and (float(formGO.dx_tomato) * 1.2 < form.dx_tomato.data or float(formGO.dx_tomato) * 0.8 > form.dx_tomato.data) %}
                 {{ form.dx_tomato( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_tomato }}
@@ -539,14 +539,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_potato.label }}
-                  {% if formGO.dx_potato %}
+                  {% if 0 <= formGO.dx_potato %}
                   <p>Значение с БД ГО: {{ formGO.dx_potato }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_potato and (formGO.dx_potato * 1.2 < form.dx_potato.data or formGO.dx_potato * 0.8 > form.dx_potato.data) %}
+                {% if (0<=formGO.dx_potato) and (float(formGO.dx_potato) * 1.2 < form.dx_potato.data or float(formGO.dx_potato) * 0.8 > form.dx_potato.data) %}
                 {{ form.dx_potato( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_potato }}
@@ -558,14 +558,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_kapusta.label }}
-                  {% if formGO.dx_kapusta %}
+                  {% if 0 <= formGO.dx_kapusta %}
                   <p>Значение с БД ГО: {{ formGO.dx_kapusta }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_kapusta and (formGO.dx_kapusta * 1.2 < form.dx_kapusta.data or formGO.dx_kapusta * 0.8 > form.dx_kapusta.data) %}
+                {% if (0<=formGO.dx_kapusta) and (float(formGO.dx_kapusta) * 1.2 < form.dx_kapusta.data or float(formGO.dx_kapusta) * 0.8 > form.dx_kapusta.data) %}
                 {{ form.dx_kapusta( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_kapusta }}
@@ -577,14 +577,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_carrot.label }}
-                  {% if formGO.dx_carrot %}
+                  {% if 0 <= formGO.dx_carrot %}
                   <p>Значение с БД ГО: {{ formGO.dx_carrot }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_carrot and (formGO.dx_carrot * 1.2 < form.dx_carrot.data or formGO.dx_carrot * 0.8 > form.dx_carrot.data) %}
+                {% if (0<=formGO.dx_carrot) and (float(formGO.dx_carrot) * 1.2 < form.dx_carrot.data or float(formGO.dx_carrot) * 0.8 > form.dx_carrot.data) %}
                 {{ form.dx_carrot(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_carrot }}
@@ -596,14 +596,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_svekla.label }}
-                  {% if formGO.dx_svekla %}
+                  {% if 0 <= formGO.dx_svekla %}
                   <p>Значение с БД ГО: {{ formGO.dx_svekla }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_svekla and (formGO.dx_svekla * 1.2 < form.dx_svekla.data or formGO.dx_svekla * 0.8 > form.dx_svekla.data) %}
+                {% if (0<=formGO.dx_svekla) and (float(formGO.dx_svekla) * 1.2 < form.dx_svekla.data or float(formGO.dx_svekla) * 0.8 > form.dx_svekla.data) %}
                 {{ form.dx_svekla (style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_svekla }}
@@ -615,14 +615,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_sweet_peper.label }}
-                  {% if formGO.dx_sweet_peper %}
+                  {% if 0 <= formGO.dx_sweet_peper %}
                   <p>Значение с БД ГО: {{ formGO.dx_sweet_peper }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_sweet_peper and (formGO.dx_sweet_peper * 1.2 < form.dx_sweet_peper.data or formGO.dx_sweet_peper * 0.8 > form.dx_sweet_peper.data) %}
+                {% if (0<=formGO.dx_sweet_peper) and (float(formGO.dx_sweet_peper) * 1.2 < form.dx_sweet_peper.data or float(formGO.dx_sweet_peper) * 0.8 > form.dx_sweet_peper.data) %}
                 {{ form.dx_sweet_peper( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_sweet_peper }}
@@ -634,14 +634,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_baklajan.label }}
-                  {% if formGO.dx_baklajan %}
+                  {% if 0 <= formGO.dx_baklajan %}
                   <p>Значение с БД ГО: {{ formGO.dx_baklajan }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_baklajan and (formGO.dx_baklajan * 1.2 < form.dx_baklajan.data or formGO.dx_baklajan * 0.8 > form.dx_baklajan.data) %}
+                {% if (0<=formGO.dx_baklajan) and (float(formGO.dx_baklajan) * 1.2 < form.dx_baklajan.data or float(formGO.dx_baklajan) * 0.8 > form.dx_baklajan.data) %}
                 {{ form.dx_baklajan( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_baklajan }}
@@ -653,14 +653,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_kabachek.label }}
-                  {% if formGO.dx_kabachek %}
+                  {% if 0 <= formGO.dx_kabachek %}
                   <p>Значение с БД ГО: {{ formGO.dx_kabachek }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_kabachek and (formGO.dx_kabachek * 1.2 < form.dx_kabachek.data or formGO.dx_kabachek * 0.8 > form.dx_kabachek.data) %}
+                {% if (0<=formGO.dx_kabachek) and (float(formGO.dx_kabachek) * 1.2 < form.dx_kabachek.data or float(formGO.dx_kabachek) * 0.8 > form.dx_kabachek.data) %}
                 {{ form.dx_kabachek(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_kabachek }}
@@ -672,14 +672,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_onion.label }}
-                  {% if formGO.dx_onion %}
+                  {% if 0 <= formGO.dx_onion %}
                   <p>Значение с БД ГО: {{ formGO.dx_onion }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_onion and (formGO.dx_onion * 1.2 < form.dx_onion.data or formGO.dx_onion * 0.8 > form.dx_onion.data) %}
+                {% if (0<=formGO.dx_onion) and (float(formGO.dx_onion) * 1.2 < form.dx_onion.data or float(formGO.dx_onion) * 0.8 > form.dx_onion.data) %}
                 {{ form.dx_onion( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_onion }}
@@ -691,14 +691,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_chesnok.label }}
-                  {% if formGO.dx_chesnok %}
+                  {% if 0 <= formGO.dx_chesnok %}
                   <p>Значение с БД ГО: {{ formGO.dx_chesnok }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_chesnok and (formGO.dx_chesnok * 1.2 < form.dx_chesnok.data or formGO.dx_chesnok * 0.8 > form.dx_chesnok.data) %}
+                {% if (0<=formGO.dx_chesnok) and (float(formGO.dx_chesnok) * 1.2 < form.dx_chesnok.data or float(formGO.dx_chesnok) * 0.8 > form.dx_chesnok.data) %}
                 {{ form.dx_chesnok( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_chesnok }}
@@ -710,14 +710,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_redis.label }}
-                  {% if formGO.dx_redis %}
+                  {% if 0 <= formGO.dx_redis %}
                   <p>Значение с БД ГО: {{ formGO.dx_redis }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_redis and (formGO.dx_redis * 1.2 < form.dx_redis.data or formGO.dx_redis * 0.8 > form.dx_redis.data) %}
+                {% if (0<=formGO.dx_redis) and (float(formGO.dx_redis) * 1.2 < form.dx_redis.data or float(formGO.dx_redis) * 0.8 > form.dx_redis.data) %}
                 {{ form.dx_redis( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_redis }}
@@ -729,14 +729,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_korm.label }}
-                  {% if formGO.dx_korm %}
+                  {% if 0 <= formGO.dx_korm %}
                   <p>Значение с БД ГО: {{ formGO.dx_korm }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_korm and (formGO.dx_korm * 1.2 < form.dx_korm.data or formGO.dx_korm * 0.8 > form.dx_korm.data) %}
+                {% if (0<=formGO.dx_korm) and (float(formGO.dx_korm) * 1.2 < form.dx_korm.data or float(formGO.dx_korm) * 0.8 > form.dx_korm.data) %}
                 {{ form.dx_korm( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_korm }}
@@ -748,14 +748,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_fruits.label }}
-                  {% if formGO.dx_fruits %}
+                  {% if 0 <= formGO.dx_fruits %}
                   <p>Значение с БД ГО: {{ formGO.dx_fruits }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.dx_fruits and (formGO.dx_fruits * 1.2 < form.dx_fruits.data or formGO.dx_fruits * 0.8 > form.dx_fruits.data) %}
+                {% if (0<=formGO.dx_fruits) and (float(formGO.dx_fruits) * 1.2 < form.dx_fruits.data or float(formGO.dx_fruits) * 0.8 > form.dx_fruits.data) %}
                 {{ form.dx_fruits( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.dx_fruits }}
@@ -767,14 +767,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_amount.label }}
-                  {% if formGO.kx_amount %}
+                  {% if 0 <= formGO.kx_amount %}
                   <p>Значение с БД ГО: {{ formGO.kx_amount }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_amount and (formGO.kx_amount * 1.2 < form.kx_amount.data or formGO.kx_amount * 0.8 > form.kx_amount.data) %}
+                {% if (0<=formGO.kx_amount) and (float(formGO.kx_amount) * 1.2 < form.kx_amount.data or float(formGO.kx_amount) * 0.8 > form.kx_amount.data) %}
                 {{ form.kx_amount( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_amount }}
@@ -786,14 +786,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kz_cx_land.label }}
-                  {% if formGO.kz_cx_land %}
+                  {% if 0 <= formGO.kz_cx_land %}
                   <p>Значение с БД ГО: {{ formGO.kz_cx_land }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kz_cx_land and (formGO.kz_cx_land * 1.2 < form.kz_cx_land.data or formGO.kz_cx_land * 0.8 > form.kz_cx_land.data) %}
+                {% if (0<=formGO.kz_cx_land) and (float(formGO.kz_cx_land) * 1.2 < form.kz_cx_land.data or float(formGO.kz_cx_land) * 0.8 > form.kz_cx_land.data) %}
                 {{ form.kz_cx_land(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kz_cx_land }}
@@ -807,14 +807,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_pansya.label }}
-                  {% if formGO.kx_pansya %}
+                  {% if 0 <= formGO.kx_pansya %}
                   <p>Значение с БД ГО: {{ formGO.kx_pansya }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_pansya and (formGO.kx_pansya * 1.2 < form.kx_pansya.data or formGO.kx_pansya * 0.8 > form.kx_pansya.data) %}
+                {% if (0<=formGO.kx_pansya) and (float(formGO.kx_pansya) * 1.2 < form.kx_pansya.data or float(formGO.kx_pansya) * 0.8 > form.kx_pansya.data) %}
                 {{ form.kx_pansya( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_pansya}}
@@ -826,14 +826,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_mnogoletnie.label }}
-                  {% if formGO.kx_mnogoletnie %}
+                  {% if 0 <= formGO.kx_mnogoletnie %}
                   <p>Значение с БД ГО: {{ formGO.kx_mnogoletnie }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_mnogoletnie and (formGO.kx_mnogoletnie * 1.2 < form.kx_mnogoletnie.data or formGO.kx_mnogoletnie * 0.8 > form.kx_mnogoletnie.data) %}
+                {% if (0<=formGO.kx_mnogoletnie) and (float(formGO.kx_mnogoletnie) * 1.2 < form.kx_mnogoletnie.data or float(formGO.kx_mnogoletnie) * 0.8 > form.kx_mnogoletnie.data) %}
                 {{ form.kx_mnogoletnie( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_mnogoletnie }}
@@ -846,14 +846,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_pastbishe.label }}
-                  {% if formGO.kx_pastbishe %}
+                  {% if 0 <= formGO.kx_pastbishe %}
                   <p>Значение с БД ГО: {{ formGO.kx_pastbishe }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_pastbishe and (formGO.kx_pastbishe * 1.2 < form.kx_pastbishe.data or formGO.kx_pastbishe * 0.8 > form.kx_pastbishe.data) %}
+                {% if (0<=formGO.kx_pastbishe) and (float(formGO.kx_pastbishe) * 1.2 < form.kx_pastbishe.data or float(formGO.kx_pastbishe) * 0.8 > form.kx_pastbishe.data) %}
                 {{ form.kx_pastbishe( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_pastbishe }}
@@ -865,14 +865,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_senokosy.label }}
-                  {% if formGO.kx_senokosy %}
+                  {% if 0 <= formGO.kx_senokosy %}
                   <p>Значение с БД ГО: {{ formGO.kx_senokosy }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_senokosy and (formGO.kx_senokosy * 1.2 < form.kx_senokosy.data or formGO.kx_senokosy * 0.8 > form.kx_senokosy.data) %}
+                {% if (0<=formGO.kx_senokosy) and (float(formGO.kx_senokosy) * 1.2 < form.kx_senokosy.data or float(formGO.kx_senokosy) * 0.8 > form.kx_senokosy.data) %}
                 {{ form.kx_senokosy( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_senokosy }}
@@ -884,14 +884,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_urojai.label }}
-                  {% if formGO.kx_urojai %}
+                  {% if 0 <= formGO.kx_urojai %}
                   <p>Значение с БД ГО: {{ formGO.kx_urojai }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_urojai and (formGO.kx_urojai * 1.2 < form.kx_urojai.data or formGO.kx_urojai * 0.8 > form.kx_urojai.data) %}
+                {% if (0<=formGO.kx_urojai) and (float(formGO.kx_urojai) * 1.2 < form.kx_urojai.data or float(formGO.kx_urojai) * 0.8 > form.kx_urojai.data) %}
                 {{ form.kx_urojai( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_urojai }}
@@ -905,14 +905,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_zerno.label }}
-                  {% if formGO.kx_zerno %}
+                  {% if 0 <= formGO.kx_zerno %}
                   <p>Значение с БД ГО: {{ formGO.kx_zerno }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_zerno and (formGO.kx_zerno * 1.2 < form.kx_zerno.data or formGO.kx_zerno * 0.8 > form.kx_zerno.data) %}
+                {% if (0<=formGO.kx_zerno) and (float(formGO.kx_zerno) * 1.2 < form.kx_zerno.data or float(formGO.kx_zerno) * 0.8 > form.kx_zerno.data) %}
                 {{ form.kx_zerno(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_zerno }}
@@ -924,14 +924,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_rice.label }}
-                  {% if formGO.kx_rice %}
+                  {% if 0 <= formGO.kx_rice %}
                   <p>Значение с БД ГО: {{ formGO.kx_rice }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_rice and (formGO.kx_rice * 1.2 < form.kx_rice.data or formGO.kx_rice * 0.8 > form.kx_rice.data) %}
+                {% if (0<=formGO.kx_rice) and (float(formGO.kx_rice) * 1.2 < form.kx_rice.data or float(formGO.kx_rice) * 0.8 > form.kx_rice.data) %}
                 {{ form.kx_rice( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_rice}}
@@ -943,14 +943,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_maslichnye.label }}
-                  {% if formGO.kx_maslichnye %}
+                  {% if 0 <= formGO.kx_maslichnye %}
                   <p>Значение с БД ГО: {{ formGO.kx_maslichnye }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_maslichnye and (formGO.kx_maslichnye * 1.2 < form.kx_maslichnye.data or formGO.kx_maslichnye * 0.8 > form.kx_maslichnye.data) %}
+                {% if (0<=formGO.kx_maslichnye) and (float(formGO.kx_maslichnye) * 1.2 < form.kx_maslichnye.data or float(formGO.kx_maslichnye) * 0.8 > form.kx_maslichnye.data) %}
                 {{ form.kx_maslichnye( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_maslichnye }}
@@ -962,14 +962,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_korm.label }}
-                  {% if formGO.kx_korm %}
+                  {% if 0 <= formGO.kx_korm %}
                   <p>Значение с БД ГО: {{ formGO.kx_korm }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_korm and (formGO.kx_korm * 1.2 < form.kx_korm.data or formGO.kx_korm * 0.8 > form.kx_korm.data) %}
+                {% if (0<=formGO.kx_korm) and (float(formGO.kx_korm) * 1.2 < form.kx_korm.data or float(formGO.kx_korm) * 0.8 > form.kx_korm.data) %}
                 {{ form.kx_korm( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_korm }}
@@ -981,14 +981,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_mnogoletnie_derevo.label }}
-                  {% if formGO.kx_mnogoletnie_derevo %}
+                  {% if 0 <= formGO.kx_mnogoletnie_derevo %}
                   <p>Значение с БД ГО: {{ formGO.kx_mnogoletnie_derevo }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_mnogoletnie_derevo and (formGO.kx_mnogoletnie_derevo * 1.2 < form.kx_mnogoletnie_derevo.data or formGO.kx_mnogoletnie_derevo * 0.8 > form.kx_mnogoletnie_derevo.data) %}
+                {% if (0<=formGO.kx_mnogoletnie_derevo) and (float(formGO.kx_mnogoletnie_derevo) * 1.2 < form.kx_mnogoletnie_derevo.data or float(formGO.kx_mnogoletnie_derevo) * 0.8 > form.kx_mnogoletnie_derevo.data) %}
                 {{ form.kx_mnogoletnie_derevo( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_mnogoletnie_derevo }}
@@ -1000,14 +1000,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kz_cx_land_reserve.label }}
-                  {% if formGO.kz_cx_land_reserve %}
+                  {% if 0 <= formGO.kz_cx_land_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kz_cx_land_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kz_cx_land_reserve and (formGO.kz_cx_land_reserve * 1.2 < form.kz_cx_land_reserve.data or formGO.kz_cx_land_reserve * 0.8 > form.kz_cx_land_reserve.data) %}
+                {% if (0<=formGO.kz_cx_land_reserve) and (float(formGO.kz_cx_land_reserve) * 1.2 < form.kz_cx_land_reserve.data or float(formGO.kz_cx_land_reserve) * 0.8 > form.kz_cx_land_reserve.data) %}
                 {{ form.kz_cx_land_reserve(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kz_cx_land_reserve }}
@@ -1021,14 +1021,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_pansya_reserve.label }}
-                  {% if formGO.kx_pansya_reserve %}
+                  {% if 0 <= formGO.kx_pansya_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kx_pansya_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_pansya_reserve and (formGO.kx_pansya_reserve * 1.2 < form.kx_pansya_reserve.data or formGO.kx_pansya_reserve * 0.8 > form.kx_pansya_reserve.data) %}
+                {% if (0<=formGO.kx_pansya_reserve) and (float(formGO.kx_pansya_reserve) * 1.2 < form.kx_pansya_reserve.data or float(formGO.kx_pansya_reserve) * 0.8 > form.kx_pansya_reserve.data) %}
                 {{ form.kx_pansya_reserve( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_pansya_reserve }}
@@ -1040,14 +1040,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_mnogoletnie_reserve.label }}
-                  {% if formGO.kx_mnogoletnie_reserve %}
+                  {% if 0 <= formGO.kx_mnogoletnie_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kx_mnogoletnie_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_mnogoletnie_reserve and (formGO.kx_mnogoletnie_reserve * 1.2 < form.kx_mnogoletnie_reserve.data or formGO.kx_mnogoletnie_reserve * 0.8 > form.kx_mnogoletnie_reserve.data) %}
+                {% if (0<=formGO.kx_mnogoletnie_reserve) and (float(formGO.kx_mnogoletnie_reserve) * 1.2 < form.kx_mnogoletnie_reserve.data or float(formGO.kx_mnogoletnie_reserve) * 0.8 > form.kx_mnogoletnie_reserve.data) %}
                 {{ form.kx_mnogoletnie_reserve( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_mnogoletnie_reserve }}
@@ -1059,14 +1059,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_zelej_reserve.label }}
-                  {% if formGO.kx_zelej_reserve %}
+                  {% if 0 <= formGO.kx_zelej_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kx_zelej_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_zelej_reserve and (formGO.kx_zelej_reserve * 1.2 < form.kx_zelej_reserve.data or formGO.kx_zelej_reserve * 0.8 > form.kx_zelej_reserve.data) %}
+                {% if (0<=formGO.kx_zelej_reserve) and (float(formGO.kx_zelej_reserve) * 1.2 < form.kx_zelej_reserve.data or float(formGO.kx_zelej_reserve) * 0.8 > form.kx_zelej_reserve.data) %}
                 {{ form.kx_zelej_reserve( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_zelej_reserve }}
@@ -1078,14 +1078,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_pastbishe_reserve.label }}
-                  {% if formGO.kx_pastbishe_reserve %}
+                  {% if 0 <= formGO.kx_pastbishe_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kx_pastbishe_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_pastbishe_reserve and (formGO.kx_pastbishe_reserve * 1.2 < form.kx_pastbishe_reserve.data or formGO.kx_pastbishe_reserve * 0.8 > form.kx_pastbishe_reserve.data) %}
+                {% if (0<=formGO.kx_pastbishe_reserve) and (float(formGO.kx_pastbishe_reserve) * 1.2 < form.kx_pastbishe_reserve.data or float(formGO.kx_pastbishe_reserve) * 0.8 > form.kx_pastbishe_reserve.data) %}
                 {{ form.kx_pastbishe_reserve( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_pastbishe_reserve }}
@@ -1097,14 +1097,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_senokosy_reserve.label }}
-                  {% if formGO.kx_senokosy_reserve %}
+                  {% if 0 <= formGO.kx_senokosy_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kx_senokosy_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.kx_senokosy_reserve and (formGO.kx_senokosy_reserve * 1.2 < form.kx_senokosy_reserve.data or formGO.kx_senokosy_reserve * 0.8 > form.kx_senokosy_reserve.data) %}
+                {% if (0<=formGO.kx_senokosy_reserve) and (float(formGO.kx_senokosy_reserve) * 1.2 < form.kx_senokosy_reserve.data or float(formGO.kx_senokosy_reserve) * 0.8 > form.kx_senokosy_reserve.data) %}
                 {{ form.kx_senokosy_reserve( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.kx_senokosy_reserve }}
@@ -1116,14 +1116,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_polivochnaya_sistema_.label }}
-                  {% if formGO.infrastructure_polivochnaya_sistema_ %}
+                  {% if 0 <= formGO.infrastructure_polivochnaya_sistema_ %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_polivochnaya_sistema_ }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_polivochnaya_sistema_ and (formGO.infrastructure_polivochnaya_sistema_ * 1.2 < form.infrastructure_polivochnaya_sistema_.data or formGO.infrastructure_polivochnaya_sistema_ * 0.8 > form.infrastructure_polivochnaya_sistema_.data) %}
+                {% if (0<=formGO.infrastructure_polivochnaya_sistema_) and (float(formGO.infrastructure_polivochnaya_sistema_) * 1.2 < form.infrastructure_polivochnaya_sistema_.data or float(formGO.infrastructure_polivochnaya_sistema_) * 0.8 > form.infrastructure_polivochnaya_sistema_.data) %}
                 {{ form.infrastructure_polivochnaya_sistema_( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_polivochnaya_sistema_ }}
@@ -1135,14 +1135,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_polivochnaya_sistema_isused.label }}
-                  {% if formGO.infrastructure_polivochnaya_sistema_isused %}
+                  {% if 0 <= formGO.infrastructure_polivochnaya_sistema_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_polivochnaya_sistema_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_polivochnaya_sistema_isused and (formGO.infrastructure_polivochnaya_sistema_isused * 1.2 < form.infrastructure_polivochnaya_sistema_isused.data or formGO.infrastructure_polivochnaya_sistema_isused * 0.8 > form.infrastructure_polivochnaya_sistema_isused.data) %}
+                {% if (0<=formGO.infrastructure_polivochnaya_sistema_isused) and (float(formGO.infrastructure_polivochnaya_sistema_isused) * 1.2 < form.infrastructure_polivochnaya_sistema_isused.data or float(formGO.infrastructure_polivochnaya_sistema_isused) * 0.8 > form.infrastructure_polivochnaya_sistema_isused.data) %}
                 {{ form.infrastructure_polivochnaya_sistema_isused( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_polivochnaya_sistema_isused }}
@@ -1154,14 +1154,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_polivy.label }}
-                  {% if formGO.infrastructure_polivy %}
+                  {% if 0 <= formGO.infrastructure_polivy %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_polivy }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_polivy and (formGO.infrastructure_polivy * 1.2 < form.infrastructure_polivy.data or formGO.infrastructure_polivy * 0.8 > form.infrastructure_polivy.data) %}
+                {% if (0<=formGO.infrastructure_polivy) and (float(formGO.infrastructure_polivy) * 1.2 < form.infrastructure_polivy.data or float(formGO.infrastructure_polivy) * 0.8 > form.infrastructure_polivy.data) %}
                 {{ form.infrastructure_polivy( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_polivy}}
@@ -1173,14 +1173,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_mtm.label }}
-                  {% if formGO.infrastructure_mtm %}
+                  {% if 0 <= formGO.infrastructure_mtm %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_mtm }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_mtm and (formGO.infrastructure_mtm * 1.2 < form.infrastructure_mtm.data or formGO.infrastructure_mtm * 0.8 > form.infrastructure_mtm.data) %}
+                {% if (0<=formGO.infrastructure_mtm) and (float(formGO.infrastructure_mtm) * 1.2 < form.infrastructure_mtm.data or float(formGO.infrastructure_mtm) * 0.8 > form.infrastructure_mtm.data) %}
                 {{ form.infrastructure_mtm( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_mtm }}
@@ -1192,14 +1192,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_mtm_isused.label }}
-                  {% if formGO.infrastructure_mtm_isused %}
+                  {% if 0 <= formGO.infrastructure_mtm_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_mtm_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_mtm_isused and (formGO.infrastructure_mtm_isused * 1.2 < form.infrastructure_mtm_isused.data or formGO.infrastructure_mtm_isused * 0.8 > form.infrastructure_mtm_isused.data) %}
+                {% if (0<=formGO.infrastructure_mtm_isused) and (float(formGO.infrastructure_mtm_isused) * 1.2 < form.infrastructure_mtm_isused.data or float(formGO.infrastructure_mtm_isused) * 0.8 > form.infrastructure_mtm_isused.data) %}
                 {{ form.infrastructure_mtm_isused( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_mtm_isused }}
@@ -1211,14 +1211,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_slad.label }}
-                  {% if formGO.infrastructure_slad %}
+                  {% if 0 <= formGO.infrastructure_slad %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_slad }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_slad and (formGO.infrastructure_slad * 1.2 < form.infrastructure_slad.data or formGO.infrastructure_slad * 0.8 > form.infrastructure_slad.data) %}
+                {% if (0<=formGO.infrastructure_slad) and (float(formGO.infrastructure_slad) * 1.2 < form.infrastructure_slad.data or float(formGO.infrastructure_slad) * 0.8 > form.infrastructure_slad.data) %}
                 {{ form.infrastructure_slad( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_slad }}
@@ -1230,14 +1230,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_slad_isused.label }}
-                  {% if formGO.infrastructure_slad_isused %}
+                  {% if 0 <= formGO.infrastructure_slad_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_slad_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_slad_isused and (formGO.infrastructure_slad_isused * 1.2 < form.infrastructure_slad_isused.data or formGO.infrastructure_slad_isused * 0.8 > form.infrastructure_slad_isused.data) %}
+                {% if (0<=formGO.infrastructure_slad_isused) and (float(formGO.infrastructure_slad_isused) * 1.2 < form.infrastructure_slad_isused.data or float(formGO.infrastructure_slad_isused) * 0.8 > form.infrastructure_slad_isused.data) %}
                 {{ form.infrastructure_slad_isused( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_slad_isused }}
@@ -1249,14 +1249,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_garage.label }}
-                  {% if formGO.infrastructure_garage %}
+                  {% if 0 <= formGO.infrastructure_garage %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_garage }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_garage and (formGO.infrastructure_garage * 1.2 < form.infrastructure_garage.data or formGO.infrastructure_garage * 0.8 > form.infrastructure_garage.data) %}
+                {% if (0<=formGO.infrastructure_garage) and (float(formGO.infrastructure_garage) * 1.2 < form.infrastructure_garage.data or float(formGO.infrastructure_garage) * 0.8 > form.infrastructure_garage.data) %}
                 {{ form.infrastructure_garage( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_garage}}
@@ -1268,14 +1268,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_garage_isused.label }}
-                  {% if formGO.infrastructure_garage_isused %}
+                  {% if 0 <= formGO.infrastructure_garage_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_garage_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_garage_isused and (formGO.infrastructure_garage_isused * 1.2 < form.infrastructure_garage_isused.data or formGO.infrastructure_garage_isused * 0.8 > form.infrastructure_garage_isused.data) %}
+                {% if (0<=formGO.infrastructure_garage_isused) and (float(formGO.infrastructure_garage_isused) * 1.2 < form.infrastructure_garage_isused.data or float(formGO.infrastructure_garage_isused) * 0.8 > form.infrastructure_garage_isused.data) %}
                 {{ form.infrastructure_garage_isused( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_garage_isused}}
@@ -1287,14 +1287,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_cycsterny.label }}
-                  {% if formGO.infrastructure_cycsterny %}
+                  {% if 0 <= formGO.infrastructure_cycsterny %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_cycsterny }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_cycsterny and (formGO.infrastructure_cycsterny * 1.2 < form.infrastructure_cycsterny.data or formGO.infrastructure_cycsterny * 0.8 > form.infrastructure_cycsterny.data) %}
+                {% if (0<=formGO.infrastructure_cycsterny) and (float(formGO.infrastructure_cycsterny) * 1.2 < form.infrastructure_cycsterny.data or float(formGO.infrastructure_cycsterny) * 0.8 > form.infrastructure_cycsterny.data) %}
                 {{ form.infrastructure_cycsterny( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_cycsterny}}
@@ -1306,14 +1306,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_cycsterny_isused.label }}
-                  {% if formGO.infrastructure_cycsterny_isused %}
+                  {% if 0 <= formGO.infrastructure_cycsterny_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_cycsterny_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_cycsterny_isused and (formGO.infrastructure_cycsterny_isused * 1.2 < form.infrastructure_cycsterny_isused.data or formGO.infrastructure_cycsterny_isused * 0.8 > form.infrastructure_cycsterny_isused.data) %}
+                {% if (0<=formGO.infrastructure_cycsterny_isused) and (float(formGO.infrastructure_cycsterny_isused) * 1.2 < form.infrastructure_cycsterny_isused.data or float(formGO.infrastructure_cycsterny_isused) * 0.8 > form.infrastructure_cycsterny_isused.data) %}
                 {{ form.infrastructure_cycsterny_isused( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_cycsterny_isused }}
@@ -1325,14 +1325,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_transformator.label }}
-                  {% if formGO.infrastructure_transformator %}
+                  {% if 0 <= formGO.infrastructure_transformator %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_transformator }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_transformator and (formGO.infrastructure_transformator * 1.2 < form.infrastructure_transformator.data or formGO.infrastructure_transformator * 0.8 > form.infrastructure_transformator.data) %}
+                {% if (0<=formGO.infrastructure_transformator) and (float(formGO.infrastructure_transformator) * 1.2 < form.infrastructure_transformator.data or float(formGO.infrastructure_transformator) * 0.8 > form.infrastructure_transformator.data) %}
                 {{ form.infrastructure_transformator(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_transformator }}
@@ -1344,14 +1344,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_transformator_isused.label }}
-                  {% if formGO.infrastructure_transformator_isused %}
+                  {% if 0 <= formGO.infrastructure_transformator_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_transformator_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.infrastructure_transformator_isused and (formGO.infrastructure_transformator_isused * 1.2 < form.infrastructure_transformator_isused.data or formGO.infrastructure_transformator_isused * 0.8 > form.infrastructure_transformator_isused.data) %}
+                {% if (0<=formGO.infrastructure_transformator_isused) and (float(formGO.infrastructure_transformator_isused) * 1.2 < form.infrastructure_transformator_isused.data or float(formGO.infrastructure_transformator_isused) * 0.8 > form.infrastructure_transformator_isused.data) %}
                 {{ form.infrastructure_transformator_isused( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.infrastructure_transformator_isused }}
@@ -1360,7 +1360,9 @@
               </div>
             </div>
           <h4>Специализация растениеводства</h4>
+          {% if formData.specialization_rastenivodstvo %}
           <p>{{ formData.specialization_rastenivodstvo }}</p>
+          {% endif %}
           <div class="label">
               {% if formGO.specialization_rastenivodstvo %}
               <p>Значение с БД ГО: {{ formGO.specialization_rastenivodstvo }}</p>
@@ -1588,14 +1590,14 @@
            <div class="input-group">
           <div class="label">
             {{ form.animal_dvor.label }}
-              {% if formGO.animal_dvor %}
+              {% if 0 <= formGO.animal_dvor %}
               <p>Значение с БД ГО: {{ formGO.animal_dvor }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_dvor and (formGO.animal_dvor * 1.2 < form.animal_dvor.data or formGO.animal_dvor * 0.8 > form.animal_dvor.data) %}
+            {% if (0<=formGO.animal_dvor) and (float(formGO.animal_dvor) * 1.2 < form.animal_dvor.data or float(formGO.animal_dvor) * 0.8 > form.animal_dvor.data) %}
             {{ form.animal_dvor( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_dvor }}
@@ -1607,14 +1609,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_skot_bird.label }}
-              {% if formGO.animal_skot_bird %}
+              {% if 0 <= formGO.animal_skot_bird %}
               <p>Значение с БД ГО: {{ formGO.animal_skot_bird }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_skot_bird and (formGO.animal_skot_bird * 1.2 < form.animal_skot_bird.data or formGO.animal_skot_bird * 0.8 > form.animal_skot_bird.data) %}
+            {% if (0<=formGO.animal_skot_bird) and (float(formGO.animal_skot_bird) * 1.2 < form.animal_skot_bird.data or float(formGO.animal_skot_bird) * 0.8 > form.animal_skot_bird.data) %}
             {{ form.animal_skot_bird( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_skot_bird}}
@@ -1626,14 +1628,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_cx_land.label }}
-              {% if formGO.animal_cx_land %}
+              {% if 0 <= formGO.animal_cx_land %}
               <p>Значение с БД ГО: {{ formGO.animal_cx_land }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_cx_land and (formGO.animal_cx_land * 1.2 < form.animal_cx_land.data or formGO.animal_cx_land * 0.8 > form.animal_cx_land.data) %}
+            {% if (0<=formGO.animal_cx_land) and (float(formGO.animal_cx_land) * 1.2 < form.animal_cx_land.data or float(formGO.animal_cx_land) * 0.8 > form.animal_cx_land.data) %}
             {{ form.animal_cx_land( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_cx_land }}
@@ -1647,14 +1649,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_pashnya.label }}
-              {% if formGO.animal_pashnya %}
+              {% if 0 <= formGO.animal_pashnya %}
               <p>Значение с БД ГО: {{ formGO.animal_pashnya }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_pashnya and (formGO.animal_pashnya * 1.2 < form.animal_pashnya.data or formGO.animal_pashnya * 0.8 > form.animal_pashnya.data) %}
+            {% if (0<=formGO.animal_pashnya) and (float(formGO.animal_pashnya) * 1.2 < form.animal_pashnya.data or float(formGO.animal_pashnya) * 0.8 > form.animal_pashnya.data) %}
             {{ form.animal_pashnya( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_pashnya }}
@@ -1666,14 +1668,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_mnogolet.label }}
-              {% if formGO.animal_mnogolet %}
+              {% if 0 <= formGO.animal_mnogolet %}
               <p>Значение с БД ГО: {{ formGO.animal_mnogolet }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_mnogolet and (formGO.animal_mnogolet * 1.2 < form.animal_mnogolet.data or formGO.animal_mnogolet * 0.8 > form.animal_mnogolet.data) %}
+            {% if (0<=formGO.animal_mnogolet) and (float(formGO.animal_mnogolet) * 1.2 < form.animal_mnogolet.data or float(formGO.animal_mnogolet) * 0.8 > form.animal_mnogolet.data) %}
             {{ form.animal_mnogolet( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_mnogolet }}
@@ -1685,14 +1687,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_zalej.label }}
-              {% if formGO.animal_zalej %}
+              {% if 0 <= formGO.animal_zalej %}
               <p>Значение с БД ГО: {{ formGO.animal_zalej }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_zalej and (formGO.animal_zalej * 1.2 < form.animal_zalej.data or formGO.animal_zalej * 0.8 > form.animal_zalej.data) %}
+            {% if (0<=formGO.animal_zalej) and (float(formGO.animal_zalej) * 1.2 < form.animal_zalej.data or float(formGO.animal_zalej) * 0.8 > form.animal_zalej.data) %}
             {{ form.animal_zalej( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_zalej }}
@@ -1704,14 +1706,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_pastbisha.label }}
-              {% if formGO.animal_pastbisha %}
+              {% if 0 <= formGO.animal_pastbisha %}
               <p>Значение с БД ГО: {{ formGO.animal_pastbisha }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_pastbisha and (formGO.animal_pastbisha * 1.2 < form.animal_pastbisha.data or formGO.animal_pastbisha * 0.8 > form.animal_pastbisha.data) %}
+            {% if (0<=formGO.animal_pastbisha) and (float(formGO.animal_pastbisha) * 1.2 < form.animal_pastbisha.data or float(formGO.animal_pastbisha) * 0.8 > form.animal_pastbisha.data) %}
             {{ form.animal_pastbisha( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_pastbisha }}
@@ -1723,14 +1725,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_senokos.label }}
-              {% if formGO.animal_senokos %}
+              {% if 0 <= formGO.animal_senokos %}
               <p>Значение с БД ГО: {{ formGO.animal_senokos }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_senokos and (formGO.animal_senokos * 1.2 < form.animal_senokos.data or formGO.animal_senokos * 0.8 > form.animal_senokos.data) %}
+            {% if (0<=formGO.animal_senokos) and (float(formGO.animal_senokos) * 1.2 < form.animal_senokos.data or float(formGO.animal_senokos) * 0.8 > form.animal_senokos.data) %}
             {{ form.animal_senokos( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_senokos}}
@@ -1742,14 +1744,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_ogorod.label }}
-              {% if formGO.animal_ogorod %}
+              {% if 0 <= formGO.animal_ogorod %}
               <p>Значение с БД ГО: {{ formGO.animal_ogorod }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_ogorod and (formGO.animal_ogorod * 1.2 < form.animal_ogorod.data or formGO.animal_ogorod * 0.8 > form.animal_ogorod.data) %}
+            {% if (0<=formGO.animal_ogorod) and (float(formGO.animal_ogorod) * 1.2 < form.animal_ogorod.data or float(formGO.animal_ogorod) * 0.8 > form.animal_ogorod.data) %}
             {{ form.animal_ogorod( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_ogorod }}
@@ -1761,14 +1763,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_sad.label }}
-              {% if formGO.animal_sad %}
+              {% if 0 <= formGO.animal_sad %}
               <p>Значение с БД ГО: {{ formGO.animal_sad }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_sad and (formGO.animal_sad * 1.2 < form.animal_sad.data or formGO.animal_sad * 0.8 > form.animal_sad.data) %}
+            {% if (0<=formGO.animal_sad) and (float(formGO.animal_sad) * 1.2 < form.animal_sad.data or float(formGO.animal_sad) * 0.8 > form.animal_sad.data) %}
             {{ form.animal_sad( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_sad}}
@@ -1780,14 +1782,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_krs_milk.label }}
-              {% if formGO.animal_krs_milk %}
+              {% if 0 <= formGO.animal_krs_milk %}
               <p>Значение с БД ГО: {{ formGO.animal_krs_milk }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_krs_milk and (formGO.animal_krs_milk * 1.2 < form.animal_krs_milk.data or formGO.animal_krs_milk * 0.8 > form.animal_krs_milk.data) %}
+            {% if (0<=formGO.animal_krs_milk) and (float(formGO.animal_krs_milk) * 1.2 < form.animal_krs_milk.data or float(formGO.animal_krs_milk) * 0.8 > form.animal_krs_milk.data) %}
             {{ form.animal_krs_milk( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_krs_milk }}
@@ -1799,14 +1801,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_krs_meat.label }}
-              {% if formGO.animal_krs_meat %}
+              {% if 0 <= formGO.animal_krs_meat %}
               <p>Значение с БД ГО: {{ formGO.animal_krs_meat }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_krs_meat and (formGO.animal_krs_meat * 1.2 < form.animal_krs_meat.data or formGO.animal_krs_meat * 0.8 > form.animal_krs_meat.data) %}
+            {% if (0<=formGO.animal_krs_meat) and (float(formGO.animal_krs_meat) * 1.2 < form.animal_krs_meat.data or float(formGO.animal_krs_meat) * 0.8 > form.animal_krs_meat.data) %}
             {{ form.animal_krs_meat( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_krs_meat }}
@@ -1818,14 +1820,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_sheep.label }}
-              {% if formGO.animal_sheep %}
+              {% if 0 <= formGO.animal_sheep %}
               <p>Значение с БД ГО: {{ formGO.animal_sheep }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_sheep and (formGO.animal_sheep * 1.2 < form.animal_sheep.data or formGO.animal_sheep * 0.8 > form.animal_sheep.data) %}
+            {% if (0<=formGO.animal_sheep) and (float(formGO.animal_sheep) * 1.2 < form.animal_sheep.data or float(formGO.animal_sheep) * 0.8 > form.animal_sheep.data) %}
             {{ form.animal_sheep( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_sheep }}
@@ -1837,14 +1839,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_kozel.label }}
-              {% if formGO.animal_kozel %}
+              {% if 0 <= formGO.animal_kozel %}
               <p>Значение с БД ГО: {{ formGO.animal_kozel }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_kozel and (formGO.animal_kozel * 1.2 < form.animal_kozel.data or formGO.animal_kozel * 0.8 > form.animal_kozel.data) %}
+            {% if (0<=formGO.animal_kozel) and (float(formGO.animal_kozel) * 1.2 < form.animal_kozel.data or float(formGO.animal_kozel) * 0.8 > form.animal_kozel.data) %}
             {{ form.animal_kozel( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_kozel }}
@@ -1856,14 +1858,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_horse.label }}
-              {% if formGO.animal_horse %}
+              {% if 0 <= formGO.animal_horse %}
               <p>Значение с БД ГО: {{ formGO.animal_horse }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_horse and (formGO.animal_horse * 1.2 < form.animal_horse.data or formGO.animal_horse * 0.8 > form.animal_horse.data) %}
+            {% if (0<=formGO.animal_horse) and (float(formGO.animal_horse) * 1.2 < form.animal_horse.data or float(formGO.animal_horse) * 0.8 > form.animal_horse.data) %}
             {{ form.animal_horse( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_horse }}
@@ -1875,14 +1877,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_camel.label }}
-              {% if formGO.animal_camel %}
+              {% if 0 <= formGO.animal_camel %}
               <p>Значение с БД ГО: {{ formGO.animal_camel }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_camel and (formGO.animal_camel * 1.2 < form.animal_camel.data or formGO.animal_camel * 0.8 > form.animal_camel.data) %}
+            {% if (0<=formGO.animal_camel) and (float(formGO.animal_camel) * 1.2 < form.animal_camel.data or float(formGO.animal_camel) * 0.8 > form.animal_camel.data) %}
             {{ form.animal_camel( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_camel }}
@@ -1894,14 +1896,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_pig.label }}
-              {% if formGO.animal_pig %}
+              {% if 0 <= formGO.animal_pig %}
               <p>Значение с БД ГО: {{ formGO.animal_pig }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_pig and (formGO.animal_pig * 1.2 < form.animal_pig.data or formGO.animal_pig * 0.8 > form.animal_pig.data) %}
+            {% if (0<=formGO.animal_pig) and (float(formGO.animal_pig) * 1.2 < form.animal_pig.data or float(formGO.animal_pig) * 0.8 > form.animal_pig.data) %}
             {{ form.animal_pig( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_pig}}
@@ -1913,14 +1915,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_chicken.label }}
-              {% if formGO.animal_chicken %}
+              {% if 0 <= formGO.animal_chicken %}
               <p>Значение с БД ГО: {{ formGO.animal_chicken }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_chicken and (formGO.animal_chicken * 1.2 < form.animal_chicken.data or formGO.animal_chicken * 0.8 > form.animal_chicken.data) %}
+            {% if (0<=formGO.animal_chicken) and (float(formGO.animal_chicken) * 1.2 < form.animal_chicken.data or float(formGO.animal_chicken) * 0.8 > form.animal_chicken.data) %}
             {{ form.animal_chicken( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_chicken }}
@@ -1932,14 +1934,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_gusi.label }}
-              {% if formGO.animal_gusi %}
+              {% if 0 <= formGO.animal_gusi %}
               <p>Значение с БД ГО: {{ formGO.animal_gusi }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_gusi and (formGO.animal_gusi * 1.2 < form.animal_gusi.data or formGO.animal_gusi * 0.8 > form.animal_gusi.data) %}
+            {% if (0<=formGO.animal_gusi) and (float(formGO.animal_gusi) * 1.2 < form.animal_gusi.data or float(formGO.animal_gusi) * 0.8 > form.animal_gusi.data) %}
             {{ form.animal_gusi( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_gusi }}
@@ -1951,14 +1953,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_duck.label }}
-              {% if formGO.animal_duck %}
+              {% if 0 <= formGO.animal_duck %}
               <p>Значение с БД ГО: {{ formGO.animal_duck }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_duck and (formGO.animal_duck * 1.2 < form.animal_duck.data or formGO.animal_duck * 0.8 > form.animal_duck.data) %}
+            {% if (0<=formGO.animal_duck) and (float(formGO.animal_duck) * 1.2 < form.animal_duck.data or float(formGO.animal_duck) * 0.8 > form.animal_duck.data) %}
             {{ form.animal_duck( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_duck }}
@@ -1970,14 +1972,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_induk.label }}
-              {% if formGO.animal_induk %}
+              {% if 0 <= formGO.animal_induk %}
               <p>Значение с БД ГО: {{ formGO.animal_induk }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_induk and (formGO.animal_induk * 1.2 < form.animal_induk.data or formGO.animal_induk * 0.8 > form.animal_induk.data) %}
+            {% if (0<=formGO.animal_induk) and (float(formGO.animal_induk) * 1.2 < form.animal_induk.data or float(formGO.animal_induk) * 0.8 > form.animal_induk.data) %}
             {{ form.animal_induk( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_induk }}
@@ -1989,14 +1991,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_mik_total.label }}
-              {% if formGO.animal_mik_total %}
+              {% if 0 <= formGO.animal_mik_total %}
               <p>Значение с БД ГО: {{ formGO.animal_mik_total }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_mik_total and (formGO.animal_mik_total * 1.2 < form.animal_mik_total.data or formGO.animal_mik_total * 0.8 > form.animal_mik_total.data) %}
+            {% if (0<=formGO.animal_mik_total) and (float(formGO.animal_mik_total) * 1.2 < form.animal_mik_total.data or float(formGO.animal_mik_total) * 0.8 > form.animal_mik_total.data) %}
             {{ form.animal_mik_total( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_mik_total }}
@@ -2010,14 +2012,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_milk_cow.label }}
-              {% if formGO.animal_milk_cow %}
+              {% if 0 <= formGO.animal_milk_cow %}
               <p>Значение с БД ГО: {{ formGO.animal_milk_cow }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.animal_milk_cow and (formGO.animal_milk_cow * 1.2 < form.animal_milk_cow.data or formGO.animal_milk_cow * 0.8 > form.animal_milk_cow.data) %}
+            {% if (0<=formGO.animal_milk_cow) and (float(formGO.animal_milk_cow) * 1.2 < form.animal_milk_cow.data or float(formGO.animal_milk_cow) * 0.8 > form.animal_milk_cow.data) %}
             {{ form.animal_milk_cow( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.animal_milk_cow }}
@@ -2030,14 +2032,14 @@
           <div class="input-group">
               <div class="label">
                 {{ form.animal_milkrate_cow.label }}
-                  {% if formGO.animal_milkrate_cow %}
+                  {% if 0 <= formGO.animal_milkrate_cow %}
                   <p>Значение с БД ГО: {{ formGO.animal_milkrate_cow }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_milkrate_cow and (formGO.animal_milkrate_cow * 1.2 < form.animal_milkrate_cow.data or formGO.animal_milkrate_cow * 0.8 > form.animal_milkrate_cow.data) %}
+                {% if (0<=formGO.animal_milkrate_cow) and (float(formGO.animal_milkrate_cow) * 1.2 < form.animal_milkrate_cow.data or float(formGO.animal_milkrate_cow) * 0.8 > form.animal_milkrate_cow.data) %}
                 {{ form.animal_milkrate_cow( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_milkrate_cow }}
@@ -2049,14 +2051,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_mil_kozel.label }}
-                  {% if formGO.animal_mil_kozel %}
+                  {% if 0 <= formGO.animal_mil_kozel %}
                   <p>Значение с БД ГО: {{ formGO.animal_mil_kozel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_mil_kozel and (formGO.animal_mil_kozel * 1.2 < form.animal_mil_kozel.data or formGO.animal_mil_kozel * 0.8 > form.animal_mil_kozel.data) %}
+                {% if (0<=formGO.animal_mil_kozel) and (float(formGO.animal_mil_kozel) * 1.2 < form.animal_mil_kozel.data or float(formGO.animal_mil_kozel) * 0.8 > form.animal_mil_kozel.data) %}
                 {{ form.animal_mil_kozel( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_mil_kozel }}
@@ -2068,14 +2070,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_milrate_kozel.label }}
-                  {% if formGO.animal_milrate_kozel %}
+                  {% if 0 <= formGO.animal_milrate_kozel %}
                   <p>Значение с БД ГО: {{ formGO.animal_milrate_kozel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_milrate_kozel and (formGO.animal_milrate_kozel * 1.2 < form.animal_milrate_kozel.data or formGO.animal_milrate_kozel * 0.8 > form.animal_milrate_kozel.data) %}
+                {% if (0<=formGO.animal_milrate_kozel) and (float(formGO.animal_milrate_kozel) * 1.2 < form.animal_milrate_kozel.data or float(formGO.animal_milrate_kozel) * 0.8 > form.animal_milrate_kozel.data) %}
                 {{ form.animal_milrate_kozel( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_milrate_kozel }}
@@ -2087,14 +2089,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_milk_horse.label }}
-                  {% if formGO.animal_milk_horse %}
+                  {% if 0 <= formGO.animal_milk_horse %}
                   <p>Значение с БД ГО: {{ formGO.animal_milk_horse }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_milk_horse and (formGO.animal_milk_horse * 1.2 < form.animal_milk_horse.data or formGO.animal_milk_horse * 0.8 > form.animal_milk_horse.data) %}
+                {% if (0<=formGO.animal_milk_horse) and (float(formGO.animal_milk_horse) * 1.2 < form.animal_milk_horse.data or float(formGO.animal_milk_horse) * 0.8 > form.animal_milk_horse.data) %}
                 {{ form.animal_milk_horse( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_milk_horse }}
@@ -2106,14 +2108,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_milkrate_horse.label }}
-                  {% if formGO.animal_milkrate_horse %}
+                  {% if 0 <= formGO.animal_milkrate_horse %}
                   <p>Значение с БД ГО: {{ formGO.animal_milkrate_horse }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_milkrate_horse and (formGO.animal_milkrate_horse * 1.2 < form.animal_milkrate_horse.data or formGO.animal_milkrate_horse * 0.8 > form.animal_milkrate_horse.data) %}
+                {% if (0<=formGO.animal_milkrate_horse) and (float(formGO.animal_milkrate_horse) * 1.2 < form.animal_milkrate_horse.data or float(formGO.animal_milkrate_horse) * 0.8 > form.animal_milkrate_horse.data) %}
                 {{ form.animal_milkrate_horse( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_milkrate_horse }}
@@ -2125,14 +2127,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_milk_camel.label }}
-                  {% if formGO.animal_milk_camel %}
+                  {% if 0 <= formGO.animal_milk_camel %}
                   <p>Значение с БД ГО: {{ formGO.animal_milk_camel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_milk_camel and (formGO.animal_milk_camel * 1.2 < form.animal_milk_camel.data or formGO.animal_milk_camel * 0.8 > form.animal_milk_camel.data) %}
+                {% if (0<=formGO.animal_milk_camel) and (float(formGO.animal_milk_camel) * 1.2 < form.animal_milk_camel.data or float(formGO.animal_milk_camel) * 0.8 > form.animal_milk_camel.data) %}
                 {{ form.animal_milk_camel( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_milk_camel}}
@@ -2144,14 +2146,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_milkrate_camel.label }}
-                  {% if formGO.animal_milkrate_camel %}
+                  {% if 0 <= formGO.animal_milkrate_camel %}
                   <p>Значение с БД ГО: {{ formGO.animal_milkrate_camel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_milkrate_camel and (formGO.animal_milkrate_camel * 1.2 < form.animal_milkrate_camel.data or formGO.animal_milkrate_camel * 0.8 > form.animal_milkrate_camel.data) %}
+                {% if (0<=formGO.animal_milkrate_camel) and (float(formGO.animal_milkrate_camel) * 1.2 < form.animal_milkrate_camel.data or float(formGO.animal_milkrate_camel) * 0.8 > form.animal_milkrate_camel.data) %}
                 {{ form.animal_milkrate_camel( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_milkrate_camel }}
@@ -2163,14 +2165,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_total.label }}
-                  {% if formGO.animal_meat_total %}
+                  {% if 0 <= formGO.animal_meat_total %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_total }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_meat_total and (formGO.animal_meat_total * 1.2 < form.animal_meat_total.data or formGO.animal_meat_total * 0.8 > form.animal_meat_total.data) %}
+                {% if (0<=formGO.animal_meat_total) and (float(formGO.animal_meat_total) * 1.2 < form.animal_meat_total.data or float(formGO.animal_meat_total) * 0.8 > form.animal_meat_total.data) %}
                 {{ form.animal_meat_total( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_meat_total }}
@@ -2184,14 +2186,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_cow.label }}
-                  {% if formGO.animal_meat_cow %}
+                  {% if 0 <= formGO.animal_meat_cow %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_cow }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_meat_cow and (formGO.animal_meat_cow * 1.2 < form.animal_meat_cow.data or formGO.animal_meat_cow * 0.8 > form.animal_meat_cow.data) %}
+                {% if (0<=formGO.animal_meat_cow) and (float(formGO.animal_meat_cow) * 1.2 < form.animal_meat_cow.data or float(formGO.animal_meat_cow) * 0.8 > form.animal_meat_cow.data) %}
                 {{ form.animal_meat_cow( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_meat_cow }}
@@ -2203,14 +2205,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_sheep.label }}
-                  {% if formGO.animal_meat_sheep %}
+                  {% if 0 <= formGO.animal_meat_sheep %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_sheep }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_meat_sheep and (formGO.animal_meat_sheep * 1.2 < form.animal_meat_sheep.data or formGO.animal_meat_sheep * 0.8 > form.animal_meat_sheep.data) %}
+                {% if (0<=formGO.animal_meat_sheep) and (float(formGO.animal_meat_sheep) * 1.2 < form.animal_meat_sheep.data or float(formGO.animal_meat_sheep) * 0.8 > form.animal_meat_sheep.data) %}
                 {{ form.animal_meat_sheep( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_meat_sheep }}
@@ -2222,14 +2224,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_horse.label }}
-                  {% if formGO.animal_meat_horse %}
+                  {% if 0 <= formGO.animal_meat_horse %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_horse }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_meat_horse and (formGO.animal_meat_horse * 1.2 < form.animal_meat_horse.data or formGO.animal_meat_horse * 0.8 > form.animal_meat_horse.data) %}
+                {% if (0<=formGO.animal_meat_horse) and (float(formGO.animal_meat_horse) * 1.2 < form.animal_meat_horse.data or float(formGO.animal_meat_horse) * 0.8 > form.animal_meat_horse.data) %}
                 {{ form.animal_meat_horse( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_meat_horse }}
@@ -2241,14 +2243,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_pig.label }}
-                  {% if formGO.animal_meat_pig %}
+                  {% if 0 <= formGO.animal_meat_pig %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_pig }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_meat_pig and (formGO.animal_meat_pig * 1.2 < form.animal_meat_pig.data or formGO.animal_meat_pig * 0.8 > form.animal_meat_pig.data) %}
+                {% if (0<=formGO.animal_meat_pig) and (float(formGO.animal_meat_pig) * 1.2 < form.animal_meat_pig.data or float(formGO.animal_meat_pig) * 0.8 > form.animal_meat_pig.data) %}
                 {{ form.animal_meat_pig( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_meat_pig }}
@@ -2260,14 +2262,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_camel.label }}
-                  {% if formGO.animal_meat_camel %}
+                  {% if 0 <= formGO.animal_meat_camel %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_camel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_meat_camel and (formGO.animal_meat_camel * 1.2 < form.animal_meat_camel.data or formGO.animal_meat_camel * 0.8 > form.animal_meat_camel.data) %}
+                {% if (0<=formGO.animal_meat_camel) and (float(formGO.animal_meat_camel) * 1.2 < form.animal_meat_camel.data or float(formGO.animal_meat_camel) * 0.8 > form.animal_meat_camel.data) %}
                 {{ form.animal_meat_camel( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_meat_camel }}
@@ -2279,14 +2281,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_chicken.label }}
-                  {% if formGO.animal_meat_chicken %}
+                  {% if 0 <= formGO.animal_meat_chicken %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_chicken }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_meat_chicken and (formGO.animal_meat_chicken * 1.2 < form.animal_meat_chicken.data or formGO.animal_meat_chicken * 0.8 > form.animal_meat_chicken.data) %}
+                {% if (0<=formGO.animal_meat_chicken) and (float(formGO.animal_meat_chicken) * 1.2 < form.animal_meat_chicken.data or float(formGO.animal_meat_chicken) * 0.8 > form.animal_meat_chicken.data) %}
                 {{ form.animal_meat_chicken( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_meat_chicken }}
@@ -2298,14 +2300,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_duck.label }}
-                  {% if formGO.animal_meat_duck %}
+                  {% if 0 <= formGO.animal_meat_duck %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_duck }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_meat_duck and (formGO.animal_meat_duck * 1.2 < form.animal_meat_duck.data or formGO.animal_meat_duck * 0.8 > form.animal_meat_duck.data) %}
+                {% if (0<=formGO.animal_meat_duck) and (float(formGO.animal_meat_duck) * 1.2 < form.animal_meat_duck.data or float(formGO.animal_meat_duck) * 0.8 > form.animal_meat_duck.data) %}
                 {{ form.animal_meat_duck( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_meat_duck }}
@@ -2317,14 +2319,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_gusi.label }}
-                  {% if formGO.animal_meat_gusi %}
+                  {% if 0 <= formGO.animal_meat_gusi %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_gusi }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_meat_gusi and (formGO.animal_meat_gusi * 1.2 < form.animal_meat_gusi.data or formGO.animal_meat_gusi * 0.8 > form.animal_meat_gusi.data) %}
+                {% if (0<=formGO.animal_meat_gusi) and (float(formGO.animal_meat_gusi) * 1.2 < form.animal_meat_gusi.data or float(formGO.animal_meat_gusi) * 0.8 > form.animal_meat_gusi.data) %}
                 {{ form.animal_meat_gusi( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_meat_gusi }}
@@ -2336,14 +2338,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_egg_total.label }}
-                  {% if formGO.animal_egg_total %}
+                  {% if 0 <= formGO.animal_egg_total %}
                   <p>Значение с БД ГО: {{ formGO.animal_egg_total }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_egg_total and (formGO.animal_egg_total * 1.2 < form.animal_egg_total.data or formGO.animal_egg_total * 0.8 > form.animal_egg_total.data) %}
+                {% if (0<=formGO.animal_egg_total) and (float(formGO.animal_egg_total) * 1.2 < form.animal_egg_total.data or float(formGO.animal_egg_total) * 0.8 > form.animal_egg_total.data) %}
                 {{ form.animal_egg_total (style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_egg_total }}
@@ -2357,14 +2359,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_egg_chicken.label }}
-                  {% if formGO.animal_egg_chicken %}
+                  {% if 0 <= formGO.animal_egg_chicken %}
                   <p>Значение с БД ГО: {{ formGO.animal_egg_chicken }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_egg_chicken and (formGO.animal_egg_chicken * 1.2 < form.animal_egg_chicken.data or formGO.animal_egg_chicken * 0.8 > form.animal_egg_chicken.data) %}
+                {% if (0<=formGO.animal_egg_chicken) and (float(formGO.animal_egg_chicken) * 1.2 < form.animal_egg_chicken.data or float(formGO.animal_egg_chicken) * 0.8 > form.animal_egg_chicken.data) %}
                 {{ form.animal_egg_chicken( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_egg_chicken }}
@@ -2376,14 +2378,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_egg_gusi.label }}
-                  {% if formGO.animal_egg_gusi %}
+                  {% if 0 <= formGO.animal_egg_gusi %}
                   <p>Значение с БД ГО: {{ formGO.animal_egg_gusi }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_egg_gusi and (formGO.animal_egg_gusi * 1.2 < form.animal_egg_gusi.data or formGO.animal_egg_gusi * 0.8 > form.animal_egg_gusi.data) %}
+                {% if (0<=formGO.animal_egg_gusi) and (float(formGO.animal_egg_gusi) * 1.2 < form.animal_egg_gusi.data or float(formGO.animal_egg_gusi) * 0.8 > form.animal_egg_gusi.data) %}
                 {{ form.animal_egg_gusi(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_egg_gusi }}
@@ -2395,14 +2397,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_egg_perepel.label }}
-                  {% if formGO.animal_egg_perepel %}
+                  {% if 0 <= formGO.animal_egg_perepel %}
                   <p>Значение с БД ГО: {{ formGO.animal_egg_perepel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_egg_perepel and (formGO.animal_egg_perepel * 1.2 < form.animal_egg_perepel.data or formGO.animal_egg_perepel * 0.8 > form.animal_egg_perepel.data) %}
+                {% if (0<=formGO.animal_egg_perepel) and (float(formGO.animal_egg_perepel) * 1.2 < form.animal_egg_perepel.data or float(formGO.animal_egg_perepel) * 0.8 > form.animal_egg_perepel.data) %}
                 {{ form.animal_egg_perepel( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_egg_perepel }}
@@ -2414,14 +2416,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_transformator.label }}
-                  {% if formGO.animal_transformator %}
+                  {% if 0 <= formGO.animal_transformator %}
                   <p>Значение с БД ГО: {{ formGO.animal_transformator }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_transformator and (formGO.animal_transformator * 1.2 < form.animal_transformator.data or formGO.animal_transformator * 0.8 > form.animal_transformator.data) %}
+                {% if (0<=formGO.animal_transformator) and (float(formGO.animal_transformator) * 1.2 < form.animal_transformator.data or float(formGO.animal_transformator) * 0.8 > form.animal_transformator.data) %}
                 {{ form.animal_transformator( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_transformator }}
@@ -2433,14 +2435,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_transformator_isused.label }}
-                  {% if formGO.animal_transformator_isused %}
+                  {% if 0 <= formGO.animal_transformator_isused %}
                   <p>Значение с БД ГО: {{ formGO.animal_transformator_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.animal_transformator_isused and (formGO.animal_transformator_isused * 1.2 < form.animal_transformator_isused.data or formGO.animal_transformator_isused * 0.8 > form.animal_transformator_isused.data) %}
+                {% if (0<=formGO.animal_transformator_isused) and (float(formGO.animal_transformator_isused) * 1.2 < form.animal_transformator_isused.data or float(formGO.animal_transformator_isused) * 0.8 > form.animal_transformator_isused.data) %}
                 {{ form.animal_transformator_isused( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.animal_transformator_isused }}
@@ -2544,14 +2546,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_sto.label }}
-                  {% if formGO.noncx_sto %}
+                  {% if 0 <= formGO.noncx_sto %}
                   <p>Значение с БД ГО: {{ formGO.noncx_sto }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_sto and (formGO.noncx_sto * 1.2 < form.noncx_sto.data or formGO.noncx_sto * 0.8 > form.noncx_sto.data) %}
+                {% if (0<=formGO.noncx_sto) and (float(formGO.noncx_sto) * 1.2 < form.noncx_sto.data or float(formGO.noncx_sto) * 0.8 > form.noncx_sto.data) %}
                 {{ form.noncx_sto( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_sto }}
@@ -2563,14 +2565,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_sto_needs.label }}
-                  {% if formGO.noncx_sto_needs %}
+                  {% if 0 <= formGO.noncx_sto_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_sto_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_sto_needs and (formGO.noncx_sto_needs * 1.2 < form.noncx_sto_needs.data or formGO.noncx_sto_needs * 0.8 > form.noncx_sto_needs.data) %}
+                {% if (0<=formGO.noncx_sto_needs) and (float(formGO.noncx_sto_needs) * 1.2 < form.noncx_sto_needs.data or float(formGO.noncx_sto_needs) * 0.8 > form.noncx_sto_needs.data) %}
                 {{ form.noncx_sto_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_sto_needs }}
@@ -2582,14 +2584,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_kindergarden.label }}
-                  {% if formGO.noncx_kindergarden %}
+                  {% if 0 <= formGO.noncx_kindergarden %}
                   <p>Значение с БД ГО: {{ formGO.noncx_kindergarden }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_kindergarden and (formGO.noncx_kindergarden * 1.2 < form.noncx_kindergarden.data or formGO.noncx_kindergarden * 0.8 > form.noncx_kindergarden.data) %}
+                {% if (0<=formGO.noncx_kindergarden) and (float(formGO.noncx_kindergarden) * 1.2 < form.noncx_kindergarden.data or float(formGO.noncx_kindergarden) * 0.8 > form.noncx_kindergarden.data) %}
                 {{ form.noncx_kindergarden( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_kindergarden }}
@@ -2601,14 +2603,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_kindergarden_needs.label }}
-                  {% if formGO.noncx_kindergarden_needs %}
+                  {% if 0 <= formGO.noncx_kindergarden_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_kindergarden_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_kindergarden_needs and (formGO.noncx_kindergarden_needs * 1.2 < form.noncx_kindergarden_needs.data or formGO.noncx_kindergarden_needs * 0.8 > form.noncx_kindergarden_needs.data) %}
+                {% if (0<=formGO.noncx_kindergarden_needs) and (float(formGO.noncx_kindergarden_needs) * 1.2 < form.noncx_kindergarden_needs.data or float(formGO.noncx_kindergarden_needs) * 0.8 > form.noncx_kindergarden_needs.data) %}
                 {{ form.noncx_kindergarden_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_kindergarden_needs }}
@@ -2620,14 +2622,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_souvenier.label }}
-                  {% if formGO.noncx_souvenier %}
+                  {% if 0 <= formGO.noncx_souvenier %}
                   <p>Значение с БД ГО: {{ formGO.noncx_souvenier }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_souvenier and (formGO.noncx_souvenier * 1.2 < form.noncx_souvenier.data or formGO.noncx_souvenier * 0.8 > form.noncx_souvenier.data) %}
+                {% if (0<=formGO.noncx_souvenier) and (float(formGO.noncx_souvenier) * 1.2 < form.noncx_souvenier.data or float(formGO.noncx_souvenier) * 0.8 > form.noncx_souvenier.data) %}
                 {{ form.noncx_souvenier( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_souvenier }}
@@ -2639,14 +2641,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_souvenier_needs.label }}
-                  {% if formGO.noncx_souvenier_needs %}
+                  {% if 0 <= formGO.noncx_souvenier_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_souvenier_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_souvenier_needs and (formGO.noncx_souvenier_needs * 1.2 < form.noncx_souvenier_needs.data or formGO.noncx_souvenier_needs * 0.8 > form.noncx_souvenier_needs.data) %}
+                {% if (0<=formGO.noncx_souvenier_needs) and (float(formGO.noncx_souvenier_needs) * 1.2 < form.noncx_souvenier_needs.data or float(formGO.noncx_souvenier_needs) * 0.8 > form.noncx_souvenier_needs.data) %}
                 {{ form.noncx_souvenier_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_souvenier_needs }}
@@ -2658,14 +2660,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_pc_service.label }}
-                  {% if formGO.noncx_pc_service %}
+                  {% if 0 <= formGO.noncx_pc_service %}
                   <p>Значение с БД ГО: {{ formGO.noncx_pc_service }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_pc_service and (formGO.noncx_pc_service * 1.2 < form.noncx_pc_service.data or formGO.noncx_pc_service * 0.8 > form.noncx_pc_service.data) %}
+                {% if (0<=formGO.noncx_pc_service) and (float(formGO.noncx_pc_service) * 1.2 < form.noncx_pc_service.data or float(formGO.noncx_pc_service) * 0.8 > form.noncx_pc_service.data) %}
                 {{ form.noncx_pc_service(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_pc_service }}
@@ -2677,14 +2679,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_pc_service_needs.label }}
-                  {% if formGO.noncx_pc_service_needs %}
+                  {% if 0 <= formGO.noncx_pc_service_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_pc_service_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_pc_service_needs and (formGO.noncx_pc_service_needs * 1.2 < form.noncx_pc_service_needs.data or formGO.noncx_pc_service_needs * 0.8 > form.noncx_pc_service_needs.data) %}
+                {% if (0<=formGO.noncx_pc_service_needs) and (float(formGO.noncx_pc_service_needs) * 1.2 < form.noncx_pc_service_needs.data or float(formGO.noncx_pc_service_needs) * 0.8 > form.noncx_pc_service_needs.data) %}
                 {{ form.noncx_pc_service_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_pc_service_needs }}
@@ -2696,14 +2698,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_store.label }}
-                  {% if formGO.noncx_store %}
+                  {% if 0 <= formGO.noncx_store %}
                   <p>Значение с БД ГО: {{ formGO.noncx_store }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_store and (formGO.noncx_store * 1.2 < form.noncx_store.data or formGO.noncx_store * 0.8 > form.noncx_store.data) %}
+                {% if (0<=formGO.noncx_store) and (float(formGO.noncx_store) * 1.2 < form.noncx_store.data or float(formGO.noncx_store) * 0.8 > form.noncx_store.data) %}
                 {{ form.noncx_store( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_store }}
@@ -2715,14 +2717,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_store_needs.label }}
-                  {% if formGO.noncx_store_needs %}
+                  {% if 0 <= formGO.noncx_store_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_store_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_store_needs and (formGO.noncx_store_needs * 1.2 < form.noncx_store_needs.data or formGO.noncx_store_needs * 0.8 > form.noncx_store_needs.data) %}
+                {% if (0<=formGO.noncx_store_needs) and (float(formGO.noncx_store_needs) * 1.2 < form.noncx_store_needs.data or float(formGO.noncx_store_needs) * 0.8 > form.noncx_store_needs.data) %}
                 {{ form.noncx_store_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_store_needs }}
@@ -2734,14 +2736,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_remont_bytovoi_tech.label }}
-                  {% if formGO.noncx_remont_bytovoi_tech %}
+                  {% if 0 <= formGO.noncx_remont_bytovoi_tech %}
                   <p>Значение с БД ГО: {{ formGO.noncx_remont_bytovoi_tech }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_remont_bytovoi_tech and (formGO.noncx_remont_bytovoi_tech * 1.2 < form.noncx_remont_bytovoi_tech.data or formGO.noncx_remont_bytovoi_tech * 0.8 > form.noncx_remont_bytovoi_tech.data) %}
+                {% if (0<=formGO.noncx_remont_bytovoi_tech) and (float(formGO.noncx_remont_bytovoi_tech) * 1.2 < form.noncx_remont_bytovoi_tech.data or float(formGO.noncx_remont_bytovoi_tech) * 0.8 > form.noncx_remont_bytovoi_tech.data) %}
                 {{ form.noncx_remont_bytovoi_tech( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_remont_bytovoi_tech }}
@@ -2753,14 +2755,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_remont_bytovoi_tech_needs.label }}
-                  {% if formGO.noncx_remont_bytovoi_tech_needs %}
+                  {% if 0 <= formGO.noncx_remont_bytovoi_tech_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_remont_bytovoi_tech_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_remont_bytovoi_tech_needs and (formGO.noncx_remont_bytovoi_tech_needs * 1.2 < form.noncx_remont_bytovoi_tech_needs.data or formGO.noncx_remont_bytovoi_tech_needs * 0.8 > form.noncx_remont_bytovoi_tech_needs.data) %}
+                {% if (0<=formGO.noncx_remont_bytovoi_tech_needs) and (float(formGO.noncx_remont_bytovoi_tech_needs) * 1.2 < form.noncx_remont_bytovoi_tech_needs.data or float(formGO.noncx_remont_bytovoi_tech_needs) * 0.8 > form.noncx_remont_bytovoi_tech_needs.data) %}
                 {{ form.noncx_remont_bytovoi_tech_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_remont_bytovoi_tech_needs }}
@@ -2772,14 +2774,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_metal.label }}
-                  {% if formGO.noncx_metal %}
+                  {% if 0 <= formGO.noncx_metal %}
                   <p>Значение с БД ГО: {{ formGO.noncx_metal }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_metal and (formGO.noncx_metal * 1.2 < form.noncx_metal.data or formGO.noncx_metal * 0.8 > form.noncx_metal.data) %}
+                {% if (0<=formGO.noncx_metal) and (float(formGO.noncx_metal) * 1.2 < form.noncx_metal.data or float(formGO.noncx_metal) * 0.8 > form.noncx_metal.data) %}
                 {{ form.noncx_metal( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_metal }}
@@ -2791,14 +2793,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_metal_needs.label }}
-                  {% if formGO.noncx_metal_needs %}
+                  {% if 0 <= formGO.noncx_metal_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_metal_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_metal_needs and (formGO.noncx_metal_needs * 1.2 < form.noncx_metal_needs.data or formGO.noncx_metal_needs * 0.8 > form.noncx_metal_needs.data) %}
+                {% if (0<=formGO.noncx_metal_needs) and (float(formGO.noncx_metal_needs) * 1.2 < form.noncx_metal_needs.data or float(formGO.noncx_metal_needs) * 0.8 > form.noncx_metal_needs.data) %}
                 {{ form.noncx_metal_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_metal_needs }}
@@ -2810,14 +2812,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_accounting.label }}
-                  {% if formGO.noncx_accounting %}
+                  {% if 0 <= formGO.noncx_accounting %}
                   <p>Значение с БД ГО: {{ formGO.noncx_accounting }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_accounting and (formGO.noncx_accounting * 1.2 < form.noncx_accounting.data or formGO.noncx_accounting * 0.8 > form.noncx_accounting.data) %}
+                {% if (0<=formGO.noncx_accounting) and (float(formGO.noncx_accounting) * 1.2 < form.noncx_accounting.data or float(formGO.noncx_accounting) * 0.8 > form.noncx_accounting.data) %}
                 {{ form.noncx_accounting( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_accounting }}
@@ -2829,14 +2831,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_accounting_needs.label }}
-                  {% if formGO.noncx_accounting_needs %}
+                  {% if 0 <= formGO.noncx_accounting_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_accounting_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_accounting_needs and (formGO.noncx_accounting_needs * 1.2 < form.noncx_accounting_needs.data or formGO.noncx_accounting_needs * 0.8 > form.noncx_accounting_needs.data) %}
+                {% if (0<=formGO.noncx_accounting_needs) and (float(formGO.noncx_accounting_needs) * 1.2 < form.noncx_accounting_needs.data or float(formGO.noncx_accounting_needs) * 0.8 > form.noncx_accounting_needs.data) %}
                 {{ form.noncx_accounting_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_accounting_needs }}
@@ -2848,14 +2850,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_photo.label }}
-                  {% if formGO.noncx_photo %}
+                  {% if 0 <= formGO.noncx_photo %}
                   <p>Значение с БД ГО: {{ formGO.noncx_photo }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_photo and (formGO.noncx_photo * 1.2 < form.noncx_photo.data or formGO.noncx_photo * 0.8 > form.noncx_photo.data) %}
+                {% if (0<=formGO.noncx_photo) and (float(formGO.noncx_photo) * 1.2 < form.noncx_photo.data or float(formGO.noncx_photo) * 0.8 > form.noncx_photo.data) %}
                 {{ form.noncx_photo(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_photo }}
@@ -2867,14 +2869,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_photo_needs.label }}
-                  {% if formGO.noncx_photo_needs %}
+                  {% if 0 <= formGO.noncx_photo_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_photo_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_photo_needs and (formGO.noncx_photo_needs * 1.2 < form.noncx_photo_needs.data or formGO.noncx_photo_needs * 0.8 > form.noncx_photo_needs.data) %}
+                {% if (0<=formGO.noncx_photo_needs) and (float(formGO.noncx_photo_needs) * 1.2 < form.noncx_photo_needs.data or float(formGO.noncx_photo_needs) * 0.8 > form.noncx_photo_needs.data) %}
                 {{ form.noncx_photo_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_photo_needs }}
@@ -2886,14 +2888,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_turism.label }}
-                  {% if formGO.noncx_turism %}
+                  {% if 0 <= formGO.noncx_turism %}
                   <p>Значение с БД ГО: {{ formGO.noncx_turism }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_turism and (formGO.noncx_turism * 1.2 < form.noncx_turism.data or formGO.noncx_turism * 0.8 > form.noncx_turism.data) %}
+                {% if (0<=formGO.noncx_turism) and (float(formGO.noncx_turism) * 1.2 < form.noncx_turism.data or float(formGO.noncx_turism) * 0.8 > form.noncx_turism.data) %}
                 {{ form.noncx_turism( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_turism }}
@@ -2905,14 +2907,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_turism_needs.label }}
-                  {% if formGO.noncx_turism_needs %}
+                  {% if 0 <= formGO.noncx_turism_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_turism_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_turism_needs and (formGO.noncx_turism_needs * 1.2 < form.noncx_turism_needs.data or formGO.noncx_turism_needs * 0.8 > form.noncx_turism_needs.data) %}
+                {% if (0<=formGO.noncx_turism_needs) and (float(formGO.noncx_turism_needs) * 1.2 < form.noncx_turism_needs.data or float(formGO.noncx_turism_needs) * 0.8 > form.noncx_turism_needs.data) %}
                 {{ form.noncx_turism_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_turism_needs }}
@@ -2924,14 +2926,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_rent.label }}
-                  {% if formGO.noncx_rent %}
+                  {% if 0 <= formGO.noncx_rent %}
                   <p>Значение с БД ГО: {{ formGO.noncx_rent }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_rent and (formGO.noncx_rent * 1.2 < form.noncx_rent.data or formGO.noncx_rent * 0.8 > form.noncx_rent.data) %}
+                {% if (0<=formGO.noncx_rent) and (float(formGO.noncx_rent) * 1.2 < form.noncx_rent.data or float(formGO.noncx_rent) * 0.8 > form.noncx_rent.data) %}
                 {{ form.noncx_rent( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_rent }}
@@ -2943,14 +2945,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_rent_needs.label }}
-                  {% if formGO.noncx_rent_needs %}
+                  {% if 0 <= formGO.noncx_rent_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_rent_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_rent_needs and (formGO.noncx_rent_needs * 1.2 < form.noncx_rent_needs.data or formGO.noncx_rent_needs * 0.8 > form.noncx_rent_needs.data) %}
+                {% if (0<=formGO.noncx_rent_needs) and (float(formGO.noncx_rent_needs) * 1.2 < form.noncx_rent_needs.data or float(formGO.noncx_rent_needs) * 0.8 > form.noncx_rent_needs.data) %}
                 {{ form.noncx_rent_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_rent_needs }}
@@ -2962,14 +2964,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_cargo.label }}
-                  {% if formGO.noncx_cargo %}
+                  {% if 0 <= formGO.noncx_cargo %}
                   <p>Значение с БД ГО: {{ formGO.noncx_cargo }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_cargo and (formGO.noncx_cargo * 1.2 < form.noncx_cargo.data or formGO.noncx_cargo * 0.8 > form.noncx_cargo.data) %}
+                {% if (0<=formGO.noncx_cargo) and (float(formGO.noncx_cargo) * 1.2 < form.noncx_cargo.data or float(formGO.noncx_cargo) * 0.8 > form.noncx_cargo.data) %}
                 {{ form.noncx_cargo( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_cargo }}
@@ -2981,14 +2983,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_cargo_needs.label }}
-                  {% if formGO.noncx_cargo_needs %}
+                  {% if 0 <= formGO.noncx_cargo_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_cargo_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_cargo_needs and (formGO.noncx_cargo_needs * 1.2 < form.noncx_cargo_needs.data or formGO.noncx_cargo_needs * 0.8 > form.noncx_cargo_needs.data) %}
+                {% if (0<=formGO.noncx_cargo_needs) and (float(formGO.noncx_cargo_needs) * 1.2 < form.noncx_cargo_needs.data or float(formGO.noncx_cargo_needs) * 0.8 > form.noncx_cargo_needs.data) %}
                 {{ form.noncx_cargo_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_cargo_needs }}
@@ -3000,14 +3002,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_massage.label }}
-                  {% if formGO.noncx_massage %}
+                  {% if 0 <= formGO.noncx_massage %}
                   <p>Значение с БД ГО: {{ formGO.noncx_massage }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_massage and (formGO.noncx_massage * 1.2 < form.noncx_massage.data or formGO.noncx_massage * 0.8 > form.noncx_massage.data) %}
+                {% if (0<=formGO.noncx_massage) and (float(formGO.noncx_massage) * 1.2 < form.noncx_massage.data or float(formGO.noncx_massage) * 0.8 > form.noncx_massage.data) %}
                 {{ form.noncx_massage( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_massage }}
@@ -3020,14 +3022,14 @@
           <div class="input-group">
               <div class="label">
                 {{ form.noncx_massage_needs.label }}
-                  {% if formGO.noncx_massage_needs %}
+                  {% if 0 <= formGO.noncx_massage_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_massage_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_massage_needs and (formGO.noncx_massage_needs * 1.2 < form.noncx_massage_needs.data or formGO.noncx_massage_needs * 0.8 > form.noncx_massage_needs.data) %}
+                {% if (0<=formGO.noncx_massage_needs) and (float(formGO.noncx_massage_needs) * 1.2 < form.noncx_massage_needs.data or float(formGO.noncx_massage_needs) * 0.8 > form.noncx_massage_needs.data) %}
                 {{ form.noncx_massage_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_massage_needs }}
@@ -3039,14 +3041,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_foodcourt.label }}
-                  {% if formGO.noncx_foodcourt %}
+                  {% if 0 <= formGO.noncx_foodcourt %}
                   <p>Значение с БД ГО: {{ formGO.noncx_foodcourt }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_foodcourt and (formGO.noncx_foodcourt * 1.2 < form.noncx_foodcourt.data or formGO.noncx_foodcourt * 0.8 > form.noncx_foodcourt.data) %}
+                {% if (0<=formGO.noncx_foodcourt) and (float(formGO.noncx_foodcourt) * 1.2 < form.noncx_foodcourt.data or float(formGO.noncx_foodcourt) * 0.8 > form.noncx_foodcourt.data) %}
                 {{ form.noncx_foodcourt( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_foodcourt }}
@@ -3058,14 +3060,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_foodcourt_needs.label }}
-                  {% if formGO.noncx_foodcourt_needs %}
+                  {% if 0 <= formGO.noncx_foodcourt_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_foodcourt_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_foodcourt_needs and (formGO.noncx_foodcourt_needs * 1.2 < form.noncx_foodcourt_needs.data or formGO.noncx_foodcourt_needs * 0.8 > form.noncx_foodcourt_needs.data) %}
+                {% if (0<=formGO.noncx_foodcourt_needs) and (float(formGO.noncx_foodcourt_needs) * 1.2 < form.noncx_foodcourt_needs.data or float(formGO.noncx_foodcourt_needs) * 0.8 > form.noncx_foodcourt_needs.data) %}
                 {{ form.noncx_foodcourt_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_foodcourt_needs }}
@@ -3077,14 +3079,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_cleaning.label }}
-                  {% if formGO.noncx_cleaning %}
+                  {% if 0 <= formGO.noncx_cleaning %}
                   <p>Значение с БД ГО: {{ formGO.noncx_cleaning }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_cleaning and (formGO.noncx_cleaning * 1.2 < form.noncx_cleaning.data or formGO.noncx_cleaning * 0.8 > form.noncx_cleaning.data) %}
+                {% if (0<=formGO.noncx_cleaning) and (float(formGO.noncx_cleaning) * 1.2 < form.noncx_cleaning.data or float(formGO.noncx_cleaning) * 0.8 > form.noncx_cleaning.data) %}
                 {{ form.noncx_cleaning( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_cleaning }}
@@ -3096,14 +3098,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_cleaning_needs.label }}
-                  {% if formGO.noncx_cleaning_needs %}
+                  {% if 0 <= formGO.noncx_cleaning_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_cleaning_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_cleaning_needs and (formGO.noncx_cleaning_needs * 1.2 < form.noncx_cleaning_needs.data or formGO.noncx_cleaning_needs * 0.8 > form.noncx_cleaning_needs.data) %}
+                {% if (0<=formGO.noncx_cleaning_needs) and (float(formGO.noncx_cleaning_needs) * 1.2 < form.noncx_cleaning_needs.data or float(formGO.noncx_cleaning_needs) * 0.8 > form.noncx_cleaning_needs.data) %}
                 {{ form.noncx_cleaning_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_cleaning_needs }}
@@ -3115,14 +3117,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_beuty.label }}
-                  {% if formGO.noncx_beuty %}
+                  {% if 0 <= formGO.noncx_beuty %}
                   <p>Значение с БД ГО: {{ formGO.noncx_beuty }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_beuty and (formGO.noncx_beuty * 1.2 < form.noncx_beuty.data or formGO.noncx_beuty * 0.8 > form.noncx_beuty.data) %}
+                {% if (0<=formGO.noncx_beuty) and (float(formGO.noncx_beuty) * 1.2 < form.noncx_beuty.data or float(formGO.noncx_beuty) * 0.8 > form.noncx_beuty.data) %}
                 {{ form.noncx_beuty( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_beuty }}
@@ -3134,14 +3136,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_beuty_needs.label }}
-                  {% if formGO.noncx_beuty_needs %}
+                  {% if 0 <= formGO.noncx_beuty_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_beuty_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_beuty_needs and (formGO.noncx_beuty_needs * 1.2 < form.noncx_beuty_needs.data or formGO.noncx_beuty_needs * 0.8 > form.noncx_beuty_needs.data) %}
+                {% if (0<=formGO.noncx_beuty_needs) and (float(formGO.noncx_beuty_needs) * 1.2 < form.noncx_beuty_needs.data or float(formGO.noncx_beuty_needs) * 0.8 > form.noncx_beuty_needs.data) %}
                 {{ form.noncx_beuty_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_beuty_needs }}
@@ -3153,14 +3155,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_carwash.label }}
-                  {% if formGO.noncx_carwash %}
+                  {% if 0 <= formGO.noncx_carwash %}
                   <p>Значение с БД ГО: {{ formGO.noncx_carwash }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_carwash and (formGO.noncx_carwash * 1.2 < form.noncx_carwash.data or formGO.noncx_carwash * 0.8 > form.noncx_carwash.data) %}
+                {% if (0<=formGO.noncx_carwash) and (float(formGO.noncx_carwash) * 1.2 < form.noncx_carwash.data or float(formGO.noncx_carwash) * 0.8 > form.noncx_carwash.data) %}
                 {{ form.noncx_carwash( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_carwash }}
@@ -3172,14 +3174,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_carwash_needs.label }}
-                  {% if formGO.noncx_carwash_needs %}
+                  {% if 0 <= formGO.noncx_carwash_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_carwash_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_carwash_needs and (formGO.noncx_carwash_needs * 1.2 < form.noncx_carwash_needs.data or formGO.noncx_carwash_needs * 0.8 > form.noncx_carwash_needs.data) %}
+                {% if (0<=formGO.noncx_carwash_needs) and (float(formGO.noncx_carwash_needs) * 1.2 < form.noncx_carwash_needs.data or float(formGO.noncx_carwash_needs) * 0.8 > form.noncx_carwash_needs.data) %}
                 {{ form.noncx_carwash_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_carwash_needs }}
@@ -3191,14 +3193,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_atelie.label }}
-                  {% if formGO.noncx_atelie %}
+                  {% if 0 <= formGO.noncx_atelie %}
                   <p>Значение с БД ГО: {{ formGO.noncx_atelie }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_atelie and (formGO.noncx_atelie * 1.2 < form.noncx_atelie.data or formGO.noncx_atelie * 0.8 > form.noncx_atelie.data) %}
+                {% if (0<=formGO.noncx_atelie) and (float(formGO.noncx_atelie) * 1.2 < form.noncx_atelie.data or float(formGO.noncx_atelie) * 0.8 > form.noncx_atelie.data) %}
                 {{ form.noncx_atelie( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_atelie }}
@@ -3210,14 +3212,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_atelie_needs.label }}
-                  {% if formGO.noncx_atelie_needs %}
+                  {% if 0 <= formGO.noncx_atelie_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_atelie_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_atelie_needs and (formGO.noncx_atelie_needs * 1.2 < form.noncx_atelie_needs.data or formGO.noncx_atelie_needs * 0.8 > form.noncx_atelie_needs.data) %}
+                {% if (0<=formGO.noncx_atelie_needs) and (float(formGO.noncx_atelie_needs) * 1.2 < form.noncx_atelie_needs.data or float(formGO.noncx_atelie_needs) * 0.8 > form.noncx_atelie_needs.data) %}
                 {{ form.noncx_atelie_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_atelie_needs }}
@@ -3229,14 +3231,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_others.label }}
-                  {% if formGO.noncx_others %}
+                  {% if 0 <= formGO.noncx_others %}
                   <p>Значение с БД ГО: {{ formGO.noncx_others }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_others and (formGO.noncx_others * 1.2 < form.noncx_others.data or formGO.noncx_others * 0.8 > form.noncx_others.data) %}
+                {% if (0<=formGO.noncx_others) and (float(formGO.noncx_others) * 1.2 < form.noncx_others.data or float(formGO.noncx_others) * 0.8 > form.noncx_others.data) %}
                 {{ form.noncx_others( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_others }}
@@ -3248,14 +3250,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_others_needs.label }}
-                  {% if formGO.noncx_others_needs %}
+                  {% if 0 <= formGO.noncx_others_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_others_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_others_needs and (formGO.noncx_others_needs * 1.2 < form.noncx_others_needs.data or formGO.noncx_others_needs * 0.8 > form.noncx_others_needs.data) %}
+                {% if (0<=formGO.noncx_others_needs) and (float(formGO.noncx_others_needs) * 1.2 < form.noncx_others_needs.data or float(formGO.noncx_others_needs) * 0.8 > form.noncx_others_needs.data) %}
                 {{ form.noncx_others_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_others_needs }}
@@ -3268,14 +3270,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_stroika.label }}
-                  {% if formGO.noncx_stroika %}
+                  {% if 0 <= formGO.noncx_stroika %}
                   <p>Значение с БД ГО: {{ formGO.noncx_stroika }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_stroika and (formGO.noncx_stroika * 1.2 < form.noncx_stroika.data or formGO.noncx_stroika * 0.8 > form.noncx_stroika.data) %}
+                {% if (0<=formGO.noncx_stroika) and (float(formGO.noncx_stroika) * 1.2 < form.noncx_stroika.data or float(formGO.noncx_stroika) * 0.8 > form.noncx_stroika.data) %}
                 {{ form.noncx_stroika( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_stroika }}
@@ -3287,14 +3289,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_stroika_needs.label }}
-                  {% if formGO.noncx_stroika_needs %}
+                  {% if 0 <= formGO.noncx_stroika_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_stroika_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_stroika_needs and (formGO.noncx_stroika_needs * 1.2 < form.noncx_stroika_needs.data or formGO.noncx_stroika_needs * 0.8 > form.noncx_stroika_needs.data) %}
+                {% if (0<=formGO.noncx_stroika_needs) and (float(formGO.noncx_stroika_needs) * 1.2 < form.noncx_stroika_needs.data or float(formGO.noncx_stroika_needs) * 0.8 > form.noncx_stroika_needs.data) %}
                 {{ form.noncx_stroika_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_stroika_needs }}
@@ -3307,14 +3309,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_mebel.label }}
-                  {% if formGO.noncx_mebel %}
+                  {% if 0 <= formGO.noncx_mebel %}
                   <p>Значение с БД ГО: {{ formGO.noncx_mebel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_mebel and (formGO.noncx_mebel * 1.2 < form.noncx_mebel.data or formGO.noncx_mebel * 0.8 > form.noncx_mebel.data) %}
+                {% if (0<=formGO.noncx_mebel) and (float(formGO.noncx_mebel) * 1.2 < form.noncx_mebel.data or float(formGO.noncx_mebel) * 0.8 > form.noncx_mebel.data) %}
                 {{ form.noncx_mebel( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_mebel }}
@@ -3326,14 +3328,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_mebel_needs.label }}
-                  {% if formGO.noncx_mebel_needs %}
+                  {% if 0 <= formGO.noncx_mebel_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_mebel_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_mebel_needs and (formGO.noncx_mebel_needs * 1.2 < form.noncx_mebel_needs.data or formGO.noncx_mebel_needs * 0.8 > form.noncx_mebel_needs.data) %}
+                {% if (0<=formGO.noncx_mebel_needs) and (float(formGO.noncx_mebel_needs) * 1.2 < form.noncx_mebel_needs.data or float(formGO.noncx_mebel_needs) * 0.8 > form.noncx_mebel_needs.data) %}
                 {{ form.noncx_mebel_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_mebel_needs }}
@@ -3345,14 +3347,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_stroi_material.label }}
-                  {% if formGO.noncx_stroi_material %}
+                  {% if 0 <= formGO.noncx_stroi_material %}
                   <p>Значение с БД ГО: {{ formGO.noncx_stroi_material }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_stroi_material and (formGO.noncx_stroi_material * 1.2 < form.noncx_stroi_material.data or formGO.noncx_stroi_material * 0.8 > form.noncx_stroi_material.data) %}
+                {% if (0<=formGO.noncx_stroi_material) and (float(formGO.noncx_stroi_material) * 1.2 < form.noncx_stroi_material.data or float(formGO.noncx_stroi_material) * 0.8 > form.noncx_stroi_material.data) %}
                 {{ form.noncx_stroi_material( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_stroi_material }}
@@ -3364,14 +3366,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_stroi_material_needs.label }}
-                  {% if formGO.noncx_stroi_material_needs %}
+                  {% if 0 <= formGO.noncx_stroi_material_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_stroi_material_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_stroi_material_needs and (formGO.noncx_stroi_material_needs * 1.2 < form.noncx_stroi_material_needs.data or formGO.noncx_stroi_material_needs * 0.8 > form.noncx_stroi_material_needs.data) %}
+                {% if (0<=formGO.noncx_stroi_material_needs) and (float(formGO.noncx_stroi_material_needs) * 1.2 < form.noncx_stroi_material_needs.data or float(formGO.noncx_stroi_material_needs) * 0.8 > form.noncx_stroi_material_needs.data) %}
                 {{ form.noncx_stroi_material_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_stroi_material_needs }}
@@ -3383,14 +3385,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_svarka.label }}
-                  {% if formGO.noncx_svarka %}
+                  {% if 0 <= formGO.noncx_svarka %}
                   <p>Значение с БД ГО: {{ formGO.noncx_svarka }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_svarka and (formGO.noncx_svarka * 1.2 < form.noncx_svarka.data or formGO.noncx_svarka * 0.8 > form.noncx_svarka.data) %}
+                {% if (0<=formGO.noncx_svarka) and (float(formGO.noncx_svarka) * 1.2 < form.noncx_svarka.data or float(formGO.noncx_svarka) * 0.8 > form.noncx_svarka.data) %}
                 {{ form.noncx_svarka( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_svarka }}
@@ -3402,14 +3404,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_svarka_needs.label }}
-                  {% if formGO.noncx_svarka_needs %}
+                  {% if 0 <= formGO.noncx_svarka_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_svarka_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_svarka_needs and (formGO.noncx_svarka_needs * 1.2 < form.noncx_svarka_needs.data or formGO.noncx_svarka_needs * 0.8 > form.noncx_svarka_needs.data) %}
+                {% if (0<=formGO.noncx_svarka_needs) and (float(formGO.noncx_svarka_needs) * 1.2 < form.noncx_svarka_needs.data or float(formGO.noncx_svarka_needs) * 0.8 > form.noncx_svarka_needs.data) %}
                 {{ form.noncx_svarka_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_svarka_needs }}
@@ -3421,14 +3423,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_woodworking.label }}
-                  {% if formGO.noncx_woodworking %}
+                  {% if 0 <= formGO.noncx_woodworking %}
                   <p>Значение с БД ГО: {{ formGO.noncx_woodworking }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_woodworking and (formGO.noncx_woodworking * 1.2 < form.noncx_woodworking.data or formGO.noncx_woodworking * 0.8 > form.noncx_woodworking.data) %}
+                {% if (0<=formGO.noncx_woodworking) and (float(formGO.noncx_woodworking) * 1.2 < form.noncx_woodworking.data or float(formGO.noncx_woodworking) * 0.8 > form.noncx_woodworking.data) %}
                 {{ form.noncx_woodworking( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_woodworking }}
@@ -3440,14 +3442,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_woodworking_needs.label }}
-                  {% if formGO.noncx_woodworking_needs %}
+                  {% if 0 <= formGO.noncx_woodworking_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_woodworking_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_woodworking_needs and (formGO.noncx_woodworking_needs * 1.2 < form.noncx_woodworking_needs.data or formGO.noncx_woodworking_needs * 0.8 > form.noncx_woodworking_needs.data) %}
+                {% if (0<=formGO.noncx_woodworking_needs) and (float(formGO.noncx_woodworking_needs) * 1.2 < form.noncx_woodworking_needs.data or float(formGO.noncx_woodworking_needs) * 0.8 > form.noncx_woodworking_needs.data) %}
                 {{ form.noncx_woodworking_needs(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_woodworking_needs }}
@@ -3459,14 +3461,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_others_uslugi.label }}
-                  {% if formGO.noncx_others_uslugi %}
+                  {% if 0 <= formGO.noncx_others_uslugi %}
                   <p>Значение с БД ГО: {{ formGO.noncx_others_uslugi }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_others_uslugi and (formGO.noncx_others_uslugi * 1.2 < form.noncx_others_uslugi.data or formGO.noncx_others_uslugi * 0.8 > form.noncx_others_uslugi.data) %}
+                {% if (0<=formGO.noncx_others_uslugi) and (float(formGO.noncx_others_uslugi) * 1.2 < form.noncx_others_uslugi.data or float(formGO.noncx_others_uslugi) * 0.8 > form.noncx_others_uslugi.data) %}
                 {{ form.noncx_others_uslugi(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_others_uslugi }}
@@ -3478,14 +3480,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_others_needs_uslugi.label }}
-                  {% if formGO.noncx_others_needs_uslugi %} 
+                  {% if 0 <= formGO.noncx_others_needs_uslugi %} 
                   <p>Значение с БД ГО: {{ formGO.noncx_others_needs_uslugi }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.noncx_others_needs_uslugi and (formGO.noncx_others_needs_uslugi * 1.2 < form.noncx_others_needs_uslugi.data or formGO.noncx_others_needs_uslugi * 0.8 > form.noncx_others_needs_uslugi.data) %}
+                {% if (0<=formGO.noncx_others_needs_uslugi) and (float(formGO.noncx_others_needs_uslugi) * 1.2 < form.noncx_others_needs_uslugi.data or float(formGO.noncx_others_needs_uslugi) * 0.8 > form.noncx_others_needs_uslugi.data) %}
                 {{ form.noncx_others_needs_uslugi(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.noncx_others_needs_uslugi }}
@@ -3508,14 +3510,14 @@
           <div class="input-group">
           <div class="label">
             {{ form.manufacture_milk.label }}
-              {% if formGO.manufacture_milk %}
+              {% if 0 <= formGO.manufacture_milk %}
               <p>Значение с БД ГО: {{ formGO.manufacture_milk }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_milk and (float(formGO.manufacture_milk) * 1.2 < form.manufacture_milk.data or float(formGO.manufacture_milk) * 0.8 > form.manufacture_milk.data) %}
+            {% if (0<=formGO.manufacture_milk) and (float(float(formGO.manufacture_milk)) * 1.2 < form.manufacture_milk.data or float(float(formGO.manufacture_milk)) * 0.8 > form.manufacture_milk.data) %}
             {{ form.manufacture_milk(style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_milk }}
@@ -3526,14 +3528,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_milk_needs.label }}
-              {% if formGO.manufacture_milk_needs %}
+              {% if 0 <= formGO.manufacture_milk_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_milk_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_milk_needs and (formGO.manufacture_milk_needs * 1.2 < form.manufacture_milk_needs.data or formGO.manufacture_milk_needs * 0.8 > form.manufacture_milk_needs.data) %}
+            {% if (0<=formGO.manufacture_milk_needs) and (float(formGO.manufacture_milk_needs) * 1.2 < form.manufacture_milk_needs.data or float(formGO.manufacture_milk_needs) * 0.8 > form.manufacture_milk_needs.data) %}
             {{ form.manufacture_milk_needs( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_milk_needs }}
@@ -3545,14 +3547,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_meat.label }}
-              {% if formGO.manufacture_meat %}
+              {% if 0 <= formGO.manufacture_meat %}
               <p>Значение с БД ГО: {{ formGO.manufacture_meat }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_meat and (float(formGO.manufacture_meat) * 1.2 < form.manufacture_meat.data or float(formGO.manufacture_meat) * 0.8 > form.manufacture_meat.data) %}
+            {% if (0<=formGO.manufacture_meat) and (float(float(formGO.manufacture_meat)) * 1.2 < form.manufacture_meat.data or float(float(formGO.manufacture_meat)) * 0.8 > form.manufacture_meat.data) %}
             {{ form.manufacture_meat( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_meat }}
@@ -3564,14 +3566,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_meat_needs.label }}
-              {% if formGO.manufacture_meat_needs %}
+              {% if 0 <= formGO.manufacture_meat_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_meat_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_meat_needs and (formGO.manufacture_meat_needs * 1.2 < form.manufacture_meat_needs.data or formGO.manufacture_meat_needs * 0.8 > form.manufacture_meat_needs.data) %}
+            {% if (0<=formGO.manufacture_meat_needs) and (float(formGO.manufacture_meat_needs) * 1.2 < form.manufacture_meat_needs.data or float(formGO.manufacture_meat_needs) * 0.8 > form.manufacture_meat_needs.data) %}
             {{ form.manufacture_meat_needs( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_meat_needs }}
@@ -3583,14 +3585,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_vegetables.label }}
-              {% if formGO.manufacture_vegetables %}
+              {% if 0 <= formGO.manufacture_vegetables %}
               <p>Значение с БД ГО: {{ formGO.manufacture_vegetables }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_vegetables and (float(formGO.manufacture_vegetables) * 1.2 < form.manufacture_vegetables.data or float(formGO.manufacture_vegetables) * 0.8 > form.manufacture_vegetables.data) %}
+            {% if (0<=formGO.manufacture_vegetables) and (float(float(formGO.manufacture_vegetables)) * 1.2 < form.manufacture_vegetables.data or float(float(formGO.manufacture_vegetables)) * 0.8 > form.manufacture_vegetables.data) %}
             {{ form.manufacture_vegetables( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_vegetables }}
@@ -3602,14 +3604,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_vegetables_needs.label }}
-              {% if formGO.manufacture_vegetables_needs %}
+              {% if 0 <= formGO.manufacture_vegetables_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_vegetables_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_vegetables_needs and (formGO.manufacture_vegetables_needs * 1.2 < form.manufacture_vegetables_needs.data or formGO.manufacture_vegetables_needs * 0.8 > form.manufacture_vegetables_needs.data) %}
+            {% if (0<=formGO.manufacture_vegetables_needs) and (float(formGO.manufacture_vegetables_needs) * 1.2 < form.manufacture_vegetables_needs.data or float(formGO.manufacture_vegetables_needs) * 0.8 > form.manufacture_vegetables_needs.data) %}
             {{ form.manufacture_vegetables_needs(style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_vegetables_needs}}
@@ -3621,14 +3623,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_mayo.label }}
-              {% if formGO.manufacture_mayo %}
+              {% if 0 <= formGO.manufacture_mayo %}
               <p>Значение с БД ГО: {{ formGO.manufacture_mayo }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_mayo and (formGO.manufacture_mayo * 1.2 < form.manufacture_mayo.data or formGO.manufacture_mayo * 0.8 > form.manufacture_mayo.data) %}
+            {% if (0<=formGO.manufacture_mayo) and (float(formGO.manufacture_mayo) * 1.2 < form.manufacture_mayo.data or float(formGO.manufacture_mayo) * 0.8 > form.manufacture_mayo.data) %}
             {{ form.manufacture_mayo( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_mayo }}
@@ -3640,14 +3642,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_mayo_needs.label }}
-              {% if formGO.manufacture_mayo_needs %}
+              {% if 0 <= formGO.manufacture_mayo_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_mayo_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_mayo_needs and (formGO.manufacture_mayo_needs * 1.2 < form.manufacture_mayo_needs.data or formGO.manufacture_mayo_needs * 0.8 > form.manufacture_mayo_needs.data) %}
+            {% if (0<=formGO.manufacture_mayo_needs) and (float(formGO.manufacture_mayo_needs) * 1.2 < form.manufacture_mayo_needs.data or float(formGO.manufacture_mayo_needs) * 0.8 > form.manufacture_mayo_needs.data) %}
             {{ form.manufacture_mayo_needs( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_mayo_needs }}
@@ -3659,14 +3661,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_fish.label }}
-              {% if formGO.manufacture_fish %}
+              {% if 0 <= formGO.manufacture_fish %}
               <p>Значение с БД ГО: {{ formGO.manufacture_fish }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_fish and (formGO.manufacture_fish * 1.2 < form.manufacture_fish.data or formGO.manufacture_fish * 0.8 > form.manufacture_fish.data) %}
+            {% if (0<=formGO.manufacture_fish) and (float(formGO.manufacture_fish) * 1.2 < form.manufacture_fish.data or float(formGO.manufacture_fish) * 0.8 > form.manufacture_fish.data) %}
             {{ form.manufacture_fish(style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_fish }}
@@ -3678,14 +3680,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_fish_needs.label }}
-              {% if formGO.manufacture_fish_needs %}
+              {% if 0 <= formGO.manufacture_fish_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_fish_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_fish_needs and (formGO.manufacture_fish_needs * 1.2 < form.manufacture_fish_needs.data or formGO.manufacture_fish_needs * 0.8 > form.manufacture_fish_needs.data) %}
+            {% if (0<=formGO.manufacture_fish_needs) and (float(formGO.manufacture_fish_needs) * 1.2 < form.manufacture_fish_needs.data or float(formGO.manufacture_fish_needs) * 0.8 > form.manufacture_fish_needs.data) %}
             {{ form.manufacture_fish_needs( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_fish_needs }}
@@ -3697,14 +3699,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_choco.label }}
-              {% if formGO.manufacture_choco %}
+              {% if 0 <= formGO.manufacture_choco %}
               <p>Значение с БД ГО: {{ formGO.manufacture_choco }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_choco and (float(formGO.manufacture_choco) * 1.2 < form.manufacture_choco.data or float(formGO.manufacture_choco) * 0.8 > form.manufacture_choco.data) %}
+            {% if (0<=formGO.manufacture_choco) and (float(float(formGO.manufacture_choco)) * 1.2 < form.manufacture_choco.data or float(float(formGO.manufacture_choco)) * 0.8 > form.manufacture_choco.data) %}
             {{ form.manufacture_choco( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_choco }}
@@ -3716,14 +3718,14 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_choco_needs.label }}
-              {% if formGO.manufacture_choco_needs %}
+              {% if 0 <= formGO.manufacture_choco_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_choco_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
               {% endif %}
           </div>
           <div class="input_with_measure">
-            {% if formGO.manufacture_choco_needs and (formGO.manufacture_choco_needs * 1.2 < form.manufacture_choco_needs.data or formGO.manufacture_choco_needs * 0.8 > form.manufacture_choco_needs.data) %}
+            {% if (0<=formGO.manufacture_choco_needs) and (float(formGO.manufacture_choco_needs) * 1.2 < form.manufacture_choco_needs.data or float(formGO.manufacture_choco_needs) * 0.8 > form.manufacture_choco_needs.data) %}
             {{ form.manufacture_choco_needs( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.manufacture_choco_needs }}
@@ -3736,14 +3738,14 @@
           <div class="input-group">
               <div class="label">
                 {{ form.manufacture_beer.label }}
-                  {% if formGO.manufacture_beer %}
+                  {% if 0 <= formGO.manufacture_beer %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_beer }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_beer and (float(formGO.manufacture_beer) * 1.2 < form.manufacture_beer.data or float(formGO.manufacture_beer) * 0.8 > form.manufacture_beer.data) %}
+                {% if (0<=formGO.manufacture_beer) and (float(float(formGO.manufacture_beer)) * 1.2 < form.manufacture_beer.data or float(float(formGO.manufacture_beer)) * 0.8 > form.manufacture_beer.data) %}
                 {{ form.manufacture_beer( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_beer}}
@@ -3755,14 +3757,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_beer_needs.label }}
-                  {% if formGO.manufacture_beer_needs %}
+                  {% if 0 <= formGO.manufacture_beer_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_beer_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_beer_needs and (formGO.manufacture_beer_needs * 1.2 < form.manufacture_beer_needs.data or formGO.manufacture_beer_needs * 0.8 > form.manufacture_beer_needs.data) %}
+                {% if (0<=formGO.manufacture_beer_needs) and (float(formGO.manufacture_beer_needs) * 1.2 < form.manufacture_beer_needs.data or float(formGO.manufacture_beer_needs) * 0.8 > form.manufacture_beer_needs.data) %}
                 {{ form.manufacture_beer_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_beer_needs }}
@@ -3774,14 +3776,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_vodka.label }}
-                  {% if formGO.manufacture_vodka %}
+                  {% if 0 <= formGO.manufacture_vodka %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_vodka }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_vodka and (formGO.manufacture_vodka * 1.2 < form.manufacture_vodka.data or formGO.manufacture_vodka * 0.8 > form.manufacture_vodka.data) %}
+                {% if (0<=formGO.manufacture_vodka) and (float(formGO.manufacture_vodka) * 1.2 < form.manufacture_vodka.data or float(formGO.manufacture_vodka) * 0.8 > form.manufacture_vodka.data) %}
                 {{ form.manufacture_vodka( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_vodka }}
@@ -3793,14 +3795,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_vodka_needs.label }}
-                  {% if formGO.manufacture_vodka_needs %}
+                  {% if 0 <= formGO.manufacture_vodka_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_vodka_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_vodka_needs and (formGO.manufacture_vodka_needs * 1.2 < form.manufacture_vodka_needs.data or formGO.manufacture_vodka_needs * 0.8 > form.manufacture_vodka_needs.data) %}
+                {% if (0<=formGO.manufacture_vodka_needs) and (float(formGO.manufacture_vodka_needs) * 1.2 < form.manufacture_vodka_needs.data or float(formGO.manufacture_vodka_needs) * 0.8 > form.manufacture_vodka_needs.data) %}
                 {{ form.manufacture_vodka_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_vodka_needs }}
@@ -3812,14 +3814,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_honey.label }}
-                  {% if formGO.manufacture_honey %}
+                  {% if 0 <= formGO.manufacture_honey %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_honey }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_honey and (formGO.manufacture_honey * 1.2 < form.manufacture_honey.data or formGO.manufacture_honey * 0.8 > form.manufacture_honey.data) %}
+                {% if (0<=formGO.manufacture_honey) and (float(formGO.manufacture_honey) * 1.2 < form.manufacture_honey.data or float(formGO.manufacture_honey) * 0.8 > form.manufacture_honey.data) %}
                 {{ form.manufacture_honey( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_honey }}
@@ -3831,14 +3833,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_honey_needs.label }}
-                  {% if formGO.manufacture_honey_needs %}
+                  {% if 0 <= formGO.manufacture_honey_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_honey_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_honey_needs and (formGO.manufacture_honey_needs * 1.2 < form.manufacture_honey_needs.data or formGO.manufacture_honey_needs * 0.8 > form.manufacture_honey_needs.data) %}
+                {% if (0<=formGO.manufacture_honey_needs) and (float(formGO.manufacture_honey_needs) * 1.2 < form.manufacture_honey_needs.data or float(formGO.manufacture_honey_needs) * 0.8 > form.manufacture_honey_needs.data) %}
                 {{ form.manufacture_honey_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_honey_needs }}
@@ -3850,14 +3852,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_polufabricat.label }}
-                  {% if formGO.manufacture_polufabricat %}
+                  {% if 0 <= formGO.manufacture_polufabricat %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_polufabricat }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_polufabricat and (formGO.manufacture_polufabricat * 1.2 < form.manufacture_polufabricat.data or formGO.manufacture_polufabricat * 0.8 > form.manufacture_polufabricat.data) %}
+                {% if (0<=formGO.manufacture_polufabricat) and (float(formGO.manufacture_polufabricat) * 1.2 < form.manufacture_polufabricat.data or float(formGO.manufacture_polufabricat) * 0.8 > form.manufacture_polufabricat.data) %}
                 {{ form.manufacture_polufabricat( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_polufabricat }}
@@ -3869,14 +3871,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_polufabricat_needs.label }}
-                  {% if formGO.manufacture_polufabricat_needs %}
+                  {% if 0 <= formGO.manufacture_polufabricat_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_polufabricat_needs }}</p>
                   {% else %}    
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_polufabricat_needs and (formGO.manufacture_polufabricat_needs * 1.2 < form.manufacture_polufabricat_needs.data or formGO.manufacture_polufabricat_needs * 0.8 > form.manufacture_polufabricat_needs.data) %}
+                {% if (0<=formGO.manufacture_polufabricat_needs) and (float(formGO.manufacture_polufabricat_needs) * 1.2 < form.manufacture_polufabricat_needs.data or float(formGO.manufacture_polufabricat_needs) * 0.8 > form.manufacture_polufabricat_needs.data) %}
                 {{ form.manufacture_polufabricat_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_polufabricat_needs }}
@@ -3888,14 +3890,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_bread.label }}
-                  {% if formGO.manufacture_bread %}
+                  {% if 0 <= formGO.manufacture_bread %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_bread }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_bread and (float(formGO.manufacture_bread) * 1.2 < form.manufacture_bread.data or float(formGO.manufacture_bread) * 0.8 > form.manufacture_bread.data) %}
+                {% if (0<=formGO.manufacture_bread) and (float(float(formGO.manufacture_bread)) * 1.2 < form.manufacture_bread.data or float(float(formGO.manufacture_bread)) * 0.8 > form.manufacture_bread.data) %}
                 {{ form.manufacture_bread( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_bread }}
@@ -3907,14 +3909,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_bread_needs.label }}
-                  {% if formGO.manufacture_bread_needs %}
+                  {% if 0 <= formGO.manufacture_bread_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_bread_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_bread_needs and (formGO.manufacture_bread_needs * 1.2 < form.manufacture_bread_needs.data or formGO.manufacture_bread_needs * 0.8 > form.manufacture_bread_needs.data) %}
+                {% if (0<=formGO.manufacture_bread_needs) and (float(formGO.manufacture_bread_needs) * 1.2 < form.manufacture_bread_needs.data or float(formGO.manufacture_bread_needs) * 0.8 > form.manufacture_bread_needs.data) %}
                 {{ form.manufacture_bread_needs(style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_bread_needs}}
@@ -3926,14 +3928,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_others.label }}
-                  {% if formGO.manufacture_others %}
+                  {% if 0 <= formGO.manufacture_others %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_others }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_others and (formGO.manufacture_others * 1.2 < form.manufacture_others.data or formGO.manufacture_others * 0.8 > form.manufacture_others.data) %}
+                {% if (0<=formGO.manufacture_others) and (float(formGO.manufacture_others) * 1.2 < form.manufacture_others.data or float(formGO.manufacture_others) * 0.8 > form.manufacture_others.data) %}
                 {{ form.manufacture_others( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_others }}
@@ -3945,14 +3947,14 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_others_needs.label }}
-                  {% if formGO.manufacture_others_needs %}
+                  {% if 0 <= formGO.manufacture_others_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_others_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
                   {% endif %}
               </div>
               <div class="input_with_measure">
-                {% if formGO.manufacture_others_needs and (formGO.manufacture_others_needs * 1.2 < form.manufacture_others_needs.data or formGO.manufacture_others_needs * 0.8 > form.manufacture_others_needs.data) %}
+                {% if (0<=formGO.manufacture_others_needs) and (float(formGO.manufacture_others_needs) * 1.2 < form.manufacture_others_needs.data or float(formGO.manufacture_others_needs) * 0.8 > form.manufacture_others_needs.data) %}
                 {{ form.manufacture_others_needs( style = "border: 2px solid #C51E3A;") }}
                 {% else %}
                 {{ form.manufacture_others_needs }}
@@ -3973,14 +3975,14 @@
       <div class="input-group">
         <div class="label">
           {{ form.credit_amount.label }}
-            {% if formGO.credit_amount %}
+            {% if 0 <= formGO.credit_amount %}
             <p>Значение с БД ГО: {{ formGO.credit_amount }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>
             {% endif %}
         </div>
           <div class="input_with_measure">
-            {% if formGO.credit_amount and (formGO.credit_amount * 1.2 < form.credit_amount.data or formGO.credit_amount * 0.8 > form.credit_amount.data) %}
+            {% if (0<=formGO.credit_amount) and (float(formGO.credit_amount) * 1.2 < form.credit_amount.data or float(formGO.credit_amount) * 0.8 > form.credit_amount.data) %}
             {{ form.credit_amount( style = "border: 2px solid #C51E3A;") }}
             {% else %}
             {{ form.credit_amount }}
@@ -3991,14 +3993,14 @@
       <div class="input-group">
         <div class="label">
           {{ form.credit_total.label }}
-            {% if formGO.credit_total %}
+            {% if 0 <= formGO.credit_total %}
             <p>Значение с БД ГО: {{ formGO.credit_total }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>
             {% endif %}
         </div>
       <div class="input_with_measure">
-        {% if formGO.credit_total and (formGO.credit_total * 1.2 < form.credit_total.data or formGO.credit_total * 0.8 > form.credit_total.data) %}
+        {% if (0<=formGO.credit_total) and (float(formGO.credit_total) * 1.2 < form.credit_total.data or float(formGO.credit_total) * 0.8 > form.credit_total.data) %}
         {{ form.credit_total( style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.credit_total }}
@@ -4009,14 +4011,14 @@
       <div class="input-group">
         <div class="label">
           {{ form.credit_average_total.label }}
-            {% if formGO.credit_average_total %}
+            {% if 0 <= formGO.credit_average_total %}
             <p>Значение с БД ГО: {{ formGO.credit_average_total }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>
             {% endif %}
         </div>
        <div class="input_with_measure">
-        {% if formGO.credit_average_total and (formGO.credit_average_total * 1.2 < form.credit_average_total.data or formGO.credit_average_total * 0.8 > form.credit_average_total.data) %}
+        {% if (0<=formGO.credit_average_total) and (float(formGO.credit_average_total) * 1.2 < form.credit_average_total.data or float(formGO.credit_average_total) * 0.8 > form.credit_average_total.data) %}
         {{ form.credit_average_total( style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.credit_average_total }}
@@ -4027,14 +4029,14 @@
       <div class="input-group">
         <div class="label">
           {{ form.credit_zalog.label }}
-            {% if formGO.credit_zalog %}
+            {% if 0 <= formGO.credit_zalog %}
             <p>Значение с БД ГО: {{ formGO.credit_zalog }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>
             {% endif %}
         </div>
       <div class="input_with_measure">
-        {% if formGO.credit_zalog and (formGO.credit_zalog * 1.2 < form.credit_zalog.data or formGO.credit_zalog * 0.8 > form.credit_zalog.data) %}
+        {% if (0<=formGO.credit_zalog) and (float(formGO.credit_zalog) * 1.2 < form.credit_zalog.data or float(formGO.credit_zalog) * 0.8 > form.credit_zalog.data) %}
         {{ form.credit_zalog( style = "border: 2px solid #C51E3A;") }}
         {% else %}
         {{ form.credit_zalog }}
