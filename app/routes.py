@@ -567,6 +567,11 @@ def region_akim():
     sum_formdata.credit_zalog = sum_formdata.credit_zalog / count_form if count_form != 0 else 0
     sum_formdata_go.credit_zalog = round(sum_formdata_go.credit_zalog / count_form_go, 2) if count_form_go != 0 else 0
     
+    sum_formdata.animal_milkrate_cow = sum_formdata.animal_milkrate_cow / count_form if count_form != 0 else 0
+    sum_formdata.animal_milrate_kozel = sum_formdata.animal_milrate_kozel / count_form if count_form != 0 else 0
+    sum_formdata.animal_milkrate_horse = sum_formdata.animal_milkrate_horse / count_form if count_form != 0 else 0
+    sum_formdata.animal_milkrate_camel = sum_formdata.animal_milkrate_camel / count_form if count_form != 0 else 0
+
     form = FormDataForm(obj=sum_formdata)
     
     if request.method == 'POST':
