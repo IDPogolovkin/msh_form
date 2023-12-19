@@ -21,8 +21,8 @@ password = os.environ.get('PASSWORD_POSTGRES')
 
 app = Flask(__name__, static_folder=os.path.join(pathlib.Path().resolve(), 'app', 'static'))
 app.config['SECRET_KEY'] = 'b982c2edf1a2f17e9e06c49fb027e8d1'
-# app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{host}:{port}/{database}' # коннект для постгрес (настройки в db_settings.py). не забудь закомментить sqlite
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{host}:{port}/{database}' # коннект для постгрес (настройки в db_settings.py). не забудь закомментить sqlite
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
 app.config['DEBUG'] = True
