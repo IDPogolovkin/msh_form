@@ -39,56 +39,56 @@
           <div class="card-inner">
             <p class="text-primary">Численность населения</p>
           </div>
-          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_population_total'] }}</span>
+          <span class="text-primary font-weight-bold">{{ number_split(dashboard_all_data['labour_population_total']) }}</span>
         </div>
 
         <div class="card">
           <div class="card-inner">
             <p class="text-primary">Экономически активное население</p>
           </div>
-          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_active_total'] }}</span>
+          <span class="text-primary font-weight-bold">{{ number_split(dashboard_all_data['labour_active_total']) }}</span>
         </div>
 
         <div class="card">
           <div class="card-inner">
             <p class="text-primary">Экономически неактивное население</p>
           </div>
-          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_inactive_total'] }}</span>
+          <span class="text-primary font-weight-bold">{{ number_split(dashboard_all_data['labour_inactive_total']) }}</span>
         </div>
 
         <div class="card">
           <div class="card-inner">
             <p class="text-primary">Средний доход на семью, тенге/месяц</p>
           </div>
-          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_average_income_family_total_average'] }}</span>
+          <span class="text-primary font-weight-bold">{{ number_split(dashboard_all_data['labour_average_income_family_total_average']) }}</span>
         </div>
 
         <div class="card">
           <div class="card-inner">
             <p class="text-primary">Занятые в ЛПХ</p>
           </div>
-          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_private_ogorod_total'] }}</span>
+          <span class="text-primary font-weight-bold">{{ number_split(dashboard_all_data['labour_private_ogorod_total']) }}</span>
         </div>
 
         <div class="card">
           <div class="card-inner">
             <p class="text-primary">Средний размер ДМХ</p>
           </div>
-          <span class="text-primary font-weight-bold">{{ dashboard_all_data['labour_household_size_total_average'] }}</span>
+          <span class="text-primary font-weight-bold">{{ number_split(dashboard_all_data['labour_household_size_total_average']) }}</span>
         </div>
 
         <div class="card">
           <div class="card-inner">
             <p class="text-primary">Количество доворов</p>
           </div>
-          <span class="text-primary font-weight-bold">{{ dashboard_all_data['house_total_dvor_total'] }}</span>
+          <span class="text-primary font-weight-bold">{{ number_split(dashboard_all_data['house_total_dvor_total']) }}</span>
         </div>
 
         <div class="card">
           <div class="card-inner">
             <p class="text-primary">Количество заселенных доворов</p>
           </div>
-          <span class="text-primary font-weight-bold">{{ dashboard_all_data['house_zaselen_dvor_total'] }}</span>
+          <span class="text-primary font-weight-bold">{{ number_split(dashboard_all_data['house_zaselen_dvor_total']) }}</span>
         </div>
 
       </div>

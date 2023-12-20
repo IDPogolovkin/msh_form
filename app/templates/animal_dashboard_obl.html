@@ -36,14 +36,14 @@
             <div class="card-inner">
               <p class="text-primary">Общее количество дворов</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.animal_dvor }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.animal_dvor) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Количество дворов, имеющие скот и птицу</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.animal_skot_bird }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.animal_skot_bird) }}</span>
           </div>
 
         </div>

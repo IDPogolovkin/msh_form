@@ -37,6 +37,23 @@ measurement_units = {
     'c':'потребность',
     'tenge':'тенге',
 }
+def number_split(number):
+    # Convert the number to a string
+    number_str = str(number)
+
+    # Split the integer part and decimal part
+    if '.' in number_str:
+        integer_part, decimal_part = number_str.split('.')
+    else:
+        integer_part, decimal_part = number_str, ""
+
+    # Insert spaces every three digits in the integer part
+    formatted_integer_part = " ".join([integer_part[max(0, i-3):i] for i in range(len(integer_part), 0, -3)][::-1])
+
+    # Join the formatted integer part and the decimal part with a dot
+    result = formatted_integer_part + ('.' + decimal_part if decimal_part else '')
+
+    return result
 
 def spec_calc(forms):
     result = []
@@ -129,7 +146,7 @@ def spec_calc(forms):
         #non_zero_values = [value for value in variables if value != 0]
         f6_average = mean(variables) #if non_zero_values else 0
         
-        factors_total_plant = round(f1_average + f2_average + f3_average + f4_average + f6_average, 2)
+        factors_total_plant = round(f1_average + f2_average + f3_average + f4_average + f6_average, 1)
         result_form[1] = factors_total_plant
 
 
@@ -200,7 +217,7 @@ def spec_calc(forms):
         # #non_zero_values = [value for value in variables if value != 0]
         # f6_average = mean(variables) #if non_zero_values else 0
 
-        # factors_total_go_plant = round(f1_average + f2_average + f3_average + f4_average + f6_average, 2)
+        # factors_total_go_plant = round(f1_average + f2_average + f3_average + f4_average + f6_average, 1)
         # result_form[2] =factors_total_go_plant
 
         #animal
@@ -289,7 +306,7 @@ def spec_calc(forms):
         variables = [f7w1, f7w2, f7w3, f7w4, f7w5]
         #non_zero_values = [value for value in variables if value != 0]
         f7_average = mean(variables) #if non_zero_values else 0
-        factors_total_animal = round(f1_average + f2_average + f3_average + f4_average + f5_average + f7_average, 2)
+        factors_total_animal = round(f1_average + f2_average + f3_average + f4_average + f5_average + f7_average, 1)
         result_form[3] =factors_total_animal
 
         # credit_amount_average_all = sum_formdata_go.credit_amount
@@ -377,7 +394,7 @@ def spec_calc(forms):
         # variables = [f7w1, f7w2, f7w3, f7w4, f7w5]
         # #non_zero_values = [value for value in variables if value != 0]
         # f7_average = mean(variables) #if non_zero_values else 0
-        # factors_total_go_animal = round(f1_average + f2_average + f3_average + f4_average + f5_average + f7_average, 2)
+        # factors_total_go_animal = round(f1_average + f2_average + f3_average + f4_average + f5_average + f7_average, 1)
         # result_form[4] = factors_total_go_animal
         result.append(result_form)
         
@@ -565,7 +582,7 @@ def region_akim():
     sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else 0
 
     sum_formdata.credit_zalog = sum_formdata.credit_zalog / count_form if count_form != 0 else 0
-    sum_formdata_go.credit_zalog = round(sum_formdata_go.credit_zalog / count_form_go, 2) if count_form_go != 0 else 0
+    sum_formdata_go.credit_zalog = round(sum_formdata_go.credit_zalog / count_form_go, 1) if count_form_go != 0 else 0
     
     sum_formdata.animal_milkrate_cow = sum_formdata.animal_milkrate_cow / count_form if count_form != 0 else 0
     sum_formdata.animal_milrate_kozel = sum_formdata.animal_milrate_kozel / count_form if count_form != 0 else 0
@@ -597,7 +614,13 @@ def region_akim():
             sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else 0
 
             sum_formdata.credit_zalog = sum_formdata.credit_zalog / count_form if count_form != 0 else 0
-            sum_formdata_go.credit_zalog = round(sum_formdata_go.credit_zalog / count_form_go, 2) if count_form_go != 0 else 0
+            sum_formdata_go.credit_zalog = round(sum_formdata_go.credit_zalog / count_form_go, 1) if count_form_go != 0 else 0
+
+            sum_formdata.animal_milkrate_cow = sum_formdata.animal_milkrate_cow / count_form if count_form != 0 else 0
+            sum_formdata.animal_milrate_kozel = sum_formdata.animal_milrate_kozel / count_form if count_form != 0 else 0
+            sum_formdata.animal_milkrate_horse = sum_formdata.animal_milkrate_horse / count_form if count_form != 0 else 0
+            sum_formdata.animal_milkrate_camel = sum_formdata.animal_milkrate_camel / count_form if count_form != 0 else 0
+
             form = FormDataForm(obj=sum_formdata)
             return render_template('region_akim.html',float = float, str=str, form=form, formGO=sum_formdata_go, user=current_user,
                                measurement_units=measurement_units, formdata=formdata_list, filterform=filterform)
@@ -718,15 +741,15 @@ def dashboard_obl():
             dx_sad_total += form.dx_sad
 
             
-        labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else 0
-        labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else 0
+        labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+        labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
         if int(labour_population_total) != 0:
-            labour_employed_precent = round((int(labour_active_total) * 100) / int(labour_population_total), 2)
+            labour_employed_precent = round((int(labour_active_total) * 100) / int(labour_population_total), 1)
         else:
             labour_employed_precent = 0  # or set it to some default value
 
         if int(labour_population_total) != 0:
-            labour_unemployed_precent = round((int(labour_inactive_total) * 100) / int(labour_population_total), 2)
+            labour_unemployed_precent = round((int(labour_inactive_total) * 100) / int(labour_population_total), 1)
         else:
             labour_unemployed_precent = 0 
         dashboard_all_data = {
@@ -755,7 +778,7 @@ def dashboard_obl():
             'dx_ogorody_total': dx_ogorody_total,
             'dx_sad_total': dx_sad_total
         }
-        return render_template('social_dashboard_obl.html',filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
+        return render_template('social_dashboard_obl.html',number_split=number_split,filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
     else:
         if filterform.validate_on_submit():
             formdata = Form.query.filter(Form.kato_6.startswith(filterform.kato_2.data)).order_by(Form.kato_4_name).all()
@@ -810,15 +833,15 @@ def dashboard_obl():
                 dx_sad_total += form.dx_sad
 
             
-            labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else 0
-            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else 0
+            labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
             if int(labour_population_total) != 0:
-                labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 2)
+                labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 1)
             else:
                 labour_employed_precent = 0  # or set it to some default value
 
             if int(labour_population_total) != 0:
-                labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 2)
+                labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 1)
             else:
                 labour_unemployed_precent = 0 
 
@@ -849,7 +872,7 @@ def dashboard_obl():
                 'dx_ogorody_total': dx_ogorody_total,
                 'dx_sad_total': dx_sad_total
             }
-            return render_template('social_dashboard_obl.html',filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
+            return render_template('social_dashboard_obl.html',number_split=number_split,filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
         else:
             flash(f'Возникла ошибка: {filterform.errors}','error')
             formdata = Form.query.filter_by(kato_2=current_user.kato_2).all()
@@ -904,15 +927,15 @@ def dashboard_obl():
                 dx_sad_total += form.dx_sad
 
             
-            labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else 0
-            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else 0
+            labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
             if int(labour_population_total) != 0:
-                labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 2)
+                labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 1)
             else:
                 labour_employed_precent = 0  # or set it to some default value
 
             if int(labour_population_total) != 0:
-                labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 2)
+                labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 1)
             else:
                 labour_unemployed_precent = 0 
 
@@ -942,7 +965,7 @@ def dashboard_obl():
                 'dx_ogorody_total': dx_ogorody_total,
                 'dx_sad_total': dx_sad_total
             }
-            return render_template('social_dashboard_obl.html',filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
+            return render_template('social_dashboard_obl.html',number_split=number_split,filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
 
 @app.route('/dashboard_soc1', methods=['GET'])
 @login_required
@@ -958,41 +981,41 @@ def dashboard_soc1():
             flash('Отсутствует анкета', 'info')
             return redirect(url_for('login'))
 
-    return render_template('dashboard_social_pocazat.html', round=round, formData=formData, user=current_user)
+    return render_template('dashboard_social_pocazat.html', number_split=number_split, round=round, formData=formData, user=current_user)
 
 @app.route('/dashboard_animal', methods=['GET'])
 @login_required
 def dashboard_animal():
     formData=Form.query.filter_by(user_id=current_user.id).first()
     formData_go=Form_G_O.query.filter_by(kato_6=formData.kato_6).first()
-    return render_template('animal_dashboard.html', round=round,formData_go=formData_go, formData=formData, user=current_user)
+    return render_template('animal_dashboard.html', number_split=number_split, round=round,formData_go=formData_go, formData=formData, user=current_user)
 
 @app.route('/dashboard_plants', methods=['GET'])
 @login_required
 def dashboard_plants():
     formData=Form.query.filter_by(user_id=current_user.id).first()  
     formData_go=Form_G_O.query.filter_by(kato_6=formData.kato_6).first()
-    return render_template('plants_dashboard.html',round=round,formData_go=formData_go, formData=formData, user=current_user)
+    return render_template('plants_dashboard.html',round=round,formData_go=formData_go, number_split=number_split, formData=formData, user=current_user)
 
 @app.route('/dashboard_business', methods=['GET'])
 @login_required
 def dashboard_business():
     formData=Form.query.filter_by(user_id=current_user.id).first()
-    return render_template('business_dashboard.html', round=round, formData=formData, user=current_user)
+    return render_template('business_dashboard.html', round=round, formData=formData, number_split=number_split, user=current_user)
 
 @app.route('/dashboard_recycling', methods=['GET'])
 @login_required
 def dashboard_recycling():
 
     formData=Form.query.filter_by(user_id=current_user.id).first()
-    return render_template('recycling_dashboard.html', round=round, formData=formData, user=current_user)
+    return render_template('recycling_dashboard.html', round=round, number_split=number_split, formData=formData, user=current_user)
 
 @app.route('/dashboard_credits', methods=['GET'])
 @login_required
 def dashboard_credits():
 
     formData=Form.query.filter_by(user_id=current_user.id).first()
-    return render_template('credits_dashboard.html', round=round, formData=formData, user=current_user)
+    return render_template('credits_dashboard.html', round=round, formData=formData, number_split=number_split, user=current_user)
 
 @app.route('/dashboard_plants_all', methods=['GET', 'POST'])
 @login_required
@@ -1008,7 +1031,7 @@ def dashboard_plants_all():
             for column in columns}
     )   
     if request.method == 'GET':
-        return render_template('plants_dashboard_all.html',zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
+        return render_template('plants_dashboard_all.html', number_split=number_split, zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
     else:
         if filterform.validate_on_submit():
             check_filter_all = False
@@ -1019,7 +1042,7 @@ def dashboard_plants_all():
             formdata_list_go = Form_G_O.query.filter_by(kato_6 = formdata_list[0].kato_6).first()
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
-            return render_template('plants_dashboard_all.html',zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
+            return render_template('plants_dashboard_all.html', number_split=number_split, zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
     return render_template('plants_dashboard_all.html',zip = zip,form_go=formdata_list_go,formdata_go=formdata_list_go, check_filter_all=check_filter_all, filterform=filterform,round=round, formData=formdata_list[0], user=current_user)
 
 @app.route('/dashboard_plants_obl', methods=['GET', 'POST'])
@@ -1036,7 +1059,7 @@ def dashboard_plants_obl():
             for column in columns}
     )   
     if request.method == 'GET':
-        return render_template('plants_dashboard_obl.html',check_filter_obl=False,zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
+        return render_template('plants_dashboard_obl.html', number_split=number_split, check_filter_obl=False,zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
     else:
         if filterform.validate_on_submit():
             check_filter_all = False
@@ -1051,8 +1074,8 @@ def dashboard_plants_obl():
             formdata_list_go = Form_G_O.query.filter(Form_G_O.kato_6.startswith(filterform.kato_2.data)).all()
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
-            return render_template('plants_dashboard_obl.html',check_filter_obl=False,zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
-    return render_template('plants_dashboard_obl.html',check_filter_obl=True,zip = zip,forms=formdata_list,form_go=formdata_list_go,formdata_go=formdata_list_go, check_filter_all=check_filter_all, filterform=filterform,round=round, formData=sum_formdata, user=current_user)
+            return render_template('plants_dashboard_obl.html', number_split=number_split, check_filter_obl=False,zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
+    return render_template('plants_dashboard_obl.html',check_filter_obl=True, number_split=number_split, zip = zip,forms=formdata_list,form_go=formdata_list_go,formdata_go=formdata_list_go, check_filter_all=check_filter_all, filterform=filterform,round=round, formData=sum_formdata, user=current_user)
 
 
 @app.route('/dashboard_animals_all', methods=['GET', 'POST'])
@@ -1068,13 +1091,13 @@ def dashboard_animals_all():
         **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
             for column in columns}
     )
-    sum_formdata.animal_milkrate_cow = round(sum_formdata.animal_milk_cow*100/sum_formdata.animal_mik_total, 2)
-    sum_formdata.animal_milrate_kozel = round(sum_formdata.animal_milrate_kozel*100/sum_formdata.animal_mik_total, 2)
-    sum_formdata.animal_milkrate_horse = round(sum_formdata.animal_milkrate_horse*100/sum_formdata.animal_mik_total, 2)
-    sum_formdata.animal_milkrate_camel = round(sum_formdata.animal_milkrate_camel*100/sum_formdata.animal_mik_total, 2)
+    sum_formdata.animal_milkrate_cow = round(sum_formdata.animal_milk_cow*100/sum_formdata.animal_mik_total, 1)
+    sum_formdata.animal_milrate_kozel = round(sum_formdata.animal_milrate_kozel*100/sum_formdata.animal_mik_total, 1)
+    sum_formdata.animal_milkrate_horse = round(sum_formdata.animal_milkrate_horse*100/sum_formdata.animal_mik_total, 1)
+    sum_formdata.animal_milkrate_camel = round(sum_formdata.animal_milkrate_camel*100/sum_formdata.animal_mik_total, 1)
     if request.method == 'GET':
         
-        return render_template('animal_dashboard_all.html',check_filter_obl = False,zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
+        return render_template('animal_dashboard_all.html',check_filter_obl = False, number_split=number_split, zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
     else:
         if filterform.validate_on_submit():
             check_filter_all = False
@@ -1086,9 +1109,9 @@ def dashboard_animals_all():
             
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
-            return render_template('animal_dashboard_all.html',check_filter_obl = False,zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
+            return render_template('animal_dashboard_all.html',check_filter_obl = False, number_split=number_split, zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
     
-    return render_template('animal_dashboard_all.html',check_filter_obl = True,zip = zip,form_go=formdata_list_go,formdata_go=formdata_list_go,check_filter_all=check_filter_all, filterform=filterform,round=round, formData=formdata_list[0], user=current_user)
+    return render_template('animal_dashboard_all.html',check_filter_obl = True,zip = zip, number_split=number_split, form_go=formdata_list_go,formdata_go=formdata_list_go,check_filter_all=check_filter_all, filterform=filterform,round=round, formData=formdata_list[0], user=current_user)
 
 @app.route('/dashboard_animals_obl', methods=['GET', 'POST'])
 @login_required
@@ -1104,12 +1127,12 @@ def dashboard_animals_obl():
         **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
             for column in columns}
     )   
-    sum_formdata.animal_milkrate_cow = round(sum_formdata.animal_milk_cow*100/sum_formdata.animal_mik_total, 2)
-    sum_formdata.animal_milrate_kozel = round(sum_formdata.animal_milrate_kozel*100/sum_formdata.animal_mik_total, 2)
-    sum_formdata.animal_milkrate_horse = round(sum_formdata.animal_milkrate_horse*100/sum_formdata.animal_mik_total, 2)
-    sum_formdata.animal_milkrate_camel = round(sum_formdata.animal_milkrate_camel*100/sum_formdata.animal_mik_total, 2)
+    sum_formdata.animal_milkrate_cow = round(sum_formdata.animal_milk_cow*100/sum_formdata.animal_mik_total, 1)
+    sum_formdata.animal_milrate_kozel = round(sum_formdata.animal_milrate_kozel*100/sum_formdata.animal_mik_total, 1)
+    sum_formdata.animal_milkrate_horse = round(sum_formdata.animal_milkrate_horse*100/sum_formdata.animal_mik_total, 1)
+    sum_formdata.animal_milkrate_camel = round(sum_formdata.animal_milkrate_camel*100/sum_formdata.animal_mik_total, 1)
     if request.method == 'GET':
-        return render_template('animal_dashboard_obl.html',check_filter_obl=False,zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
+        return render_template('animal_dashboard_obl.html',check_filter_obl=False, number_split=number_split, zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
     else:
         if filterform.validate_on_submit():
             check_filter_all = False
@@ -1118,18 +1141,18 @@ def dashboard_animals_obl():
                 **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
                     for column in columns}
             ) 
-            sum_formdata.animal_milkrate_cow = round(sum_formdata.animal_milk_cow*100/sum_formdata.animal_mik_total, 2)
-            sum_formdata.animal_milrate_kozel = round(sum_formdata.animal_milrate_kozel*100/sum_formdata.animal_mik_total, 2)
-            sum_formdata.animal_milkrate_horse = round(sum_formdata.animal_milkrate_horse*100/sum_formdata.animal_mik_total, 2)
-            sum_formdata.animal_milkrate_camel = round(sum_formdata.animal_milkrate_camel*100/sum_formdata.animal_mik_total, 2)
+            sum_formdata.animal_milkrate_cow = round(sum_formdata.animal_milk_cow*100/sum_formdata.animal_mik_total, 1)
+            sum_formdata.animal_milrate_kozel = round(sum_formdata.animal_milrate_kozel*100/sum_formdata.animal_mik_total, 1)
+            sum_formdata.animal_milkrate_horse = round(sum_formdata.animal_milkrate_horse*100/sum_formdata.animal_mik_total, 1)
+            sum_formdata.animal_milkrate_camel = round(sum_formdata.animal_milkrate_camel*100/sum_formdata.animal_mik_total, 1)
             if len(filterform.kato_2.data)==2:
                 check_filter_all = True
                 return redirect(url_for('dashboard_plants_obl'))
             formdata_list_go = Form_G_O.query.filter(Form_G_O.kato_6.startswith(filterform.kato_2.data)).all()
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
-            return render_template('animal_dashboard_obl.html',check_filter_obl=False,zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
-    return render_template('animal_dashboard_obl.html',check_filter_obl=True,zip = zip,forms=formdata_list,form_go=formdata_list_go,formdata_go=formdata_list_go, check_filter_all=check_filter_all, filterform=filterform,round=round, formData=sum_formdata, user=current_user)
+            return render_template('animal_dashboard_obl.html',check_filter_obl=False, number_split=number_split, zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
+    return render_template('animal_dashboard_obl.html',check_filter_obl=True,zip = zip, number_split=number_split,forms=formdata_list,form_go=formdata_list_go,formdata_go=formdata_list_go, check_filter_all=check_filter_all, filterform=filterform,round=round, formData=sum_formdata, user=current_user)
 
 
 @app.route('/dashboard_business_all', methods=['GET', 'POST'])
@@ -1149,9 +1172,9 @@ def dashboard_business_all():
                 formdata_list)
                for column in columns}
         )
-        sum_formdata.infrastructure_polivy = round(sum_formdata.infrastructure_polivy / count_form, 2) if count_form != 0 else 0
+        sum_formdata.infrastructure_polivy = round(sum_formdata.infrastructure_polivy / count_form, 1) if count_form != 0 else 0
 
-        return render_template('dashboard_business_all.html', check_filter_all=True, filterform=filterform, round=round, formData=sum_formdata,
+        return render_template('dashboard_business_all.html', check_filter_all=True, number_split=number_split, filterform=filterform, round=round, formData=sum_formdata,
                                user=current_user, form=formdata_list)
     else:
         if filterform.validate_on_submit():
@@ -1180,10 +1203,10 @@ def dashboard_business_all():
                     formdata_list)
                    for column in columns}
             )
-            return render_template('dashboard_business_all.html', filterform=filterform, round=round,
+            return render_template('dashboard_business_all.html',  number_split=number_split, filterform=filterform, round=round,
                                    formData=sum_formdata, user=current_user, form=formdata_list, check_filter_all=check_filter_all)
 
-    return render_template('dashboard_business_all.html', filterform=filterform, round=round, formData=sum_formdata,
+    return render_template('dashboard_business_all.html', filterform=filterform, number_split=number_split, round=round, formData=sum_formdata,
                            user=current_user, check_filter_all=check_filter_all)
 
 @app.route('/dashboard_business_obl', methods=['GET', 'POST'])
@@ -1203,9 +1226,9 @@ def dashboard_business_obl():
                 formdata_list)
                for column in columns}
         )
-        sum_formdata.infrastructure_polivy = round(sum_formdata.infrastructure_polivy / count_form, 2) if count_form != 0 else 0
+        sum_formdata.infrastructure_polivy = round(sum_formdata.infrastructure_polivy / count_form, 1) if count_form != 0 else 0
 
-        return render_template('business_dashboard_obl.html', check_filter_all=True, filterform=filterform, round=round, formData=sum_formdata,
+        return render_template('business_dashboard_obl.html', check_filter_all=True, number_split=number_split, filterform=filterform, round=round, formData=sum_formdata,
                                user=current_user, form=formdata_list)
     else:
         if filterform.validate_on_submit():
@@ -1234,10 +1257,10 @@ def dashboard_business_obl():
                     formdata_list)
                    for column in columns}
             )
-            return render_template('business_dashboard_obl.html', filterform=filterform, round=round,
+            return render_template('business_dashboard_obl.html', filterform=filterform, number_split=number_split, round=round,
                                    formData=sum_formdata, user=current_user, form=formdata_list, check_filter_all=check_filter_all)
 
-    return render_template('business_dashboard_obl.html', filterform=filterform, round=round, formData=sum_formdata,
+    return render_template('business_dashboard_obl.html', filterform=filterform, number_split=number_split, round=round, formData=sum_formdata,
                            user=current_user, check_filter_all=check_filter_all)
 
 
@@ -1258,7 +1281,7 @@ def dashboard_recycling_all():
                 formdata_list)
                for column in columns}
         )
-        return render_template('recycling_dashboard_all.html', check_filter_all=True, filterform=filterform, round=round, formData=sum_formdata,
+        return render_template('recycling_dashboard_all.html', check_filter_all=True, number_split=number_split, filterform=filterform, round=round, formData=sum_formdata,
                                user=current_user, form=formdata_list)
     else:
         if filterform.validate_on_submit():
@@ -1287,10 +1310,10 @@ def dashboard_recycling_all():
                     formdata_list)
                    for column in columns}
             )
-            return render_template('recycling_dashboard_all.html', filterform=filterform, round=round,
+            return render_template('recycling_dashboard_all.html', number_split=number_split,filterform=filterform, round=round,
                                    formData=sum_formdata, user=current_user, form=formdata_list, check_filter_all=check_filter_all)
 
-    return render_template('recycling_dashboard_all.html', filterform=filterform, round=round, formData=sum_formdata,
+    return render_template('recycling_dashboard_all.html', filterform=filterform, number_split=number_split, round=round, formData=sum_formdata,
                            user=current_user, check_filter_all=check_filter_all)
 
 @app.route('/dashboard_recycling_obl', methods=['GET', 'POST'])
@@ -1309,7 +1332,7 @@ def dashboard_recycling_obl():
                 formdata_list)
                for column in columns}
         )
-        return render_template('recycling_dashboard_obl.html', check_filter_all=True, filterform=filterform, round=round, formData=sum_formdata,
+        return render_template('recycling_dashboard_obl.html', check_filter_all=True, number_split=number_split, filterform=filterform, round=round, formData=sum_formdata,
                                user=current_user, form=formdata_list)
     else:
         if filterform.validate_on_submit():
@@ -1339,9 +1362,9 @@ def dashboard_recycling_obl():
                    for column in columns}
             )
             return render_template('recycling_dashboard_obl.html', filterform=filterform, round=round,
-                                   formData=sum_formdata, user=current_user, form=formdata_list, check_filter_all=check_filter_all)
+                                   formData=sum_formdata, user=current_user, form=formdata_list, number_split=number_split, check_filter_all=check_filter_all)
 
-    return render_template('recycling_dashboard_obl.html', filterform=filterform, round=round, formData=sum_formdata,
+    return render_template('recycling_dashboard_obl.html', filterform=filterform, number_split=number_split, round=round, formData=sum_formdata,
                            user=current_user, check_filter_all=check_filter_all)
 
 
@@ -1363,9 +1386,9 @@ def dashboard_credits_all():
                for column in columns}
         )
         sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else 0
-        sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else 0
+        sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 1) if count_form != 0 else 0
 
-        return render_template('credits_dashboard_all.html', filterform=filterform, round=round, formData=sum_formdata,
+        return render_template('credits_dashboard_all.html', filterform=filterform, number_split=number_split, round=round, formData=sum_formdata,
                                user=current_user, form=formdata_list)
     else:
         if filterform.validate_on_submit():
@@ -1381,7 +1404,7 @@ def dashboard_credits_all():
                    for column in columns}
             )
             sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else 0
-            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else 0
+            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 1) if count_form != 0 else 0
 
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
@@ -1397,12 +1420,12 @@ def dashboard_credits_all():
                    for column in columns}
             )
             sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else 0
-            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else 0
+            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 1) if count_form != 0 else 0
 
-            return render_template('credits_dashboard_all.html', filterform=filterform, round=round,
+            return render_template('credits_dashboard_all.html', filterform=filterform, number_split=number_split, round=round,
                                    formData=sum_formdata, user=current_user, form=formdata_list)
 
-    return render_template('credits_dashboard_all.html', filterform=filterform, round=round, formData=sum_formdata,
+    return render_template('credits_dashboard_all.html', filterform=filterform, round=round, number_split=number_split, formData=sum_formdata,
                            user=current_user)
 
 @app.route('/dashboard_credits_obl', methods=['GET', 'POST'])
@@ -1423,9 +1446,9 @@ def dashboard_credits_obl():
                for column in columns}
         )
         sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else 0
-        sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else 0
+        sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 1) if count_form != 0 else 0
 
-        return render_template('credits_dashboard_obl.html', filterform=filterform, round=round, formData=sum_formdata,
+        return render_template('credits_dashboard_obl.html', filterform=filterform, number_split=number_split, round=round, formData=sum_formdata,
                                user=current_user, form=formdata_list)
     else:
         if filterform.validate_on_submit():
@@ -1441,7 +1464,7 @@ def dashboard_credits_obl():
                    for column in columns}
             )
             sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else 0
-            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else 0
+            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 1) if count_form != 0 else 0
 
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
@@ -1457,12 +1480,12 @@ def dashboard_credits_obl():
                    for column in columns}
             )
             sum_formdata.credit_average_total = int(sum_formdata.credit_average_total / count_form) if count_form != 0 else 0
-            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 2) if count_form != 0 else 0
+            sum_formdata.credit_zalog = round(sum_formdata.credit_zalog / count_form, 1) if count_form != 0 else 0
 
-            return render_template('credits_dashboard_obl.html', filterform=filterform, round=round,
+            return render_template('credits_dashboard_obl.html', filterform=filterform, number_split=number_split, round=round,
                                    formData=sum_formdata, user=current_user, form=formdata_list)
 
-    return render_template('credits_dashboard_obl.html', filterform=filterform, round=round, formData=sum_formdata,
+    return render_template('credits_dashboard_obl.html', filterform=filterform, round=round, number_split=number_split, formData=sum_formdata,
                            user=current_user)
 
 
@@ -1527,15 +1550,15 @@ def dashboard_all():
             dx_sad_total += form.dx_sad
 
         
-        labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else 0
-        labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else 0
+        labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+        labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
         if int(labour_population_total) != 0:
-            labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 2)
+            labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 1)
         else:
             labour_employed_precent = 0  # or set it to some default value
 
         if int(labour_population_total) != 0:
-            labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 2)
+            labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 1)
         else:
             labour_unemployed_precent = 0 
 
@@ -1565,7 +1588,7 @@ def dashboard_all():
             'dx_ogorody_total': dx_ogorody_total,
             'dx_sad_total': dx_sad_total
         }
-        return render_template('dashboard_all.html',filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
+        return render_template('dashboard_all.html',filterform = filterform,round=round, number_split=number_split, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
     else:
         if filterform.validate_on_submit():
             formdata = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
@@ -1620,15 +1643,15 @@ def dashboard_all():
                 dx_sad_total += form.dx_sad
 
             
-            labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else 0
-            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else 0
+            labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
             if int(labour_population_total) != 0:
-                labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 2)
+                labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 1)
             else:
                 labour_employed_precent = 0  # or set it to some default value
 
             if int(labour_population_total) != 0:
-                labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 2)
+                labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 1)
             else:
                 labour_unemployed_precent = 0 
 
@@ -1659,7 +1682,7 @@ def dashboard_all():
                 'dx_ogorody_total': dx_ogorody_total,
                 'dx_sad_total': dx_sad_total
             }
-            return render_template('dashboard_all.html',filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
+            return render_template('dashboard_all.html',filterform = filterform,round=round, number_split=number_split, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
         else:
             flash(f'Возникла ошибка: {filterform.errors}','error')
             formdata = Form.query.filter_by(kato_4=current_user.kato_4).all()
@@ -1714,15 +1737,15 @@ def dashboard_all():
                 dx_sad_total += form.dx_sad
 
             
-            labour_household_size_total_average = round(house_total_dvor_total / counter, 2) if counter != 0 else 0
-            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 2) if counter != 0 else 0
+            labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+            labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
             if int(labour_population_total) != 0:
-                labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 2)
+                labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 1)
             else:
                 labour_employed_precent = 0  # or set it to some default value
 
             if int(labour_population_total) != 0:
-                labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 2)
+                labour_unemployed_precent += round((int(labour_inactive_total) * 100) / int(labour_population_total), 1)
             else:
                 labour_unemployed_precent = 0 
 
@@ -1752,8 +1775,7 @@ def dashboard_all():
                 'dx_ogorody_total': dx_ogorody_total,
                 'dx_sad_total': dx_sad_total
             }
-            return render_template('dashboard_all.html',filterform = filterform,round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
-    return render_template('dashboard_all.html',round=round, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
+            return render_template('dashboard_all.html',filterform = filterform,round=round, number_split=number_split, formData = formdata, user=current_user, dashboard_all_data=dashboard_all_data)
     
 
 

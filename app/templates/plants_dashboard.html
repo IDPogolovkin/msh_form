@@ -35,28 +35,28 @@
             <div class="card-inner">
               <p class="text-primary">Количество ДМХ</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.dh_count }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.dh_count) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Количество ДМХ с посевными площадями</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.dx_number_ogorodov }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.dx_number_ogorodov) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Земли в частной собственности, кв.м.</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.dx_cx_land }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.dx_cx_land) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Посевные площади СХ культур, кв.м.</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.dx_cx_land }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.dx_cx_land) }}</span>
           </div>
 
         </div>

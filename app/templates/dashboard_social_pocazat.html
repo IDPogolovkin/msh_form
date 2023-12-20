@@ -36,49 +36,49 @@
             <div class="card-inner">
               <p class="text-primary">Экономически активное население</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.labour_government_workers + formData.labour_private_labour + formData.labour_private_ogorod }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.labour_government_workers + formData.labour_private_labour + formData.labour_private_ogorod) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Экономически неактивное население</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.labour_unemployed + formData.labour_total_econ_inactive_population }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.labour_unemployed + formData.labour_total_econ_inactive_population) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Средний доход на семью, тенге/месяц</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.labour_average_income_family }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.labour_average_income_family) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Занятые в ЛПХ</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.labour_private_ogorod }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.labour_private_ogorod) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Средний размер ДМХ</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.labour_household_size }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.labour_household_size) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Количество доворов</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.house_total_dvor }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.house_total_dvor) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Количество заселенных доворов</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.house_zaselen_dvor }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.house_zaselen_dvor) }}</span>
           </div>
 
         </div>

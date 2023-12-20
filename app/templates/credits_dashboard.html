@@ -33,28 +33,28 @@
             <div class="card-inner">
               <p class="text-primary">Количество заявок</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.credit_amount }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.credit_amount) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Общая потребность в кредитах, тенге</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.credit_total }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.credit_total) }}</span>
           </div>
 
          <div class="card">
             <div class="card-inner">
               <p class="text-primary">Средний чек по кредиту</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.credit_average_total }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.credit_average_total) }}</span>
           </div>
 
          <div class="card">
             <div class="card-inner">
               <p class="text-primary">Количество обеспеченных залогом</p>
             </div>
-            <span class="text-primary font-weight-bold">{{ formData.credit_zalog }}</span>
+            <span class="text-primary font-weight-bold">{{ number_split(formData.credit_zalog) }}</span>
           </div>
 
         </div>

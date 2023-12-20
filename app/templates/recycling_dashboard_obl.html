@@ -38,14 +38,14 @@
             <div class="card-inner">
               <p class="text-primary">Количество бизнеса по переработке</p>
             </div>
-              <span class="text-primary font-weight-bold">{{ formData.manufacture_milk + formData.manufacture_meat + formData.manufacture_vegetables + formData.manufacture_mayo + formData.manufacture_fish + formData.manufacture_choco + formData.manufacture_beer + formData.manufacture_vodka + formData.manufacture_honey + formData.manufacture_polufabricat + formData.manufacture_bread + formData.manufacture_others }}</span>
+              <span class="text-primary font-weight-bold">{{ number_split(formData.manufacture_milk + formData.manufacture_meat + formData.manufacture_vegetables + formData.manufacture_mayo + formData.manufacture_fish + formData.manufacture_choco + formData.manufacture_beer + formData.manufacture_vodka + formData.manufacture_honey + formData.manufacture_polufabricat + formData.manufacture_bread + formData.manufacture_others) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">Потребность в переработке продукции</p>
             </div>
-              <span class="text-primary font-weight-bold">{{ formData.manufacture_milk_needs + formData.manufacture_meat_needs + formData.manufacture_vegetables_needs + formData.manufacture_mayo_needs + formData.manufacture_fish_needs + formData.manufacture_choco_needs + formData.manufacture_beer_needs + formData.manufacture_vodka_needs + formData.manufacture_honey_needs + formData.manufacture_polufabricat_needs + formData.manufacture_bread_needs + formData.manufacture_others_needs }}</span>
+              <span class="text-primary font-weight-bold">{{ number_split(formData.manufacture_milk_needs + formData.manufacture_meat_needs + formData.manufacture_vegetables_needs + formData.manufacture_mayo_needs + formData.manufacture_fish_needs + formData.manufacture_choco_needs + formData.manufacture_beer_needs + formData.manufacture_vodka_needs + formData.manufacture_honey_needs + formData.manufacture_polufabricat_needs + formData.manufacture_bread_needs + formData.manufacture_others_needs) }}</span>
           </div>
 
         </div>
