@@ -14,9 +14,16 @@ from sqlalchemy.orm import aliased
 from sqlalchemy import func, and_
 from sqlalchemy.inspection import inspect
 from statistics import mean
+import json
+import requests
 
 
 Base = declarative_base()
+
+def decimal_default(obj):
+    if isinstance(obj, Decimal):
+        return float(obj)
+    raise TypeError("Object of type {} is not JSON serializable".format(type(obj)))
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -452,12 +459,40 @@ def account():
         return render_template('account.html', title = 'Личный кабинет', filterhistory=filterhistory,str=str,form=form,measurement_units=measurement_units, user=current_user, formdata=formdata)
     
 
+
 @app.route('/account/edit', methods=['POST', 'GET'])
 @login_required
 def edit_form():
+    formdata_dict = {}
+    formdata_dict_go = {}
     formdata = Form.query.filter_by(user_id=current_user.id).first()
-    form = FormDataForm(obj=formdata)
     formgo = Form_G_O.query.filter_by(kato_6=current_user.kato_6).first()
+    iteration_count = 0
+    for column in formdata.__table__.columns:
+        if iteration_count < 9:
+            iteration_count += 1
+            continue
+        field_name = column.name
+        value = getattr(formdata, field_name)
+        formdata_dict[field_name] = value if type(value) != datetime and str else 0
+    iteration_count = 0
+    for column in formgo.__table__.columns:
+        if iteration_count < 8:
+            iteration_count += 1
+            continue
+        field_name = column.name
+        value = getattr(formgo, field_name)
+        formdata_dict_go[field_name] = value if type(value) != datetime and str else 0
+    formdata_json = json.dumps(formdata_dict, indent=2, default=decimal_default)
+    formdata_json_go = json.dumps(formdata_dict_go, indent=2, default=decimal_default)
+    microservice_url = "http://127.0.0.1:5000/form_calc_1"
+    payload = {
+        "formdata": formdata_json,
+        "formdata_go": formdata_json_go
+    }
+    response = requests.post(microservice_url, json=payload)
+    print(response.json())
+    form = FormDataForm(obj=formdata)
     if current_user.is_obl:
         return redirect(url_for('dashboard_obl'))
     if request.method == 'GET':
