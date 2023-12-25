@@ -491,12 +491,11 @@ def edit_form():
         "formdata_go": formdata_json_go
     }
     response = requests.post(microservice_url, json=payload)
-    print(response.json())
     form = FormDataForm(obj=formdata)
     if current_user.is_obl:
         return redirect(url_for('dashboard_obl'))
     if request.method == 'GET':
-        return render_template('edit_form.html',str=str, float = float, form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formData=formdata)
+        return render_template('edit_form.html',check_json=response.json(),str=str, float = float, form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formData=formdata)
     else:
 
         if form.validate_on_submit():
