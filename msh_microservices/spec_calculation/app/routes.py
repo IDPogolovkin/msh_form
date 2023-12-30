@@ -10,9 +10,9 @@ def spec_calc(form, additional_info):
         "spec_animal": 0.0
     }
 
-    credit_amount_average_all = additional_info['credit_amount_average_all']
+    credit_amount_all = additional_info['credit_amount_all']
     credit_total_all = additional_info['credit_total_all']
-    credit_average_total_all = additional_info['credit_average_total_all'] / additional_info['forms_len']
+    credit_average_total_all = additional_info['credit_total_all'] / additional_info['credit_amount_all']
 
     w_min = min(form['dx_tomato'], form['dx_potato'], form['dx_cucumber'], form['dx_carrot'], form['dx_kapusta'], form['dx_svekla'], form['dx_onion'], form['dx_sweet_peper'], form['dx_chesnok'], form['dx_kabachek'], form['dx_fruits'], form['dx_korm'], form['dx_baklajan'], form['dx_redis'])
     w_max = max(form['dx_tomato'], form['dx_potato'], form['dx_cucumber'], form['dx_carrot'], form['dx_kapusta'], form['dx_svekla'], form['dx_onion'], form['dx_sweet_peper'], form['dx_chesnok'], form['dx_kabachek'], form['dx_fruits'], form['dx_korm'], form['dx_baklajan'], form['dx_redis'])
@@ -72,7 +72,7 @@ def spec_calc(form, additional_info):
     f4_average = mean(variables) #if non_zero_values else 0
 
     f6w1 = float((form['labour_average_income_family'] / 120000) * 0.15)
-    f6w2 = float((form['credit_amount'] / credit_amount_average_all) * 0.15) if credit_amount_average_all > 0 else 0
+    f6w2 = float((form['credit_amount'] / credit_amount_all) * 0.15) if credit_amount_all > 0 else 0
     f6w3 = float((form['credit_total'] / credit_total_all) * 0.15) if credit_total_all > 0 else 0
     f6w4 = float((form['credit_average_total'] / credit_average_total_all) * 0.15) if credit_average_total_all > 0 else 0
     f6w5 = float(form['credit_zalog'])
@@ -85,9 +85,7 @@ def spec_calc(form, additional_info):
 
 
     #animal
-    credit_amount_average_all = additional_info['credit_amount_average_all']
-    credit_total_all = additional_info['credit_total_all']
-    credit_average_total_all = additional_info['credit_average_total_all'] / additional_info['forms_len']
+
 
     w_min = min(form['animal_krs_milk'], form['animal_krs_meat'], form['animal_sheep'], form['animal_kozel'], form['animal_horse'], form['animal_chicken'], form['animal_gusi'], form['animal_duck'], form['animal_induk'], form['animal_camel'], form['animal_pig'])
     w_max = max(form['animal_krs_milk'], form['animal_krs_meat'], form['animal_sheep'], form['animal_kozel'], form['animal_horse'], form['animal_chicken'], form['animal_gusi'], form['animal_duck'], form['animal_induk'], form['animal_camel'], form['animal_pig'])
@@ -163,7 +161,7 @@ def spec_calc(form, additional_info):
     f5_average = mean(variables) #if non_zero_values else 0
     
     f7w1 = float((form['labour_average_income_family'] / 120000)) * 0.15 
-    f7w2 = float((form['credit_amount'] / credit_amount_average_all) * 0.15) if credit_amount_average_all > 0 else 0
+    f7w2 = float((form['credit_amount'] / credit_amount_all) * 0.15) if credit_amount_all > 0 else 0
     f7w3 = float((form['credit_total'] / credit_total_all) * 0.15) if credit_total_all > 0 else 0
     f7w4 = float((form['credit_average_total'] / credit_average_total_all) * 0.15) if credit_average_total_all > 0 else 0
     f7w5 = float(form['credit_zalog'])

@@ -594,8 +594,7 @@ def edit_form():
             new_formdata_json = json.dumps(new_formdata_dict, indent=2, default=decimal_default)
             sum_form = sum_forms(new_form.kato_4)
             additional_info = {
-                "forms_len": len(Form.query.filter_by(kato_4=new_form.kato_4).all()),
-                "credit_amount_average_all": sum_form.credit_amount,
+                "credit_amount_all": sum_form.credit_amount,
                 "credit_total_all" : sum_form.credit_total,
                 "credit_average_total_all" : sum_form.credit_average_total
             }
