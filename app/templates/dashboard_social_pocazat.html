@@ -99,13 +99,13 @@
 {#            </ul>#}
             <ul class="bars">
               <p class="bar_title">Процентное соотношение сельхоз. угодий ДМХ</p>
-              <li><div class="bar" data-percentage="{{ round(formData.dx_pashnya * 100 / formData.dx_cx_land,2) }}"></div><span>Пашня</span></li>
-              <li><div class="bar" data-percentage="{{ round(formData.dx_mnogoletnie * 100 / formData.dx_cx_land, 2) }}"></div><span>Насаждения</span></li>
-              <li><div class="bar" data-percentage="{{ round(formData.dx_zelej * 100 / formData.dx_cx_land, 2) }}"></div><span>Залежь</span></li>
-              <li><div class="bar" data-percentage="{{ round(formData.dx_pastbishe * 100 / formData.dx_cx_land,2) }}"></div><span>Пастбища</span></li>
-              <li><div class="bar" data-percentage="{{ round(formData.dx_senokosy * 100 / formData.dx_cx_land,2) }}"></div><span>Сенокосы</span></li>
-             <li><div class="bar" data-percentage="{{ round(formData.dx_ogorody * 100 / formData.dx_cx_land,2) }}"></div><span>Огороды</span></li>
-             <li><div class="bar" data-percentage="{{ round(formData.dx_sad * 100 / formData.dx_cx_land,2) }}"></div><span>Сады</span></li>
+              <li><div class="bar" data-percentage="{% if formData.dx_cx_land != 0 %}{{ round(formData.dx_pashnya * 100 / formData.dx_cx_land,2) }}{% else %}{{ 0 }}{% endif %}"></div><span>Пашня</span></li>
+              <li><div class="bar" data-percentage="{% if formData.dx_cx_land != 0 %}{{ round(formData.dx_mnogoletnie * 100 / formData.dx_cx_land, 2) }}{% else %}{{ 0 }}{% endif %}"></div><span>Насаждения</span></li>
+              <li><div class="bar" data-percentage="{% if formData.dx_cx_land != 0 %}{{ round(formData.dx_zelej * 100 / formData.dx_cx_land, 2) }}{% else %}{{ 0 }}{% endif %}"></div><span>Залежь</span></li>
+              <li><div class="bar" data-percentage="{% if formData.dx_cx_land != 0 %}{{ round(formData.dx_pastbishe * 100 / formData.dx_cx_land,2) }}{% else %}{{ 0 }}{% endif %}"></div><span>Пастбища</span></li>
+              <li><div class="bar" data-percentage="{% if formData.dx_cx_land != 0 %}{{ round(formData.dx_senokosy * 100 / formData.dx_cx_land,2) }}{% else %}{{ 0 }}{% endif %}"></div><span>Сенокосы</span></li>
+             <li><div class="bar" data-percentage="{% if formData.dx_cx_land != 0 %}{{ round(formData.dx_ogorody * 100 / formData.dx_cx_land,2) }}{% else %}{{ 0 }}{% endif %}"></div><span>Огороды</span></li>
+             <li><div class="bar" data-percentage="{% if formData.dx_cx_land != 0 %}{{ round(formData.dx_sad * 100 / formData.dx_cx_land,2) }}{% else %}{{ 0 }}{% endif %}"></div><span>Сады</span></li>
             </ul>
           </div>
 
