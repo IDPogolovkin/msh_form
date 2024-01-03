@@ -614,7 +614,7 @@ def edit_form():
             return redirect(url_for('edit_form'))
         else:
             flash("Данные не изменены! Некорректный формат.", 'danger')
-            return render_template('edit_form.html', float = float, formGO = formgo,measurement_units=measurement_units, form=form, user=current_user)
+            return render_template('edit_form.html', float = float, formGO = formgo,measurement_units=measurement_units, form=form, user=current_user, check_json=response.json(), formData=formdata)
 
 @app.route('/account/region', methods=['GET', 'POST'])
 @login_required
