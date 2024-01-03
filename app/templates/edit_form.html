@@ -841,6 +841,24 @@
                 {{ measurement_units['gectar'] }}
               </div>
             </div>
+            <div class="input-group">
+              <div class="label">
+                {{ form.kx_zelej.label }}
+                  {% if formGO and 0 <= formGO.kx_zelej %}
+                  <p>Значение с БД ГО: {{ formGO.kx_zelej }}</p>
+                  {% else %}
+                  <p>Нет данных в БД ГО</p>
+                  {% endif %}
+              </div>
+              <div class="input_with_measure">
+                {% if check_json['kx_zelej'] %}
+                {{ form.kx_zelej( style = "border: 2px solid #C51E3A;") }}
+                {% else %}
+                {{ form.kx_zelej }}
+                {% endif %}
+                {{ measurement_units['gectar'] }}
+              </div>
+            </div>
         </div>
         <div class="subform">
             <div class="input-group">

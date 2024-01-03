@@ -564,7 +564,6 @@ def edit_form():
                         changed_fields[key] = getattr(formdata, key)
             
             changed_form_data = {key: changed_fields.get(key, None) for key in old_form_columns}
-
             old_form = Form_old(**changed_form_data)
             if not new_form.specialization_animal == formdata.specialization_animal:
                 old_form.specialization_animal = formdata.specialization_animal
