@@ -212,6 +212,8 @@ def form_calc_1():
     
     formdata = json.loads(data.get('formdata'))
     formdata_go = json.loads(data.get('formdata_go'))
+    if not formdata_go:
+        return jsonify(data_compare)
     for key in get_key(data_compare):
         if ((0<=formdata_go[key])
             and (formdata_go[key] * 1.2 < formdata[key] 

@@ -43,7 +43,7 @@
           <div class="input-group">
             <div class="label">
               {{ form.labour_population.label }}
-                {% if 0 <= formGO.labour_population %}
+                {% if formGO and 0 <= formGO.labour_population %}
                 <p>Значение с БД ГО: {{ formGO.labour_population }}</p>
                 {% else %}
                 <p>Нет данных в БД ГО</p>
@@ -61,7 +61,7 @@
      <div class="input-group">
       <div class="label">
         {{ form.labour_constant_population.label }}
-          {% if 0 <= formGO.labour_constant_population %}
+          {% if formGO and 0 <= formGO.labour_constant_population %}
           <p>Значение с БД ГО: {{ formGO.labour_constant_population }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
@@ -80,7 +80,7 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_labour.label }}
-          {% if 0 <= formGO.labour_labour %}
+          {% if formGO and 0 <= formGO.labour_labour %}
           <p>Значение с БД ГО: {{ formGO.labour_labour }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
@@ -99,7 +99,7 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_government_workers.label }}
-          {% if 0 <= formGO.labour_government_workers %}
+          {% if formGO and 0 <= formGO.labour_government_workers %}
           <p>Значение с БД ГО: {{ formGO.labour_government_workers }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
@@ -118,7 +118,7 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_private_labour.label }}
-          {% if 0 <= formGO.labour_private_labour %}
+          {% if formGO and 0 <= formGO.labour_private_labour %}
           <p>Значение с БД ГО: {{ formGO.labour_private_labour }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
@@ -138,7 +138,7 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_private_ogorod.label }}
-          {% if 0 <= formGO.labour_private_ogorod %}
+          {% if formGO and 0 <= formGO.labour_private_ogorod %}
           <p>Значение с БД ГО: {{ formGO.labour_private_ogorod }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
@@ -157,7 +157,7 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_total_econ_inactive_population.label }}
-          {% if 0 <= formGO.labour_total_econ_inactive_population %}
+          {% if formGO and 0 <= formGO.labour_total_econ_inactive_population %}
           <p>Значение с БД ГО: {{ formGO.labour_total_econ_inactive_population }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
@@ -176,7 +176,7 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_unemployed.label }}
-          {% if 0 <= formGO.labour_unemployed %}
+          {% if formGO and 0 <= formGO.labour_unemployed %}
           <p>Значение с БД ГО: {{ formGO.labour_unemployed }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
@@ -195,7 +195,7 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_household_size.label }}
-          {% if 0 <= formGO.labour_household_size %}
+          {% if formGO and 0 <= formGO.labour_household_size %}
           <p>Значение с БД ГО: {{ formGO.labour_household_size }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
@@ -214,7 +214,7 @@
     <div class="input-group">
       <div class="label">
         {{ form.labour_average_income_family.label }}
-          {% if 0 <= formGO.labour_average_income_family %}
+          {% if formGO and 0 <= formGO.labour_average_income_family %}
           <p>Значение с БД ГО: {{ formGO.labour_average_income_family }}</p>
           {% else %}
           <p>Нет данных в БД ГО</p>
@@ -242,7 +242,7 @@
       <div class="input-group">
         <div class="label">
           {{ form.house_total_dvor.label }}
-            {% if 0 <= formGO.house_total_dvor %}
+            {% if formGO and 0 <= formGO.house_total_dvor %}
             <p>Значение с БД ГО: {{ formGO.house_total_dvor }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>
@@ -260,7 +260,7 @@
       <div class="input-group">
         <div class="label">
           {{ form.house_zaselen_dvor.label }}
-            {% if 0 <= formGO.house_zaselen_dvor %}
+            {% if formGO and 0 <= formGO.house_zaselen_dvor %}
             <p>Значение с БД ГО: {{ formGO.house_zaselen_dvor }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>
@@ -288,7 +288,7 @@
           <div class="input-group">
               <div class="label">
                 {{ form.dh_count.label }}
-                  {% if 0 <= formGO.dh_count %}
+                  {% if formGO and 0 <= formGO.dh_count %}
                   <p>Значение с БД ГО: {{ formGO.dh_count }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -307,7 +307,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_number_ogorodov.label }}
-                  {% if 0 <= formGO.dx_number_ogorodov %}
+                  {% if formGO and 0 <= formGO.dx_number_ogorodov %}
                   <p>Значение с БД ГО: {{ formGO.dx_number_ogorodov }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -326,7 +326,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_cx_land.label }}
-                  {% if 0 <= formGO.dx_cx_land %}
+                  {% if formGO and 0 <= formGO.dx_cx_land %}
                   <p>Значение с БД ГО: {{ formGO.dx_cx_land }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -347,7 +347,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_pashnya.label }}
-                  {% if 0 <= formGO.dx_pashnya %}
+                  {% if formGO and 0 <= formGO.dx_pashnya %}
                   <p>Значение с БД ГО: {{ formGO.dx_pashnya }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -366,7 +366,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_mnogoletnie.label }}
-                  {% if 0 <= formGO.dx_mnogoletnie %}
+                  {% if formGO and 0 <= formGO.dx_mnogoletnie %}
                   <p>Значение с БД ГО: {{ formGO.dx_mnogoletnie }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -385,7 +385,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_zelej.label }}
-                  {% if 0 <= formGO.dx_zelej %}
+                  {% if formGO and 0 <= formGO.dx_zelej %}
                   <p>Значение с БД ГО: {{ formGO.dx_zelej }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -404,7 +404,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_pastbishe.label }}
-                  {% if 0 <= formGO.dx_pastbishe %}
+                  {% if formGO and 0 <= formGO.dx_pastbishe %}
                   <p>Значение с БД ГО: {{ formGO.dx_pastbishe }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -423,7 +423,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_senokosy.label }}
-                  {% if 0 <= formGO.dx_senokosy %}
+                  {% if formGO and 0 <= formGO.dx_senokosy %}
                   <p>Значение с БД ГО: {{ formGO.dx_senokosy }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -442,7 +442,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_ogorody.label }}
-                  {% if 0 <= formGO.dx_ogorody %}
+                  {% if formGO and 0 <= formGO.dx_ogorody %}
                   <p>Значение с БД ГО: {{ formGO.dx_ogorody }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -461,7 +461,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_sad.label }}
-                  {% if 0 <= formGO.dx_sad %}
+                  {% if formGO and 0 <= formGO.dx_sad %}
                   <p>Значение с БД ГО: {{ formGO.dx_sad }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -480,7 +480,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_urojai.label }}
-                  {% if 0 <= formGO.dx_urojai %}
+                  {% if formGO and 0 <= formGO.dx_urojai %}
                   <p>Значение с БД ГО: {{ formGO.dx_urojai }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -501,7 +501,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_cucumber.label }}
-                  {% if 0 <= formGO.dx_cucumber %}
+                  {% if formGO and 0 <= formGO.dx_cucumber %}
                   <p>Значение с БД ГО: {{ formGO.dx_cucumber }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -520,7 +520,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_tomato.label }}
-                  {% if 0 <= formGO.dx_tomato %}
+                  {% if formGO and 0 <= formGO.dx_tomato %}
                   <p>Значение с БД ГО: {{ formGO.dx_tomato }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -539,7 +539,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_potato.label }}
-                  {% if 0 <= formGO.dx_potato %}
+                  {% if formGO and 0 <= formGO.dx_potato %}
                   <p>Значение с БД ГО: {{ formGO.dx_potato }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -558,7 +558,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_kapusta.label }}
-                  {% if 0 <= formGO.dx_kapusta %}
+                  {% if formGO and 0 <= formGO.dx_kapusta %}
                   <p>Значение с БД ГО: {{ formGO.dx_kapusta }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -577,7 +577,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_carrot.label }}
-                  {% if 0 <= formGO.dx_carrot %}
+                  {% if formGO and 0 <= formGO.dx_carrot %}
                   <p>Значение с БД ГО: {{ formGO.dx_carrot }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -596,7 +596,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_svekla.label }}
-                  {% if 0 <= formGO.dx_svekla %}
+                  {% if formGO and 0 <= formGO.dx_svekla %}
                   <p>Значение с БД ГО: {{ formGO.dx_svekla }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -615,7 +615,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_sweet_peper.label }}
-                  {% if 0 <= formGO.dx_sweet_peper %}
+                  {% if formGO and 0 <= formGO.dx_sweet_peper %}
                   <p>Значение с БД ГО: {{ formGO.dx_sweet_peper }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -634,7 +634,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_baklajan.label }}
-                  {% if 0 <= formGO.dx_baklajan %}
+                  {% if formGO and 0 <= formGO.dx_baklajan %}
                   <p>Значение с БД ГО: {{ formGO.dx_baklajan }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -653,7 +653,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_kabachek.label }}
-                  {% if 0 <= formGO.dx_kabachek %}
+                  {% if formGO and 0 <= formGO.dx_kabachek %}
                   <p>Значение с БД ГО: {{ formGO.dx_kabachek }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -672,7 +672,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_onion.label }}
-                  {% if 0 <= formGO.dx_onion %}
+                  {% if formGO and 0 <= formGO.dx_onion %}
                   <p>Значение с БД ГО: {{ formGO.dx_onion }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -691,7 +691,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_chesnok.label }}
-                  {% if 0 <= formGO.dx_chesnok %}
+                  {% if formGO and 0 <= formGO.dx_chesnok %}
                   <p>Значение с БД ГО: {{ formGO.dx_chesnok }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -710,7 +710,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_redis.label }}
-                  {% if 0 <= formGO.dx_redis %}
+                  {% if formGO and 0 <= formGO.dx_redis %}
                   <p>Значение с БД ГО: {{ formGO.dx_redis }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -729,7 +729,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_korm.label }}
-                  {% if 0 <= formGO.dx_korm %}
+                  {% if formGO and 0 <= formGO.dx_korm %}
                   <p>Значение с БД ГО: {{ formGO.dx_korm }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -748,7 +748,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.dx_fruits.label }}
-                  {% if 0 <= formGO.dx_fruits %}
+                  {% if formGO and 0 <= formGO.dx_fruits %}
                   <p>Значение с БД ГО: {{ formGO.dx_fruits }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -767,7 +767,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_amount.label }}
-                  {% if 0 <= formGO.kx_amount %}
+                  {% if formGO and 0 <= formGO.kx_amount %}
                   <p>Значение с БД ГО: {{ formGO.kx_amount }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -786,7 +786,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kz_cx_land.label }}
-                  {% if 0 <= formGO.kz_cx_land %}
+                  {% if formGO and 0 <= formGO.kz_cx_land %}
                   <p>Значение с БД ГО: {{ formGO.kz_cx_land }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -807,7 +807,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_pansya.label }}
-                  {% if 0 <= formGO.kx_pansya %}
+                  {% if formGO and 0 <= formGO.kx_pansya %}
                   <p>Значение с БД ГО: {{ formGO.kx_pansya }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -826,7 +826,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_mnogoletnie.label }}
-                  {% if 0 <= formGO.kx_mnogoletnie %}
+                  {% if formGO and 0 <= formGO.kx_mnogoletnie %}
                   <p>Значение с БД ГО: {{ formGO.kx_mnogoletnie }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -846,7 +846,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_pastbishe.label }}
-                  {% if 0 <= formGO.kx_pastbishe %}
+                  {% if formGO and 0 <= formGO.kx_pastbishe %}
                   <p>Значение с БД ГО: {{ formGO.kx_pastbishe }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -865,7 +865,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_senokosy.label }}
-                  {% if 0 <= formGO.kx_senokosy %}
+                  {% if formGO and 0 <= formGO.kx_senokosy %}
                   <p>Значение с БД ГО: {{ formGO.kx_senokosy }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -884,7 +884,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_urojai.label }}
-                  {% if 0 <= formGO.kx_urojai %}
+                  {% if formGO and 0 <= formGO.kx_urojai %}
                   <p>Значение с БД ГО: {{ formGO.kx_urojai }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -905,7 +905,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_zerno.label }}
-                  {% if 0 <= formGO.kx_zerno %}
+                  {% if formGO and 0 <= formGO.kx_zerno %}
                   <p>Значение с БД ГО: {{ formGO.kx_zerno }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -924,7 +924,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_rice.label }}
-                  {% if 0 <= formGO.kx_rice %}
+                  {% if formGO and 0 <= formGO.kx_rice %}
                   <p>Значение с БД ГО: {{ formGO.kx_rice }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -943,7 +943,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_maslichnye.label }}
-                  {% if 0 <= formGO.kx_maslichnye %}
+                  {% if formGO and 0 <= formGO.kx_maslichnye %}
                   <p>Значение с БД ГО: {{ formGO.kx_maslichnye }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -962,7 +962,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_korm.label }}
-                  {% if 0 <= formGO.kx_korm %}
+                  {% if formGO and 0 <= formGO.kx_korm %}
                   <p>Значение с БД ГО: {{ formGO.kx_korm }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -981,7 +981,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_mnogoletnie_derevo.label }}
-                  {% if 0 <= formGO.kx_mnogoletnie_derevo %}
+                  {% if formGO and 0 <= formGO.kx_mnogoletnie_derevo %}
                   <p>Значение с БД ГО: {{ formGO.kx_mnogoletnie_derevo }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1000,7 +1000,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kz_cx_land_reserve.label }}
-                  {% if 0 <= formGO.kz_cx_land_reserve %}
+                  {% if formGO and 0 <= formGO.kz_cx_land_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kz_cx_land_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1021,7 +1021,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_pansya_reserve.label }}
-                  {% if 0 <= formGO.kx_pansya_reserve %}
+                  {% if formGO and 0 <= formGO.kx_pansya_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kx_pansya_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1040,7 +1040,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_mnogoletnie_reserve.label }}
-                  {% if 0 <= formGO.kx_mnogoletnie_reserve %}
+                  {% if formGO and 0 <= formGO.kx_mnogoletnie_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kx_mnogoletnie_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1059,7 +1059,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_zelej_reserve.label }}
-                  {% if 0 <= formGO.kx_zelej_reserve %}
+                  {% if formGO and 0 <= formGO.kx_zelej_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kx_zelej_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1078,7 +1078,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_pastbishe_reserve.label }}
-                  {% if 0 <= formGO.kx_pastbishe_reserve %}
+                  {% if formGO and 0 <= formGO.kx_pastbishe_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kx_pastbishe_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1097,7 +1097,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.kx_senokosy_reserve.label }}
-                  {% if 0 <= formGO.kx_senokosy_reserve %}
+                  {% if formGO and 0 <= formGO.kx_senokosy_reserve %}
                   <p>Значение с БД ГО: {{ formGO.kx_senokosy_reserve }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1116,7 +1116,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_polivochnaya_sistema_.label }}
-                  {% if 0 <= formGO.infrastructure_polivochnaya_sistema_ %}
+                  {% if formGO and 0 <= formGO.infrastructure_polivochnaya_sistema_ %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_polivochnaya_sistema_ }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1135,7 +1135,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_polivochnaya_sistema_isused.label }}
-                  {% if 0 <= formGO.infrastructure_polivochnaya_sistema_isused %}
+                  {% if formGO and 0 <= formGO.infrastructure_polivochnaya_sistema_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_polivochnaya_sistema_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1154,7 +1154,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_polivy.label }}
-                  {% if 0 <= formGO.infrastructure_polivy %}
+                  {% if formGO and 0 <= formGO.infrastructure_polivy %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_polivy }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1173,7 +1173,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_mtm.label }}
-                  {% if 0 <= formGO.infrastructure_mtm %}
+                  {% if formGO and 0 <= formGO.infrastructure_mtm %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_mtm }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1192,7 +1192,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_mtm_isused.label }}
-                  {% if 0 <= formGO.infrastructure_mtm_isused %}
+                  {% if formGO and 0 <= formGO.infrastructure_mtm_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_mtm_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1211,7 +1211,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_slad.label }}
-                  {% if 0 <= formGO.infrastructure_slad %}
+                  {% if formGO and 0 <= formGO.infrastructure_slad %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_slad }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1230,7 +1230,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_slad_isused.label }}
-                  {% if 0 <= formGO.infrastructure_slad_isused %}
+                  {% if formGO and 0 <= formGO.infrastructure_slad_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_slad_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1249,7 +1249,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_garage.label }}
-                  {% if 0 <= formGO.infrastructure_garage %}
+                  {% if formGO and 0 <= formGO.infrastructure_garage %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_garage }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1268,7 +1268,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_garage_isused.label }}
-                  {% if 0 <= formGO.infrastructure_garage_isused %}
+                  {% if formGO and 0 <= formGO.infrastructure_garage_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_garage_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1287,7 +1287,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_cycsterny.label }}
-                  {% if 0 <= formGO.infrastructure_cycsterny %}
+                  {% if formGO and 0 <= formGO.infrastructure_cycsterny %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_cycsterny }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1306,7 +1306,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_cycsterny_isused.label }}
-                  {% if 0 <= formGO.infrastructure_cycsterny_isused %}
+                  {% if formGO and 0 <= formGO.infrastructure_cycsterny_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_cycsterny_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1325,7 +1325,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_transformator.label }}
-                  {% if 0 <= formGO.infrastructure_transformator %}
+                  {% if formGO and 0 <= formGO.infrastructure_transformator %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_transformator }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1344,7 +1344,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.infrastructure_transformator_isused.label }}
-                  {% if 0 <= formGO.infrastructure_transformator_isused %}
+                  {% if formGO and 0 <= formGO.infrastructure_transformator_isused %}
                   <p>Значение с БД ГО: {{ formGO.infrastructure_transformator_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -1590,7 +1590,7 @@
            <div class="input-group">
           <div class="label">
             {{ form.animal_dvor.label }}
-              {% if 0 <= formGO.animal_dvor %}
+              {% if formGO and 0 <= formGO.animal_dvor %}
               <p>Значение с БД ГО: {{ formGO.animal_dvor }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1609,7 +1609,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_skot_bird.label }}
-              {% if 0 <= formGO.animal_skot_bird %}
+              {% if formGO and 0 <= formGO.animal_skot_bird %}
               <p>Значение с БД ГО: {{ formGO.animal_skot_bird }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1628,7 +1628,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_cx_land.label }}
-              {% if 0 <= formGO.animal_cx_land %}
+              {% if formGO and 0 <= formGO.animal_cx_land %}
               <p>Значение с БД ГО: {{ formGO.animal_cx_land }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1649,7 +1649,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_pashnya.label }}
-              {% if 0 <= formGO.animal_pashnya %}
+              {% if formGO and 0 <= formGO.animal_pashnya %}
               <p>Значение с БД ГО: {{ formGO.animal_pashnya }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1668,7 +1668,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_mnogolet.label }}
-              {% if 0 <= formGO.animal_mnogolet %}
+              {% if formGO and 0 <= formGO.animal_mnogolet %}
               <p>Значение с БД ГО: {{ formGO.animal_mnogolet }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1687,7 +1687,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_zalej.label }}
-              {% if 0 <= formGO.animal_zalej %}
+              {% if formGO and 0 <= formGO.animal_zalej %}
               <p>Значение с БД ГО: {{ formGO.animal_zalej }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1706,7 +1706,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_pastbisha.label }}
-              {% if 0 <= formGO.animal_pastbisha %}
+              {% if formGO and 0 <= formGO.animal_pastbisha %}
               <p>Значение с БД ГО: {{ formGO.animal_pastbisha }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1725,7 +1725,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_senokos.label }}
-              {% if 0 <= formGO.animal_senokos %}
+              {% if formGO and 0 <= formGO.animal_senokos %}
               <p>Значение с БД ГО: {{ formGO.animal_senokos }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1744,7 +1744,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_ogorod.label }}
-              {% if 0 <= formGO.animal_ogorod %}
+              {% if formGO and 0 <= formGO.animal_ogorod %}
               <p>Значение с БД ГО: {{ formGO.animal_ogorod }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1763,7 +1763,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_sad.label }}
-              {% if 0 <= formGO.animal_sad %}
+              {% if formGO and 0 <= formGO.animal_sad %}
               <p>Значение с БД ГО: {{ formGO.animal_sad }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1782,7 +1782,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_krs_milk.label }}
-              {% if 0 <= formGO.animal_krs_milk %}
+              {% if formGO and 0 <= formGO.animal_krs_milk %}
               <p>Значение с БД ГО: {{ formGO.animal_krs_milk }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1801,7 +1801,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_krs_meat.label }}
-              {% if 0 <= formGO.animal_krs_meat %}
+              {% if formGO and 0 <= formGO.animal_krs_meat %}
               <p>Значение с БД ГО: {{ formGO.animal_krs_meat }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1820,7 +1820,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_sheep.label }}
-              {% if 0 <= formGO.animal_sheep %}
+              {% if formGO and 0 <= formGO.animal_sheep %}
               <p>Значение с БД ГО: {{ formGO.animal_sheep }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1839,7 +1839,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_kozel.label }}
-              {% if 0 <= formGO.animal_kozel %}
+              {% if formGO and 0 <= formGO.animal_kozel %}
               <p>Значение с БД ГО: {{ formGO.animal_kozel }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1858,7 +1858,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_horse.label }}
-              {% if 0 <= formGO.animal_horse %}
+              {% if formGO and 0 <= formGO.animal_horse %}
               <p>Значение с БД ГО: {{ formGO.animal_horse }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1877,7 +1877,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_camel.label }}
-              {% if 0 <= formGO.animal_camel %}
+              {% if formGO and 0 <= formGO.animal_camel %}
               <p>Значение с БД ГО: {{ formGO.animal_camel }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1896,7 +1896,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_pig.label }}
-              {% if 0 <= formGO.animal_pig %}
+              {% if formGO and 0 <= formGO.animal_pig %}
               <p>Значение с БД ГО: {{ formGO.animal_pig }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1915,7 +1915,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_chicken.label }}
-              {% if 0 <= formGO.animal_chicken %}
+              {% if formGO and 0 <= formGO.animal_chicken %}
               <p>Значение с БД ГО: {{ formGO.animal_chicken }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1934,7 +1934,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_gusi.label }}
-              {% if 0 <= formGO.animal_gusi %}
+              {% if formGO and 0 <= formGO.animal_gusi %}
               <p>Значение с БД ГО: {{ formGO.animal_gusi }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1953,7 +1953,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_duck.label }}
-              {% if 0 <= formGO.animal_duck %}
+              {% if formGO and 0 <= formGO.animal_duck %}
               <p>Значение с БД ГО: {{ formGO.animal_duck }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1972,7 +1972,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_induk.label }}
-              {% if 0 <= formGO.animal_induk %}
+              {% if formGO and 0 <= formGO.animal_induk %}
               <p>Значение с БД ГО: {{ formGO.animal_induk }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -1991,7 +1991,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_mik_total.label }}
-              {% if 0 <= formGO.animal_mik_total %}
+              {% if formGO and 0 <= formGO.animal_mik_total %}
               <p>Значение с БД ГО: {{ formGO.animal_mik_total }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -2012,7 +2012,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.animal_milk_cow.label }}
-              {% if 0 <= formGO.animal_milk_cow %}
+              {% if formGO and 0 <= formGO.animal_milk_cow %}
               <p>Значение с БД ГО: {{ formGO.animal_milk_cow }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -2032,7 +2032,7 @@
           <div class="input-group">
               <div class="label">
                 {{ form.animal_milkrate_cow.label }}
-                  {% if 0 <= formGO.animal_milkrate_cow %}
+                  {% if formGO and 0 <= formGO.animal_milkrate_cow %}
                   <p>Значение с БД ГО: {{ formGO.animal_milkrate_cow }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2051,7 +2051,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_mil_kozel.label }}
-                  {% if 0 <= formGO.animal_mil_kozel %}
+                  {% if formGO and 0 <= formGO.animal_mil_kozel %}
                   <p>Значение с БД ГО: {{ formGO.animal_mil_kozel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2070,7 +2070,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_milrate_kozel.label }}
-                  {% if 0 <= formGO.animal_milrate_kozel %}
+                  {% if formGO and 0 <= formGO.animal_milrate_kozel %}
                   <p>Значение с БД ГО: {{ formGO.animal_milrate_kozel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2089,7 +2089,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_milk_horse.label }}
-                  {% if 0 <= formGO.animal_milk_horse %}
+                  {% if formGO and 0 <= formGO.animal_milk_horse %}
                   <p>Значение с БД ГО: {{ formGO.animal_milk_horse }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2108,7 +2108,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_milkrate_horse.label }}
-                  {% if 0 <= formGO.animal_milkrate_horse %}
+                  {% if formGO and 0 <= formGO.animal_milkrate_horse %}
                   <p>Значение с БД ГО: {{ formGO.animal_milkrate_horse }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2127,7 +2127,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_milk_camel.label }}
-                  {% if 0 <= formGO.animal_milk_camel %}
+                  {% if formGO and 0 <= formGO.animal_milk_camel %}
                   <p>Значение с БД ГО: {{ formGO.animal_milk_camel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2146,7 +2146,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_milkrate_camel.label }}
-                  {% if 0 <= formGO.animal_milkrate_camel %}
+                  {% if formGO and 0 <= formGO.animal_milkrate_camel %}
                   <p>Значение с БД ГО: {{ formGO.animal_milkrate_camel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2165,7 +2165,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_total.label }}
-                  {% if 0 <= formGO.animal_meat_total %}
+                  {% if formGO and 0 <= formGO.animal_meat_total %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_total }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2186,7 +2186,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_cow.label }}
-                  {% if 0 <= formGO.animal_meat_cow %}
+                  {% if formGO and 0 <= formGO.animal_meat_cow %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_cow }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2205,7 +2205,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_sheep.label }}
-                  {% if 0 <= formGO.animal_meat_sheep %}
+                  {% if formGO and 0 <= formGO.animal_meat_sheep %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_sheep }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2224,7 +2224,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_horse.label }}
-                  {% if 0 <= formGO.animal_meat_horse %}
+                  {% if formGO and 0 <= formGO.animal_meat_horse %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_horse }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2243,7 +2243,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_pig.label }}
-                  {% if 0 <= formGO.animal_meat_pig %}
+                  {% if formGO and 0 <= formGO.animal_meat_pig %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_pig }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2262,7 +2262,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_camel.label }}
-                  {% if 0 <= formGO.animal_meat_camel %}
+                  {% if formGO and 0 <= formGO.animal_meat_camel %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_camel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2281,7 +2281,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_chicken.label }}
-                  {% if 0 <= formGO.animal_meat_chicken %}
+                  {% if formGO and 0 <= formGO.animal_meat_chicken %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_chicken }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2300,7 +2300,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_duck.label }}
-                  {% if 0 <= formGO.animal_meat_duck %}
+                  {% if formGO and 0 <= formGO.animal_meat_duck %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_duck }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2319,7 +2319,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_meat_gusi.label }}
-                  {% if 0 <= formGO.animal_meat_gusi %}
+                  {% if formGO and 0 <= formGO.animal_meat_gusi %}
                   <p>Значение с БД ГО: {{ formGO.animal_meat_gusi }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2338,7 +2338,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_egg_total.label }}
-                  {% if 0 <= formGO.animal_egg_total %}
+                  {% if formGO and 0 <= formGO.animal_egg_total %}
                   <p>Значение с БД ГО: {{ formGO.animal_egg_total }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2359,7 +2359,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_egg_chicken.label }}
-                  {% if 0 <= formGO.animal_egg_chicken %}
+                  {% if formGO and 0 <= formGO.animal_egg_chicken %}
                   <p>Значение с БД ГО: {{ formGO.animal_egg_chicken }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2378,7 +2378,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_egg_gusi.label }}
-                  {% if 0 <= formGO.animal_egg_gusi %}
+                  {% if formGO and 0 <= formGO.animal_egg_gusi %}
                   <p>Значение с БД ГО: {{ formGO.animal_egg_gusi }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2397,7 +2397,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_egg_perepel.label }}
-                  {% if 0 <= formGO.animal_egg_perepel %}
+                  {% if formGO and 0 <= formGO.animal_egg_perepel %}
                   <p>Значение с БД ГО: {{ formGO.animal_egg_perepel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2416,7 +2416,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_transformator.label }}
-                  {% if 0 <= formGO.animal_transformator %}
+                  {% if formGO and 0 <= formGO.animal_transformator %}
                   <p>Значение с БД ГО: {{ formGO.animal_transformator }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2435,7 +2435,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.animal_transformator_isused.label }}
-                  {% if 0 <= formGO.animal_transformator_isused %}
+                  {% if formGO and 0 <= formGO.animal_transformator_isused %}
                   <p>Значение с БД ГО: {{ formGO.animal_transformator_isused }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2546,7 +2546,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_sto.label }}
-                  {% if 0 <= formGO.noncx_sto %}
+                  {% if formGO and 0 <= formGO.noncx_sto %}
                   <p>Значение с БД ГО: {{ formGO.noncx_sto }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2565,7 +2565,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_sto_needs.label }}
-                  {% if 0 <= formGO.noncx_sto_needs %}
+                  {% if formGO and 0 <= formGO.noncx_sto_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_sto_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2584,7 +2584,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_kindergarden.label }}
-                  {% if 0 <= formGO.noncx_kindergarden %}
+                  {% if formGO and 0 <= formGO.noncx_kindergarden %}
                   <p>Значение с БД ГО: {{ formGO.noncx_kindergarden }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2603,7 +2603,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_kindergarden_needs.label }}
-                  {% if 0 <= formGO.noncx_kindergarden_needs %}
+                  {% if formGO and 0 <= formGO.noncx_kindergarden_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_kindergarden_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2622,7 +2622,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_souvenier.label }}
-                  {% if 0 <= formGO.noncx_souvenier %}
+                  {% if formGO and 0 <= formGO.noncx_souvenier %}
                   <p>Значение с БД ГО: {{ formGO.noncx_souvenier }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2641,7 +2641,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_souvenier_needs.label }}
-                  {% if 0 <= formGO.noncx_souvenier_needs %}
+                  {% if formGO and 0 <= formGO.noncx_souvenier_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_souvenier_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2660,7 +2660,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_pc_service.label }}
-                  {% if 0 <= formGO.noncx_pc_service %}
+                  {% if formGO and 0 <= formGO.noncx_pc_service %}
                   <p>Значение с БД ГО: {{ formGO.noncx_pc_service }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2679,7 +2679,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_pc_service_needs.label }}
-                  {% if 0 <= formGO.noncx_pc_service_needs %}
+                  {% if formGO and 0 <= formGO.noncx_pc_service_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_pc_service_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2698,7 +2698,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_store.label }}
-                  {% if 0 <= formGO.noncx_store %}
+                  {% if formGO and 0 <= formGO.noncx_store %}
                   <p>Значение с БД ГО: {{ formGO.noncx_store }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2717,7 +2717,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_store_needs.label }}
-                  {% if 0 <= formGO.noncx_store_needs %}
+                  {% if formGO and 0 <= formGO.noncx_store_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_store_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2736,7 +2736,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_remont_bytovoi_tech.label }}
-                  {% if 0 <= formGO.noncx_remont_bytovoi_tech %}
+                  {% if formGO and 0 <= formGO.noncx_remont_bytovoi_tech %}
                   <p>Значение с БД ГО: {{ formGO.noncx_remont_bytovoi_tech }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2755,7 +2755,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_remont_bytovoi_tech_needs.label }}
-                  {% if 0 <= formGO.noncx_remont_bytovoi_tech_needs %}
+                  {% if formGO and 0 <= formGO.noncx_remont_bytovoi_tech_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_remont_bytovoi_tech_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2774,7 +2774,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_metal.label }}
-                  {% if 0 <= formGO.noncx_metal %}
+                  {% if formGO and 0 <= formGO.noncx_metal %}
                   <p>Значение с БД ГО: {{ formGO.noncx_metal }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2793,7 +2793,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_metal_needs.label }}
-                  {% if 0 <= formGO.noncx_metal_needs %}
+                  {% if formGO and 0 <= formGO.noncx_metal_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_metal_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2812,7 +2812,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_accounting.label }}
-                  {% if 0 <= formGO.noncx_accounting %}
+                  {% if formGO and 0 <= formGO.noncx_accounting %}
                   <p>Значение с БД ГО: {{ formGO.noncx_accounting }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2831,7 +2831,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_accounting_needs.label }}
-                  {% if 0 <= formGO.noncx_accounting_needs %}
+                  {% if formGO and 0 <= formGO.noncx_accounting_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_accounting_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2850,7 +2850,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_photo.label }}
-                  {% if 0 <= formGO.noncx_photo %}
+                  {% if formGO and 0 <= formGO.noncx_photo %}
                   <p>Значение с БД ГО: {{ formGO.noncx_photo }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2869,7 +2869,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_photo_needs.label }}
-                  {% if 0 <= formGO.noncx_photo_needs %}
+                  {% if formGO and 0 <= formGO.noncx_photo_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_photo_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2888,7 +2888,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_turism.label }}
-                  {% if 0 <= formGO.noncx_turism %}
+                  {% if formGO and 0 <= formGO.noncx_turism %}
                   <p>Значение с БД ГО: {{ formGO.noncx_turism }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2907,7 +2907,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_turism_needs.label }}
-                  {% if 0 <= formGO.noncx_turism_needs %}
+                  {% if formGO and 0 <= formGO.noncx_turism_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_turism_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2926,7 +2926,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_rent.label }}
-                  {% if 0 <= formGO.noncx_rent %}
+                  {% if formGO and 0 <= formGO.noncx_rent %}
                   <p>Значение с БД ГО: {{ formGO.noncx_rent }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2945,7 +2945,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_rent_needs.label }}
-                  {% if 0 <= formGO.noncx_rent_needs %}
+                  {% if formGO and 0 <= formGO.noncx_rent_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_rent_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2964,7 +2964,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_cargo.label }}
-                  {% if 0 <= formGO.noncx_cargo %}
+                  {% if formGO and 0 <= formGO.noncx_cargo %}
                   <p>Значение с БД ГО: {{ formGO.noncx_cargo }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -2983,7 +2983,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_cargo_needs.label }}
-                  {% if 0 <= formGO.noncx_cargo_needs %}
+                  {% if formGO and 0 <= formGO.noncx_cargo_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_cargo_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3002,7 +3002,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_massage.label }}
-                  {% if 0 <= formGO.noncx_massage %}
+                  {% if formGO and 0 <= formGO.noncx_massage %}
                   <p>Значение с БД ГО: {{ formGO.noncx_massage }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3022,7 +3022,7 @@
           <div class="input-group">
               <div class="label">
                 {{ form.noncx_massage_needs.label }}
-                  {% if 0 <= formGO.noncx_massage_needs %}
+                  {% if formGO and 0 <= formGO.noncx_massage_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_massage_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3041,7 +3041,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_foodcourt.label }}
-                  {% if 0 <= formGO.noncx_foodcourt %}
+                  {% if formGO and 0 <= formGO.noncx_foodcourt %}
                   <p>Значение с БД ГО: {{ formGO.noncx_foodcourt }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3060,7 +3060,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_foodcourt_needs.label }}
-                  {% if 0 <= formGO.noncx_foodcourt_needs %}
+                  {% if formGO and 0 <= formGO.noncx_foodcourt_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_foodcourt_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3079,7 +3079,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_cleaning.label }}
-                  {% if 0 <= formGO.noncx_cleaning %}
+                  {% if formGO and 0 <= formGO.noncx_cleaning %}
                   <p>Значение с БД ГО: {{ formGO.noncx_cleaning }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3098,7 +3098,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_cleaning_needs.label }}
-                  {% if 0 <= formGO.noncx_cleaning_needs %}
+                  {% if formGO and 0 <= formGO.noncx_cleaning_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_cleaning_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3117,7 +3117,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_beuty.label }}
-                  {% if 0 <= formGO.noncx_beuty %}
+                  {% if formGO and 0 <= formGO.noncx_beuty %}
                   <p>Значение с БД ГО: {{ formGO.noncx_beuty }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3136,7 +3136,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_beuty_needs.label }}
-                  {% if 0 <= formGO.noncx_beuty_needs %}
+                  {% if formGO and 0 <= formGO.noncx_beuty_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_beuty_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3155,7 +3155,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_carwash.label }}
-                  {% if 0 <= formGO.noncx_carwash %}
+                  {% if formGO and 0 <= formGO.noncx_carwash %}
                   <p>Значение с БД ГО: {{ formGO.noncx_carwash }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3174,7 +3174,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_carwash_needs.label }}
-                  {% if 0 <= formGO.noncx_carwash_needs %}
+                  {% if formGO and 0 <= formGO.noncx_carwash_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_carwash_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3193,7 +3193,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_atelie.label }}
-                  {% if 0 <= formGO.noncx_atelie %}
+                  {% if formGO and 0 <= formGO.noncx_atelie %}
                   <p>Значение с БД ГО: {{ formGO.noncx_atelie }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3212,7 +3212,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_atelie_needs.label }}
-                  {% if 0 <= formGO.noncx_atelie_needs %}
+                  {% if formGO and 0 <= formGO.noncx_atelie_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_atelie_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3231,7 +3231,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_others.label }}
-                  {% if 0 <= formGO.noncx_others %}
+                  {% if formGO and 0 <= formGO.noncx_others %}
                   <p>Значение с БД ГО: {{ formGO.noncx_others }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3250,7 +3250,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_others_needs.label }}
-                  {% if 0 <= formGO.noncx_others_needs %}
+                  {% if formGO and 0 <= formGO.noncx_others_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_others_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3270,7 +3270,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_stroika.label }}
-                  {% if 0 <= formGO.noncx_stroika %}
+                  {% if formGO and 0 <= formGO.noncx_stroika %}
                   <p>Значение с БД ГО: {{ formGO.noncx_stroika }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3289,7 +3289,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_stroika_needs.label }}
-                  {% if 0 <= formGO.noncx_stroika_needs %}
+                  {% if formGO and 0 <= formGO.noncx_stroika_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_stroika_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3309,7 +3309,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_mebel.label }}
-                  {% if 0 <= formGO.noncx_mebel %}
+                  {% if formGO and 0 <= formGO.noncx_mebel %}
                   <p>Значение с БД ГО: {{ formGO.noncx_mebel }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3328,7 +3328,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_mebel_needs.label }}
-                  {% if 0 <= formGO.noncx_mebel_needs %}
+                  {% if formGO and 0 <= formGO.noncx_mebel_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_mebel_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3347,7 +3347,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_stroi_material.label }}
-                  {% if 0 <= formGO.noncx_stroi_material %}
+                  {% if formGO and 0 <= formGO.noncx_stroi_material %}
                   <p>Значение с БД ГО: {{ formGO.noncx_stroi_material }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3366,7 +3366,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_stroi_material_needs.label }}
-                  {% if 0 <= formGO.noncx_stroi_material_needs %}
+                  {% if formGO and 0 <= formGO.noncx_stroi_material_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_stroi_material_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3385,7 +3385,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_svarka.label }}
-                  {% if 0 <= formGO.noncx_svarka %}
+                  {% if formGO and 0 <= formGO.noncx_svarka %}
                   <p>Значение с БД ГО: {{ formGO.noncx_svarka }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3404,7 +3404,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_svarka_needs.label }}
-                  {% if 0 <= formGO.noncx_svarka_needs %}
+                  {% if formGO and 0 <= formGO.noncx_svarka_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_svarka_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3423,7 +3423,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_woodworking.label }}
-                  {% if 0 <= formGO.noncx_woodworking %}
+                  {% if formGO and 0 <= formGO.noncx_woodworking %}
                   <p>Значение с БД ГО: {{ formGO.noncx_woodworking }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3442,7 +3442,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_woodworking_needs.label }}
-                  {% if 0 <= formGO.noncx_woodworking_needs %}
+                  {% if formGO and 0 <= formGO.noncx_woodworking_needs %}
                   <p>Значение с БД ГО: {{ formGO.noncx_woodworking_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3461,7 +3461,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_others_uslugi.label }}
-                  {% if 0 <= formGO.noncx_others_uslugi %}
+                  {% if formGO and 0 <= formGO.noncx_others_uslugi %}
                   <p>Значение с БД ГО: {{ formGO.noncx_others_uslugi }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3480,7 +3480,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.noncx_others_needs_uslugi.label }}
-                  {% if 0 <= formGO.noncx_others_needs_uslugi %} 
+                  {% if formGO and 0 <= formGO.noncx_others_needs_uslugi %} 
                   <p>Значение с БД ГО: {{ formGO.noncx_others_needs_uslugi }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3510,7 +3510,7 @@
           <div class="input-group">
           <div class="label">
             {{ form.manufacture_milk.label }}
-              {% if 0 <= formGO.manufacture_milk %}
+              {% if formGO and 0 <= formGO.manufacture_milk %}
               <p>Значение с БД ГО: {{ formGO.manufacture_milk }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3528,7 +3528,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_milk_needs.label }}
-              {% if 0 <= formGO.manufacture_milk_needs %}
+              {% if formGO and 0 <= formGO.manufacture_milk_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_milk_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3547,7 +3547,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_meat.label }}
-              {% if 0 <= formGO.manufacture_meat %}
+              {% if formGO and 0 <= formGO.manufacture_meat %}
               <p>Значение с БД ГО: {{ formGO.manufacture_meat }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3566,7 +3566,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_meat_needs.label }}
-              {% if 0 <= formGO.manufacture_meat_needs %}
+              {% if formGO and 0 <= formGO.manufacture_meat_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_meat_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3585,7 +3585,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_vegetables.label }}
-              {% if 0 <= formGO.manufacture_vegetables %}
+              {% if formGO and 0 <= formGO.manufacture_vegetables %}
               <p>Значение с БД ГО: {{ formGO.manufacture_vegetables }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3604,7 +3604,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_vegetables_needs.label }}
-              {% if 0 <= formGO.manufacture_vegetables_needs %}
+              {% if formGO and 0 <= formGO.manufacture_vegetables_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_vegetables_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3623,7 +3623,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_mayo.label }}
-              {% if 0 <= formGO.manufacture_mayo %}
+              {% if formGO and 0 <= formGO.manufacture_mayo %}
               <p>Значение с БД ГО: {{ formGO.manufacture_mayo }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3642,7 +3642,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_mayo_needs.label }}
-              {% if 0 <= formGO.manufacture_mayo_needs %}
+              {% if formGO and 0 <= formGO.manufacture_mayo_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_mayo_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3661,7 +3661,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_fish.label }}
-              {% if 0 <= formGO.manufacture_fish %}
+              {% if formGO and 0 <= formGO.manufacture_fish %}
               <p>Значение с БД ГО: {{ formGO.manufacture_fish }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3680,7 +3680,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_fish_needs.label }}
-              {% if 0 <= formGO.manufacture_fish_needs %}
+              {% if formGO and 0 <= formGO.manufacture_fish_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_fish_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3699,7 +3699,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_choco.label }}
-              {% if 0 <= formGO.manufacture_choco %}
+              {% if formGO and 0 <= formGO.manufacture_choco %}
               <p>Значение с БД ГО: {{ formGO.manufacture_choco }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3718,7 +3718,7 @@
         <div class="input-group">
           <div class="label">
             {{ form.manufacture_choco_needs.label }}
-              {% if 0 <= formGO.manufacture_choco_needs %}
+              {% if formGO and 0 <= formGO.manufacture_choco_needs %}
               <p>Значение с БД ГО: {{ formGO.manufacture_choco_needs }}</p>
               {% else %}
               <p>Нет данных в БД ГО</p>
@@ -3738,7 +3738,7 @@
           <div class="input-group">
               <div class="label">
                 {{ form.manufacture_beer.label }}
-                  {% if 0 <= formGO.manufacture_beer %}
+                  {% if formGO and 0 <= formGO.manufacture_beer %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_beer }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3757,7 +3757,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_beer_needs.label }}
-                  {% if 0 <= formGO.manufacture_beer_needs %}
+                  {% if formGO and 0 <= formGO.manufacture_beer_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_beer_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3776,7 +3776,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_vodka.label }}
-                  {% if 0 <= formGO.manufacture_vodka %}
+                  {% if formGO and 0 <= formGO.manufacture_vodka %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_vodka }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3795,7 +3795,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_vodka_needs.label }}
-                  {% if 0 <= formGO.manufacture_vodka_needs %}
+                  {% if formGO and 0 <= formGO.manufacture_vodka_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_vodka_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3814,7 +3814,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_honey.label }}
-                  {% if 0 <= formGO.manufacture_honey %}
+                  {% if formGO and 0 <= formGO.manufacture_honey %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_honey }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3833,7 +3833,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_honey_needs.label }}
-                  {% if 0 <= formGO.manufacture_honey_needs %}
+                  {% if formGO and 0 <= formGO.manufacture_honey_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_honey_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3852,7 +3852,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_polufabricat.label }}
-                  {% if 0 <= formGO.manufacture_polufabricat %}
+                  {% if formGO and 0 <= formGO.manufacture_polufabricat %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_polufabricat }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3871,7 +3871,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_polufabricat_needs.label }}
-                  {% if 0 <= formGO.manufacture_polufabricat_needs %}
+                  {% if formGO and 0 <= formGO.manufacture_polufabricat_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_polufabricat_needs }}</p>
                   {% else %}    
                   <p>Нет данных в БД ГО</p>
@@ -3890,7 +3890,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_bread.label }}
-                  {% if 0 <= formGO.manufacture_bread %}
+                  {% if formGO and 0 <= formGO.manufacture_bread %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_bread }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3909,7 +3909,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_bread_needs.label }}
-                  {% if 0 <= formGO.manufacture_bread_needs %}
+                  {% if formGO and 0 <= formGO.manufacture_bread_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_bread_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3928,7 +3928,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_others.label }}
-                  {% if 0 <= formGO.manufacture_others %}
+                  {% if formGO and 0 <= formGO.manufacture_others %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_others }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3947,7 +3947,7 @@
             <div class="input-group">
               <div class="label">
                 {{ form.manufacture_others_needs.label }}
-                  {% if 0 <= formGO.manufacture_others_needs %}
+                  {% if formGO and 0 <= formGO.manufacture_others_needs %}
                   <p>Значение с БД ГО: {{ formGO.manufacture_others_needs }}</p>
                   {% else %}
                   <p>Нет данных в БД ГО</p>
@@ -3975,7 +3975,7 @@
       <div class="input-group">
         <div class="label">
           {{ form.credit_amount.label }}
-            {% if 0 <= formGO.credit_amount %}
+            {% if formGO and 0 <= formGO.credit_amount %}
             <p>Значение с БД ГО: {{ formGO.credit_amount }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>
@@ -3993,7 +3993,7 @@
       <div class="input-group">
         <div class="label">
           {{ form.credit_total.label }}
-            {% if 0 <= formGO.credit_total %}
+            {% if formGO and 0 <= formGO.credit_total %}
             <p>Значение с БД ГО: {{ formGO.credit_total }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>
@@ -4011,7 +4011,7 @@
       <div class="input-group">
         <div class="label">
           {{ form.credit_average_total.label }}
-            {% if 0 <= formGO.credit_average_total %}
+            {% if formGO and 0 <= formGO.credit_average_total %}
             <p>Значение с БД ГО: {{ formGO.credit_average_total }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>
@@ -4029,7 +4029,7 @@
       <div class="input-group">
         <div class="label">
           {{ form.credit_zalog.label }}
-            {% if 0 <= formGO.credit_zalog %}
+            {% if formGO and 0 <= formGO.credit_zalog %}
             <p>Значение с БД ГО: {{ formGO.credit_zalog }}</p>
             {% else %}
             <p>Нет данных в БД ГО</p>

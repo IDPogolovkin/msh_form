@@ -491,13 +491,14 @@ def edit_form():
         value = getattr(formdata, field_name)
         formdata_dict[field_name] = value if type(value) != datetime and str else 0
     iteration_count = 0
-    for column in formgo.__table__.columns:
-        if iteration_count < 8:
-            iteration_count += 1
-            continue
-        field_name = column.name
-        value = getattr(formgo, field_name)
-        formdata_dict_go[field_name] = value if type(value) != datetime and str else 0
+    if formgo:
+        for column in formgo.__table__.columns:
+            if iteration_count < 8:
+                iteration_count += 1
+                continue
+            field_name = column.name
+            value = getattr(formgo, field_name)
+            formdata_dict_go[field_name] = value if type(value) != datetime and str else 0
     formdata_json = json.dumps(formdata_dict, indent=2, default=decimal_default)
     formdata_json_go = json.dumps(formdata_dict_go, indent=2, default=decimal_default)
     payload = {
@@ -511,7 +512,6 @@ def edit_form():
     if request.method == 'GET':
         return render_template('edit_form.html',check_json=response.json(),str=str, float = float, form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formData=formdata)
     else:
-
         if form.validate_on_submit():
             new_formdata_dict = {}
             old_form_columns = [column.key for column in inspect(Form_old).columns]
@@ -1865,6 +1865,7 @@ def form_village():
             flash("У вас уже имеется форма", category='info')
             return redirect(url_for('account'))
         if form.validate_on_submit():
+            formdata_dict = {}
             excluded_fields = ['csrf_token', 'submit'] + [field.name for field in form if field.name.startswith('specialization_')]            
             form_data = {
                 'user_id': current_user.id,
@@ -1889,11 +1890,36 @@ def form_village():
                         spec_str_animal += str(field.label.text) + ', '
             form_data['specialization_animal'] = spec_str_animal[:-2]
             form_data['specialization_rastenivodstvo'] = spec_str_rast[:-2]
+            form_data['creation_date'] = datetime.now(timezone(timedelta(hours=6)))
+            form_data['modified_date'] = datetime.now(timezone(timedelta(hours=6)))
             formdata = Form(**form_data)
+            iteration_count_post = 0
+            for column in formdata.__table__.columns:
+                if iteration_count_post < 9:
+                    iteration_count_post += 1
+                    continue
+                field_name = column.name
+                value = getattr(formdata, field_name)
+                formdata_dict[field_name] = value if type(value) != datetime and str else 0
+            formdata_json = json.dumps(formdata_dict, indent=2, default=decimal_default)
+            sum_form = sum_forms(formdata.kato_4)
+            additional_info = {
+                "credit_amount_all": sum_form.credit_amount,
+                "credit_total_all" : sum_form.credit_total,
+                "credit_average_total_all" : sum_form.credit_average_total
+            }
+            additional_info_json = json.dumps(additional_info, indent=2, default=decimal_default)
+            post_payload = {
+                "additional_info": additional_info_json,
+                "formdata": formdata_json
+            }
+            response_post = requests.post(spec_microservice_url, json=post_payload).json()
+            formdata.specialization_rastenivodstvo_value = response_post['spec_rast']
+            formdata.specialization_animal_value = response_post['spec_animal']
             db.session.add(formdata)
             db.session.commit()
             flash("Форма успешено добавлена!", 'success')
-            return redirect(url_for('account'))
+            return redirect(url_for('edit_form'))
         else:
             flash("Форма заполнена некорректно или отсутствуют необходимые поля.", 'error')
     return render_template('ms_form.html', title='Форма отчетности МСХ',form=form, measurement_units=measurement_units, user=current_user)

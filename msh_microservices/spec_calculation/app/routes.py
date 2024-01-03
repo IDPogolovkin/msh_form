@@ -9,10 +9,11 @@ def spec_calc(form, additional_info):
         "spec_rast": 0.0,
         "spec_animal": 0.0
     }
-
     credit_amount_all = additional_info['credit_amount_all']
     credit_total_all = additional_info['credit_total_all']
-    credit_average_total_all = additional_info['credit_total_all'] / additional_info['credit_amount_all']
+    credit_average_total_all = additional_info['credit_total_all'] / additional_info['credit_amount_all'] if additional_info['credit_amount_all'] > 0 else 0
+    if credit_average_total_all == 0:
+        return result
 
     w_min = min(form['dx_tomato'], form['dx_potato'], form['dx_cucumber'], form['dx_carrot'], form['dx_kapusta'], form['dx_svekla'], form['dx_onion'], form['dx_sweet_peper'], form['dx_chesnok'], form['dx_kabachek'], form['dx_fruits'], form['dx_korm'], form['dx_baklajan'], form['dx_redis'])
     w_max = max(form['dx_tomato'], form['dx_potato'], form['dx_cucumber'], form['dx_carrot'], form['dx_kapusta'], form['dx_svekla'], form['dx_onion'], form['dx_sweet_peper'], form['dx_chesnok'], form['dx_kabachek'], form['dx_fruits'], form['dx_korm'], form['dx_baklajan'], form['dx_redis'])
