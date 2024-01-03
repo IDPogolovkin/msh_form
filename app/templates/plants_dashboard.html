@@ -47,14 +47,14 @@
 
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">Земли в частной собственности, кв.м.</p>
+              <p class="text-primary">Земли в частной собственности, гектар</p>
             </div>
             <span class="text-primary font-weight-bold">{{ number_split(formData.dx_cx_land) }}</span>
           </div>
 
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">Посевные площади СХ культур, кв.м.</p>
+              <p class="text-primary">Посевные площади СХ культур, гектар</p>
             </div>
             <span class="text-primary font-weight-bold">{{ number_split(formData.dx_cx_land) }}</span>
           </div>
@@ -96,7 +96,7 @@
             </div>
           </div>
       {% endif %}
-      
+
         <div class="charts">
           <!-- apexcharts bar chart -->
           <div class="charts-card">
@@ -112,7 +112,7 @@
                 <tbody>
                   <tr>
                     <td style="font-weight: 800; color: white; padding: 20px 20px; background-color: #34AF6D">Наименование</td>
-                    <td style="font-weight: 800; color: white; background-color: #34AF6D">кв.метров</td>
+                    <td style="font-weight: 800; color: white; background-color: #34AF6D">гектар</td>
                   </tr>
                   <tr>
                     <td>Всего</td>
@@ -365,7 +365,7 @@
         const barChartOptions1 = {
           series: [
             {
-              name: "кв. метров",
+              name: "гектар",
               data: [{{ formData.dx_pashnya }}, {{ formData.dx_mnogoletnie }}, {{ formData.dx_zelej }}, {{ formData.dx_pastbishe }}, {{ formData.dx_senokosy }}, {{ formData.dx_ogorody }}, {{ formData.dx_sad }}],
             },
           ],
@@ -397,7 +397,7 @@
           },
           yaxis: {
             title: {
-              text: 'Количество кв. метров',
+              text: 'Количество гектар',
             },
           },
         };
