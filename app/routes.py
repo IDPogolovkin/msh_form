@@ -557,7 +557,10 @@ def edit_form():
             changed_fields = {}
             for key, value in form_data.items():
                 if type(value) != str:
-                    if Decimal(str(getattr(formdata, key))) !=  Decimal(str(value)):
+                    if getattr(formdata, key):
+                        if Decimal(str(getattr(formdata, key))) !=  Decimal(str(value)):
+                            changed_fields[key] = getattr(formdata, key)
+                    else:
                         changed_fields[key] = getattr(formdata, key)
             
             changed_form_data = {key: changed_fields.get(key, None) for key in old_form_columns}
@@ -1854,13 +1857,16 @@ def form_village():
     user = current_user
     form = FormDataForm()
     form_check = Form.query.filter_by(user_id=current_user.id).first()
+
     if request.method == "GET":
+
         if form_check:
             flash("У вас уже имеется форма", category='info')
             return redirect(url_for('account'))
         else:
             return render_template('ms_form.html', form=form, measurement_units=measurement_units, user=user)
     else:
+
         if form_check:
             flash("У вас уже имеется форма", category='info')
             return redirect(url_for('account'))
@@ -1921,5 +1927,6 @@ def form_village():
             flash("Форма успешено добавлена!", 'success')
             return redirect(url_for('edit_form'))
         else:
-            flash("Форма заполнена некорректно или отсутствуют необходимые поля.", 'error')
+            print(form.errors)
+            flash("Форма заполнена некорректно или отсутствуют необходимые поля.", category='error')
     return render_template('ms_form.html', title='Форма отчетности МСХ',form=form, measurement_units=measurement_units, user=current_user)
