@@ -81,6 +81,7 @@
             </div>
           </div>
 
+      {% if formData_go %}
       <div class="specialization-rast">
             <p>Расчет уровня специализации в растениеводстве по данным БД ГО</p>
             <div class="spec_block_score_bdgo">
@@ -94,7 +95,8 @@
               {% endif %}
             </div>
           </div>
-
+      {% endif %}
+      
         <div class="charts">
           <!-- apexcharts bar chart -->
           <div class="charts-card">
