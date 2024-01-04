@@ -3,16 +3,17 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 <link rel="icon" type="image/x-icon" href="../static/img/msx.png">
 <div class="login-body">
-      {% if user.is_district %}
+      <!-- {% if user.is_district %}
        <p class="log_title">Цифровое Рабочее место Акима района</p>
        {% else %}
        <p class="log_title">Цифровое Рабочее место Акима села</p>
-       {% endif %}
+       {% endif %} -->
   <div class="content-section">
     <form method="POST" action="" class="form">
       {{ form.hidden_tag() }}
       <div class="form-group">
-        <legend class="border-bottom mb-4">Войти</legend><br>
+        <legend class="sign_text">Войти</legend>
+        <br>
         <div class="form-group">
           {{ form.login.label(class="form-control-label") }}
           {{ form.login(class="form-control form-control-lg") }}
