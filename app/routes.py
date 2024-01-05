@@ -1114,7 +1114,7 @@ def dashboard_plants_all():
         else:
             flash(f'Возникла ошибка: {filterform.errors}', category='error')
             return render_template('plants_dashboard_all.html', number_split=number_split, zip = zip,form_go=formdata_list_go,check_filter_all=True, filterform=filterform,round=round, formData=sum_formdata, user=current_user, forms=formdata_list)
-    return render_template('plants_dashboard_all.html',zip = zip,form_go=formdata_list_go,formdata_go=formdata_list_go, check_filter_all=check_filter_all, filterform=filterform,round=round, formData=formdata_list[0], user=current_user)
+    return render_template('plants_dashboard_all.html',zip = zip,form_go=formdata_list_go,formdata_go=formdata_list_go, check_filter_all=check_filter_all, filterform=filterform,round=round, formData=formdata_list[0], user=current_user, number_split=number_split)
 
 @app.route('/dashboard_plants_obl', methods=['GET', 'POST'])
 @login_required

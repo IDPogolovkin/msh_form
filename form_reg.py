@@ -5,7 +5,7 @@ import csv
 
 app.app_context().push()
 
-csv_file_path = 'spec_form.csv'
+csv_file_path = 'CSV/spec_form.csv'
 counter = 0
 with open(csv_file_path, 'r', encoding='utf-8') as file:
     csv_reader = csv.reader(file)
