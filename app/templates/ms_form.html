@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="{{ url_for('static', filename='ms_form.css') }}" />
-<script src="{{ url_for('static', filename='script.js') }}" defer></script>
+<script src="{{ url_for('static', filename='script_ms_form.js') }}" defer></script>
 <title>Форма</title>
 </head>
 <div class="content">
@@ -39,7 +39,9 @@
       {% endif %}
     </div>
   </nav>
-
+  <div class="flash-error">
+    <p>Заполните все поля для сохранения.</p>
+  </div>
   {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
   {% for category, message in messages %}

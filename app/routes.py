@@ -478,6 +478,8 @@ def account():
 @app.route('/account/edit', methods=['POST', 'GET'])
 @login_required
 def edit_form():
+    if current_user.is_obl:
+        return redirect(url_for('dashboard_obl'))
     formdata_dict = {}
     formdata_dict_go = {}
     formdata = Form.query.filter_by(user_id=current_user.id).first()
@@ -507,8 +509,6 @@ def edit_form():
     }
     response = requests.post(compare_microservice_url, json=payload)
     form = FormDataForm(obj=formdata)
-    if current_user.is_obl:
-        return redirect(url_for('dashboard_obl'))
     if request.method == 'GET':
         return render_template('edit_form.html',check_json=response.json(),str=str, float = float, form=form, formGO = formgo, user=current_user, measurement_units=measurement_units, formData=formdata)
     else:
@@ -621,48 +621,78 @@ def edit_form():
 @app.route('/account/region', methods=['GET', 'POST'])
 @login_required
 def region_akim():
-
+    
     filterform = FilterForm()
     filterform.set_filter_choices(current_user.kato_4)
     inspector1 = inspect(Form)
     inspector2 = inspect(Form_G_O)
     columns = inspector1.columns.keys()
     columnsgo = inspector2.columns.keys()
-    
-    formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
-    formgo_list = Form_G_O.query.filter_by(kato_4=current_user.kato_4).all()
-    count_form = len(formdata_list)
-    count_form_go = len(formgo_list)
-    
+    if request.method == 'GET':
+        formdata_list = Form.query.filter_by(kato_4=current_user.kato_4).all()
+        formgo_list = Form_G_O.query.filter_by(kato_4=current_user.kato_4).all()
+        count_form = len(formdata_list)
+        count_form_go = len(formgo_list)
+        sum_formdata_go=0
+        sum_formdata = Form(
+            **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
+                for column in columns}
+        )
+        if formgo_list:
+            sum_formdata_go = Form_G_O(
+                **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formgo_list)
+                    for column in columnsgo}
+            )
+        else:
+            sum_formdata_go = Form_G_O(**{column: -1 for column in columnsgo})
+        sum_formdata.labour_average_income_family = sum_formdata.labour_average_income_family / count_form if count_form != 0 else 0
+        sum_formdata.labour_household_size = round(sum_formdata.labour_household_size / count_form) if count_form != 0 else 0
+        sum_formdata.credit_average_total = sum_formdata.credit_average_total / count_form if count_form != 0 else 0
+        if formgo_list:
+            sum_formdata_go.labour_average_income_family = int(sum_formdata_go.labour_average_income_family / count_form_go) if count_form_go != 0 else 0
+            sum_formdata_go.labour_household_size = round(sum_formdata_go.labour_household_size / count_form_go) if count_form_go != 0 else 0
+            sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else 0
+            sum_formdata_go.credit_zalog = round(sum_formdata_go.credit_zalog / count_form_go, 1) if count_form_go != 0 else 0
 
-    sum_formdata = Form(
-        **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
-            for column in columns}
-    )
-    sum_formdata_go = Form_G_O(
-        **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formgo_list)
-            for column in columnsgo}
-    )
+            sum_formdata_go.animal_milkrate_cow = sum_formdata_go.animal_milkrate_cow / count_form_go if count_form_go != 0 else 0
+            sum_formdata_go.animal_milrate_kozel = sum_formdata_go.animal_milrate_kozel / count_form_go if count_form_go != 0 else 0
+            sum_formdata_go.animal_milkrate_horse = sum_formdata_go.animal_milkrate_horse / count_form_go if count_form_go != 0 else 0
+            sum_formdata_go.animal_milkrate_camel = sum_formdata_go.animal_milkrate_camel / count_form_go if count_form_go != 0 else 0
 
-    sum_formdata.labour_average_income_family = sum_formdata.labour_average_income_family / count_form if count_form != 0 else 0
-    sum_formdata.labour_household_size = sum_formdata.labour_household_size / count_form if count_form != 0 else 0
-    sum_formdata.credit_average_total = sum_formdata.credit_average_total / count_form if count_form != 0 else 0
-    
-    sum_formdata_go.labour_average_income_family = int(sum_formdata_go.labour_average_income_family / count_form_go) if count_form_go != 0 else 0
-    sum_formdata_go.labour_household_size = int(int(sum_formdata_go.labour_household_size / count_form_go)) if count_form_go != 0 else 0
-    sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else 0
-
-    sum_formdata.credit_zalog = sum_formdata.credit_zalog / count_form if count_form != 0 else 0
-    sum_formdata_go.credit_zalog = round(sum_formdata_go.credit_zalog / count_form_go, 1) if count_form_go != 0 else 0
-    
-    sum_formdata.animal_milkrate_cow = sum_formdata.animal_milkrate_cow / count_form if count_form != 0 else 0
-    sum_formdata.animal_milrate_kozel = sum_formdata.animal_milrate_kozel / count_form if count_form != 0 else 0
-    sum_formdata.animal_milkrate_horse = sum_formdata.animal_milkrate_horse / count_form if count_form != 0 else 0
-    sum_formdata.animal_milkrate_camel = sum_formdata.animal_milkrate_camel / count_form if count_form != 0 else 0
-
-    form = FormDataForm(obj=sum_formdata)
-    
-    if request.method == 'POST':
+        sum_formdata.credit_zalog = sum_formdata.credit_zalog / count_form if count_form != 0 else 0
+        
+        sum_formdata.animal_milkrate_cow = sum_formdata.animal_milkrate_cow / count_form if count_form != 0 else 0
+        sum_formdata.animal_milrate_kozel = sum_formdata.animal_milrate_kozel / count_form if count_form != 0 else 0
+        sum_formdata.animal_milkrate_horse = sum_formdata.animal_milkrate_horse / count_form if count_form != 0 else 0
+        sum_formdata.animal_milkrate_camel = sum_formdata.animal_milkrate_camel / count_form if count_form != 0 else 0
+        formdata_dict = {}
+        formdata_dict_go = {}
+        iteration_count = 0
+        for column in sum_formdata.__table__.columns:
+            if iteration_count < 9:
+                iteration_count += 1
+                continue
+            field_name = column.name
+            value = getattr(sum_formdata, field_name)
+            formdata_dict[field_name] = value if type(value) != datetime and str else 0
+        iteration_count = 0
+        if formgo_list:
+            for column in sum_formdata_go.__table__.columns:
+                if iteration_count < 8:
+                    iteration_count += 1
+                    continue
+                field_name = column.name
+                value = getattr(sum_formdata_go, field_name)
+                formdata_dict_go[field_name] = value if type(value) != datetime and str else 0
+        formdata_json = json.dumps(formdata_dict, indent=2, default=decimal_default)
+        formdata_json_go = json.dumps(formdata_dict_go, indent=2, default=decimal_default)
+        payload = {
+            "formdata": formdata_json,
+            "formdata_go": formdata_json_go
+        }
+        response = requests.post(compare_microservice_url, json=payload).json()
+        form = FormDataForm(obj=sum_formdata)
+    else:
         if filterform.validate_on_submit():
             formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
             formgo_list = Form_G_O.query.filter(Form_G_O.kato_6.startswith(filterform.kato_4.data)).all()
@@ -672,16 +702,20 @@ def region_akim():
                 **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formdata_list)
                     for column in columns}
             )
-            sum_formdata_go = Form_G_O(
-                **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formgo_list)
-                    for column in columnsgo}
-            )
+            if formgo_list:
+                sum_formdata_go = Form_G_O(
+                    **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in formgo_list)
+                        for column in columnsgo}
+                )
+            else:
+                sum_formdata_go = Form_G_O(**{column: -1 for column in columnsgo})
+
             sum_formdata.labour_average_income_family = sum_formdata.labour_average_income_family / count_form if count_form != 0 else 0
-            sum_formdata.labour_household_size = sum_formdata.labour_household_size / count_form if count_form != 0 else 0
+            sum_formdata.labour_household_size = round(sum_formdata.labour_household_size / count_form) if count_form != 0 else 0
             sum_formdata.credit_average_total = sum_formdata.credit_average_total / count_form if count_form != 0 else 0
             
             sum_formdata_go.labour_average_income_family = int(sum_formdata_go.labour_average_income_family / count_form_go) if count_form_go != 0 else 0
-            sum_formdata_go.labour_household_size = int(int(sum_formdata_go.labour_household_size / count_form_go)) if count_form_go != 0 else 0
+            sum_formdata_go.labour_household_size = round(sum_formdata_go.labour_household_size / count_form_go) if count_form_go != 0 else 0
             sum_formdata_go.credit_average_total = int(sum_formdata_go.credit_average_total / count_form_go) if count_form_go != 0 else 0
 
             sum_formdata.credit_zalog = sum_formdata.credit_zalog / count_form if count_form != 0 else 0
@@ -691,13 +725,39 @@ def region_akim():
             sum_formdata.animal_milrate_kozel = sum_formdata.animal_milrate_kozel / count_form if count_form != 0 else 0
             sum_formdata.animal_milkrate_horse = sum_formdata.animal_milkrate_horse / count_form if count_form != 0 else 0
             sum_formdata.animal_milkrate_camel = sum_formdata.animal_milkrate_camel / count_form if count_form != 0 else 0
-
+            formdata_dict = {}
+            formdata_dict_go = {}
+            iteration_count = 0
+            for column in sum_formdata.__table__.columns:
+                if iteration_count < 9:
+                    iteration_count += 1
+                    continue
+                field_name = column.name
+                value = getattr(sum_formdata, field_name)
+                formdata_dict[field_name] = value if type(value) != datetime and str else 0
+            iteration_count = 0
+            if formgo_list:
+                for column in sum_formdata_go.__table__.columns:
+                    if iteration_count < 8:
+                        iteration_count += 1
+                        continue
+                    field_name = column.name
+                    value = getattr(sum_formdata_go, field_name)
+                    formdata_dict_go[field_name] = value if type(value) != datetime and str else 0
+            formdata_json = json.dumps(formdata_dict, indent=2, default=decimal_default)
+            formdata_json_go = json.dumps(formdata_dict_go, indent=2, default=decimal_default)
+            payload = {
+                "formdata": formdata_json,
+                "formdata_go": formdata_json_go
+            }
+            response = requests.post(compare_microservice_url, json=payload).json()
             form = FormDataForm(obj=sum_formdata)
-            return render_template('region_akim.html',float = float, str=str, form=form, formGO=sum_formdata_go, user=current_user,
+
+            return render_template('region_akim.html',float = float, str=str, form=form,compare_check = response, formGO=sum_formdata_go, user=current_user,
                                measurement_units=measurement_units, formdata=formdata_list, filterform=filterform)
         else:
             flash(f'Возникла ошибка: {filterform.errors}', 'error')
-    return render_template('region_akim.html',float = float, str=str, form=form, formGO=sum_formdata_go, user=current_user,
+    return render_template('region_akim.html',float = float, str=str, form=form,compare_check = response, formGO=sum_formdata_go, user=current_user,
                                measurement_units=measurement_units, formdata=formdata_list,filterform=filterform)
     
 
@@ -1107,7 +1167,7 @@ def dashboard_plants_all():
         if filterform.validate_on_submit():
             check_filter_all = False
             formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
-            if len(formdata_list)>1:
+            if len(filterform.kato_4.data)==4:
                 check_filter_all = True
                 return redirect(url_for('dashboard_plants_all'))
             formdata_list_go = Form_G_O.query.filter_by(kato_6 = formdata_list[0].kato_6).first()
@@ -1173,7 +1233,7 @@ def dashboard_animals_all():
         if filterform.validate_on_submit():
             check_filter_all = False
             formdata_list = Form.query.filter(Form.kato_6.startswith(filterform.kato_4.data)).all()
-            if len(formdata_list)>1:
+            if len(filterform.kato_4.data)==4:
                 check_filter_all = True
                 return redirect(url_for('dashboard_animals_all'))
             formdata_list_go = Form_G_O.query.filter_by(kato_6 = formdata_list[0].kato_6).first()
@@ -1253,7 +1313,7 @@ def dashboard_business_all():
             inspector1 = inspect(Form)
             columns = inspector1.columns.keys()
             check_filter_all = False
-            if len(formdata_list) > 1:
+            if len(filterform.kato_4.data)==4:
                 check_filter_all = True
                 return redirect(url_for('dashboard_business_all'))
             sum_formdata = Form(
@@ -1360,7 +1420,7 @@ def dashboard_recycling_all():
             inspector1 = inspect(Form)
             columns = inspector1.columns.keys()
             check_filter_all = False
-            if len(formdata_list) > 1:
+            if len(filterform.kato_4.data)==4:
                 check_filter_all = True
                 return redirect(url_for('dashboard_recycling_all'))
             sum_formdata = Form(
@@ -1929,3 +1989,4 @@ def form_village():
             print(form.errors)
             flash("Форма заполнена некорректно или отсутствуют необходимые поля.", category='error')
     return render_template('ms_form.html', title='Форма отчетности МСХ',form=form, measurement_units=measurement_units, user=current_user)
+
