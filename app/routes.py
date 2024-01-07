@@ -16,10 +16,15 @@ from sqlalchemy.inspection import inspect
 from statistics import mean
 import json
 import requests
+import os
+from dotenv import load_dotenv
 
-spec_microservice_url = "http://127.0.0.1:5000/spec_calc"
-compare_microservice_url = "http://127.0.0.1:5001/form_calc_1"
+load_dotenv('./.env')
 
+host =  os.environ.get('HOST')
+
+spec_microservice_url = f"http://{host}:8083/spec_calc"
+compare_microservice_url = f"http://{host}:8084/form_calc_1"
 Base = declarative_base()
 
 def decimal_default(obj):
