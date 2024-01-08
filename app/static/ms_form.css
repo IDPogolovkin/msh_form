@@ -60,6 +60,9 @@ body {
   padding-right: 25px;
 }
 
+.hiding{
+  display: none;
+}
 .flash-error {
   padding: 10px;
   border: 1px solid #d9534f;
@@ -134,7 +137,7 @@ input {
   font-size: 19px;
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #C51E3A;
+  border: 2px solid #eb0f33;
   border-radius: 0.25rem;
 }
 

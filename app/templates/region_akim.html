@@ -1369,7 +1369,9 @@
               <div class="specialization-rast">
                   <div class="spec_block">
                       {% for form in formdata %}
+                      {% if form.specialization_rastenivodstvo %}
                       {{ form.specialization_rastenivodstvo }},
+                      {% endif %}
                       {% endfor %}
               </div>
           </div>
