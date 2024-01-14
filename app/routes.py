@@ -879,7 +879,7 @@ def dashboard_obl():
             dx_sad_total += form.dx_sad
 
             
-        labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+        labour_household_size_total_average = round(labour_household_size_total / counter) if counter != 0 else 0
         labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
         if int(labour_population_total) != 0:
             labour_employed_precent = round((int(labour_active_total) * 100) / int(labour_population_total), 1)
@@ -971,7 +971,7 @@ def dashboard_obl():
                 dx_sad_total += form.dx_sad
 
             
-            labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+            labour_household_size_total_average = round(labour_household_size_total / counter) if counter != 0 else 0
             labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
             if int(labour_population_total) != 0:
                 labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 1)
@@ -1065,7 +1065,7 @@ def dashboard_obl():
                 dx_sad_total += form.dx_sad
 
             
-            labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+            labour_household_size_total_average = round(labour_household_size_total / counter) if counter != 0 else 0
             labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
             if int(labour_population_total) != 0:
                 labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 1)
@@ -1688,7 +1688,7 @@ def dashboard_all():
             dx_sad_total += form.dx_sad
 
         
-        labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+        labour_household_size_total_average = round(labour_household_size_total / counter) if counter != 0 else 0
         labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
         if int(labour_population_total) != 0:
             labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 1)
@@ -1781,7 +1781,7 @@ def dashboard_all():
                 dx_sad_total += form.dx_sad
 
             
-            labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+            labour_household_size_total_average = round(labour_household_size_total / counter) if counter != 0 else 0
             labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
             if int(labour_population_total) != 0:
                 labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 1)
@@ -1875,7 +1875,7 @@ def dashboard_all():
                 dx_sad_total += form.dx_sad
 
             
-            labour_household_size_total_average = round(house_total_dvor_total / counter, 1) if counter != 0 else 0
+            labour_household_size_total_average = round(labour_household_size_total / counter) if counter != 0 else 0
             labour_average_income_family_total_average = round(labour_average_income_family_total / counter, 1) if counter != 0 else 0
             if int(labour_population_total) != 0:
                 labour_employed_precent += round((int(labour_active_total) * 100) / int(labour_population_total), 1)
