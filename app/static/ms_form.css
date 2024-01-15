@@ -140,7 +140,21 @@ input {
   border: 2px solid #eb0f33;
   border-radius: 0.25rem;
 }
-
+#downloadButton{
+  border: 1.5px solid var(--primary-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: var(--primary-color);
+  cursor: pointer;
+  margin: 0 auto;
+}
+#downloadButton:hover{
+  border: 1.5px solid transparent;
+  transition: 0.5s;
+  background-color: var(--primary-color);
+  color: white;
+}
 select {
   width: 100%;
   font-size: 19px;

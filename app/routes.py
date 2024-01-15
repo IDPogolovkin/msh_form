@@ -17,6 +17,9 @@ from statistics import mean
 import json
 import requests
 import os
+from flask import make_response
+import pandas as pd
+from io import BytesIO
 from dotenv import load_dotenv
 
 load_dotenv('./.env')
@@ -624,6 +627,86 @@ def edit_form():
         else:
             flash("Данные не изменены! Некорректный формат.", 'danger')
             return render_template('edit_form.html', float = float, formGO = formgo,measurement_units=measurement_units, form=form, user=current_user, check_json=response.json(), formData=formdata)
+
+
+@app.route('/excel_download/<int:kato>', methods=['POST'])
+@login_required
+def exel_download(kato):
+    form_data = Form.query.filter(Form.kato_6.startswith(kato)).all()
+    inspector1 = inspect(Form)
+    columns = inspector1.columns
+
+    if len(str(kato)) < 6:
+        count_form = len(form_data)
+        columns_sum = inspector1.columns.keys()
+
+        sum_formdata = Form(
+            **{column: sum(getattr(form, column) if isinstance(getattr(form, column), (int, float, Decimal)) else 0 for form in form_data)
+                for column in columns_sum}
+        )
+
+        sum_formdata.labour_average_income_family = sum_formdata.labour_average_income_family / count_form if count_form != 0 else 0
+        sum_formdata.labour_household_size = round(sum_formdata.labour_household_size / count_form) if count_form != 0 else 0
+        sum_formdata.credit_average_total = sum_formdata.credit_average_total / count_form if count_form != 0 else 0
+        
+
+        sum_formdata.credit_zalog = sum_formdata.credit_zalog / count_form if count_form != 0 else 0
+
+        sum_formdata.animal_milkrate_cow = sum_formdata.animal_milkrate_cow / count_form if count_form != 0 else 0
+        sum_formdata.animal_milrate_kozel = sum_formdata.animal_milrate_kozel / count_form if count_form != 0 else 0
+        sum_formdata.animal_milkrate_horse = sum_formdata.animal_milkrate_horse / count_form if count_form != 0 else 0
+        sum_formdata.animal_milkrate_camel = sum_formdata.animal_milkrate_camel / count_form if count_form != 0 else 0
+    else:
+        sum_formdata = form_data[0]
+    
+    ordered_columns = [column.key for column in columns]
+    
+    # Convert sum_formdata to a pandas DataFrame
+    df = pd.DataFrame([sum_formdata.__dict__])
+
+    # Exclude '_sa_instance_state' and order columns based on the model
+    if '_sa_instance_state' in df.columns:
+        # Exclude '_sa_instance_state' and order columns based on the model
+        df = df[ordered_columns].drop(columns=['_sa_instance_state'], errors='ignore')
+
+    df = df.T.reset_index()
+    df = df.iloc[7:]
+    df['index'] = df['index'].map(translation_data)
+    labour_range = (df['index'].index >= 9) & (df['index'].index <= 18)
+    house_range = (df['index'].index >= 19) & (df['index'].index <= 20)
+    rast_range = (df['index'].index >= 21) & (df['index'].index <= 79)
+    animal_range = (df['index'].index >= 80) & (df['index'].index <= 126)
+    noncx_range = (df['index'].index >= 127) & (df['index'].index <= 176)
+    manufacture_range = (df['index'].index >= 177) & (df['index'].index <= 200)
+    credit_range = (df['index'].index >= 201) & (df['index'].index <= 204)
+    df_labour = df[labour_range]
+    df_house = df[house_range]
+    df_rast = df[rast_range]
+    df_animal = df[animal_range]
+    df_noncx = df[noncx_range]
+    df_manufacture = df[manufacture_range]
+    df_credit = df[credit_range]
+    # Create a BytesIO buffer to store the Excel file
+    excel_buffer = BytesIO()
+
+    # Use pandas to_excel function to export the DataFrame to Excel
+    with pd.ExcelWriter(excel_buffer, engine='xlsxwriter') as writer:
+        # Write each DataFrame to a different sheet
+        df_labour.to_excel(writer, sheet_name='Данные по населению', index=False, header=False)
+        df_house.to_excel(writer, sheet_name='Жилищные условия', index=False, header=False)
+        df_rast.to_excel(writer, sheet_name='Растениеводство', index=False, header=False)
+        df_animal.to_excel(writer, sheet_name='Животноводство', index=False, header=False)
+        df_noncx.to_excel(writer, sheet_name='Прочие виды бизнеса', index=False, header=False)
+        df_manufacture.to_excel(writer, sheet_name='Переработка и промышленность', index=False, header=False)
+        df_credit.to_excel(writer, sheet_name='Потребность в кредитах', index=False, header=False)
+
+
+    # Set up the response to return the Excel file
+    response = make_response(excel_buffer.getvalue())
+    response.headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    response.headers['Content-Disposition'] = 'attachment; filename=your_filename.xlsx'
+
+    return response
 
 @app.route('/account/region', methods=['GET', 'POST'])
 @login_required

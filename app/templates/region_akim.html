@@ -18,6 +18,9 @@
     {% else %}
     <h3 class="text-center"></h3>
     {% endif %}
+    <div style="display: flex; justify-content: center; margin-top: 20px">
+      <button id="downloadButton">Скачать таблицу</button>
+    </div>
     <!-- Progress bar -->
     <div class="progressbar">
       <div class="progress" id="progress"></div>
@@ -3787,4 +3790,34 @@
     </div>
   </div>
 </body>
+<script>
+  document.getElementById('downloadButton').addEventListener('click', function() {
+      // Make a request to your Flask route
+      fetch('/excel_download/{% if filterform.kato_4.data %}{{ filterform.kato_4.data }}{% else %}{{ current_user.kato_4 }}{% endif %}', { method: 'POST' })
+          .then(response => response.blob())
+          .then(blob => {
+              // Create a link element
+              const link = document.createElement('a');
+  
+              // Create a Blob URL for the Excel data
+              const url = URL.createObjectURL(blob);
+  
+              // Set the link's href attribute to the Blob URL
+              link.href = url;
+  
+              // Set the link's download attribute to the desired filename
+              link.download = '{% if filterform.kato_4.data %}{{ filterform.kato_4.data }}{% else %}{{ current_user.kato_4 }}{% endif %}.xlsx';
+  
+              // Append the link to the document
+              document.body.appendChild(link);
+  
+              // Trigger a click event on the link to start the download
+              link.click();
+  
+              // Remove the link from the document
+              document.body.removeChild(link);
+          });
+  });
+  </script>
+  
 {% endblock %}
