@@ -5,9 +5,9 @@
 
 <body>
   <div action="#" class="form">
-    <h3 class="text-center">{{ user.kato_2_name }}</h3>
+    <h3 style="margin-bottom: 20px;" class="text-center">{{ user.kato_2_name }}</h3>
 
-    <h1 class="text-center">Анкета скрининг сельских округов района: "{{ user.kato_4_name }}" </h1>
+    <h2 class="text-center">Анкета скрининг сельских округов района: "{{ user.kato_4_name }}" </h2>
     <br>
     <form method="POST" class="filter_form">
       {{ filterform.csrf_token }}

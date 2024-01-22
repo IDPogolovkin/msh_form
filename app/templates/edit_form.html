@@ -14,7 +14,7 @@
 {#    <h3 class="text-center">{{ formdata.kato_2_name }}, {{ formdata.kato_4_name }} Р. , {{ formdata.kato_6_name }} С. О.</h3>#}
 {#  <h1 class="text-center">Анкета скрининг сельского округа: "{{ user.kato_6_name }}" </h1>#}
     <br>
-    <h2 class="text-center">Редактирование</h2>
+    <h2 class="text-center" style="font-weight: bold;">Редактирование</h2>
     {% if formdata %}
     <h3 class="text-center">Последняя дата изменения: {{ str(formdata.modified_date).split('.')[0] }}</h3>
     {% else %}

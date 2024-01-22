@@ -84,6 +84,18 @@ form input{
     min-width: 70%;
 }
 
+#submit{
+    border: 1px solid #303F46;
+    background-color: #303F46;
+    color: #fff;
+}
+
+#submit:hover{
+    border: 1px solid #303F46;
+    background-color: #fff;
+    color: #303F46;
+}
+
 form select{
     font-size: 18px;
     cursor: pointer;
