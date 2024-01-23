@@ -6,6 +6,7 @@ body{
     background: url(img/step2.svg);
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 
 .login-body {
@@ -32,7 +33,7 @@ legend {
     background: rgba(48, 63, 70, 0.5);
     padding: 20px 50px;
     border-radius: 25px;
-    margin-top: 7%;
+    margin-top: 5%;
     margin-bottom: 8%;
 }
 
